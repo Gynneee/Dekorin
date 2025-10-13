@@ -254,14 +254,18 @@ body {
 }
 
 .menu-list li {
-  padding: 0.8rem 0.5rem;
+    padding: 0.8rem 0.5rem;
   font-weight: 500;
   cursor: pointer;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .menu-list li:hover {
@@ -270,9 +274,30 @@ body {
 
 .menu-list li.active {
   background-color: #81724F; 
+  transform: translateY(-3px); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: floatUp 0.25s ease forwards;
 }
 
+.menu-list li:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  60% {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.35);
+  }
+  100% {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
 
 @media (min-width: 768px) {
   .mobile-container {
