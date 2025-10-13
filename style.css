@@ -180,8 +180,8 @@ body {
   left: -80%;
   width: 70%;
   max-width: 300px;
-  height: 100vh;
-  background-color: #3a6b35; 
+  height: 100%;
+  background-color: #354C18; 
   color: white;
   display: flex;
   flex-direction: column;
@@ -206,7 +206,6 @@ body {
 
 .menu-list {
   list-style: none;
-  margin-top: 1.5rem;
 }
 
 .menu-list li {
