@@ -81,19 +81,23 @@ body {
 .slider-container {
   padding: 1rem;
   position: relative;
+  overflow: hidden;
 }
 
 .slider-wrapper {
   display: flex;
   width: 100%;
-  overflow: hidden;
-  border-radius: 15px;
+  transition: transform 0.5s ease-in-out;
 }
 
 .slide {
   width: 100%;
+  padding: 7px;
+  border-radius: 25px;
+  object-fit: cover;
+  display: block;
   flex-shrink: 0;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.7s ease-in-out;
 }
 
 .slider-dots {
