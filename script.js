@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (slides.length === 0) return;
 
-    // Scroll to the slide when a dot is clicked
     dots.forEach((dot, idx) => {
         dot.addEventListener('click', () => {
             const slide = slides[idx];
@@ -17,18 +16,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     sliderWrapper.addEventListener('scroll', () => {
-        let closestIdx = 0;
-        let closestDist = Math.abs(sliderWrapper.scrollLeft - slides[0].offsetLeft);
-        slides.forEach((slide, idx) => {
-            const dist = Math.abs(sliderWrapper.scrollLeft - slide.offsetLeft);
-            if (dist < closestDist) {
-                closestDist = dist;
-                closestIdx = idx;
-            }
-        });
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[closestIdx].classList.add('active');
+    let closestIdx = 0;
+    let closestDist = Math.abs(sliderWrapper.scrollLeft - slides[0].offsetLeft);
+
+    slides.forEach((slide, idx) => {
+        const dist = Math.abs(sliderWrapper.scrollLeft - slide.offsetLeft);
+        if (dist < closestDist) {
+            closestDist = dist;
+            closestIdx = idx;
+        }
     });
+
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[closestIdx].classList.add('active');
+
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[closestIdx].classList.add('active');
+});
 
     dots.forEach(dot => dot.classList.remove('active'));
     if (dots[0]) dots[0].classList.add('active');

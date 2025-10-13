@@ -87,12 +87,13 @@ body {
 .slider-wrapper {
   display: flex;
   width: 100%;
-  overflow-x: auto;                  
-  scroll-snap-type: x mandatory;     
-  -webkit-overflow-scrolling: touch; 
-  transition: none;                  
-  scrollbar-width: none; 
-  -ms-overflow-style: none; 
+  border-radius: 25px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
 }
 
 .slider-wrapper::-webkit-scrollbar {
@@ -101,14 +102,20 @@ body {
 
 .slide {
   width: 100%;
-  min-width: 80%;                    
+  min-width: 80%;
   padding: 7px;
   border-radius: 25px;
   object-fit: cover;
-  display: block;
   flex-shrink: 0;
-  transition: transform 0.7s ease-in-out;
-  scroll-snap-align: start;   
+  scroll-snap-align: start;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0.8;  
+}
+
+.slide.active {
+  transform: scale(1.1);
+  opacity: 1;
+  z-index: 2;
 }
 
 .slider-dots {
@@ -274,7 +281,7 @@ body {
   background-color: #81724F; 
   transform: translateY(-3px); 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  animation: floatUp 0.25s ease forwards;
+  animation: floatUp 0.3s ease-in-out forwards;
 }
 
 .menu-list li:active {
@@ -284,15 +291,15 @@ body {
 
 @keyframes floatUp {
   0% {
-    transform: translateY(0);
+    transform: translateX(0) translateY(0);
     box-shadow: none;
   }
   60% {
-    transform: translateY(-7px);
+    transform: translateX(7px) translateY(-7px);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.35);
   }
   100% {
-    transform: translateY(-5px);
+    transform: translateX(5px) translateY(-5px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
 }
