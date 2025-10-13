@@ -1,6 +1,6 @@
 :root {
   --primary-green: #3a6b35;
-  --light-gray: #f0f0f0; /* We will use this for the box background */
+  --light-gray: #f0f0f0;
   --dark-gray: #4a4a4a;
   --background-color: #ffffff;
   --border-color: #e0e0e0;
@@ -188,6 +188,7 @@ body {
   transition: left 0.3s ease;
   z-index: 9999;
   padding: 1.5rem 1rem;
+  justify-content: flex-start; 
 }
 
 .side-menu.open {
@@ -201,11 +202,14 @@ body {
   font-size: 2rem;
   align-self: flex-end;
   cursor: pointer;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem; 
 }
 
 .menu-list {
   list-style: none;
+  margin-top: 0;      
+  padding-top: 0;    
+  flex: 0 0 auto;
 }
 
 .menu-list li {
@@ -216,6 +220,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .menu-list li i {
@@ -225,6 +234,9 @@ body {
 .menu-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  margin-top: auto; 
 }
 
 .menu-footer p {
@@ -245,21 +257,6 @@ body {
 
 .menu-footer a:hover {
   opacity: 0.8;
-}
-
-.menu-list li {
-    padding: 0.8rem 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
 }
 
 .menu-list li.active {
