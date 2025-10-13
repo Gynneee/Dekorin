@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern App Showcase</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="mobile-container">
+      <header class="main-header">
+        <button class="nav-button"><i class="fas fa-bars"></i></button>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search" />
+        </div>
+        <div class="user-actions">
+          <a href="#" aria-label="Shopping Cart"
+            ><i class="fas fa-shopping-cart"></i
+          ></a>
+          <a href="#" aria-label="User Profile"><i class="fas fa-user"></i></a>
+        </div>
+      </header>
+
+      <main>
+        <section class="slider-container">
+          <div class="slider-wrapper">
+            <img
+              src="src/laurent-perren-NeH9w4CdmnA-unsplash.jpg"
+              alt="Restaurant Interior 1"
+              class="slide"
+            />
+            <img
+              src="src/redcharlie-mugDbuNnbd0-unsplash.jpg"
+              alt="Restaurant Interior 2"
+              class="slide"
+            />
+            <img
+              src="src/redcharlie-vQVWIsIBafA-unsplash.jpg"
+              alt="Restaurant Interior 3"
+              class="slide"
+            />
+          </div>
+          <div class="slider-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+          </div>
+        </section>
+
+        <section class="features-section">
+          <h2>Features</h2>
+          <div class="features-grid">
+            <div class="feature-item">
+              <i class="fas fa-camera"></i>
+              <p>Augmented Reality</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-calculator"></i>
+              <p>Automatic Calculator</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-robot"></i>
+              <p>AI Consultant</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-lightbulb"></i>
+              <p>inVision</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
