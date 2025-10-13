@@ -174,7 +174,6 @@ body {
   color: var(--primary-green);
 }
 
-/* === SIDE MENU STYLES === */
 .side-menu {
   position: fixed;
   top: 0;
@@ -182,7 +181,7 @@ body {
   width: 70%;
   max-width: 300px;
   height: 100vh;
-  background-color: #3a6b35; /* dark green */
+  background-color: #3a6b35; 
   color: white;
   display: flex;
   flex-direction: column;
@@ -196,7 +195,6 @@ body {
   left: 0;
 }
 
-/* Close button */
 .close-btn {
   background: none;
   border: none;
@@ -206,7 +204,6 @@ body {
   cursor: pointer;
 }
 
-/* Menu items */
 .menu-list {
   list-style: none;
   margin-top: 1.5rem;
@@ -231,7 +228,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* Footer section */
 .menu-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 1rem;
@@ -273,7 +269,7 @@ body {
 }
 
 .menu-list li.active {
-  background-color: #b59410; 
+  background-color: #81724F; 
 }
 
 
