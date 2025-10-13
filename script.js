@@ -5,67 +5,72 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (slides.length === 0) return;
 
-    const totalSlides = slides.length;
-    let currentSlide = 0;
-    let slideInterval;
-
-    function goToSlide(slideIndex) {
-        sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[slideIndex].classList.add('active');
-        currentSlide = slideIndex;
-    }
-
-    function nextSlide() {
-        const nextSlideIndex = (currentSlide + 1) % totalSlides;
-        goToSlide(nextSlideIndex);
-    }
-    
-    dots.forEach(dot => {
+    // Scroll to the slide when a dot is clicked
+    dots.forEach((dot, idx) => {
         dot.addEventListener('click', () => {
-            const slideIndex = parseInt(dot.dataset.slide);
-            goToSlide(slideIndex);
-            
-            clearInterval(slideInterval);
-            slideInterval = setInterval(nextSlide, 4000);
+            // Calculate the scroll position for the slide
+            const slide = slides[idx];
+            sliderWrapper.scrollTo({
+                left: slide.offsetLeft,
+                behavior: 'smooth'
+            });
         });
     });
 
-    function startSlideShow() {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 4000);
+    // Update active dot on scroll
+    sliderWrapper.addEventListener('scroll', () => {
+        let closestIdx = 0;
+        let closestDist = Math.abs(sliderWrapper.scrollLeft - slides[0].offsetLeft);
+        slides.forEach((slide, idx) => {
+            const dist = Math.abs(sliderWrapper.scrollLeft - slide.offsetLeft);
+            if (dist < closestDist) {
+                closestDist = dist;
+                closestIdx = idx;
+            }
+        });
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[closestIdx].classList.add('active');
+    });
+
+    // Set first dot as active on load
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[0]) dots[0].classList.add('active');
+
+    const navButton = document.querySelector('.nav-button');
+    const sideMenu = document.getElementById('sideMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const mainContent = document.querySelector('.main-content');
+    const body = document.body;
+
+    function openMenu() {
+        sideMenu.classList.add('open');
+        body.classList.add('no-scroll');
     }
 
-    goToSlide(0);
-    startSlideShow();
-
-const navButton = document.querySelector('.nav-button');
-const sideMenu = document.getElementById('sideMenu');
-const closeMenu = document.getElementById('closeMenu');
-
-if (navButton && sideMenu && closeMenu) {
-  navButton.addEventListener('click', () => {
-    sideMenu.classList.add('open');
-  });
-
-  closeMenu.addEventListener('click', () => {
-    sideMenu.classList.remove('open');
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!sideMenu.contains(e.target) && !navButton.contains(e.target)) {
-      sideMenu.classList.remove('open');
+    function closeMenuFunc() {
+        sideMenu.classList.remove('open');
+        body.classList.remove('no-scroll');
     }
-  });
-}
 
-const menuItems = document.querySelectorAll('.menu-list li');
+    if (navButton && sideMenu && closeMenu) {
+        navButton.addEventListener('click', openMenu);
 
-menuItems.forEach(item => {
-  item.addEventListener('click', () => {
-    menuItems.forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
-  });
-});
+        closeMenu.addEventListener('click', closeMenuFunc);
+
+        document.addEventListener('click', (e) => {
+            if (!sideMenu.contains(e.target) && !navButton.contains(e.target)) {
+                closeMenuFunc();
+            }
+        });
+    }
+
+    const menuItems = document.querySelectorAll('.menu-list li');
+
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            menuItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        });
+    });
 
 });

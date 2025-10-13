@@ -87,17 +87,28 @@ body {
 .slider-wrapper {
   display: flex;
   width: 100%;
-  transition: transform 0.5s ease-in-out;
+  overflow-x: auto;                  
+  scroll-snap-type: x mandatory;     
+  -webkit-overflow-scrolling: touch; 
+  transition: none;                  
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.slider-wrapper::-webkit-scrollbar {
+  display: none; 
 }
 
 .slide {
   width: 100%;
+  min-width: 80%;                    
   padding: 7px;
   border-radius: 25px;
   object-fit: cover;
   display: block;
   flex-shrink: 0;
   transition: transform 0.7s ease-in-out;
+  scroll-snap-align: start;   
 }
 
 .slider-dots {
@@ -284,6 +295,10 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
