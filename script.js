@@ -38,4 +38,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     goToSlide(0);
     startSlideShow();
+
+const navButton = document.querySelector('.nav-button');
+const sideMenu = document.getElementById('sideMenu');
+const closeMenu = document.getElementById('closeMenu');
+
+if (navButton && sideMenu && closeMenu) {
+  navButton.addEventListener('click', () => {
+    sideMenu.classList.add('open');
+  });
+
+  closeMenu.addEventListener('click', () => {
+    sideMenu.classList.remove('open');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!sideMenu.contains(e.target) && !navButton.contains(e.target)) {
+      sideMenu.classList.remove('open');
+    }
+  });
+}
+
+const menuItems = document.querySelectorAll('.menu-list li');
+
+menuItems.forEach(item => {
+  item.addEventListener('click', () => {
+    menuItems.forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+
+    console.log(`${item.textContent.trim()} clicked`);
+  });
+});
+
+
 });
