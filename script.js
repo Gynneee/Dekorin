@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll to the slide when a dot is clicked
     dots.forEach((dot, idx) => {
         dot.addEventListener('click', () => {
-            // Calculate the scroll position for the slide
             const slide = slides[idx];
             sliderWrapper.scrollTo({
                 left: slide.offsetLeft,
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Update active dot on scroll
     sliderWrapper.addEventListener('scroll', () => {
         let closestIdx = 0;
         let closestDist = Math.abs(sliderWrapper.scrollLeft - slides[0].offsetLeft);
@@ -32,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
         dots[closestIdx].classList.add('active');
     });
 
-    // Set first dot as active on load
     dots.forEach(dot => dot.classList.remove('active'));
     if (dots[0]) dots[0].classList.add('active');
 
