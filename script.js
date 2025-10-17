@@ -1,23 +1,23 @@
-    document.addEventListener('DOMContentLoaded', function() {
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const sliderWrapper = document.querySelector('.slider-wrapper');
-        
-        if (slides.length === 0) return;
+document.addEventListener('DOMContentLoaded', function() {
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  const sliderWrapper = document.querySelector('.slider-wrapper');
+  
+  if (slides.length === 0) return;
 
-        dots.forEach((dot, idx) => {
-            dot.addEventListener('click', () => {
-                const slide = slides[idx];
-                sliderWrapper.scrollTo({
-                    left: slide.offsetLeft,
-                    behavior: 'smooth'
-                });
-            });
-        });
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      const slide = slides[idx];
+      sliderWrapper.scrollTo({
+        left: slide.offsetLeft,
+        behavior: 'smooth'
+      });
+    });
+  });
 
-    const handleIntersection = (entries) => {
+  const handleIntersection = (entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
+      if (entry.isIntersecting) {
         const visibleSlide = entry.target;
         const index = Array.from(slides).indexOf(visibleSlide);
 
@@ -25,59 +25,51 @@
         slides.forEach(s => s.classList.remove('active'));
 
         if (dots[index]) {
-            dots[index].classList.add('active');
+          dots[index].classList.add('active');
         }
         visibleSlide.classList.add('active');
-        }
+      }
     });
-    };
+  };
 
-    const observer = new IntersectionObserver(handleIntersection, {
+  const observer = new IntersectionObserver(handleIntersection, {
     root: sliderWrapper,
     rootMargin: '0px',
-    threshold: 0.75 
+    threshold: 0.5 
+  });
+
+  slides.forEach(slide => observer.observe(slide));
+
+  const navButton = document.querySelector('.nav-button');
+  const sideMenu = document.getElementById('sideMenu');
+  const closeMenu = document.getElementById('closeMenu');
+  const body = document.body;
+
+  function openMenu() {
+    sideMenu.classList.add('open');
+    body.classList.add('no-scroll');
+  }
+
+  function closeMenuFunc() {
+    sideMenu.classList.remove('open');
+    body.classList.remove('no-scroll');
+  }
+
+  if (navButton && sideMenu && closeMenu) {
+    navButton.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuFunc);
+    document.addEventListener('click', (e) => {
+      if (!sideMenu.contains(e.target) && !navButton.contains(e.target)) {
+        closeMenuFunc();
+      }
     });
+  }
 
-    slides.forEach(slide => observer.observe(slide));
-
-        dots.forEach(dot => dot.classList.remove('active'));
-        if (dots[0]) dots[0].classList.add('active');
-
-        const navButton = document.querySelector('.nav-button');
-        const sideMenu = document.getElementById('sideMenu');
-        const closeMenu = document.getElementById('closeMenu');
-        const mainContent = document.querySelector('.main-content');
-        const body = document.body;
-
-        function openMenu() {
-            sideMenu.classList.add('open');
-            body.classList.add('no-scroll');
-        }
-
-        function closeMenuFunc() {
-            sideMenu.classList.remove('open');
-            body.classList.remove('no-scroll');
-        }
-
-        if (navButton && sideMenu && closeMenu) {
-            navButton.addEventListener('click', openMenu);
-
-            closeMenu.addEventListener('click', closeMenuFunc);
-
-            document.addEventListener('click', (e) => {
-                if (!sideMenu.contains(e.target) && !navButton.contains(e.target)) {
-                    closeMenuFunc();
-                }
-            });
-        }
-
-        const menuItems = document.querySelectorAll('.menu-list li');
-
-        menuItems.forEach(item => {
-            item.addEventListener('click', () => {
-                menuItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-            });
-        });
-
+  const menuItems = document.querySelectorAll('.menu-list li');
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      menuItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
     });
+  });
+});
