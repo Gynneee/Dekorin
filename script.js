@@ -35,7 +35,7 @@
     const observer = new IntersectionObserver(handleIntersection, {
     root: sliderWrapper,
     rootMargin: '0px',
-    threshold: 0.75 
+    threshold: 0.5 
     });
 
     slides.forEach(slide => observer.observe(slide));

@@ -94,6 +94,7 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none;
   position: relative;
+  scroll-snap-stop: always;
 }
 
 .slider-wrapper::-webkit-scrollbar {
@@ -111,6 +112,7 @@ body {
   opacity: 0.8;  
   height: 100%;
   aspect-ratio: 16 / 9; 
+  will-change: transform;
 }
 
 .slide.active {
