@@ -108,15 +108,15 @@ body {
   object-fit: cover;
   flex-shrink: 0;
   scroll-snap-align: start;
+  transform: scale(1);
   transition: transform 0.5s ease, opacity 0.5s ease;
-  opacity: 0.8;  
+  opacity: 0.7;  
   height: 100%;
   aspect-ratio: 16 / 9; 
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
 .slide.active {
-  transform: scale(1.1);
   opacity: 1;
   z-index: 2;
 }
