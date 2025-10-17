@@ -39,7 +39,7 @@ body {
 }
 
 .signup-header {
-  padding: 4rem 1.5rem 8rem;
+  padding: 4rem 1.5rem 7rem;
   text-align: left;
   color: var(--dark-gray-text);
   flex-grow: 1;
@@ -73,7 +73,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1rem 1.5rem 3rem;
+  padding: 1rem 1.5rem 4rem;
   gap: 20px;
 }
 
