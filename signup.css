@@ -253,7 +253,7 @@ body {
 
   .signup-header {
     flex-basis: 50%;
-    background-color: #513829;
+    background-color: var(--soft-white);
     color: var(--soft-white);
     text-align: center;
     padding: 3rem;
@@ -261,7 +261,7 @@ body {
 
   .signup-header h1 {
     font-size: 2.5rem;
-    color: var(--soft-white);
+    color: var(--dark-gray-text);
   }
 
   .signup-header img {
@@ -269,13 +269,13 @@ body {
   }
 
   .signup-header .tagline {
-    color: var(--light-gray);
+    color: var(--dark-gray-text);
     opacity: 0.9;
   }
 
   .form-section {
     flex-basis: 50%;
-    background-color: var(--soft-white);
+    background-color: var(--primary-green);
     justify-content: center;
     padding: 3rem;
   }
@@ -286,15 +286,15 @@ body {
 
   .or-divider,
   .login-link {
-    color: var(--dark-gray-text);
+    color: var(--soft-white);
   }
 
   .or-divider .line {
-    background-color: var(--border-color);
+    background-color: var(--soft-white);
   }
 
   .login-link a {
-    color: var(--primary-green);
+    color: var(--soft-white);
     font-weight: 600;
   }
 }
