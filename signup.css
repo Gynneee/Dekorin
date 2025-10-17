@@ -153,7 +153,6 @@ body {
   color: var(--light-gray);
   font-size: 0.9rem;
   width: 100%;
-  z-index: 9999;
 }
 
 .or-divider .line {
@@ -161,7 +160,6 @@ body {
   height: 1px;
   background-color: rgba(255, 255, 255, 0.3);
   margin: 0 0.75rem;
-  z-index: 9999;
 }
 
 .social-signup {
