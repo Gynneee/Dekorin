@@ -87,6 +87,7 @@ body {
 form {
   position: relative;
   z-index: 2;
+  gap: 1rem;
 }
 
 .input-group {
@@ -119,6 +120,7 @@ input:focus {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;
 }
 
 .btn:hover {
@@ -148,14 +150,14 @@ input:focus {
 .social-login {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 1rem;
 }
 
 .social-btn {
   flex: 1;
   border: 2px solid var(--soft-white);
   border-radius: 25px;
-  padding: 8px;
+  padding: 0.8rem 1rem;
   background-color: white;
   cursor: pointer;
   font-weight: 500;
@@ -176,12 +178,18 @@ input:focus {
   height: 20px;
 }
 
+.social-btn i,
+.social-btn img {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
 .social-btn.facebook-btn i {
   color: var(--facebook-blue);
 }
 
 .signup-text {
-  margin-top: 50px;
+  margin-top: 80px;
   text-align: center;
   color: var(--light-gray);
 }
