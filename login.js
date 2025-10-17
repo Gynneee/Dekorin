@@ -1,4 +1,3 @@
-// Efek tombol "Continue" animasi klik
 const button = document.querySelector(".btn");
 button.addEventListener("click", (e) => {
   e.preventDefault();
@@ -12,7 +11,6 @@ button.addEventListener("click", (e) => {
   }, 1500);
 });
 
-// Animasi fade saat halaman muncul
 window.addEventListener("load", () => {
   document.querySelector(".container").style.opacity = "1";
 });

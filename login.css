@@ -1,4 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+:root {
+  --primary-green: #3a6b35;
+  --darker-green: #2d552a;
+  --light-gray: #f0f0f0;
+  --dark-gray-text: #4a4a4a;
+  --soft-white: #ffffff;
+  --border-color: #e0e0e0;
+  --button-hover-green: #4b8045;
+  --google-blue: #4285f4;
+  --facebook-blue: #1877f2;
+  --text-dark: #333333;
+}
 
 * {
   margin: 0;
@@ -8,70 +20,74 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #1e1e1e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background-color: var(--soft-white);
 }
 
-/* --- Container utama --- */
 .container {
-  background-color: #fff;
-  width: 360px;
-  border-radius: 25px;
-  overflow: hidden;
-  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
   animation: fadeIn 1s ease forwards;
 }
 
-/* --- Bagian atas melengkung hijau --- */
-.top-shape {
-  background-color: #647a46;
-  height: 220px;
-  width: 100%;
-  border-bottom-left-radius: 180px 90px;
-  border-bottom-right-radius: 180px 90px;
-}
-
-/* --- Isi form --- */
-.form-content {
-  text-align: center;
-  padding: 0 30px 30px;
-  margin-top: -100px;
-  animation: slideUp 1.3s ease forwards;
-}
-
-/* --- Logo gambar DekorIn --- */
-.logo {
+.header-section {
+  background-color: var(--soft-white);
+  flex-grow: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
+  align-items: left;
+  text-align: left;
+  padding: 2rem 1.5rem;
 }
 
 .logo img {
-  width: 140px; /* ukuran logo */
+  width: 250px;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
+  margin-bottom: 1rem;
 }
 
-/* --- Heading dan teks --- */
-h2 {
-  margin-top: 20px;
+.header-section h2 {
   font-size: 22px;
-  color: #3c4a2b;
   font-weight: 600;
+  color: white;
 }
 
-p {
-  color: #3c4a2b;
+.header-section p {
+  color: white;
   font-size: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
-/* --- Input --- */
+.login-section {
+  background-color: #647a46;
+  padding: 5rem 1.5rem 2rem;
+  position: relative;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.login-section::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  left: -25%;
+  width: 150%;
+  height: 300px;
+  background-color: #647a46;
+  border-radius: 100%;
+  z-index: 1;
+}
+
+form {
+  position: relative;
+  z-index: 2;
+}
+
 .input-group {
   margin-bottom: 15px;
 }
@@ -91,7 +107,6 @@ input:focus {
   box-shadow: 0 0 5px rgba(100, 122, 70, 0.5);
 }
 
-/* --- Tombol utama --- */
 .btn {
   width: 100%;
   background-color: #b9a16b;
@@ -110,7 +125,6 @@ input:focus {
   transform: translateY(-2px);
 }
 
-/* --- Pembatas “OR” --- */
 .divider {
   margin: 25px 0;
   display: flex;
@@ -131,7 +145,6 @@ input:focus {
   font-size: 14px;
 }
 
-/* --- Tombol login sosial --- */
 .social-login {
   display: flex;
   justify-content: space-between;
@@ -163,9 +176,9 @@ input:focus {
   height: 20px;
 }
 
-/* --- Teks signup --- */
 .signup-text {
   margin-top: 25px;
+  text-align: center;
   color: #3c4a2b;
 }
 
@@ -179,7 +192,6 @@ input:focus {
   text-decoration: underline;
 }
 
-/* --- Animasi --- */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -188,16 +200,5 @@ input:focus {
   to {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
   }
 }
