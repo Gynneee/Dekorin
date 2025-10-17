@@ -275,7 +275,7 @@ body {
 
   .form-section {
     flex-basis: 50%;
-    background-color: var(--primary-green);
+    background-color: #647a46;
     justify-content: center;
     padding: 3rem;
   }
