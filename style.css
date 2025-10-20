@@ -19,12 +19,13 @@ body {
   justify-content: center;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
 .mobile-container {
   width: 100%;
+  max-width: 700px;
   background-color: var(--background-color);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border-radius: 0 0 25px 25px;
@@ -217,7 +218,7 @@ a{
   width: 70%;
   max-width: 300px;
   height: 100%;
-  background-color: #354C18;
+  background-color: #354c18;
   color: white;
   display: flex;
   flex-direction: column;
@@ -256,11 +257,13 @@ a{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  transform: translateX(0) translateY(0);
+  box-shadow: none;
+}
+
+.menu-list li.has-sub {
+  flex-wrap: wrap;
 }
 
 .menu-list li i {
@@ -294,10 +297,15 @@ a{
 }
 
 .menu-list li.active {
-  background-color: #81724F;
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background-color: #81724f;
   animation: floatUp 0.3s ease-in-out forwards;
+}
+
+.menu-list li.has-sub.active-sub {
+  background-color: #81724f;
+  animation: floatUp 0.3s ease-in-out forwards;
+  position: relative;
+  z-index: 10;
 }
 
 .menu-list li:active {
@@ -324,20 +332,48 @@ body.no-scroll {
   overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  .mobile-container {
-    max-width: 700px;
-  }
+.sub-menu {
+  list-style: none;
+  padding-left: 1.5rem;
+  width: 100%;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
 
-  .features-section h2 {
-    font-size: 2rem;
-  }
+.sub-menu li {
+  padding: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.1);
+}
 
-  .feature-item i {
-    font-size: 2.5rem;
-  }
+.sub-menu li:first-child {
+  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
+  border-radius: 5px 5px 0 0;
+}
 
-  .feature-item p {
-    font-size: 0.9rem;
-  }
+.sub-menu li:last-child {
+  border-radius: 0 0 5px 5px;
+}
+
+.menu-list li.has-sub.active-sub > span > i {
+  transform: rotate(90deg);
+}
+
+.menu-list li.has-sub.active-sub > .sub-menu {
+  max-height: 300px;
+  transition: max-height 0.5s ease-in;
+}
+
+.menu-list li.has-sub > span > i {
+  transition: transform 0.3s ease;
+}
+
+.menu-list li.has-sub > span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
