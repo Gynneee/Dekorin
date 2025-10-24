@@ -13,6 +13,20 @@
   box-sizing: border-box;
 }
 
+a,
+button,
+.nav-button,
+.menu-list li {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus,
+button:focus,
+.nav-button:focus,
+.menu-list li:focus {
+  outline: none; 
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--light-gray);
