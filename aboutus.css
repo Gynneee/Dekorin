@@ -6,27 +6,23 @@
   --border-color: #e0e0e0;
   --primary-brown: #81724f;
 }
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 a,
 button,
 .nav-button,
 .menu-list li {
   -webkit-tap-highlight-color: transparent;
 }
-
 a:focus,
 button:focus,
 .nav-button:focus,
 .menu-list li:focus {
   outline: none;
 }
-
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--light-gray);
@@ -34,11 +30,9 @@ body {
   display: flex;
   justify-content: center;
 }
-
 a {
   text-decoration: none;
 }
-
 .mobile-container {
   width: 100%;
   max-width: 700px;
@@ -47,16 +41,13 @@ a {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
-
 main {
   width: 100%;
 }
-
 img {
   max-width: 100%;
   display: block;
 }
-
 .main-header {
   display: flex;
   align-items: center;
@@ -68,7 +59,6 @@ img {
   top: 0;
   z-index: 100;
 }
-
 .nav-button {
   background: none;
   border: none;
@@ -76,7 +66,6 @@ img {
   cursor: pointer;
   color: var(--dark-gray);
 }
-
 .search-bar {
   flex-grow: 1;
   display: flex;
@@ -87,12 +76,10 @@ img {
   padding: 0.5rem 1rem;
   margin: 0 1rem;
 }
-
 .search-bar i {
   color: #999;
   margin-right: 0.5rem;
 }
-
 .search-bar input {
   border: none;
   background: none;
@@ -101,18 +88,15 @@ img {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
 }
-
 .user-actions {
   display: flex;
   gap: 1rem;
 }
-
 .user-actions a {
   font-size: 1.5rem;
   color: var(--dark-gray);
   text-decoration: none;
 }
-
 .side-menu {
   position: fixed;
   top: 0;
@@ -129,11 +113,9 @@ img {
   padding: 1.5rem 1rem;
   justify-content: flex-start;
 }
-
 .side-menu.open {
   left: 0;
 }
-
 .close-btn {
   background: none;
   border: none;
@@ -143,14 +125,12 @@ img {
   cursor: pointer;
   margin-bottom: 0.5rem;
 }
-
 .menu-list {
   list-style: none;
   margin-top: 0;
   padding-top: 0;
   flex: 0 0 auto;
 }
-
 .menu-list li {
   padding: 0.8rem 0.5rem;
   font-weight: 500;
@@ -164,26 +144,21 @@ img {
   box-shadow: none;
   border: 1px solid transparent;
 }
-
 .menu-list li.has-sub {
   flex-wrap: wrap;
 }
-
 .menu-list li i {
   font-size: 0.9rem;
 }
-
 .menu-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 1rem;
   margin-top: auto;
 }
-
 .menu-footer p {
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
-
 .menu-footer a {
   display: flex;
   align-items: center;
@@ -194,17 +169,14 @@ img {
   font-size: 0.9rem;
   transition: opacity 0.2s;
 }
-
 .menu-footer a i {
   margin-right: 0;
   width: auto;
   text-align: left;
 }
-
 .menu-footer a:hover {
   opacity: 0.8;
 }
-
 .menu-list li.active {
   animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3),
@@ -215,7 +187,6 @@ img {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
 .menu-list li.has-sub.active-sub {
   animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   position: relative;
@@ -228,12 +199,10 @@ img {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
 .menu-list li:active {
   transform: translateY(0);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-
 @keyframes floatUp {
   0% {
     transform: translateX(0) translateY(0);
@@ -251,11 +220,9 @@ img {
     -webkit-filter: blur(0px);
   }
 }
-
 body.no-scroll {
   overflow: hidden;
 }
-
 .sub-menu {
   list-style: none;
   padding-left: 1.5rem;
@@ -264,7 +231,6 @@ body.no-scroll {
   max-height: 0;
   transition: max-height 0.4s ease, padding 0.3s ease;
 }
-
 .sub-menu li {
   padding: 0.6rem 0.9rem;
   font-size: 0.9rem;
@@ -276,45 +242,37 @@ body.no-scroll {
   border-radius: 5px;
   margin-bottom: 0.3rem;
 }
-
 .sub-menu li:first-child {
   margin-top: 0.5rem;
   margin-bottom: 0.3rem;
   border-radius: 5px;
 }
-
 .sub-menu li:last-child {
   border-radius: 5px;
   margin-bottom: 0;
 }
-
 .menu-list li.has-sub.active-sub > span > i {
   transform: rotate(90deg);
 }
-
 .menu-list li.has-sub.active-sub > .sub-menu {
   max-height: 300px;
   transition: max-height 0.5s ease-in;
 }
-
 .menu-list li.has-sub > span > i {
   transition: transform 0.3s ease;
 }
-
 .menu-list li.has-sub > span {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
-
 .hero {
   position: relative;
   width: 100%;
   height: 350px;
   overflow: hidden;
 }
-
 .hero-image {
   width: 100%;
   height: 100%;
@@ -323,8 +281,9 @@ body.no-scroll {
   top: 0;
   left: 0;
   z-index: 1;
+  /* Add this for smooth parallax */
+  will-change: transform;
 }
-
 .hero-text {
   position: absolute;
   text-align: center;
@@ -334,23 +293,19 @@ body.no-scroll {
   color: white;
   z-index: 2;
 }
-
 .hero-text h1 {
   font-family: "Poppins", sans-serif;
   font-size: 2rem;
   font-weight: 600;
 }
-
 .hero-text p {
   font-size: 0.9rem;
 }
-
 .about-intro {
   padding: 24px 20px;
   text-align: center;
   background: var(--background-color);
 }
-
 .about-intro .logo img {
   display: block;
   margin-left: auto;
@@ -360,180 +315,149 @@ body.no-scroll {
   object-fit: contain;
   margin-bottom: 1rem;
 }
-
 .about-intro p {
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--dark-gray);
 }
-
 .about-intro p:last-of-type {
   margin-top: 16px;
   font-style: italic;
   color: #444;
 }
-
 .vision-section {
   padding: 24px 20px;
   background-color: var(--primary-brown);
   color: #ffffff;
 }
-
 .vision-section h2 {
   text-align: center;
   font-weight: 600;
   letter-spacing: 1px;
   margin-bottom: 12px;
 }
-
 .vision-section p {
   font-size: 0.9rem;
   line-height: 1.6;
   text-align: center;
 }
-
 .mission-section {
   padding: 24px 20px;
   background-color: #695b3c;
   color: #ffffff;
 }
-
 .mission-section h2 {
   text-align: center;
   font-weight: 600;
   letter-spacing: 1px;
   margin-bottom: 12px;
 }
-
 .mission-section p {
   font-size: 0.9rem;
   line-height: 1.6;
   text-align: center;
 }
-
 .mission {
   margin-top: 24px;
 }
-
 .mission p {
   margin-bottom: 12px;
 }
-
-/* --- Meet The Team Section --- */
 .team-section {
-  padding: 40px 20px; /* Adjust padding as needed */
-  background-color: var(--background-color); /* White background */
+  padding: 40px 20px;
+  background-color: var(--background-color);
 }
-
 .section-title {
   font-family: "Poppins", sans-serif;
   font-size: 1.6rem;
   font-weight: 1500;
-  color: var(--primary-green); /* Dark green for the title */
+  color: var(--primary-green);
   text-align: center;
   margin-bottom: 40px;
   letter-spacing: 1px;
 }
-
 .team-grid {
   display: flex;
-  flex-direction: column; /* Stack members vertically on mobile */
-  gap: 25px; /* Space between members */
+  flex-direction: column;
+  gap: 25px;
 }
-
 .team-member {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* To push image and text to opposite sides */
-  gap: 15px; /* Space between photo and info */
+  justify-content: space-between;
+  gap: 15px;
 }
-
-/* Alternate layout for even/odd members */
 .team-member:nth-child(even) {
-  flex-direction: row-reverse; /* Swap order for even members */
+  flex-direction: row-reverse;
 }
-
 .member-photo {
-  width: 110px; /* Size of the circular photo */
+  width: 110px;
   height: 110px;
-  border-radius: 50%; /* Makes the image circular */
-  object-fit: cover; /* Ensures image fills the circle */
-  flex-shrink: 0; /* Prevents image from shrinking */
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
 }
-
 .member-info {
-  flex-grow: 1; /* Allows info to take up remaining space */
-  text-align: center; /* Default text align for odd members */
+  flex-grow: 1;
+  text-align: center;
 }
-
 .team-member:nth-child(even) .member-info {
-  text-align: center; /* Text align for even members */
+  text-align: center;
 }
-
 .member-name {
   font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--primary-green); /* Green for names */
+  color: var(--primary-green);
   margin-bottom: 4px;
 }
-
 .member-title {
   font-size: 0.85rem;
-  color: var(--dark-gray); /* Dark gray for titles */
+  color: var(--dark-gray);
   font-weight: 400;
 }
-
 .last-section {
   padding: 24px 20px;
   background-color: var(--primary-brown);
   color: #ffffff;
 }
-
 .last-section p {
   font-size: 0.9rem;
   line-height: 1.6;
   text-align: center;
 }
-
 .last {
   margin-top: 24px;
 }
-
 .last p {
   margin-bottom: 12px;
 }
-
 .last-image {
   padding: 24px 20px;
   background-color: var(--light-gray);
   color: #314714;
   display: flex;
-  align-items: center;      
-  justify-content: center;  
-  gap: 30px;               
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  overflow: hidden; /* Added to contain parallax */
 }
-
 .last-image-text {
-  flex-grow: 1; 
-  text-align: left; 
+  flex-grow: 1;
+  text-align: left;
 }
-
 .last-image img {
-  margin: 0; 
-  flex-shrink: 0;   
-  width: 150px;    
+  margin: 0;
+  flex-shrink: 0;
+  width: 150px;
   height: auto;
 }
-
 .last-image h1 {
   font-size: 1.2rem;
 }
-
 .last-image p {
   font-size: 1rem;
 }
-
 @media (min-width: 450px) {
   .team-section {
     padding: 60px 40px;
@@ -554,4 +478,28 @@ body.no-scroll {
   .member-title {
     font-size: 0.95rem;
   }
+}
+
+/* --- REVEAL ANIMATION (This makes text visible) --- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- PARALLAX ANIMATION (This makes elements move) --- */
+.parallax-element {
+  /* This tells the browser to get ready to animate */
+  will-change: transform;
+  /*
+    The actual transform is applied by JavaScript,
+    but we add a transition to make it smooth when it
+    first "catches" the scroll position.
+  */
+  transition: transform 0.1s linear;
 }
