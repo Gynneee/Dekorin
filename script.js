@@ -67,6 +67,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const menuItems = document.querySelectorAll(".menu-list > li");
 
+  let currentPage = window.location.pathname.split("/").pop();
+  if (currentPage === "") {
+    currentPage = "index.html";
+  }
+
+  const allLinks = document.querySelectorAll(".menu-list a");
+
+  allLinks.forEach((link) => {
+    const linkHref = link.getAttribute("href");
+    if (linkHref === currentPage) {
+      const parentLi = link.closest("li");
+      
+      const subMenu = parentLi.closest(".sub-menu");
+      if (subMenu) {
+        parentLi.classList.add("active");
+        const mainParentLi = subMenu.closest(".has-sub");
+        if (mainParentLi) {
+          mainParentLi.classList.add("active-sub");
+        }
+      } else {
+        parentLi.classList.add("active");
+      }
+    }
+  });
+
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
       if (item.classList.contains("has-sub")) {

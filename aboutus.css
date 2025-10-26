@@ -152,7 +152,6 @@ img {
 }
 
 .menu-list li {
-  padding: 0.8rem 0.5rem;
   font-weight: 500;
   cursor: pointer;
   border-radius: 5px;
@@ -163,6 +162,17 @@ img {
   transform: translateX(0) translateY(0);
   box-shadow: none;
   border: 1px solid transparent;
+}
+
+.menu-list > li > a,
+.menu-list > li > span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem 0.5rem;
+  color: white;
+  text-decoration: none;
 }
 
 .menu-list li.has-sub {
@@ -266,15 +276,25 @@ body.no-scroll {
 }
 
 .sub-menu li {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0;
+  margin-bottom: 0.3rem;
+}
+
+.sub-menu li a {
+  display: block;
   padding: 0.6rem 0.9rem;
   font-size: 0.9rem;
   font-weight: 400;
+  color: white;
+  text-decoration: none;
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
     inset 0 -1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  margin-bottom: 0.3rem;
+  transition: background-color 0.2s;
 }
 
 .sub-menu li:first-child {
@@ -285,7 +305,7 @@ body.no-scroll {
 
 .sub-menu li:last-child {
   border-radius: 5px;
-  margin-bottom: 0;
+  margin-bottom: 15px;
 }
 
 .menu-list li.has-sub.active-sub > span > i {
@@ -299,13 +319,6 @@ body.no-scroll {
 
 .menu-list li.has-sub > span > i {
   transition: transform 0.3s ease;
-}
-
-.menu-list li.has-sub > span {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
 }
 
 .hero {
@@ -419,17 +432,16 @@ body.no-scroll {
   margin-bottom: 12px;
 }
 
-/* --- Meet The Team Section --- */
 .team-section {
-  padding: 40px 20px; /* Adjust padding as needed */
-  background-color: var(--background-color); /* White background */
+  padding: 40px 20px;
+  background-color: var(--background-color);
 }
 
 .section-title {
   font-family: "Poppins", sans-serif;
   font-size: 1.6rem;
   font-weight: 1500;
-  color: var(--primary-green); /* Dark green for the title */
+  color: var(--primary-green);
   text-align: center;
   margin-bottom: 40px;
   letter-spacing: 1px;
@@ -437,50 +449,49 @@ body.no-scroll {
 
 .team-grid {
   display: flex;
-  flex-direction: column; /* Stack members vertically on mobile */
-  gap: 25px; /* Space between members */
+  flex-direction: column;
+  gap: 25px;
 }
 
 .team-member {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* To push image and text to opposite sides */
-  gap: 15px; /* Space between photo and info */
+  justify-content: space-between;
+  gap: 15px;
 }
 
-/* Alternate layout for even/odd members */
 .team-member:nth-child(even) {
-  flex-direction: row-reverse; /* Swap order for even members */
+  flex-direction: row-reverse;
 }
 
 .member-photo {
-  width: 110px; /* Size of the circular photo */
+  width: 110px;
   height: 110px;
-  border-radius: 50%; /* Makes the image circular */
-  object-fit: cover; /* Ensures image fills the circle */
-  flex-shrink: 0; /* Prevents image from shrinking */
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .member-info {
-  flex-grow: 1; /* Allows info to take up remaining space */
-  text-align: center; /* Default text align for odd members */
+  flex-grow: 1;
+  text-align: center;
 }
 
 .team-member:nth-child(even) .member-info {
-  text-align: center; /* Text align for even members */
+  text-align: center;
 }
 
 .member-name {
   font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--primary-green); /* Green for names */
+  color: var(--primary-green);
   margin-bottom: 4px;
 }
 
 .member-title {
   font-size: 0.85rem;
-  color: var(--dark-gray); /* Dark gray for titles */
+  color: var(--dark-gray);
   font-weight: 400;
 }
 
@@ -509,20 +520,20 @@ body.no-scroll {
   background-color: var(--light-gray);
   color: #314714;
   display: flex;
-  align-items: center;      
-  justify-content: center;  
-  gap: 30px;               
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
 }
 
 .last-image-text {
-  flex-grow: 1; 
-  text-align: left; 
+  flex-grow: 1;
+  text-align: left;
 }
 
 .last-image img {
-  margin: 0; 
-  flex-shrink: 0;   
-  width: 150px;    
+  margin: 0;
+  flex-shrink: 0;
+  width: 150px;
   height: auto;
 }
 

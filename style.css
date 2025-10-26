@@ -4,7 +4,7 @@
   --dark-gray: #4a4a4a;
   --background-color: #ffffff;
   --border-color: #e0e0e0;
-  --primary-brown: #81724F;
+  --primary-brown: #81724f;
 }
 
 * {
@@ -24,7 +24,7 @@ a:focus,
 button:focus,
 .nav-button:focus,
 .menu-list li:focus {
-  outline: none; 
+  outline: none;
 }
 
 body {
@@ -233,7 +233,7 @@ a {
   width: 70%;
   max-width: 300px;
   height: 100%;
-  background-color: #354c18; 
+  background-color: #354c18;
   color: white;
   display: flex;
   flex-direction: column;
@@ -265,7 +265,6 @@ a {
 }
 
 .menu-list li {
-  padding: 0.8rem 0.5rem;
   font-weight: 500;
   cursor: pointer;
   border-radius: 5px;
@@ -275,7 +274,18 @@ a {
   transition: background-color 0.3s ease, color 0.3s ease;
   transform: translateX(0) translateY(0);
   box-shadow: none;
-  border: 1px solid transparent; 
+  border: 1px solid transparent;
+}
+
+.menu-list > li > a,
+.menu-list > li > span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem 0.5rem;
+  color: white;
+  text-decoration: none;
 }
 
 .menu-list li.has-sub {
@@ -315,14 +325,14 @@ a {
 .menu-list li.active {
   animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 
-              inset 0 1px 1px rgba(255, 255, 255, 0.5), 
-              inset 0 -1px 1px rgba(0, 0, 0, 0.2); 
-  
-  background-color: var(--primary-brown); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+
+  background-color: var(--primary-brown);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2); 
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .menu-list li.has-sub.active-sub {
@@ -330,10 +340,10 @@ a {
   position: relative;
   z-index: 10;
 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 
-              inset 0 1px 1px rgba(255, 255, 255, 0.5), 
-              inset 0 -1px 1px rgba(0, 0, 0, 0.2);
-  
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+
   background-color: var(--primary-brown);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -377,26 +387,36 @@ body.no-scroll {
 }
 
 .sub-menu li {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0;
+  margin-bottom: 0.3rem;
+}
+
+.sub-menu li a {
+  display: block;
   padding: 0.6rem 0.9rem;
   font-size: 0.9rem;
   font-weight: 400;
-  background-color: rgba(255, 255, 255, 0.1); 
+  color: white;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 
-              inset 0 -1px 1px rgba(0, 0, 0, 0.1); 
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  margin-bottom: 0.3rem;
+  transition: background-color 0.2s;
 }
 
 .sub-menu li:first-child {
   margin-top: 0.5rem;
-  margin-bottom: 0.3rem; 
-  border-radius: 5px; 
+  margin-bottom: 0.3rem;
+  border-radius: 5px;
 }
 
 .sub-menu li:last-child {
-  border-radius: 5px; 
-  margin-bottom: 0; 
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
 
 .menu-list li.has-sub.active-sub > span > i {
@@ -410,11 +430,4 @@ body.no-scroll {
 
 .menu-list li.has-sub > span > i {
   transition: transform 0.3s ease;
-}
-
-.menu-list li.has-sub > span {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
 }
