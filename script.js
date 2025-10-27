@@ -107,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         item.classList.toggle("active-sub");
+
         menuItems.forEach((i) => {
           if (i !== item && i.classList.contains("has-sub")) {
             i.classList.remove("active-sub");
@@ -114,11 +115,21 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
       } else {
+        const link = item.querySelector("a");
+        if (!link) return;
+
+        const linkHref = link.getAttribute("href");
+        if (linkHref !== currentPage && linkHref !== "#") {
+          return;
+        }
+        e.preventDefault();
+
         menuItems.forEach((i) => {
           i.classList.remove("active");
           i.classList.remove("active-sub");
         });
         item.classList.add("active");
+        closeMenu();
       }
     });
   });
