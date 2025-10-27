@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DekorIn - Sign In</title>
-  <link rel="stylesheet" href="stylelogin.css" />
-</head>
-<body>
-  <div class="container">
-    <div class="top-shape"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DekorIn - Login</title>
+    <link rel="stylesheet" href="login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
 
-    <div class="form-content">
-      <!-- Ganti teks DekorIn dengan logo -->
-      <h1 class="logo">
-        <img src="src/logo.png" alt="DekorIn Logo" />
-      </h1>
-
-      <h2>Hello Again!</h2>
-      <p>Let’s Get You Signed In</p>
-
-      <form id="loginForm">
-        <div class="input-group">
-          <input type="email" placeholder="Enter your email" required />
-        </div>
-        <div class="input-group">
-          <input type="password" placeholder="Enter your password" required />
-        </div>
-        <button type="submit" class="btn">Continue</button>
-      </form>
-
-      <div class="divider">
-        <span>OR</span>
+  <body>
+    <div class="container">
+      <div class="header-section">
+        <h1 class="logo">
+          <img src="src/signup/erasebg-transformed.png" alt="DekorIn Logo" />
+        </h1>
+        <p style="color: #4a4a4a; font-size: 45px;font-weight: bold;">Hello Again!</p>
+        <p style="color: #4a4a4a; font-size: 20px;">Let’s Get You Signed In</p>
       </div>
 
-      <div class="social-login">
-        <button class="social-btn google">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" />
-          Google
-        </button>
-        <button class="social-btn facebook">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook" />
-          Facebook
-        </button>
-      </div>
+      <div class="login-section">
+        <form id="loginForm">
+          <div class="input-group">
+            <input type="email" placeholder="Enter your email" required />
+          </div>
+          <div class="input-group">
+            <input type="password" placeholder="Enter your password" required />
+          </div>
+          <button type="submit" class="btn">Continue</button>
+        </form>
 
-      <p class="signup-text">
-        Don’t have an account yet? <a href="#">Sign Up</a>
-      </p>
+        <div class="or-divider">
+          <span class="line"></span>
+          <span style="z-index: 9999;">OR</span>
+          <span class="line"></span>
+        </div>
+
+        <div class="social-login">
+          <button class="social-btn google">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+              alt="Google"
+            />
+            Google
+          </button>
+          <button class="social-btn facebook-btn">
+            <i class="fab fa-facebook-f"></i>
+            Facebook
+          </button>
+        </div>
+
+        <p class="signup-text">
+          Don’t have an account yet? <a href="signup.html">Sign Up</a>
+        </p>
+      </div>
     </div>
-  </div>
 
-  <script src="scriptlogin.js"></script>
-</body>
+    <script src="login.js"></script>
+  </body>
 </html>
 
 
