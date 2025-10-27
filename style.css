@@ -194,7 +194,7 @@ a {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background-color: #f7f9f7;
+  background-color: #354c18;
   border-radius: 12px;
   padding: 1rem 0.5rem;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -203,14 +203,14 @@ a {
 
 .feature-item i {
   font-size: 2rem;
-  color: var(--dark-gray);
+  color: var(--light-gray);
   margin-bottom: 0.75rem;
   transition: color 0.2s ease-in-out;
 }
 
 .feature-item p {
   font-size: 0.75rem;
-  color: var(--dark-gray);
+  color: var(--light-gray);
   font-weight: 500;
   text-align: center;
   transition: color 0.2s ease-in-out;
@@ -223,7 +223,7 @@ a {
 
 .feature-item:hover i,
 .feature-item:hover p {
-  color: var(--primary-green);
+  color: #eed292;
 }
 
 .side-menu {
