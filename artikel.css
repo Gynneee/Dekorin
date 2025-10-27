@@ -1,4 +1,3 @@
-/* ====== ANIMASI MASUK ====== */
 .fade-in {
   animation: fadeIn 0.4s ease forwards;
   opacity: 0;
@@ -7,7 +6,6 @@
   to { opacity: 1; }
 }
 
-/* ====== STRUKTUR DASAR ====== */
 body {
   background-color: #f4f5f7;
   color: #333;
@@ -18,11 +16,10 @@ body {
 .article-page {
   max-width: 480px;
   margin: 0 auto;
-  background: #fff;
+  background: #faf7ef;
   overflow: hidden;
 }
 
-/* ====== HEADER GAMBAR ====== */
 .article-header {
   position: relative;
 }
@@ -32,19 +29,19 @@ body {
   height: 320px;
   object-fit: cover;
   display: block;
-  border-radius: 0; /* gambar lurus, tanpa lengkung */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); /* bayangan lembut */
+  border-radius: 0; 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); 
 }
 
-/* ====== TEKS DI ATAS GAMBAR ====== */
 .title-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  right: 0;   
   padding: 70px 24px 35px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.05));
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   color: #fff;
+  box-sizing: border-box; 
 }
 
 .title-overlay h1 {
@@ -52,10 +49,11 @@ body {
   font-weight: 600;
   line-height: 1.45;
   margin: 0;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* lebih halus, tidak tebal */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); 
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
-/* ====== TOMBOL KEMBALI ====== */
 .back-btn {
   position: absolute;
   top: 25px;
@@ -74,27 +72,26 @@ body {
   transform: scale(1.05);
 }
 
-/* ====== AREA PUTIH MELENGKUNG ====== */
 .article-content {
   position: relative;
-  background: #fff;
+  background: #faf9f6;
   margin-top: -20px;
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
   box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
   padding: 50px 28px 50px;
   z-index: 3;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
-/* Hapus garis biru */
 .article-content::before {
   display: none;
 }
 
-/* ====== PROFIL PENULIS ====== */
 .author-section {
   display: flex;
-  align-items: center;
+  align-items: center; /* <-- THIS IS THE FIX FOR VERTICAL ALIGNMENT */
   gap: 12px;
   margin-bottom: 28px;
 }
@@ -128,7 +125,6 @@ body {
   margin: 2px 0 0 0;
 }
 
-/* ====== KONTEN ARTIKEL ====== */
 .article-content p,
 .article-content ol {
   margin-bottom: 18px;
@@ -145,7 +141,6 @@ body {
   color: #000;
 }
 
-/* ====== RESPONSIVE ====== */
 @media (max-width: 480px) {
   .article-header img {
     height: 280px;

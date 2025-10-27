@@ -34,7 +34,7 @@ body {
 }
 
 .header-section {
-  background-color: var(--soft-white);
+  background-color: #faf7ef;
   flex-grow: 1;
   display: flex;
   flex-direction: column;

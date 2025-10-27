@@ -2,7 +2,7 @@
   --primary-green: #3a6b35;
   --light-gray: #f0f0f0;
   --dark-gray: #4a4a4a;
-  --background-color: #ffffff;
+  --background-color: #faf7ef;
   --border-color: #e0e0e0;
   --primary-brown: #81724f;
 }
@@ -350,7 +350,7 @@ body.no-scroll {
 
 .hero-text h1 {
   font-family: "Poppins", sans-serif;
-  font-size: 1.6rem;
+  font-size: rem;
   font-weight: 600;
 }
 

@@ -30,7 +30,7 @@ body {
 .signup-container {
   width: 100%;
   max-width: 450px;
-  background-color: var(--soft-white);
+  background-color: #faf7ef;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

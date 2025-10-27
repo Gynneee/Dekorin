@@ -7,19 +7,17 @@
   <link rel="stylesheet" href="invision.css" />
 </head>
 <body>
-  <!-- Header -->
+  
   <header class="header">
     <div class="menu-icon">☰</div>
     <h1 class="logo">InVision</h1>
     <div class="profile-icon">👤</div>
   </header>
 
-  <!-- Konten Utama -->
   <main class="content">
     <section class="article-list">
-      <!-- CARD 1 -->
       <div class="article-card" data-link="artikel.html">
-        <img src="image17.png" alt="Tren Wallpaper Dinding 2025" />
+        <img src="src/Invision/image17.png" alt="Tren Wallpaper Dinding 2025" />
         <div class="card-info">
           <h3>Tren Wallpaper Dinding Terbaru 2025: Elegan, Alami, dan Modern</h3>
           <div class="meta">
@@ -29,9 +27,8 @@
         </div>
       </div>
 
-      <!-- CARD 2 -->
       <div class="article-card" data-link="artikel.html">
-        <img src="image18.png" alt="Tips Merawat Wallpaper" />
+        <img src="src/Invision/image18.png" alt="Tips Merawat Wallpaper" />
         <div class="card-info">
           <h3>Tips dan Trik Merawat Wallpaper Dinding Agar Awet dan Selalu Tampak Baru</h3>
           <div class="meta">
@@ -41,9 +38,8 @@
         </div>
       </div>
 
-      <!-- CARD 3 -->
       <div class="article-card" data-link="artikel.html">
-        <img src="image19.png" alt="Panduan Memilih Wallpaper" />
+        <img src="src/Invision/image19.png" alt="Panduan Memilih Wallpaper" />
         <div class="card-info">
           <h3>Panduan Memilih Wallpaper Sesuai Karakter Ruangan</h3>
           <div class="meta">
@@ -53,9 +49,8 @@
         </div>
       </div>
 
-      <!-- CARD 4 -->
       <div class="article-card" data-link="artikel.html">
-        <img src="image20.png" alt="Wallpaper vs Cat Dinding" />
+        <img src="src/Invision/image20.png" alt="Wallpaper vs Cat Dinding" />
         <div class="card-info">
           <h3>Wallpaper vs Cat Dinding: Mana yang Lebih Unggul untuk Rumah Modern?</h3>
           <div class="meta">
@@ -65,9 +60,8 @@
         </div>
       </div>
 
-      <!-- CARD 5 -->
       <div class="article-card" data-link="artikel.html">
-        <img src="image21.png" alt="Langkah Mudah Memasang Wallpaper" />
+        <img src="src/Invision/image21.png" alt="Langkah Mudah Memasang Wallpaper" />
         <div class="card-info">
           <h3>Langkah Mudah Memasang Wallpaper Sendiri di Rumah (Tanpa Tukang)</h3>
           <div class="meta">
@@ -79,26 +73,6 @@
     </section>
   </main>
 
-  <!-- Script interaksi -->
-  <script>
-    const cards = document.querySelectorAll(".article-card");
-    let activeCard = null;
-
-    cards.forEach(card => {
-      card.addEventListener("click", () => {
-        // Jika klik kartu yang sama dua kali → buka artikel
-        if (activeCard === card) {
-          const link = card.getAttribute("data-link");
-          window.location.href = link;
-          return;
-        }
-
-        // Reset semua kartu
-        cards.forEach(c => c.classList.remove("active"));
-        activeCard = card;
-        card.classList.add("active");
-      });
-    });
-  </script>
+  <script src="Invision.js"></script>
 </body>
 </html>
