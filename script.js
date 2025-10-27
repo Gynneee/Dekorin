@@ -59,18 +59,24 @@ document.addEventListener("DOMContentLoaded", function () {
     menuOverlay.classList.add("open");
     body.classList.add("no-scroll");
   }
-
-  function closeAllMenus() {
-    sideMenu.classList.remove("open");
-    profileMenu.classList.remove("open");
-    menuOverlay.classList.remove("open");
-    body.classList.remove("no-scroll");
+  
+function closeAllMenus() {
+  if (sideMenu) {
+    sideMenu.classList.remove("open");
   }
+  if (profileMenu) {
+    profileMenu.classList.remove("open");
+  }
+  if (menuOverlay) {
+    menuOverlay.classList.remove("open");
+  }
+    body.classList.remove("no-scroll"); // This one is safe to leave as-is
+}
 
   if (navButton) {
     navButton.addEventListener("click", (e) => {
       e.stopPropagation(); 
-      if (profileMenu.classList.contains("open")) {
+      if (profileMenu && profileMenu.classList.contains("open")) { 
         closeAllMenus();
       }
       openMainMenu();
@@ -168,10 +174,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ADDED Logout Popup Logic
   const logoutLink = document.querySelector('.profile-menu-list a i.fa-sign-out-alt');
   const logoutPopup = document.getElementById('logoutPopup');
-  const logoutOverlayPopup = document.getElementById('logoutOverlay'); // Renamed to avoid conflict
+  const logoutOverlayPopup = document.getElementById('logoutOverlay');
   const confirmLogoutBtn = document.getElementById('confirmLogoutBtn');
   const cancelLogoutBtn = document.getElementById('cancelLogoutBtn');
 
