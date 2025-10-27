@@ -29,65 +29,75 @@ document.addEventListener("DOMContentLoaded", function () {
   if (currentPage === "" || currentPage === "/") currentPage = "index.html";
 
   const allLinks = document.querySelectorAll(".menu-list a");
+
+  // highlight current page
   allLinks.forEach((link) => {
-    const linkHref = link.getAttribute("href");
-    const parentLi = link.closest("li");
-    if (linkHref && currentPage.includes(linkHref)) {
-      parentLi.classList.add("active");
-      const subMenu = parentLi.closest(".sub-menu");
-      if (subMenu) {
-        const mainParentLi = subMenu.closest(".has-sub");
-        if (mainParentLi) mainParentLi.classList.add("active-sub");
-      }
+    const href = link.getAttribute("href");
+    if (href && href === currentPage) {
+      const li = link.closest("li");
+      li?.classList.add("active");
+
+      const subMenu = li.closest(".sub-menu");
+      if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
     }
   });
 
+  // menu click logic
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
-      if (item.classList.contains("has-sub")) {
-        if (e.target.closest(".sub-menu")) return;
+      const isSub = item.classList.contains("has-sub");
+      const link = item.querySelector("a");
+
+      // submenu toggle
+      if (isSub && !e.target.closest(".sub-menu")) {
         item.classList.toggle("active-sub");
         menuItems.forEach((i) => {
-          if (i !== item && i.classList.contains("has-sub")) i.classList.remove("active-sub");
+          if (i !== item && i.classList.contains("has-sub")) {
+            i.classList.remove("active-sub");
+          }
         });
-      } else {
-        menuItems.forEach((i) => {
-          i.classList.remove("active");
-          i.classList.remove("active-sub");
-        });
-        item.classList.add("active");
-        const link = item.querySelector("a");
-        if (link) localStorage.setItem("activePage", link.getAttribute("href"));
-        if (sideMenu && body) {
-          sideMenu.classList.remove("open");
-          body.classList.remove("no-scroll");
+        return;
+      }
+
+      // normal link click
+      if (link) {
+        const href = link.getAttribute("href");
+        if (href && href !== "#") {
+          localStorage.setItem("activePage", href);
         }
+
+        // remove all previous highlights (including Home)
+        menuItems.forEach((i) => i.classList.remove("active", "active-sub"));
+        item.classList.add("active");
+        closeMenu();
       }
     });
   });
 
+  // restore highlight from storage
   const savedPage = localStorage.getItem("activePage");
   if (savedPage) {
     allLinks.forEach((link) => {
-      if (link.getAttribute("href") === savedPage) {
-        const parentLi = link.closest("li");
-        parentLi.classList.add("active");
-        const subMenu = parentLi.closest(".sub-menu");
-        if (subMenu) {
-          const mainParentLi = subMenu.closest(".has-sub");
-          if (mainParentLi) mainParentLi.classList.add("active-sub");
-        }
+      const href = link.getAttribute("href");
+      const li = link.closest("li");
+
+      if (href === savedPage) {
+        li.classList.add("active");
+        const subMenu = li.closest(".sub-menu");
+        if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
+      } else {
+        li.classList.remove("active");
       }
     });
   }
 
+  // card click logic
   const cards = document.querySelectorAll(".article-card");
   let activeCard = null;
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       if (activeCard === card) {
-        const link = card.getAttribute("data-link");
-        window.location.href = link;
+        window.location.href = card.getAttribute("data-link");
         return;
       }
       cards.forEach((c) => c.classList.remove("active"));
@@ -101,8 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentPage = window.location.pathname.split("/").pop();
     if (currentPage === "" || currentPage === "/") currentPage = "index.html";
     navLinks.forEach((link) => {
-      const linkHref = link.getAttribute("href");
-      if (linkHref && currentPage.includes(linkHref)) {
+      const href = link.getAttribute("href");
+      if (href && href === currentPage) {
         link.classList.add("active");
       } else {
         link.classList.remove("active");
