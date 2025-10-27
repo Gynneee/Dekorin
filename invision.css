@@ -1,0 +1,141 @@
+/* ====== GLOBAL ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+/* ====== HEADER ====== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.menu-icon,
+.profile-icon {
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* ====== LIST ARTIKEL ====== */
+.content {
+  padding: 20px;
+}
+
+.article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ====== KARTU ARTIKEL ====== */
+.article-card {
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.article-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 16px;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+.card-info {
+  flex: 1;
+  transition: all 0.4s ease;
+}
+
+.card-info h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ====== SAAT DIKLIK (AKTIF) ====== */
+.article-card.active {
+  flex-direction: column;
+  align-items: flex-start;
+  transform: scale(1.02);
+  border-color: #008cff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  padding: 0;
+}
+
+.article-card.active img {
+  width: 100%;
+  height: 230px;
+  border-radius: 20px 20px 0 0;
+}
+
+.article-card.active .card-info {
+  width: 100%;
+  padding: 16px;
+}
+
+.article-card.active .card-info h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  animation: fadeUp 0.4s ease;
+}
+
+.article-card.active .meta {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* ====== ANIMASI ====== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .article-card img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .article-card.active img {
+    height: 200px;
+  }
+}

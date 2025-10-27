@@ -1,0 +1,159 @@
+/* ====== ANIMASI MASUK ====== */
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+  opacity: 0;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ====== STRUKTUR DASAR ====== */
+body {
+  background-color: #f4f5f7;
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+.article-page {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* ====== HEADER GAMBAR ====== */
+.article-header {
+  position: relative;
+}
+
+.article-header img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  border-radius: 0; /* gambar lurus, tanpa lengkung */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); /* bayangan lembut */
+}
+
+/* ====== TEKS DI ATAS GAMBAR ====== */
+.title-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 70px 24px 35px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.05));
+  color: #fff;
+}
+
+.title-overlay h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* lebih halus, tidak tebal */
+}
+
+/* ====== TOMBOL KEMBALI ====== */
+.back-btn {
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  font-size: 1.3rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  padding: 6px 11px;
+  text-decoration: none;
+  color: #000;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+  z-index: 5;
+  transition: 0.2s;
+}
+.back-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ====== AREA PUTIH MELENGKUNG ====== */
+.article-content {
+  position: relative;
+  background: #fff;
+  margin-top: -20px;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+  padding: 50px 28px 50px;
+  z-index: 3;
+}
+
+/* Hapus garis biru */
+.article-content::before {
+  display: none;
+}
+
+/* ====== PROFIL PENULIS ====== */
+.author-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.author-photo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.25;
+}
+
+.author-info h4 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+}
+
+.author-info p {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 2px 0 0 0;
+}
+
+/* ====== KONTEN ARTIKEL ====== */
+.article-content p,
+.article-content ol {
+  margin-bottom: 18px;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.article-content ol {
+  padding-left: 22px;
+}
+
+.article-content b {
+  color: #000;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 480px) {
+  .article-header img {
+    height: 280px;
+  }
+  .title-overlay h1 {
+    font-size: 1rem;
+  }
+  .article-content {
+    padding: 40px 20px 45px;
+  }
+}
