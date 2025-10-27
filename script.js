@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         item.classList.toggle("active-sub");
-
         menuItems.forEach((i) => {
           if (i !== item && i.classList.contains("has-sub")) {
             i.classList.remove("active-sub");
