@@ -94,27 +94,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
+      
       if (item.classList.contains("has-sub")) {
-        if (e.target.closest("span")) {
-          menuItems.forEach(i => {
-              if (!i.classList.contains('has-sub')) {
-                  i.classList.remove('active');
-              }
-          });
-
-          item.classList.toggle("active-sub");
-
-          menuItems.forEach((i) => {
-            if (i !== item && i.classList.contains("has-sub")) {
-              i.classList.remove("active-sub");
-            }
-          });
+        if (e.target.closest(".sub-menu")) {
+          return;
         }
-      } 
-      else {
+        
+        menuItems.forEach(i => {
+            if (!i.classList.contains('has-sub')) {
+                i.classList.remove('active');
+            }
+        });
+
+        item.classList.toggle("active-sub");
+
         menuItems.forEach((i) => {
-            i.classList.remove("active");
+          if (i !== item && i.classList.contains("has-sub")) {
             i.classList.remove("active-sub");
+          }
+        });
+
+      } else {
+        menuItems.forEach((i) => {
+          i.classList.remove("active");
+          i.classList.remove("active-sub");
         });
         item.classList.add("active");
       }
