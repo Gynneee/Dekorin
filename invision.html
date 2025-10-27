@@ -1,78 +1,153 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>InVision</title>
-  <link rel="stylesheet" href="invision.css" />
-</head>
-<body>
-  
-  <header class="header">
-    <div class="menu-icon">☰</div>
-    <h1 class="logo">InVision</h1>
-    <div class="profile-icon">👤</div>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InVision</title>
+    <link rel="stylesheet" href="invision.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="mobile-container">
+      <img
+        src="src/signup/erasebg-transformed.png"
+        width="200px"
+        height="auto"
+      />
+      <header class="main-header">
+        <nav class="side-menu" id="sideMenu">
+          <button class="close-btn" id="closeMenu">&times;</button>
+          <ul class="menu-list">
+            <li><a href="index.html">Home</a></li>
 
-  <main class="content">
-    <section class="article-list">
-      <div class="article-card" data-link="artikel.html">
-        <img src="src/Invision/image17.png" alt="Tren Wallpaper Dinding 2025" />
-        <div class="card-info">
-          <h3>Tren Wallpaper Dinding Terbaru 2025: Elegan, Alami, dan Modern</h3>
-          <div class="meta">
-            <p>Michelle Berlian</p>
-            <p>07 Des, 2025</p>
+            <li class="has-sub">
+              <span>Size <i class="fas fa-chevron-right"></i></span>
+              <ul class="sub-menu">
+                <li><a href="#">Wallpaper roll 53 cm</a></li>
+                <li><a href="#">Wallpaper roll 106 cm</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#">InMeasure</a></li>
+            <li><a href="#">Augmented Reality</a></li>
+            <li><a href="#">AI Consultant</a></li>
+            <li><a href="invision.html">inVision</a></li>
+            <li><a href="aboutus.html">About us</a></li>
+          </ul>
+
+          <div class="menu-footer">
+            <p>Support</p>
+            <a href="#"><i class="fas fa-headset"></i> Contact Support</a>
+            <a href="#"><i class="fas fa-cog"></i> Setting</a>
           </div>
-        </div>
-      </div>
+        </nav>
 
-      <div class="article-card" data-link="artikel.html">
-        <img src="src/Invision/image18.png" alt="Tips Merawat Wallpaper" />
-        <div class="card-info">
-          <h3>Tips dan Trik Merawat Wallpaper Dinding Agar Awet dan Selalu Tampak Baru</h3>
-          <div class="meta">
-            <p>Eirene Christi</p>
-            <p>13 Okt, 2025</p>
+        <button class="nav-button"><i class="fas fa-bars"></i></button>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search" />
+        </div>
+        <div class="user-actions">
+          <a href="#" aria-label="Shopping Cart"
+            ><i class="fas fa-shopping-cart"></i
+          ></a>
+          <a href="signup.html" aria-label="User Profile"
+            ><i class="fas fa-user"></i
+          ></a>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="article-list">
+          <div class="article-card" data-link="artikel.html">
+            <img
+              src="src/Invision/image17.png"
+              alt="Tren Wallpaper Dinding 2025"
+            />
+            <div class="card-info">
+              <h3>
+                Tren Wallpaper Dinding Terbaru 2025: Elegan, Alami, dan Modern
+              </h3>
+              <div class="meta">
+                <p>Michelle Berlian</p>
+                <p>07 Des, 2025</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="article-card" data-link="artikel.html">
-        <img src="src/Invision/image19.png" alt="Panduan Memilih Wallpaper" />
-        <div class="card-info">
-          <h3>Panduan Memilih Wallpaper Sesuai Karakter Ruangan</h3>
-          <div class="meta">
-            <p>Azalia Grace</p>
-            <p>13 Juli, 2025</p>
+          <div class="article-card" data-link="artikel.html">
+            <img src="src/Invision/image18.png" alt="Tips Merawat Wallpaper" />
+            <div class="card-info">
+              <h3>
+                Tips dan Trik Merawat Wallpaper Dinding Agar Awet dan Selalu
+                Tampak Baru
+              </h3>
+              <div class="meta">
+                <p>Eirene Christi</p>
+                <p>13 Okt, 2025</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="article-card" data-link="artikel.html">
-        <img src="src/Invision/image20.png" alt="Wallpaper vs Cat Dinding" />
-        <div class="card-info">
-          <h3>Wallpaper vs Cat Dinding: Mana yang Lebih Unggul untuk Rumah Modern?</h3>
-          <div class="meta">
-            <p>Fadhil Eka</p>
-            <p>23 Jan, 2025</p>
+          <div class="article-card" data-link="artikel.html">
+            <img
+              src="src/Invision/image19.png"
+              alt="Panduan Memilih Wallpaper"
+            />
+            <div class="card-info">
+              <h3>Panduan Memilih Wallpaper Sesuai Karakter Ruangan</h3>
+              <div class="meta">
+                <p>Azalia Grace</p>
+                <p>13 Juli, 2025</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="article-card" data-link="artikel.html">
-        <img src="src/Invision/image21.png" alt="Langkah Mudah Memasang Wallpaper" />
-        <div class="card-info">
-          <h3>Langkah Mudah Memasang Wallpaper Sendiri di Rumah (Tanpa Tukang)</h3>
-          <div class="meta">
-            <p>Daryl Lim</p>
-            <p>25 Jan, 2025</p>
+          <div class="article-card" data-link="artikel.html">
+            <img
+              src="src/Invision/image20.png"
+              alt="Wallpaper vs Cat Dinding"
+            />
+            <div class="card-info">
+              <h3>
+                Wallpaper vs Cat Dinding: Mana yang Lebih Unggul untuk Rumah
+                Modern?
+              </h3>
+              <div class="meta">
+                <p>Fadhil Eka</p>
+                <p>23 Jan, 2025</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-  </main>
 
-  <script src="Invision.js"></script>
-</body>
+          <div class="article-card" data-link="artikel.html">
+            <img
+              src="src/Invision/image21.png"
+              alt="Langkah Mudah Memasang Wallpaper"
+            />
+            <div class="card-info">
+              <h3>
+                Langkah Mudah Memasang Wallpaper Sendiri di Rumah (Tanpa Tukang)
+              </h3>
+              <div class="meta">
+                <p>Daryl Lim</p>
+                <p>25 Jan, 2025</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="Invision.js"></script>
+  </body>
 </html>
