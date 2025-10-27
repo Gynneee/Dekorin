@@ -2,9 +2,25 @@
   animation: fadeIn 0.4s ease forwards;
   opacity: 0;
 }
+
 @keyframes fadeIn {
   to { opacity: 1; }
 }
+
+a,
+button,
+.nav-button,
+.menu-list li {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus,
+button:focus,
+.nav-button:focus,
+.menu-list li:focus {
+  outline: none;
+}
+
 
 body {
   background-color: #f4f5f7;
@@ -55,21 +71,19 @@ body {
 }
 
 .back-btn {
-  position: absolute;
-  top: 25px;
-  left: 20px;
-  font-size: 1.3rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 50%;
-  padding: 6px 11px;
-  text-decoration: none;
-  color: #000;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
-  z-index: 5;
-  transition: 0.2s;
+    position: absolute;
+    top: 15px; 
+    left: 20px;
+    font-size: 4em; 
+    font-weight: 300; 
+    color: #000;
+    text-decoration: none;
+    z-index: 10;
 }
+
 .back-btn:hover {
-  transform: scale(1.05);
+  transition: ease-in-out 0.1s;
+  transform: scale(1.1);
 }
 
 .article-content {
@@ -91,7 +105,7 @@ body {
 
 .author-section {
   display: flex;
-  align-items: center; /* <-- THIS IS THE FIX FOR VERTICAL ALIGNMENT */
+  align-items: center;
   gap: 12px;
   margin-bottom: 28px;
 }

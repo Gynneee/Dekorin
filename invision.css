@@ -11,6 +11,20 @@ body.no-scroll {
   overflow: hidden;
 }
 
+a,
+button,
+.nav-button,
+.menu-list li {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus,
+button:focus,
+.nav-button:focus,
+.menu-list li:focus {
+  outline: none;
+}
+
 .mobile-container > img {
   display: block;
   margin-left: auto;
@@ -333,7 +347,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   transform: scale(1.02);
-  border-color: #008cff;
+  border-color: #3a6b35;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
   padding: 0;
 }
