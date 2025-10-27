@@ -1,0 +1,236 @@
+:root {
+  --green: #3a6b35;
+  --gray: #888;
+  --bg: #f8f8f8;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+}
+
+.cart-container {
+  background: #fff;
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+}
+
+.cart-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+/* Shop Cards */
+.shop-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.shop-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.product {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.product img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.details {
+  flex: 1;
+}
+
+.details .code {
+  font-weight: 600;
+  color: #000;
+}
+
+.details .desc {
+  color: var(--gray);
+  font-size: 0.85rem;
+  margin: 2px 0;
+}
+
+.details .price {
+  font-weight: 500;
+  color: #111;
+}
+
+/* Quantity Control */
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qty-btn {
+  border: none;
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #000;
+  transition: all 0.2s ease;
+}
+
+/* Minus abu */
+.qty-btn.minus {
+  background: #f0f0f0;
+  color: #000;
+}
+
+/* Plus hijau */
+.qty-btn.plus {
+  background: var(--green);
+  color: #fff;
+}
+
+.qty-btn:hover {
+  transform: scale(1.1);
+  filter: brightness(0.95);
+}
+
+/* Checkbox pojok kanan atas */
+.select-box {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--green);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.select-box i {
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.select-box.active {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.select-box.active i {
+  opacity: 1;
+}
+
+/* Checkout Section */
+.checkout-section {
+  background: white;
+  padding: 1.2rem;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px 25px 0 0;
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  max-width: 420px;
+  margin: auto;
+  transition: bottom 0.4s ease;
+}
+
+.checkout-section.show {
+  bottom: 0;
+}
+
+.promo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f3f3;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.promo input {
+  border: none;
+  background: none;
+  outline: none;
+  width: 70%;
+}
+
+.promo button {
+  background: var(--green);
+  color: white;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+
+.summary hr {
+  border: none;
+  border-top: 1px dashed #ddd;
+  margin: 8px 0;
+}
+
+.total {
+  font-weight: 600;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: var(--green);
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  margin-top: 1rem;
+  font-size: 1rem;
+}

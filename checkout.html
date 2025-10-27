@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout</title>
+  <link rel="stylesheet" href="checkout.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+  <div class="checkout-container">
+    <!-- Header -->
+    <header class="checkout-header">
+      <button class="back-btn" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h2>Checkout</h2>
+      <button class="cart-btn">
+        <i class="fas fa-shopping-cart"></i>
+      </button>
+    </header>
+
+    <!-- Address Section -->
+    <section class="address-section">
+      <div class="address-header">
+        <h3>Shipping Address</h3>
+        <a href="manage-address.html" class="change-btn">CHANGE</a>
+      </div>
+      <div class="address-info">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <p class="address-title">Dorm</p>
+          <p class="address-details">
+            Jl. Pakuan No.3, Sumur Batu, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order List -->
+    <section class="order-list">
+      <h3>Order List</h3>
+
+      <div class="shop-card">
+        <h4>Toko Wallpaper</h4>
+
+        <div class="product">
+          <img src="cart2.png" alt="Wallpaper 102-3A" />
+          <div class="details">
+            <p class="code">102–3A</p>
+            <p class="desc">Wallpaper roll 53 cm</p>
+            <p class="price">Rp60.000</p>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="product">
+          <img src="cart3.png" alt="Wallpaper PL10-4" />
+          <div class="details">
+            <p class="code">PL10–4</p>
+            <p class="desc">Wallpaper roll 106 cm</p>
+            <p class="price">Rp110.000</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="summary-section">
+      <div class="promo">
+        <input type="text" placeholder="Promo Code" />
+        <button>Apply</button>
+      </div>
+
+      <div class="summary">
+        <p><span>Sub-Total</span><span>Rp117.000</span></p>
+        <p><span>Delivery Fee</span><span>Rp15.000</span></p>
+        <p><span>Discount</span><span>Rp10.000</span></p>
+        <hr />
+        <p class="total"><span>Total Cost</span><span>Rp122.000</span></p>
+      </div>
+
+      <button class="checkout-btn">Continue to Payment</button>
+    </section>
+  </div>
+</body>
+</html>
