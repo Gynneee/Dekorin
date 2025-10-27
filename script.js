@@ -1,4 +1,44 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+  const sliderWrapper = document.querySelector(".slider-wrapper");
+  if (sliderWrapper) {
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+
+    if (slides.length > 0) {
+      dots.forEach((dot, idx) => {
+        dot.addEventListener("click", () => {
+          sliderWrapper.scrollTo({
+            left: slides[idx].offsetLeft,
+            behavior: "smooth",
+          });
+        });
+      });
+
+      const handleIntersection = (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const visibleSlide = entry.target;
+            const index = Array.from(slides).indexOf(visibleSlide);
+            dots.forEach((d) => d.classList.remove("active"));
+            slides.forEach((s) => s.classList.remove("active"));
+            if (dots[index]) {
+              dots[index].classList.add("active");
+            }
+            visibleSlide.classList.add("active");
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(handleIntersection, {
+        root: sliderWrapper,
+        rootMargin: "0px",
+        threshold: 0.5,
+      });
+      slides.forEach((slide) => observer.observe(slide));
+    }
+  }
+
   const navButton = document.querySelector(".nav-button");
   const sideMenu = document.getElementById("sideMenu");
   const closeMenuBtn = document.getElementById("closeMenu");
