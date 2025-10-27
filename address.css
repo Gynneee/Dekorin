@@ -1,0 +1,163 @@
+:root {
+  --primary-green: #3a6b35;
+  --light-gray: #f8f8f8;
+  --dark-gray: #4a4a4a;
+  --border-color: #dcdcdc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.address-container {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+.address-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.address-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.back-btn {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.back-btn:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* ===== ADDRESS SECTION ===== */
+.address-section {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.address-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.address-icon {
+  font-size: 1.3rem;
+  color: var(--primary-green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.address-info h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  margin-bottom: 4px;
+}
+
+.address-info p {
+  font-size: 0.85rem;
+  color: #807f7f;
+  line-height: 1.4;
+}
+
+/* ===== ADD NEW BUTTON ===== */
+.add-address-btn {
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 1rem;
+  background: none;
+  border: 2px dashed #c7c7c7;
+  border-radius: 10px;
+  color: #777;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-address-btn:hover {
+  background: var(--light-gray);
+  border-color: var(--primary-green);
+  color: var(--primary-green);
+}
+
+/* ===== FOOTER ===== */
+.address-footer {
+  padding: 1.5rem;
+  background: #fff;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 25px 25px 0 0;
+}
+
+.apply-btn {
+  width: 100%;
+  background: var(--primary-green);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.apply-btn:hover {
+  background: #2f542b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .address-info p {
+    font-size: 0.82rem;
+  }
+
+  .apply-btn {
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,259 @@
+:root {
+  --green: #3a6b35;
+  --green-light: #9af37d;
+  --ink: #1f1f1f;
+  --muted: #7b7b7b;
+  --bg: #f8f8f8;
+  --shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --soft-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== Header Section ===== */
+.topbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 0.8rem;
+}
+
+.top-icons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.2rem;
+}
+
+.icon-btn {
+  border: none;
+  background: none;
+  font-size: 1.6rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.icon-btn:hover {
+  opacity: 0.6;
+}
+
+/* Logo Premium turun sedikit di bawah ikon */
+.premium-header {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.premium-badge {
+  width: 155px;
+  height: auto;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+}
+
+/* ===== Headline ===== */
+.headline {
+  text-align: center;
+  padding: 0.8rem 1.2rem 1.5rem;
+}
+
+.headline h1 {
+  font-size: 1.6rem;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.headline p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+/* ===== Plan Cards ===== */
+.plans {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+}
+
+.plan-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 1rem 1.2rem;
+}
+
+.plan-left h5 {
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+
+.plan-left h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.plan-left span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.plan-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* Toggle switch */
+.switch {
+  position: relative;
+  width: 42px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #ccc;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  border-radius: 50%;
+  background: #fff;
+  transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+  background: linear-gradient(90deg, var(--green), var(--green-light));
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(18px);
+}
+
+/* ===== Features ===== */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 0 1.2rem 2rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: var(--soft-shadow);
+}
+
+.tick {
+  background: linear-gradient(135deg, #2e5e28, #8de868);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tick i {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.ftext {
+  margin-left: 0.8rem;
+}
+
+.ftext h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.ftext p {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ===== Footer Buttons ===== */
+.footer {
+  margin-top: auto;
+  padding: 1.5rem 1.2rem;
+}
+
+.cta {
+  width: 100%;
+  background: linear-gradient(90deg, var(--green), var(--green-light));
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 28px;
+  padding: 1rem;
+  font-size: 1rem;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease-in-out;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.ghost {
+  margin-top: 0.8rem;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 0.9rem;
+}

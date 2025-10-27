@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Profile - DekorIn</title>
+  <link rel="stylesheet" href="myprofile.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="profile-container">
+    <header class="profile-header">
+      <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+      <h2>Your Profile</h2>
+    </header>
+
+    <section class="profile-section">
+      <div class="profile-photo">
+        <div class="avatar">
+          <i class="fas fa-user"></i>
+          <label for="upload" class="edit-icon">
+            <i class="fas fa-pen"></i>
+          </label>
+          <input type="file" id="upload" accept="image/*" hidden />
+        </div>
+      </div>
+
+      <form class="profile-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="User’s name" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="user@gmail.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="08123456789" />
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender">
+            <option>Select</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+
+        <button type="submit" class="update-btn">Update</button>
+      </form>
+    </section>
+  </div>
+</body>
+</html>
