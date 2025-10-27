@@ -7,6 +7,18 @@
   --primary-brown: #81724f;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #faf7ef;
+  color: #333;
+}
+
 body.no-scroll {
   overflow: hidden;
 }
@@ -281,18 +293,6 @@ button:focus,
   transition: transform 0.3s ease;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  background-color: #faf7ef;
-  color: #333;
-}
-
 .content {
   padding: 20px;
 }
@@ -315,6 +315,8 @@ body {
   align-items: center;
   padding: 10px;
   gap: 10px;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .article-card img {
@@ -347,7 +349,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   transform: scale(1.02);
-  border-color: #3a6b35;
+  border-color: var(--primary-green);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
   padding: 0;
 }
