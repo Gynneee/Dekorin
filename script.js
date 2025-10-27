@@ -67,57 +67,76 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const menuItems = document.querySelectorAll(".menu-list > li");
 
-  let currentPage = window.location.pathname.split("/").pop();
-  if (currentPage === "") {
-    currentPage = "index.html";
+let currentPage = window.location.pathname.split("/").pop();
+if (currentPage === "") {
+  currentPage = "index.html";
+}
+
+const allLinks = document.querySelectorAll(".menu-list a");
+
+allLinks.forEach((link) => {
+  const linkHref = link.getAttribute("href");
+  if (linkHref === currentPage) {
+    const parentLi = link.closest("li");
+    
+    const subMenu = parentLi.closest(".sub-menu");
+    if (subMenu) {
+      parentLi.classList.add("active");
+      const mainParentLi = subMenu.closest(".has-sub");
+      if (mainParentLi) {
+        mainParentLi.classList.add("active-sub");
+      }
+    } else {
+      parentLi.classList.add("active");
+    }
   }
+});
 
-  const allLinks = document.querySelectorAll(".menu-list a");
-
-  allLinks.forEach((link) => {
-    const linkHref = link.getAttribute("href");
-    if (linkHref === currentPage) {
-      const parentLi = link.closest("li");
+menuItems.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    
+    if (item.classList.contains("has-sub")) {
+      if (e.target.closest(".sub-menu")) {
+        return;
+      }
       
-      const subMenu = parentLi.closest(".sub-menu");
-      if (subMenu) {
-        parentLi.classList.add("active");
-        const mainParentLi = subMenu.closest(".has-sub");
-        if (mainParentLi) {
-          mainParentLi.classList.add("active-sub");
+      menuItems.forEach(i => {
+          if (!i.classList.contains('has-sub')) {
+              i.classList.remove('active');
+          }
+      });
+
+      item.classList.toggle("active-sub");
+
+      menuItems.forEach((i) => {
+        if (i !== item && i.classList.contains("has-sub")) {
+          i.classList.remove("active-sub");
         }
-      } else {
-        parentLi.classList.add("active");
+      });
+
+    } else {
+      const link = item.querySelector("a");
+      if (!link) return;
+
+      const linkHref = link.getAttribute("href");
+
+      if (linkHref !== currentPage && linkHref !== "#") {
+        return;
+      }
+
+      e.preventDefault();
+
+      menuItems.forEach((i) => {
+        i.classList.remove("active");
+        i.classList.remove("active-sub");
+      });
+      item.classList.add("active");
+
+      if (document.getElementById('sideMenu') && document.body) {
+          document.getElementById('sideMenu').classList.remove('open');
+          document.body.classList.remove('no-scroll');
       }
     }
   });
-
-  menuItems.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      if (item.classList.contains("has-sub")) {
-        if (e.target.closest("span")) {
-          menuItems.forEach(i => {
-              if (!i.classList.contains('has-sub')) {
-                  i.classList.remove('active');
-              }
-          });
-
-          item.classList.toggle("active-sub");
-
-          menuItems.forEach((i) => {
-            if (i !== item && i.classList.contains("has-sub")) {
-              i.classList.remove("active-sub");
-            }
-          });
-        }
-      } 
-      else {
-        menuItems.forEach((i) => {
-            i.classList.remove("active");
-            i.classList.remove("active-sub");
-        });
-        item.classList.add("active");
-      }
-    });
-  });
+});
 });
