@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // --- MENU LOGIC ---
   const navButton = document.querySelector(".nav-button");
   const sideMenu = document.getElementById("sideMenu");
   const closeMenuBtn = document.getElementById("closeMenu");
@@ -25,15 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // --- MENU ACTIVE-STATE LOGIC ---
   const menuItems = document.querySelectorAll(".menu-list > li");
-
   let currentPage = window.location.pathname.split("/").pop();
   if (currentPage === "") {
     currentPage = "index.html";
   }
 
   const allLinks = document.querySelectorAll(".menu-list a");
-
   allLinks.forEach((link) => {
     const linkHref = link.getAttribute("href");
     if (linkHref === currentPage) {
