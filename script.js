@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  
-  // --- SLIDER LOGIC ---
-  // This will only run if it finds ".slider-wrapper" on the page
   const sliderWrapper = document.querySelector(".slider-wrapper");
   if (sliderWrapper) {
     const slides = document.querySelectorAll(".slide");
@@ -44,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // --- MENU LOGIC ---
   const navButton = document.querySelector(".nav-button");
   const sideMenu = document.getElementById("sideMenu");
   const closeMenuBtn = document.getElementById("closeMenu");
@@ -71,14 +67,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // --- MENU ACTIVE-STATE LOGIC ---
   const menuItems = document.querySelectorAll(".menu-list > li");
   let currentPage = window.location.pathname.split("/").pop();
   if (currentPage === "") {
     currentPage = "index.html";
   }
 
-  // THIS IS THE CODE THAT ADDS THE COLOR ON PAGE LOAD
   const allLinks = document.querySelectorAll(".menu-list a");
   allLinks.forEach((link) => {
     const linkHref = link.getAttribute("href");
@@ -98,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // THIS IS THE CODE THAT HANDLES CLICKS
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
       
