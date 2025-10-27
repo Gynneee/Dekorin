@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // --- MENU ACTIVE-STATE LOGIC ---
   const menuItems = document.querySelectorAll(".menu-list > li");
   let currentPage = window.location.pathname.split("/").pop();
   if (currentPage === "") {
