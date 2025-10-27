@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Method</title>
+  <link rel="stylesheet" href="payment.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+  <div class="payment-container">
+    <header class="payment-header">
+      <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
+      <h2>Payment Method</h2>
+      <div></div>
+    </header>
+
+    <section class="payment-section">
+      <h3>Cash</h3>
+      <label class="payment-option">
+        <div class="payment-info">
+          <i class="fas fa-money-bill-wave"></i>
+          <span>Cash</span>
+        </div>
+        <input type="radio" name="payment" checked />
+        <span class="checkmark"></span>
+      </label>
+    </section>
+
+    <section class="payment-section">
+      <h3>Virtual Account</h3>
+
+      <label class="payment-option">
+        <div class="payment-info">
+          <img src="BCA.png" alt="BCA" />
+          <span>BCA Virtual Account</span>
+        </div>
+        <input type="radio" name="payment" />
+        <span class="checkmark"></span>
+      </label>
+
+      <label class="payment-option">
+        <div class="payment-info">
+          <img src="BNI.png" alt="BNI" />
+          <span>BNI Virtual Account</span>
+        </div>
+        <input type="radio" name="payment" />
+        <span class="checkmark"></span>
+      </label>
+
+      <label class="payment-option">
+        <div class="payment-info">
+          <img src="SEA.png" alt="ShopeePay" />
+          <span>ShopeePay Virtual Account</span>
+        </div>
+        <input type="radio" name="payment" />
+        <span class="checkmark"></span>
+      </label>
+    </section>
+
+    <footer class="apply-footer">
+      <button class="apply-btn">Apply</button>
+    </footer>
+  </div>
+
+  <script>
+    // Animasi seleksi radio button
+    const options = document.querySelectorAll(".payment-option input");
+    options.forEach(opt => {
+      opt.addEventListener("change", () => {
+        options.forEach(o => o.parentElement.classList.remove("selected"));
+        opt.parentElement.classList.add("selected");
+      });
+    });
+  </script>
+</body>
+</html>
