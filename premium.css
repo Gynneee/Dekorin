@@ -55,6 +55,8 @@ body {
   color: var(--ink);
   cursor: pointer;
   transition: opacity 0.2s ease;
+  /* Style ini akan berfungsi pada tag <a> dan <button> */
+  text-decoration: none; 
 }
 
 .icon-btn:hover {
@@ -225,7 +227,6 @@ body {
   font-size: 0.85rem;
 }
 
-/* ===== Footer Buttons ===== */
 .footer {
   margin-top: auto;
   padding: 1.5rem 1.2rem;

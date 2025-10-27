@@ -168,4 +168,57 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // ADDED Logout Popup Logic
+  const logoutLink = document.querySelector('.profile-menu-list a i.fa-sign-out-alt');
+  const logoutPopup = document.getElementById('logoutPopup');
+  const logoutOverlayPopup = document.getElementById('logoutOverlay'); // Renamed to avoid conflict
+  const confirmLogoutBtn = document.getElementById('confirmLogoutBtn');
+  const cancelLogoutBtn = document.getElementById('cancelLogoutBtn');
+
+  let signOutAnchor = null;
+  if (logoutLink) {
+     signOutAnchor = logoutLink.closest('a');
+  }
+
+  function showLogoutPopup() {
+    if (logoutPopup && logoutOverlayPopup) {
+      logoutOverlayPopup.classList.add('show');
+      logoutPopup.classList.add('show');
+      body.classList.add('no-scroll');
+    }
+  }
+
+  function hideLogoutPopup() {
+     if (logoutPopup && logoutOverlayPopup) {
+      logoutOverlayPopup.classList.remove('show');
+      logoutPopup.classList.remove('show');
+      if (!sideMenu.classList.contains('open') && !profileMenu.classList.contains('open')) {
+        body.classList.remove('no-scroll');
+      }
+    }
+  }
+
+  if (signOutAnchor) {
+    signOutAnchor.addEventListener('click', function(e) {
+      e.preventDefault(); 
+      closeAllMenus();    
+      showLogoutPopup();
+    });
+  }
+
+  if (confirmLogoutBtn) {
+    confirmLogoutBtn.addEventListener('click', function() {
+      hideLogoutPopup();
+      console.log("User confirmed logout!");
+    });
+  }
+
+  if (cancelLogoutBtn) {
+    cancelLogoutBtn.addEventListener('click', hideLogoutPopup);
+  }
+
+  if (logoutOverlayPopup) {
+     logoutOverlayPopup.addEventListener('click', hideLogoutPopup);
+  }
+
 });

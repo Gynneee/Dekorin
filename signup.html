@@ -19,8 +19,9 @@
   <body>
     <div class="signup-container">
       <header class="signup-header">
-        <p style="font-size: 35px; font-weight: 200;">
-          <span style="font-size: 50px; font-weight: bold;">Create Your </span><br /><img
+        <p style="font-size: 35px; font-weight: 200">
+          <span style="font-size: 50px; font-weight: bold">Create Your </span
+          ><br /><img
             src="src/signup/erasebg-transformed.png"
             alt="dekorinlogo"
           />
@@ -30,19 +31,28 @@
       </header>
 
       <div class="form-section">
-        <form class="signup-form">
+        <form class="signup-form" action="loggedin.html" method="get">
           <div class="input-group">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Enter your email" />
+            <input type="email" placeholder="Enter your email" required />
           </div>
           <div class="input-group">
             <i class="fas fa-key"></i>
-            <input type="password" placeholder="Enter your password" />
+            <input
+              type="password"
+              placeholder="Enter your password"
+              required
+            />
           </div>
           <div class="input-group">
             <i class="fas fa-key"></i>
-            <input type="password" placeholder="Confirm password" />
+            <input
+              type="password"
+              placeholder="Confirm password"
+              required
+            />
           </div>
+
           <button type="submit" class="continue-btn">Continue</button>
         </form>
 
