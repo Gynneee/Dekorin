@@ -271,7 +271,10 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  
+  transition: background-color 0.3s ease, 
+              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform: translateX(0) translateY(0);
   box-shadow: none;
   border: 1px solid transparent;
@@ -323,7 +326,7 @@ a {
 }
 
 .menu-list li.active {
-  animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform: translateX(5px) translateY(-5px);
 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3),
     inset 0 1px 1px rgba(255, 255, 255, 0.5),
@@ -334,7 +337,8 @@ a {
 }
 
 .menu-list li.has-sub.active-sub {
-  animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform: translateX(5px) translateY(-5px);
+
   position: relative;
   z-index: 10;
 
@@ -349,24 +353,6 @@ a {
 .menu-list li:active {
   transform: translateY(0);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateX(0) translateY(0);
-    backdrop-filter: blur(0px);
-    -webkit-filter: blur(0px);
-  }
-  60% {
-    transform: translateX(7px) translateY(-7px);
-    backdrop-filter: blur(0.3px);
-    -webkit-filter: blur(0.3px);
-  }
-  100% {
-    transform: translateX(5px) translateY(-5px);
-    backdrop-filter: blur(0px);
-    -webkit-filter: blur(0px);
-  }
 }
 
 body.no-scroll {
