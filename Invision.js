@@ -39,9 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuItems = document.querySelectorAll(".menu-list > li");
   const allLinks = document.querySelectorAll(".menu-list a");
 
-  // 🔧 FIX: normalize URL so highlight works on phone and localhost
-  let currentPage = window.location.pathname.split("/").pop() || "index.html";
-  if (!currentPage.includes(".html")) currentPage += ".html";
+  if (!currentPage.includes(".")) {
+    currentPage += ".html";
+  }
+
+  let currentPage = window.location.pathname.split("/").pop() || "loggedin.html";
+
 
   allLinks.forEach((link) => {
     const href = link.getAttribute("href");

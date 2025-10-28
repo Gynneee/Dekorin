@@ -97,11 +97,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const menuItems = document.querySelectorAll(".menu-list > li");
-  let currentPage = window.location.pathname.split("/").pop() || "index.html";
-  if (!currentPage.includes(".html")) currentPage += ".html";
+  let currentPage = window.location.pathname.split("/").pop() || "loggedin.html";
+
+  if (!currentPage.includes(".")) {
+    currentPage += ".html";
+  }
 
 
-  // ✅ FIXED: ensure correct currentPage detection and matching
   if (!currentPage || currentPage === "" || currentPage === "/" || currentPage === "aboutus") {
     currentPage = window.location.pathname.split("/").pop() || "aboutus.html";
   }

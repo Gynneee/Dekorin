@@ -47,9 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuItems = document.querySelectorAll(".menu-list > li");
   const allLinks = document.querySelectorAll(".menu-list a");
 
-  let currentPage = window.location.pathname.split("/").pop() || "index.html";
+  if (!currentPage.includes(".")) {
+    currentPage += ".html";
+  }
+
+  let currentPage = window.location.pathname.split("/").pop() || "loggedin.html";
   if (currentPage.includes("?")) currentPage = currentPage.split("?")[0];
-  if (currentPage === "" || currentPage === "/") currentPage = "index.html";
+  if (currentPage === "" || currentPage === "/") currentPage = "loggedin.html";
+
 
   allLinks.forEach((link) => {
     const href = link.getAttribute("href");
