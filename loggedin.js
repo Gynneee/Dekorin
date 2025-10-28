@@ -15,9 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
   const signOutAnchor = logoutLink?.closest("a");
 
-  let currentPage = (window.location.pathname.split("/").pop() || "loggedin.html").split("?")[0];
-  if (!currentPage.includes(".")) currentPage += ".html";
-
   const openMenu = (menu) => {
     menu?.classList.add("open");
     menuOverlay?.classList.add("open");
@@ -27,20 +24,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeAllMenus = () => {
     [sideMenu, profileMenu].forEach((m) => m?.classList.remove("open"));
     menuOverlay?.classList.remove("open");
-    if (!logoutPopup?.classList.contains("show")) body.classList.remove("no-scroll");
+    if (!logoutPopup?.classList.contains("show")) {
+      body.classList.remove("no-scroll");
+    }
   };
 
   const showLogoutPopup = () => {
-    logoutOverlay?.classList.add("show");
-    logoutPopup?.classList.add("show");
-    body.classList.add("no-scroll");
+    if (logoutPopup && menuOverlay) {
+        menuOverlay.classList.add("show");
+        logoutPopup.classList.add("show");
+        body.classList.add("no-scroll");
+    }
   };
 
   const hideLogoutPopup = () => {
-    logoutOverlay?.classList.remove("show");
-    logoutPopup?.classList.remove("show");
-    if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
-      body.classList.remove("no-scroll");
+     if (logoutPopup && menuOverlay) {
+      menuOverlay.classList.remove("show");
+      logoutPopup.classList.remove("show");
+      if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
+        body.classList.remove("no-scroll");
+      }
     }
   };
 
@@ -59,52 +62,17 @@ document.addEventListener("DOMContentLoaded", () => {
   closeMenuBtn?.addEventListener("click", closeAllMenus);
 
   menuOverlay?.addEventListener("click", (e) => {
-    if (e.target === menuOverlay) closeAllMenus();
-    if (logoutPopup?.classList.contains("show") && e.target === logoutOverlay) hideLogoutPopup();
+    if (e.target === menuOverlay) {
+        if (logoutPopup?.classList.contains("show")) {
+            hideLogoutPopup();
+        } else {
+            closeAllMenus();
+        }
+    }
   });
 
   sideMenu?.addEventListener("click", (e) => e.stopPropagation());
   profileMenu?.addEventListener("click", (e) => e.stopPropagation());
-
-  const menuItems = document.querySelectorAll(".menu-list > li");
-  const allLinks = document.querySelectorAll(".menu-list a");
-
-  allLinks.forEach((link) => {
-    const href = link.getAttribute("href");
-    const parentLi = link.closest("li");
-
-    if (!href) return;
-
-    if (currentPage === href || currentPage.endsWith("/" + href)) {
-      parentLi?.classList.add("active");
-      const subMenu = parentLi?.closest(".sub-menu");
-      if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
-    } else {
-      parentLi?.classList.remove("active");
-    }
-  });
-
-  menuItems.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      if (item.classList.contains("has-sub")) {
-        if (e.target.closest(".sub-menu")) return;
-        item.classList.toggle("active-sub");
-
-        menuItems.forEach((i) => {
-          if (i !== item && i.classList.contains("has-sub")) i.classList.remove("active-sub");
-        });
-      } else {
-        const link = item.querySelector("a");
-        if (!link) return;
-        const href = link.getAttribute("href");
-        if (href && href !== "#" && !currentPage.endsWith(href)) {
-          menuItems.forEach((i) => i.classList.remove("active", "active-sub"));
-          item.classList.add("active");
-          closeAllMenus();
-        }
-      }
-    });
-  });
 
   signOutAnchor?.addEventListener("click", (e) => {
     e.preventDefault();
@@ -119,8 +87,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
 
-  logoutOverlay?.addEventListener("click", (e) => {
-    if (e.target === logoutOverlay) hideLogoutPopup();
+  const menuItems = document.querySelectorAll(".menu-list > li");
+  const allLinks = document.querySelectorAll(".menu-list a");
+  let currentPage = window.location.pathname.split("/").pop() || "loggedin";
+  currentPage = currentPage.replace(".html", "");
+
+  allLinks.forEach((link) => {
+    const href = link.getAttribute("href")?.replace(".html", "");
+    const parentLi = link.closest("li");
+    if (!href || href === '#') return;
+
+    if (currentPage === href) {
+      parentLi?.classList.add("active");
+      const subMenu = parentLi?.closest(".sub-menu");
+      if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
+    } else {
+      parentLi?.classList.remove("active");
+      const subMenuParent = parentLi?.closest(".has-sub");
+      if(subMenuParent && !subMenuParent.querySelector('.sub-menu li.active')){
+          subMenuParent.classList.remove("active-sub");
+      }
+    }
+  });
+
+  menuItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      if (item.classList.contains("has-sub")) {
+        if (e.target.closest(".sub-menu a")) {
+             closeAllMenus();
+             return;
+        }
+        item.classList.toggle("active-sub");
+        menuItems.forEach((i) => {
+          if (i !== item && i.classList.contains("has-sub")) {
+            i.classList.remove("active-sub");
+          }
+        });
+      } else {
+        const link = item.querySelector("a");
+        if (!link) return;
+        const linkHref = link.getAttribute("href");
+        const hrefForComparison = linkHref?.replace(".html", "");
+
+        if (linkHref && linkHref !== "#" && currentPage !== hrefForComparison) {
+          closeAllMenus();
+          return;
+        }
+
+        e.preventDefault();
+        menuItems.forEach((i) => {
+            i.classList.remove("active");
+            i.classList.remove("active-sub");
+        });
+        item.classList.add("active");
+         const subMenu = item.closest(".sub-menu");
+         if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
+
+        closeAllMenus();
+      }
+    });
   });
 
   const sliderWrapper = document.querySelector(".slider-wrapper");
@@ -128,30 +153,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
 
-    dots.forEach((dot, idx) => {
-      dot.addEventListener("click", () => {
-        sliderWrapper.scrollTo({
-          left: slides[idx].offsetLeft,
-          behavior: "smooth",
+    if (dots.length > 0 && slides.length > 0) {
+        dots.forEach((dot, idx) => {
+          dot.addEventListener("click", () => {
+            if(slides[idx]) {
+              sliderWrapper.scrollTo({
+                left: slides[idx].offsetLeft,
+                behavior: "smooth",
+              });
+            }
+          });
         });
-      });
-    });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Array.from(slides).indexOf(entry.target);
-            dots.forEach((d) => d.classList.remove("active"));
-            slides.forEach((s) => s.classList.remove("active"));
-            dots[index]?.classList.add("active");
-            entry.target.classList.add("active");
-          }
-        });
-      },
-      { root: sliderWrapper, threshold: 0.5 }
-    );
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const index = Array.from(slides).indexOf(entry.target);
+                dots.forEach((d) => d.classList.remove("active"));
+                slides.forEach((s) => s.classList.remove("active"));
+                if (dots[index]) dots[index].classList.add("active");
+                entry.target.classList.add("active");
+              }
+            });
+          },
+          { root: sliderWrapper, threshold: 0.5 }
+        );
 
-    slides.forEach((slide) => observer.observe(slide));
+        slides.forEach((slide) => observer.observe(slide));
+    }
   }
 });
