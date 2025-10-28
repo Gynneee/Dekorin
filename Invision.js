@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileMenu = document.getElementById("profileMenu");
   const menuOverlay = document.getElementById("menuOverlay");
 
-  const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
   const logoutPopup = document.getElementById("logoutPopup");
   const logoutOverlay = document.getElementById("logoutOverlay");
   const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
   const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
+  const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
   const signOutAnchor = logoutLink?.closest("a");
 
   const openMenu = (menu) => {
@@ -30,16 +30,20 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const showLogoutPopup = () => {
-    logoutOverlay?.classList.add("show");
-    logoutPopup?.classList.add("show");
-    body.classList.add("no-scroll");
+    if (logoutPopup && menuOverlay) {
+        menuOverlay.classList.add("show");
+        logoutPopup.classList.add("show");
+        body.classList.add("no-scroll");
+    }
   };
 
   const hideLogoutPopup = () => {
-    logoutOverlay?.classList.remove("show");
-    logoutPopup?.classList.remove("show");
-    if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
-      body.classList.remove("no-scroll");
+     if (logoutPopup && menuOverlay) {
+      menuOverlay.classList.remove("show");
+      logoutPopup.classList.remove("show");
+      if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
+        body.classList.remove("no-scroll");
+      }
     }
   };
 
@@ -55,54 +59,23 @@ document.addEventListener("DOMContentLoaded", () => {
     openMenu(profileMenu);
   });
 
-  closeMenuBtn?.addEventListener("click", closeAllMenus);
+  if (closeMenuBtn && sideMenu && sideMenu.contains(closeMenuBtn)) {
+     closeMenuBtn.addEventListener("click", closeAllMenus);
+  }
+
+
   menuOverlay?.addEventListener("click", (e) => {
-    if (e.target === menuOverlay) closeAllMenus();
-  });
-
-  const menuItems = document.querySelectorAll(".menu-list > li");
-  let currentPage = window.location.pathname.split("/").pop() || "loggedin.html";
-  if (!currentPage.includes(".")) currentPage += ".html";
-
-  const allLinks = document.querySelectorAll(".menu-list a");
-
-  allLinks.forEach((link) => {
-    const href = link.getAttribute("href");
-    if (!href) return;
-
-    const normalizedCurrent = currentPage.toLowerCase();
-    const normalizedHref = href.split("/").pop().toLowerCase();
-
-    const parentLi = link.closest("li");
-    if (normalizedCurrent === normalizedHref) {
-      parentLi?.classList.add("active");
-
-      const subMenu = parentLi?.closest(".sub-menu");
-      const mainParentLi = subMenu?.closest(".has-sub");
-      mainParentLi?.classList.add("active-sub");
+    if (e.target === menuOverlay) {
+        if (logoutPopup?.classList.contains("show")) {
+            hideLogoutPopup();
+        } else {
+            closeAllMenus();
+        }
     }
   });
 
-  menuItems.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      if (item.classList.contains("has-sub")) {
-        if (e.target.closest(".sub-menu")) return;
-        item.classList.toggle("active-sub");
-        menuItems.forEach((i) => {
-          if (i !== item && i.classList.contains("has-sub")) i.classList.remove("active-sub");
-        });
-      } else {
-        const link = item.querySelector("a");
-        if (!link) return;
-        const linkHref = link.getAttribute("href");
-        if (!linkHref || linkHref === "#" || linkHref === currentPage) e.preventDefault();
-
-        menuItems.forEach((i) => i.classList.remove("active", "active-sub"));
-        item.classList.add("active");
-        closeAllMenus();
-      }
-    });
-  });
+  sideMenu?.addEventListener("click", (e) => e.stopPropagation());
+  profileMenu?.addEventListener("click", (e) => e.stopPropagation());
 
   signOutAnchor?.addEventListener("click", (e) => {
     e.preventDefault();
@@ -116,8 +89,80 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
-  logoutOverlay?.addEventListener("click", (e) => {
-    if (e.target === logoutOverlay) hideLogoutPopup();
+
+
+  const menuItems = document.querySelectorAll(".menu-list > li");
+  const allLinks = document.querySelectorAll(".menu-list a");
+  let currentPageFile = window.location.pathname.split("/").pop();
+
+  if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
+     if (window.location.pathname === '/' || window.location.pathname === '') {
+       currentPageFile = "loggedin.html";
+     } else {
+       currentPageFile = "loggedin.html";
+     }
+  }
+
+
+  allLinks.forEach((link) => {
+    const linkHref = link.getAttribute("href");
+    const parentLi = link.closest("li");
+    if (!linkHref || linkHref === '#') return;
+
+    if (linkHref === currentPageFile) {
+      parentLi?.classList.add("active");
+      const subMenu = parentLi?.closest(".sub-menu");
+      if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
+    } else {
+      parentLi?.classList.remove("active");
+      const subMenuParent = parentLi?.closest(".has-sub");
+      if(subMenuParent && !subMenuParent.querySelector('.sub-menu li.active')){
+          subMenuParent.classList.remove("active-sub");
+      }
+    }
+  });
+
+
+  menuItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+        let currentPageFileOnClick = window.location.pathname.split("/").pop();
+        if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
+            currentPageFileOnClick = "loggedin.html";
+        }
+
+      if (item.classList.contains("has-sub")) {
+        if (e.target.closest(".sub-menu a")) {
+             closeAllMenus();
+             return;
+        }
+        item.classList.toggle("active-sub");
+        menuItems.forEach((i) => {
+          if (i !== item && i.classList.contains("has-sub")) {
+            i.classList.remove("active-sub");
+          }
+        });
+      } else {
+        const link = item.querySelector("a");
+        if (!link) return;
+        const linkHref = link.getAttribute("href");
+
+        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick) {
+          closeAllMenus();
+          return;
+        }
+
+        e.preventDefault();
+        menuItems.forEach((i) => {
+            i.classList.remove("active");
+            i.classList.remove("active-sub");
+        });
+        item.classList.add("active");
+         const subMenu = item.closest(".sub-menu");
+         if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
+
+        closeAllMenus();
+      }
+    });
   });
 
   const cards = document.querySelectorAll(".article-card");
@@ -125,8 +170,8 @@ document.addEventListener("DOMContentLoaded", () => {
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       if (activeCard === card) {
-        const target = card.getAttribute("data-link");
-        if (target) window.location.href = target;
+        const targetLink = card.getAttribute("data-link");
+        if (targetLink) window.location.href = targetLink;
         return;
       }
       cards.forEach((c) => c.classList.remove("active"));
@@ -134,4 +179,5 @@ document.addEventListener("DOMContentLoaded", () => {
       card.classList.add("active");
     });
   });
+
 });

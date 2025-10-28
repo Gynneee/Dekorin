@@ -87,20 +87,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
 
-  const menuItems = document.querySelectorAll(".menu-list > li");
+
+  // --- MENU ACTIVE STATE LOGIC (Corrected Comparison) ---
+  const menuItems = document.querySelectorAll(".menu-list > li"); // Keep for click handler
   const allLinks = document.querySelectorAll(".menu-list a");
 
-  let currentPageFile = window.location.pathname.split("/").pop();
-  if (currentPageFile === "" || currentPageFile === "/") {
-      currentPageFile = "loggedin.html";
+  let currentPathFile = window.location.pathname.split("/").pop();
+  if (currentPathFile === "" || currentPathFile === "/") {
+      currentPathFile = "loggedin"; // Base name WITHOUT .html
+  } else {
+      currentPathFile = currentPathFile.replace(".html", "");
   }
+
 
   allLinks.forEach((link) => {
     const linkHref = link.getAttribute("href");
     const parentLi = link.closest("li");
     if (!linkHref || linkHref === '#') return;
 
-    if (linkHref === currentPageFile) {
+    let linkFileName = linkHref.split("/").pop().replace(".html", "");
+
+    if (linkFileName === currentPathFile) {
       parentLi?.classList.add("active");
       const subMenu = parentLi?.closest(".sub-menu");
       if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
@@ -112,19 +119,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+  // --- END OF CORRECTED LOGIC ---
 
 
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
-      let currentPageFileOnClick = window.location.pathname.split("/").pop(); // Re-check current page on click
-      if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
-          currentPageFileOnClick = "loggedin.html";
-      }
+        // Re-check current page base name on click for accurate comparison
+        let currentPathFileOnClick = window.location.pathname.split("/").pop();
+        if (currentPathFileOnClick === "" || currentPathFileOnClick === "/") {
+            currentPathFileOnClick = "loggedin";
+        } else {
+            currentPathFileOnClick = currentPathFileOnClick.replace(".html", "");
+        }
+
 
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu a")) {
              closeAllMenus();
-             return;
+             return; // Let browser handle link navigation
         }
         item.classList.toggle("active-sub");
         menuItems.forEach((i) => {
@@ -136,12 +148,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const link = item.querySelector("a");
         if (!link) return;
         const linkHref = link.getAttribute("href");
+        const linkFileNameOnClick = linkHref?.split("/").pop().replace(".html", ""); // Get base name
 
-        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick) {
+
+        // If it's a link to a DIFFERENT page, allow navigation
+        if (linkHref && linkHref !== "#" && linkFileNameOnClick !== currentPathFileOnClick) {
           closeAllMenus();
-          return;
+          return; // Let browser handle navigation
         }
 
+        // If it's the CURRENT page or '#', prevent reload
         e.preventDefault();
         menuItems.forEach((i) => {
             i.classList.remove("active");

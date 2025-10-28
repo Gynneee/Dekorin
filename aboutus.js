@@ -26,24 +26,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (navButton) navButton.addEventListener("click", (e) => { e.stopPropagation(); openMenu(); });
   if (closeMenuBtn) closeMenuBtn.addEventListener("click", closeMenu);
+  if (menuOverlay) {
+      menuOverlay.addEventListener('click', (e) => {
+          if (e.target === menuOverlay) {
+              closeMenu();
+          }
+      });
+  }
+  if (sideMenu) sideMenu.addEventListener("click", (e) => e.stopPropagation());
 
-
-  menuItems.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      if (item.classList.contains("has-sub") && !e.target.closest('a')) {
-        e.stopPropagation();
-        item.classList.toggle("active-sub");
-        menuItems.forEach((i) => {
-          if (i !== item && i.classList.contains("has-sub")) i.classList.remove("active-sub");
-        });
-      } else if (!item.classList.contains("has-sub") || e.target.closest('.sub-menu a')) {
-        closeMenu();
-      }
-    });
-  });
 
   const allLinks = document.querySelectorAll(".menu-list a");
   let currentPageFile = window.location.pathname.split("/").pop();
+
   if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
      if (window.location.pathname === '/' || window.location.pathname === '') {
        currentPageFile = "loggedin.html";
@@ -70,48 +65,47 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  const logoutLink = document.querySelector('.profile-menu-list a i.fa-sign-out-alt');
-  const logoutPopup = document.getElementById('logoutPopup');
-  const confirmLogoutBtn = document.getElementById('confirmLogoutBtn');
-  const cancelLogoutBtn = document.getElementById('cancelLogoutBtn');
 
-  if (logoutLink) {
-    const signOutAnchor = logoutLink.closest('a');
-    if (signOutAnchor) {
-      signOutAnchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeMenu();
-        if (logoutPopup && menuOverlay) {
-          logoutPopup.classList.add('show');
-          menuOverlay.classList.add('active');
-          body.classList.add('no-scroll');
+  menuItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+        let currentPageFileOnClick = window.location.pathname.split("/").pop();
+        if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
+            currentPageFileOnClick = "loggedin.html";
         }
-      });
-    }
-  }
 
-  function hideLogoutPopup() {
-    if (logoutPopup && menuOverlay) {
-      logoutPopup.classList.remove('show');
-      menuOverlay.classList.remove('active');
-      if (!sideMenu?.classList.contains('open')) {
-          body.classList.remove('no-scroll');
-      }
-    }
-  }
-
-  if (confirmLogoutBtn) confirmLogoutBtn.addEventListener('click', () => { hideLogoutPopup(); console.log("User confirmed logout!"); });
-  if (cancelLogoutBtn) cancelLogoutBtn.addEventListener('click', hideLogoutPopup);
-  if (menuOverlay) {
-      menuOverlay.addEventListener('click', (e) => {
-          if (e.target === menuOverlay) {
-              if (logoutPopup?.classList.contains('show')) {
-                  hideLogoutPopup();
-              } else {
-                  closeMenu();
-              }
+      if (item.classList.contains("has-sub")) {
+        if (e.target.closest(".sub-menu a")) {
+             closeMenu();
+             return;
+        }
+        item.classList.toggle("active-sub");
+        menuItems.forEach((i) => {
+          if (i !== item && i.classList.contains("has-sub")) {
+            i.classList.remove("active-sub");
           }
-      });
-  }
+        });
+      } else {
+        const link = item.querySelector("a");
+        if (!link) return;
+        const linkHref = link.getAttribute("href");
+
+        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick) {
+          closeMenu();
+          return;
+        }
+
+        e.preventDefault();
+        menuItems.forEach((i) => {
+            i.classList.remove("active");
+            i.classList.remove("active-sub");
+        });
+        item.classList.add("active");
+         const subMenu = item.closest(".sub-menu");
+         if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
+
+        closeMenu();
+      }
+    });
+  });
 
 });
