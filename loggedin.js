@@ -89,15 +89,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const menuItems = document.querySelectorAll(".menu-list > li");
   const allLinks = document.querySelectorAll(".menu-list a");
-  let currentPage = window.location.pathname.split("/").pop() || "loggedin";
-  currentPage = currentPage.replace(".html", "");
+
+  let currentPageFile = window.location.pathname.split("/").pop();
+  if (currentPageFile === "" || currentPageFile === "/") {
+      currentPageFile = "loggedin.html";
+  }
 
   allLinks.forEach((link) => {
-    const href = link.getAttribute("href")?.replace(".html", "");
+    const linkHref = link.getAttribute("href");
     const parentLi = link.closest("li");
-    if (!href || href === '#') return;
+    if (!linkHref || linkHref === '#') return;
 
-    if (currentPage === href) {
+    if (linkHref === currentPageFile) {
       parentLi?.classList.add("active");
       const subMenu = parentLi?.closest(".sub-menu");
       if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
@@ -110,8 +113,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
+      let currentPageFileOnClick = window.location.pathname.split("/").pop(); // Re-check current page on click
+      if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
+          currentPageFileOnClick = "loggedin.html";
+      }
+
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu a")) {
              closeAllMenus();
@@ -127,9 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const link = item.querySelector("a");
         if (!link) return;
         const linkHref = link.getAttribute("href");
-        const hrefForComparison = linkHref?.replace(".html", "");
 
-        if (linkHref && linkHref !== "#" && currentPage !== hrefForComparison) {
+        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick) {
           closeAllMenus();
           return;
         }
