@@ -26,14 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (navButton) navButton.addEventListener("click", (e) => { e.stopPropagation(); openMenu(); });
   if (closeMenuBtn) closeMenuBtn.addEventListener("click", closeMenu);
-  if (menuOverlay) {
-      menuOverlay.addEventListener('click', (e) => {
-          if (e.target === menuOverlay) {
-              closeMenu();
-          }
-      });
-  }
-  if (sideMenu) sideMenu.addEventListener("click", (e) => e.stopPropagation());
 
 
   const allLinks = document.querySelectorAll(".menu-list a");
@@ -43,14 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
      if (window.location.pathname === '/' || window.location.pathname === '') {
        currentPageFile = "loggedin.html";
      } else {
-       currentPageFile = "loggedin.html";
+       currentPageFile = "loggedin.html"; 
      }
   }
 
   allLinks.forEach((link) => {
     const linkHref = link.getAttribute("href");
     const parentLi = link.closest("li");
-    if (!linkHref || linkHref === '#') return;
+    if (!linkHref || linkHref === '#') return; 
 
     if (linkHref === currentPageFile) {
       parentLi?.classList.add("active");
@@ -107,5 +99,54 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  const logoutLink = document.querySelector('.profile-menu-list a i.fa-sign-out-alt');
+  const logoutPopup = document.getElementById('logoutPopup');
+  const confirmLogoutBtn = document.getElementById('confirmLogoutBtn');
+  const cancelLogoutBtn = document.getElementById('cancelLogoutBtn');
+
+  if (logoutLink) {
+    const signOutAnchor = logoutLink.closest('a');
+    if (signOutAnchor) {
+      signOutAnchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeMenu();
+        const profileMenu = document.getElementById('profileMenu');
+        profileMenu?.classList.remove('open');
+
+        if (logoutPopup && menuOverlay) {
+          logoutPopup.classList.add('show');
+          menuOverlay.classList.add('active');
+          body.classList.add('no-scroll');
+        }
+      });
+    }
+  }
+
+  function hideLogoutPopup() {
+    if (logoutPopup && menuOverlay) {
+      logoutPopup.classList.remove('show');
+      menuOverlay.classList.remove('active');
+      if (!sideMenu?.classList.contains('open')) {
+          body.classList.remove('no-scroll');
+      }
+    }
+  }
+
+  if (confirmLogoutBtn) confirmLogoutBtn.addEventListener('click', () => { hideLogoutPopup(); console.log("User confirmed logout!"); });
+  if (cancelLogoutBtn) cancelLogoutBtn.addEventListener('click', hideLogoutPopup);
+  if (menuOverlay) {
+      menuOverlay.addEventListener('click', (e) => {
+          if (e.target === menuOverlay) {
+              if (logoutPopup?.classList.contains('show')) {
+                  hideLogoutPopup();
+              } else {
+                  closeMenu();
+              }
+          }
+      });
+  }
+   if (sideMenu) sideMenu.addEventListener("click", (e) => e.stopPropagation()); 
+
 
 });
