@@ -38,12 +38,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const menuItems = document.querySelectorAll(".menu-list > li");
   const allLinks = document.querySelectorAll(".menu-list a");
+
+  // 🔧 FIX: normalize URL so highlight works on phone and localhost
   let currentPage = window.location.pathname.split("/").pop() || "index.html";
+  if (!currentPage.includes(".html")) currentPage += ".html";
 
   allLinks.forEach((link) => {
     const href = link.getAttribute("href");
     const parentLi = link.closest("li");
-    if (href && href === currentPage) {
+    if (href && currentPage.endsWith(href)) {
       parentLi?.classList.add("active");
       const subMenu = parentLi.closest(".sub-menu");
       const mainParentLi = subMenu?.closest(".has-sub");

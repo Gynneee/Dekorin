@@ -48,12 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const allLinks = document.querySelectorAll(".menu-list a");
 
   let currentPage = window.location.pathname.split("/").pop() || "index.html";
+  if (currentPage.includes("?")) currentPage = currentPage.split("?")[0];
+  if (currentPage === "" || currentPage === "/") currentPage = "index.html";
 
   allLinks.forEach((link) => {
     const href = link.getAttribute("href");
     const parentLi = link.closest("li");
 
-    if (href && href === currentPage) {
+    if (href && (currentPage === href || currentPage.endsWith("/" + href))) {
       parentLi?.classList.add("active");
       const subMenu = parentLi?.closest(".sub-menu");
       if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
@@ -62,9 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
+      const link = item.querySelector("a");
+      const href = link?.getAttribute("href");
+
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu")) return;
         item.classList.toggle("active-sub");
@@ -73,9 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
           if (i !== item && i.classList.contains("has-sub")) i.classList.remove("active-sub");
         });
       } else {
-        menuItems.forEach((i) => i.classList.remove("active", "active-sub"));
-        item.classList.add("active");
-        closeAllMenus();
+        if (href && href !== "#" && !currentPage.endsWith(href)) {
+          menuItems.forEach((i) => i.classList.remove("active", "active-sub"));
+          item.classList.add("active");
+          closeAllMenus();
+        }
       }
     });
   });

@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
         closeMenuBtn.addEventListener("click", closeAllMenus);
   }
 
+
   function openMainMenu() {
     sideMenu.classList.add("open");
     menuOverlay.classList.add("active");
@@ -96,35 +97,40 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const menuItems = document.querySelectorAll(".menu-list > li");
-  let currentPage = window.location.pathname.split("/").pop();
+  let currentPage = window.location.pathname.split("/").pop() || "index.html";
+  if (!currentPage.includes(".html")) currentPage += ".html";
 
-   if (currentPage === "" || currentPage === "/" || !currentPage) {
-     if (window.location.pathname === '/' || window.location.pathname === '') {
-       currentPage = "loggedin.html";
-     } else if (currentPage === '') {
-       currentPage = "loggedin.html";
-     }
-   }
-   if (currentPage === "" || currentPage === "/") {
-       currentPage = "loggedin.html";
-   }
+
+  // ✅ FIXED: ensure correct currentPage detection and matching
+  if (!currentPage || currentPage === "" || currentPage === "/" || currentPage === "aboutus") {
+    currentPage = window.location.pathname.split("/").pop() || "aboutus.html";
+  }
+
+  if (currentPage === "" || currentPage === "/") {
+    currentPage = "loggedin.html";
+  }
 
   const allLinks = document.querySelectorAll(".menu-list a");
   allLinks.forEach((link) => {
     const linkHref = link.getAttribute("href");
-    if (linkHref && currentPage.endsWith(linkHref)) {
+    if (!linkHref) return;
+
+    const normalizedCurrent = currentPage.toLowerCase();
+    const normalizedHref = linkHref.split("/").pop().toLowerCase();
+
+    if (normalizedCurrent === normalizedHref) {
       const parentLi = link.closest("li");
       if (parentLi) {
-          const subMenu = parentLi.closest(".sub-menu");
-          if (subMenu) {
-            parentLi.classList.add("active");
-            const mainParentLi = subMenu.closest(".has-sub");
-            if (mainParentLi) {
-              mainParentLi.classList.add("active-sub");
-            }
-          } else {
-            parentLi.classList.add("active");
+        const subMenu = parentLi.closest(".sub-menu");
+        if (subMenu) {
+          parentLi.classList.add("active");
+          const mainParentLi = subMenu.closest(".has-sub");
+          if (mainParentLi) {
+            mainParentLi.classList.add("active-sub");
           }
+        } else {
+          parentLi.classList.add("active");
+        }
       }
     }
   });
