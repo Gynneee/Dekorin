@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
 
-  // ===== ELEMENT SELECTORS =====
   const navButton = document.querySelector(".nav-button");
   const sideMenu = document.getElementById("sideMenu");
   const closeMenuBtn = document.getElementById("closeMenu");
@@ -9,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileMenu = document.getElementById("profileMenu");
   const menuOverlay = document.getElementById("menuOverlay");
 
-  // ===== MENU CONTROL =====
   const openMainMenu = () => {
     sideMenu?.classList.add("open");
     menuOverlay?.classList.add("open");
@@ -46,34 +44,31 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === menuOverlay) closeAllMenus();
   });
 
-  // ===== ACTIVE MENU HIGHLIGHT =====
   const menuItems = document.querySelectorAll(".menu-list > li");
   const allLinks = document.querySelectorAll(".menu-list a");
+
   let currentPage = window.location.pathname.split("/").pop() || "index.html";
 
-  // Highlight the correct menu based on the current page
   allLinks.forEach((link) => {
-    const linkHref = link.getAttribute("href");
+    const href = link.getAttribute("href");
     const parentLi = link.closest("li");
 
-    // Avoid false matches (e.g., 'invision.html' triggering 'index.html')
-    if (linkHref && currentPage === linkHref) {
+    if (href && href === currentPage) {
       parentLi?.classList.add("active");
-
       const subMenu = parentLi?.closest(".sub-menu");
-      const mainParentLi = subMenu?.closest(".has-sub");
-      if (mainParentLi) mainParentLi.classList.add("active-sub");
+      if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
     } else {
       parentLi?.classList.remove("active");
     }
   });
 
-  // Handle submenu toggle
+
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu")) return;
         item.classList.toggle("active-sub");
+
         menuItems.forEach((i) => {
           if (i !== item && i.classList.contains("has-sub")) i.classList.remove("active-sub");
         });
@@ -85,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ===== SLIDER CONTROL =====
   const sliderWrapper = document.querySelector(".slider-wrapper");
   if (sliderWrapper) {
     const slides = document.querySelectorAll(".slide");
@@ -104,12 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const visibleSlide = entry.target;
-            const index = Array.from(slides).indexOf(visibleSlide);
+            const index = Array.from(slides).indexOf(entry.target);
             dots.forEach((d) => d.classList.remove("active"));
             slides.forEach((s) => s.classList.remove("active"));
             dots[index]?.classList.add("active");
-            visibleSlide.classList.add("active");
+            entry.target.classList.add("active");
           }
         });
       },
@@ -119,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     slides.forEach((slide) => observer.observe(slide));
   }
 
-  // ===== LOGOUT POPUP =====
   const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
   const logoutPopup = document.getElementById("logoutPopup");
   const logoutOverlay = document.getElementById("logoutOverlay");
