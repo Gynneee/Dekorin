@@ -91,16 +91,19 @@ document.addEventListener("DOMContentLoaded", () => {
   cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
 
 
-  const menuItems = document.querySelectorAll(".menu-list > li");
+  // --- MENU ACTIVE STATE LOGIC (Corrected) ---
+  const menuItems = document.querySelectorAll(".menu-list > li"); // Keep for click handler
   const allLinks = document.querySelectorAll(".menu-list a");
   let currentPageFile = window.location.pathname.split("/").pop();
 
   if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
      if (window.location.pathname === '/' || window.location.pathname === '') {
-       currentPageFile = "loggedin.html";
+       currentPageFile = "loggedin"; // Base name WITHOUT .html
      } else {
-       currentPageFile = "loggedin.html";
+       currentPageFile = "loggedin"; // Default if path ends in /folder/
      }
+  } else {
+      currentPageFile = currentPageFile.replace(".html", ""); // Remove .html from URL filename
   }
 
 
@@ -109,7 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const parentLi = link.closest("li");
     if (!linkHref || linkHref === '#') return;
 
-    if (linkHref === currentPageFile) {
+    let linkFileName = linkHref.split("/").pop().replace(".html", ""); // Remove .html from link
+
+    if (linkFileName === currentPageFile) { // Compare base names
       parentLi?.classList.add("active");
       const subMenu = parentLi?.closest(".sub-menu");
       if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
@@ -121,14 +126,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+  // --- END OF CORRECTED HIGHLIGHT LOGIC ---
 
 
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
         let currentPageFileOnClick = window.location.pathname.split("/").pop();
-        if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
-            currentPageFileOnClick = "loggedin.html";
-        }
+         if (currentPageFileOnClick === "" || currentPageFileOnClick === "/" || !currentPageFileOnClick) {
+             if (window.location.pathname === '/' || window.location.pathname === '') {
+                 currentPageFileOnClick = "loggedin";
+             } else {
+                 currentPageFileOnClick = "loggedin";
+             }
+         } else {
+             currentPageFileOnClick = currentPageFileOnClick.replace(".html", "");
+         }
 
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu a")) {
@@ -145,8 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const link = item.querySelector("a");
         if (!link) return;
         const linkHref = link.getAttribute("href");
+        const linkFileNameOnClick = linkHref?.split("/").pop().replace(".html", "");
 
-        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick) {
+        if (linkHref && linkHref !== "#" && linkFileNameOnClick !== currentPageFileOnClick) {
           closeAllMenus();
           return;
         }
