@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
      if (window.location.pathname === '/' || window.location.pathname === '') {
-       currentPageFile = "loggedin.html";
+       currentPageFile = "aboutus.html";
      } else {
-       currentPageFile = "loggedin.html"; 
+       currentPageFile = "aboutus.html"; 
      }
   }
 
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     item.addEventListener("click", (e) => {
         let currentPageFileOnClick = window.location.pathname.split("/").pop();
         if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
-            currentPageFileOnClick = "loggedin.html";
+            currentPageFileOnClick = "aboutus.html";
         }
 
       if (item.classList.contains("has-sub")) {
