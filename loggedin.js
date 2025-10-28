@@ -1,5 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
+
+  // ===== ELEMENT SELECTORS =====
   const navButton = document.querySelector(".nav-button");
   const sideMenu = document.getElementById("sideMenu");
   const closeMenuBtn = document.getElementById("closeMenu");
@@ -7,25 +9,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const profileMenu = document.getElementById("profileMenu");
   const menuOverlay = document.getElementById("menuOverlay");
 
-  // ========== MENU CONTROL ==========
-  function openMainMenu() {
+  // ===== MENU CONTROL =====
+  const openMainMenu = () => {
     sideMenu?.classList.add("open");
     menuOverlay?.classList.add("open");
     body.classList.add("no-scroll");
-  }
+  };
 
-  function openProfileMenu() {
+  const openProfileMenu = () => {
     profileMenu?.classList.add("open");
     menuOverlay?.classList.add("open");
     body.classList.add("no-scroll");
-  }
+  };
 
-  function closeAllMenus() {
+  const closeAllMenus = () => {
     sideMenu?.classList.remove("open");
     profileMenu?.classList.remove("open");
     menuOverlay?.classList.remove("open");
     body.classList.remove("no-scroll");
-  }
+  };
 
   navButton?.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -40,29 +42,33 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   closeMenuBtn?.addEventListener("click", closeAllMenus);
+  menuOverlay?.addEventListener("click", (e) => {
+    if (e.target === menuOverlay) closeAllMenus();
+  });
 
-  if (menuOverlay) {
-    menuOverlay.addEventListener("click", (e) => {
-      if (e.target === menuOverlay) closeAllMenus();
-    });
-  }
-
-  // ========== ACTIVE MENU LOGIC ==========
+  // ===== ACTIVE MENU HIGHLIGHT =====
   const menuItems = document.querySelectorAll(".menu-list > li");
   const allLinks = document.querySelectorAll(".menu-list a");
   let currentPage = window.location.pathname.split("/").pop() || "index.html";
 
+  // Highlight the correct menu based on the current page
   allLinks.forEach((link) => {
     const linkHref = link.getAttribute("href");
+    const parentLi = link.closest("li");
+
+    // Avoid false matches (e.g., 'invision.html' triggering 'index.html')
     if (linkHref && currentPage === linkHref) {
-      const parentLi = link.closest("li");
       parentLi?.classList.add("active");
+
       const subMenu = parentLi?.closest(".sub-menu");
       const mainParentLi = subMenu?.closest(".has-sub");
       if (mainParentLi) mainParentLi.classList.add("active-sub");
+    } else {
+      parentLi?.classList.remove("active");
     }
   });
 
+  // Handle submenu toggle
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
       if (item.classList.contains("has-sub")) {
@@ -74,27 +80,12 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         menuItems.forEach((i) => i.classList.remove("active", "active-sub"));
         item.classList.add("active");
-        const link = item.querySelector("a");
-        if (link) localStorage.setItem("activePage", link.getAttribute("href"));
         closeAllMenus();
       }
     });
   });
 
-  const savedPage = localStorage.getItem("activePage");
-  if (savedPage) {
-    allLinks.forEach((link) => {
-      if (link.getAttribute("href") === savedPage) {
-        const parentLi = link.closest("li");
-        parentLi?.classList.add("active");
-        const subMenu = parentLi?.closest(".sub-menu");
-        const mainParentLi = subMenu?.closest(".has-sub");
-        if (mainParentLi) mainParentLi.classList.add("active-sub");
-      }
-    });
-  }
-
-  // ========== SLIDER ==========
+  // ===== SLIDER CONTROL =====
   const sliderWrapper = document.querySelector(".slider-wrapper");
   if (sliderWrapper) {
     const slides = document.querySelectorAll(".slide");
@@ -128,43 +119,27 @@ document.addEventListener("DOMContentLoaded", function () {
     slides.forEach((slide) => observer.observe(slide));
   }
 
-  // ========== ARTICLE CARDS ==========
-  const cards = document.querySelectorAll(".article-card");
-  let activeCard = null;
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      if (activeCard === card) {
-        const link = card.getAttribute("data-link");
-        if (link) window.location.href = link;
-        return;
-      }
-      cards.forEach((c) => c.classList.remove("active"));
-      activeCard = card;
-      card.classList.add("active");
-    });
-  });
-
-  // ========== LOGOUT POPUP ==========
+  // ===== LOGOUT POPUP =====
   const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
   const logoutPopup = document.getElementById("logoutPopup");
-  const logoutOverlayPopup = document.getElementById("logoutOverlay");
+  const logoutOverlay = document.getElementById("logoutOverlay");
   const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
   const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
   const signOutAnchor = logoutLink?.closest("a");
 
-  function showLogoutPopup() {
-    logoutOverlayPopup?.classList.add("show");
+  const showLogoutPopup = () => {
+    logoutOverlay?.classList.add("show");
     logoutPopup?.classList.add("show");
     body.classList.add("no-scroll");
-  }
+  };
 
-  function hideLogoutPopup() {
-    logoutOverlayPopup?.classList.remove("show");
+  const hideLogoutPopup = () => {
+    logoutOverlay?.classList.remove("show");
     logoutPopup?.classList.remove("show");
     if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
       body.classList.remove("no-scroll");
     }
-  }
+  };
 
   signOutAnchor?.addEventListener("click", (e) => {
     e.preventDefault();
@@ -178,15 +153,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
-  logoutOverlayPopup?.addEventListener("click", hideLogoutPopup);
-
-  // ========== NAVBAR ACTIVE LINK ==========
-  const navLinks = document.querySelectorAll("nav a, .navbar a");
-  if (navLinks.length > 0) {
-    let currentPage = window.location.pathname.split("/").pop() || "index.html";
-    navLinks.forEach((link) => {
-      const linkHref = link.getAttribute("href");
-      link.classList.toggle("active", linkHref && currentPage === linkHref);
-    });
-  }
+  logoutOverlay?.addEventListener("click", hideLogoutPopup);
 });
