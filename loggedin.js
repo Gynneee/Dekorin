@@ -8,59 +8,74 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileMenu = document.getElementById("profileMenu");
   const menuOverlay = document.getElementById("menuOverlay");
 
-  const openMainMenu = () => {
-    sideMenu?.classList.add("open");
-    menuOverlay?.classList.add("open");
-    body.classList.add("no-scroll");
-  };
+  const logoutPopup = document.getElementById("logoutPopup");
+  const logoutOverlay = document.getElementById("logoutOverlay");
+  const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+  const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
+  const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
+  const signOutAnchor = logoutLink?.closest("a");
 
-  const openProfileMenu = () => {
-    profileMenu?.classList.add("open");
+  let currentPage = (window.location.pathname.split("/").pop() || "loggedin.html").split("?")[0];
+  if (!currentPage.includes(".")) currentPage += ".html";
+
+  const openMenu = (menu) => {
+    menu?.classList.add("open");
     menuOverlay?.classList.add("open");
     body.classList.add("no-scroll");
   };
 
   const closeAllMenus = () => {
-    sideMenu?.classList.remove("open");
-    profileMenu?.classList.remove("open");
+    [sideMenu, profileMenu].forEach((m) => m?.classList.remove("open"));
     menuOverlay?.classList.remove("open");
-    body.classList.remove("no-scroll");
+    if (!logoutPopup?.classList.contains("show")) body.classList.remove("no-scroll");
+  };
+
+  const showLogoutPopup = () => {
+    logoutOverlay?.classList.add("show");
+    logoutPopup?.classList.add("show");
+    body.classList.add("no-scroll");
+  };
+
+  const hideLogoutPopup = () => {
+    logoutOverlay?.classList.remove("show");
+    logoutPopup?.classList.remove("show");
+    if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
+      body.classList.remove("no-scroll");
+    }
   };
 
   navButton?.addEventListener("click", (e) => {
     e.stopPropagation();
     if (profileMenu?.classList.contains("open")) closeAllMenus();
-    openMainMenu();
+    openMenu(sideMenu);
   });
 
   profileBtn?.addEventListener("click", (e) => {
     e.stopPropagation();
     if (sideMenu?.classList.contains("open")) closeAllMenus();
-    openProfileMenu();
+    openMenu(profileMenu);
   });
 
   closeMenuBtn?.addEventListener("click", closeAllMenus);
+
   menuOverlay?.addEventListener("click", (e) => {
     if (e.target === menuOverlay) closeAllMenus();
+    if (logoutPopup?.classList.contains("show") && e.target === logoutOverlay) hideLogoutPopup();
   });
+
+  sideMenu?.addEventListener("click", (e) => e.stopPropagation());
+  profileMenu?.addEventListener("click", (e) => e.stopPropagation());
 
   const menuItems = document.querySelectorAll(".menu-list > li");
   const allLinks = document.querySelectorAll(".menu-list a");
-
-  if (!currentPage.includes(".")) {
-    currentPage += ".html";
-  }
-
-  let currentPage = window.location.pathname.split("/").pop() || "loggedin.html";
-  if (currentPage.includes("?")) currentPage = currentPage.split("?")[0];
-  if (currentPage === "" || currentPage === "/") currentPage = "loggedin.html";
-
 
   allLinks.forEach((link) => {
     const href = link.getAttribute("href");
     const parentLi = link.closest("li");
 
-    if (href && (currentPage === href || currentPage.endsWith("/" + href))) {
+    if (!href) return;
+
+    if (currentPage === href || currentPage.endsWith("/" + href)) {
       parentLi?.classList.add("active");
       const subMenu = parentLi?.closest(".sub-menu");
       if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
@@ -71,9 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
-      const link = item.querySelector("a");
-      const href = link?.getAttribute("href");
-
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu")) return;
         item.classList.toggle("active-sub");
@@ -82,6 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (i !== item && i.classList.contains("has-sub")) i.classList.remove("active-sub");
         });
       } else {
+        const link = item.querySelector("a");
+        if (!link) return;
+        const href = link.getAttribute("href");
         if (href && href !== "#" && !currentPage.endsWith(href)) {
           menuItems.forEach((i) => i.classList.remove("active", "active-sub"));
           item.classList.add("active");
@@ -89,6 +104,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
+  });
+
+  signOutAnchor?.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeAllMenus();
+    showLogoutPopup();
+  });
+
+  confirmLogoutBtn?.addEventListener("click", () => {
+    hideLogoutPopup();
+    console.log("User confirmed logout!");
+  });
+
+  cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
+
+  logoutOverlay?.addEventListener("click", (e) => {
+    if (e.target === logoutOverlay) hideLogoutPopup();
   });
 
   const sliderWrapper = document.querySelector(".slider-wrapper");
@@ -122,39 +154,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     slides.forEach((slide) => observer.observe(slide));
   }
-
-  const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
-  const logoutPopup = document.getElementById("logoutPopup");
-  const logoutOverlay = document.getElementById("logoutOverlay");
-  const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
-  const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
-  const signOutAnchor = logoutLink?.closest("a");
-
-  const showLogoutPopup = () => {
-    logoutOverlay?.classList.add("show");
-    logoutPopup?.classList.add("show");
-    body.classList.add("no-scroll");
-  };
-
-  const hideLogoutPopup = () => {
-    logoutOverlay?.classList.remove("show");
-    logoutPopup?.classList.remove("show");
-    if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
-      body.classList.remove("no-scroll");
-    }
-  };
-
-  signOutAnchor?.addEventListener("click", (e) => {
-    e.preventDefault();
-    closeAllMenus();
-    showLogoutPopup();
-  });
-
-  confirmLogoutBtn?.addEventListener("click", () => {
-    hideLogoutPopup();
-    console.log("User confirmed logout!");
-  });
-
-  cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
-  logoutOverlay?.addEventListener("click", hideLogoutPopup);
 });
