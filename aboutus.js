@@ -28,55 +28,59 @@ document.addEventListener("DOMContentLoaded", function () {
   if (closeMenuBtn) closeMenuBtn.addEventListener("click", closeMenu);
 
 
-  // HIGHLIGHT CURRENT PAGE (Corrected Logic)
   const allLinks = document.querySelectorAll(".menu-list a");
   let currentPageFile = window.location.pathname.split("/").pop();
 
-  // Determine default page more robustly, assuming loggedin.html is home
   if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
      if (window.location.pathname === '/' || window.location.pathname === '') {
-       currentPageFile = "loggedin.html"; // Adjust if home page name is different
+       currentPageFile = "loggedin";
      } else {
-       // Handle cases like /folder/ -> default to home
-       currentPageFile = "loggedin.html"; // Default if path ends in /folder/
+       currentPageFile = "loggedin";
      }
+  } else {
+      currentPageFile = currentPageFile.replace(".html", "");
   }
+
 
   allLinks.forEach((link) => {
     const linkHref = link.getAttribute("href");
     const parentLi = link.closest("li");
-    if (!linkHref || linkHref === '#') return; // Skip invalid links
+    if (!linkHref || linkHref === '#') return;
 
-    // Direct filename comparison
-    if (linkHref === currentPageFile) {
+    let linkFileName = linkHref.split("/").pop().replace(".html", "");
+
+    if (linkFileName === currentPageFile) {
       parentLi?.classList.add("active");
       const subMenu = parentLi?.closest(".sub-menu");
       if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
     } else {
       parentLi?.classList.remove("active");
-      // Clean up parent active state if no child is active
       const subMenuParent = parentLi?.closest(".has-sub");
       if(subMenuParent && !subMenuParent.querySelector('.sub-menu li.active')){
           subMenuParent.classList.remove("active-sub");
       }
     }
   });
-  // END OF CORRECTED HIGHLIGHT LOGIC
 
 
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
         let currentPageFileOnClick = window.location.pathname.split("/").pop();
-        if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
-            currentPageFileOnClick = "loggedin.html"; // Adjust if needed
-        }
+         if (currentPageFileOnClick === "" || currentPageFileOnClick === "/" || !currentPageFileOnClick) {
+             if (window.location.pathname === '/' || window.location.pathname === '') {
+                 currentPageFileOnClick = "loggedin";
+             } else {
+                 currentPageFileOnClick = "loggedin";
+             }
+         } else {
+             currentPageFileOnClick = currentPageFileOnClick.replace(".html", "");
+         }
 
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu a")) {
              closeMenu();
              return;
         }
-        // e.stopPropagation(); // Stop propagation is handled by sideMenu listener now
         item.classList.toggle("active-sub");
         menuItems.forEach((i) => {
           if (i !== item && i.classList.contains("has-sub")) {
@@ -87,8 +91,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const link = item.querySelector("a");
         if (!link) return;
         const linkHref = link.getAttribute("href");
+        const linkFileNameOnClick = linkHref?.split("/").pop().replace(".html", "");
 
-        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick) {
+        if (linkHref && linkHref !== "#" && linkFileNameOnClick !== currentPageFileOnClick) {
           closeMenu();
           return;
         }
@@ -118,7 +123,6 @@ document.addEventListener("DOMContentLoaded", function () {
       signOutAnchor.addEventListener('click', function(e) {
         e.preventDefault();
         closeMenu();
-        // Close profile menu if it exists
         const profileMenu = document.getElementById('profileMenu');
         profileMenu?.classList.remove('open');
 
@@ -154,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
           }
       });
   }
-   if (sideMenu) sideMenu.addEventListener("click", (e) => e.stopPropagation()); // Prevent clicks inside menu closing it
-
+   if (sideMenu) sideMenu.addEventListener("click", (e) => e.stopPropagation());
 
 });
