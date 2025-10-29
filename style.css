@@ -703,13 +703,14 @@ body.no-scroll {
 
 .signin-btn {
   background-color: var(--primary-brown);
-  padding: 3px 4px;  
+  padding: 6px 12px;  
   border-radius: 15px;   
   font-weight: 500;
   text-decoration: none;
   transition: ease-in-out 0.2s;
-  display: none;
-  color: white;          
+  display: none;      
+  font-size: 0.6rem;   
+  white-space: nowrap;
 }
 
 .signin-btn:hover {
@@ -722,9 +723,9 @@ body.no-scroll {
 }
 
 
-/* @media (min-width: 480px) {
+@media (min-width: 480px) {
   .signin-btn {
     font-size: 0.8rem; 
     padding: 8px 18px; 
   }
-} */
+}
