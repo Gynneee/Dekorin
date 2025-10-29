@@ -9,6 +9,7 @@
 </head>
 <body>
   <div class="cart-container">
+    <!-- Header -->
     <header class="cart-header">
       <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
       <h2>My Cart</h2>
@@ -16,6 +17,7 @@
     </header>
 
     <main>
+      <!-- Shop 1 -->
       <div class="shop-card">
         <h3>Dunia Wallpaper</h3>
         <div class="product">
@@ -29,16 +31,16 @@
             <p class="price">Rp60.000</p>
           </div>
           <div class="qty-control">
-            <button class="qty-btn minus">−</button>
-            <span>1</span>
-            <button class="qty-btn plus">+</button>
+            <button class="qty-btn minus" onclick="decreaseQty(this)">−</button>
+            <span class="qty-value">1</span>
+            <button class="qty-btn plus" onclick="increaseQty(this)">+</button>
           </div>
         </div>
       </div>
 
+      <!-- Shop 2 -->
       <div class="shop-card">
         <h3>Toko Wallpaper</h3>
-
         <div class="product">
           <button class="select-box" onclick="toggleSelect(this)">
             <i class="fa-solid fa-check"></i>
@@ -50,9 +52,9 @@
             <p class="price">Rp60.000</p>
           </div>
           <div class="qty-control">
-            <button class="qty-btn minus">−</button>
-            <span>1</span>
-            <button class="qty-btn plus">+</button>
+            <button class="qty-btn minus" onclick="decreaseQty(this)">−</button>
+            <span class="qty-value">1</span>
+            <button class="qty-btn plus" onclick="increaseQty(this)">+</button>
           </div>
         </div>
 
@@ -67,14 +69,15 @@
             <p class="price">Rp110.000</p>
           </div>
           <div class="qty-control">
-            <button class="qty-btn minus">−</button>
-            <span>1</span>
-            <button class="qty-btn plus">+</button>
+            <button class="qty-btn minus" onclick="decreaseQty(this)">−</button>
+            <span class="qty-value">1</span>
+            <button class="qty-btn plus" onclick="increaseQty(this)">+</button>
           </div>
         </div>
       </div>
     </main>
 
+    <!-- Checkout Section -->
     <section class="checkout-section" id="checkout">
       <div class="promo">
         <input type="text" placeholder="Promo Code" />
@@ -92,7 +95,18 @@
       <button class="checkout-btn">Checkout</button>
     </section>
 
-    <script src="cart.js"></script>
+    <!-- Popup Konfirmasi Hapus -->
+    <div class="popup hidden" id="removePopup">
+      <div class="popup-content">
+        <p>Remove from cart?</p>
+        <div class="popup-buttons">
+          <button id="cancelRemove">No</button>
+          <button id="confirmRemove">Yes</button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script src="cart.js"></script>
 </body>
 </html>

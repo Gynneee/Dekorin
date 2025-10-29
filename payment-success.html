@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Success</title>
+  <link rel="stylesheet" href="payment-success.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+  <div class="success-container">
+    <!-- HEADER -->
+    <header class="header">
+      <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
+      <h2>Payment</h2>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div class="check-icon">
+        <i class="fas fa-check"></i>
+      </div>
+      <h3>Payment Successful!</h3>
+      <p>Thank you for your purchase.</p>
+    </main>
+
+    <!-- FIXED FOOTER -->
+    <footer class="footer-fixed">
+      <button class="btn-main">View Order</button>
+      <a href="#" class="link-secondary">View E-Receipt</a>
+    </footer>
+  </div>
+
+  <!-- Confetti JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script>
+    window.onload = () => {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#3a6b35', '#95d47f', '#b7e4c7']
+      });
+    };
+  </script>
+</body>
+</html>
