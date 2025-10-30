@@ -1,163 +1,226 @@
 :root {
-  --green: #556b2f;
-  --gray: #777;
-  --shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  --green: #3a6b35;
+  --green-dark: #2f522a;
+  --gray: #888;
+  --bg: #ffffff;
+  --shadow: 0 -5px 25px rgba(0, 0, 0, 0.06);
 }
 
 * {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: #fafafa;
-  margin: 0;
+  background: var(--bg);
   display: flex;
   justify-content: center;
-}
-
-.payment-container {
-  width: 100%;
-  max-width: 420px;
-  background: white;
-  min-height: 100vh;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  position: relative;
   overflow-x: hidden;
 }
 
-/* HEADER */
-.payment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.9rem 1rem 0.5rem 1rem;
-}
-
-.payment-header h2 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.back-btn {
+.success-container {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
   background: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* HEADER */
+.header {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  padding: 16px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background: #fff;
 }
 
-/* SECTION */
-.payment-section {
-  padding: 0 1rem;
-}
-
-.payment-section h3 {
-  margin: 0.6rem 0 0.35rem 0;
-  font-size: 0.9rem;
-  color: #333;
+.header h2 {
+  font-size: 18px;
   font-weight: 600;
 }
 
-/* PAYMENT OPTION CARD */
-.payment-option {
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  padding: 0.6rem 0.9rem;
-  margin-bottom: 0.45rem;
+.back-btn {
+  position: absolute;
+  left: 16px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  color: #222;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
-.payment-option:hover {
-  transform: translateY(-1px);
+/* MAIN CONTENT */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 120px;
+  text-align: center;
 }
 
-.payment-info {
+/* ✅ Centang dengan efek glow & float */
+.check-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: center;
 }
 
-.payment-info img {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-}
-
-.payment-info i {
-  font-size: 1.2rem;
-  color: var(--green);
-}
-
-.payment-option span {
-  font-size: 0.88rem;
-  font-weight: 500;
-}
-
-/* RADIO BUTTON STYLE */
-.payment-option input[type="radio"] {
-  display: none;
-}
-
-.checkmark {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #bbb;
+.check-icon {
+  width: 120px;
+  height: 120px;
+  background: var(--green);
   border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 60px;
+  box-shadow: 0 8px 20px rgba(58, 107, 53, 0.3);
+  animation: pop 0.6s ease-out forwards, float 3s ease-in-out infinite 1s;
 }
 
-.payment-option input[type="radio"]:checked + .checkmark {
-  border: 6px solid var(--green);
+/* ✨ Glow background di belakang centang */
+.check-icon::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,107,53,0.25) 0%, transparent 70%);
+  animation: pulseGlow 2.5s ease-in-out infinite;
+  z-index: -1;
 }
 
-/* FOOTER (Apply Tetap di Tengah Bawah) */
-.apply-footer {
-  background: white;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
-  padding: 0.8rem 1rem 1rem 1rem;
-  width: 100%;
+@keyframes pop {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.9; }
+}
+
+/* Teks muncul lembut */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.main-content h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+  margin-top: 24px;
+  margin-bottom: 6px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.main-content p {
+  color: var(--gray);
+  font-size: 15px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.8s;
+}
+
+/* FOOTER */
+.footer-fixed {
   position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  width: 100%;
   max-width: 420px;
+  background: #fff;
+  padding: 22px 20px 28px;
+  box-shadow: var(--shadow);
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
   z-index: 10;
+  animation: slideUp 0.8s ease forwards;
+  animation-delay: 1s;
+  opacity: 0;
 }
 
-.apply-btn {
+@keyframes slideUp {
+  from { transform: translate(-50%, 100%); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* Tombol utama dengan efek shimmer */
+.btn-main {
   width: 100%;
   background: var(--green);
-  color: white;
-  padding: 0.9rem;
+  color: #fff;
   border: none;
-  border-radius: 28px;
+  border-radius: 999px;
+  padding: 15px 20px;
+  font-size: 16px;
   font-weight: 600;
-  font-size: 1rem;
+  box-shadow: 0 8px 20px rgba(58, 107, 53, 0.25);
   cursor: pointer;
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.btn-main:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+/* Link bawah */
+.link-secondary {
+  color: var(--green);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
   transition: 0.2s;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 1.4s;
+  opacity: 0;
 }
 
-.apply-btn:hover {
-  background: #465a24;
-}
-
-/* Tambah padding bawah biar konten gak ketimpa tombol */
-.payment-section:last-of-type {
-  padding-bottom: 6rem;
+.link-secondary:hover {
+  text-decoration: underline;
 }

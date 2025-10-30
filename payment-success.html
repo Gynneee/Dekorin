@@ -20,8 +20,10 @@
 
     <!-- MAIN CONTENT -->
     <main class="main-content">
-      <div class="check-icon">
-        <i class="fas fa-check"></i>
+      <div class="check-wrapper">
+        <div class="check-icon" id="checkIcon">
+          <i class="fas fa-check"></i>
+        </div>
       </div>
       <h3>Payment Successful!</h3>
       <p>Thank you for your purchase.</p>
@@ -34,9 +36,10 @@
     </footer>
   </div>
 
-  <!-- Confetti JS -->
+  <!-- Confetti + Particle Animation -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script>
+    // 🎉 Confetti saat halaman terbuka
     window.onload = () => {
       confetti({
         particleCount: 100,
@@ -44,6 +47,26 @@
         origin: { y: 0.6 },
         colors: ['#3a6b35', '#95d47f', '#b7e4c7']
       });
+
+      // 🌿 Efek partikel kecil pelan di sekitar centang
+      const interval = setInterval(() => {
+        confetti({
+          particleCount: 5,
+          angle: Math.random() * 360,
+          spread: 15,
+          startVelocity: 25,
+          origin: { x: Math.random(), y: 0.6 },
+          colors: ['#a7df9a', '#3a6b35'],
+        });
+      }, 800);
+
+      // Hentikan partikel setelah 5 detik
+      setTimeout(() => clearInterval(interval), 5000);
+
+      // ✨ Jalankan shimmer centang setelah animasi pop selesai
+      setTimeout(() => {
+        document.getElementById("checkIcon").classList.add("shimmer-once");
+      }, 1000);
     };
   </script>
 </body>
