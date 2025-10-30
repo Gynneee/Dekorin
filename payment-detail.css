@@ -29,7 +29,6 @@ body {
   flex-direction: column;
 }
 
-/* HEADER */
 .payment-header {
   display: flex;
   align-items: center;
@@ -49,14 +48,12 @@ body {
   cursor: pointer;
 }
 
-/* CONTENT SCROLLABLE */
 .content {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 120px; /* memberi ruang agar tidak ketutup tombol */
+  padding-bottom: 120px; 
 }
 
-/* ORDER LIST */
 .order-list {
   padding: 16px;
 }
@@ -118,7 +115,6 @@ body {
   font-weight: 600;
 }
 
-/* VIRTUAL ACCOUNT */
 .virtual-account {
   padding: 0 16px;
 }
@@ -179,7 +175,6 @@ body {
   border-color: var(--green);
 }
 
-/* SHEET */
 .sheet {
   border-radius: 28px;
   box-shadow: var(--shadow);
@@ -236,7 +231,6 @@ body {
   font-weight: 700;
 }
 
-/* FIXED FOOTER */
 .footer-fixed {
   position: fixed;
   bottom: 0;
@@ -262,7 +256,6 @@ body {
   box-shadow: 0 8px 20px rgba(58, 107, 53, 0.25);
 }
 
-/* TOAST */
 #toast {
   visibility: hidden;
   min-width: 200px;

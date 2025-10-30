@@ -242,11 +242,6 @@ a {
   transition: filter 0.2s ease-in-out; 
 }
 
-.feature-item:hover i,
-.feature-item:hover p {
-  color: #eed292;
-}
-
 .feature-item:hover img {
   filter: drop-shadow(0 0 4px #eed292);
 }
@@ -535,7 +530,7 @@ body.no-scroll {
   width: 70%;
   max-width: 300px;
   height: 100%;
-  background-color: #ffffff;
+  background-color: #faf7ef;
   z-index: 9999;
   transition: right 0.3s ease;
   display: flex;

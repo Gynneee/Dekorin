@@ -5,6 +5,7 @@
   --background-color: #ffffff;
   --border-color: #e0e0e0;
   --primary-brown: #81724f;
+  --primary-bg: #faf7ef;
 }
 
 * {
@@ -233,6 +234,18 @@ a {
 .feature-item:hover i,
 .feature-item:hover p {
   color: #eed292;
+}
+
+.feature-item img {
+  width: 2rem;  
+  height: 2rem; 
+  object-fit: contain; 
+  margin-bottom: 0.75rem; 
+  transition: filter 0.2s ease-in-out; 
+}
+
+.feature-item:hover img {
+  filter: drop-shadow(0 0 4px #eed292);
 }
 
 .side-menu {

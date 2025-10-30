@@ -21,14 +21,13 @@ body {
 .profile-container {
   width: 100%;
   max-width: 480px;
-  background: #fff;
+  background: #faf7ef;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-/* ===== HEADER ===== */
 .profile-header {
   display: flex;
   align-items: center;
@@ -67,14 +66,12 @@ body {
   transform: translateY(-50%) scale(1.05);
 }
 
-/* ===== PROFILE SECTION ===== */
 .profile-section {
   flex: 1;
   padding: 2rem 1.5rem;
   text-align: center;
 }
 
-/* ===== AVATAR ===== */
 .profile-photo {
   display: flex;
   justify-content: center;
@@ -119,7 +116,6 @@ body {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
 }
 
-/* ===== FORM ===== */
 .profile-form {
   text-align: left;
   margin-top: 1rem;
@@ -147,7 +143,7 @@ select {
   outline: none;
   transition: all 0.3s ease;
   background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* ✨ shadow baru */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); 
 }
 
 input:hover,
@@ -162,7 +158,6 @@ select:focus {
               0 3px 10px rgba(0, 0, 0, 0.12);
 }
 
-/* ===== BUTTON ===== */
 .update-btn {
   width: 100%;
   margin-top: 1.8rem;
@@ -184,7 +179,6 @@ select:focus {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
   .avatar {
     width: 100px;

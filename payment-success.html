@@ -12,13 +12,11 @@
 </head>
 <body>
   <div class="success-container">
-    <!-- HEADER -->
     <header class="header">
       <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
       <h2>Payment</h2>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main class="main-content">
       <div class="check-wrapper">
         <div class="check-icon" id="checkIcon">
@@ -29,17 +27,14 @@
       <p>Thank you for your purchase.</p>
     </main>
 
-    <!-- FIXED FOOTER -->
     <footer class="footer-fixed">
       <button class="btn-main">View Order</button>
       <a href="#" class="link-secondary">View E-Receipt</a>
     </footer>
   </div>
 
-  <!-- Confetti + Particle Animation -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script>
-    // 🎉 Confetti saat halaman terbuka
     window.onload = () => {
       confetti({
         particleCount: 100,
@@ -48,7 +43,6 @@
         colors: ['#3a6b35', '#95d47f', '#b7e4c7']
       });
 
-      // 🌿 Efek partikel kecil pelan di sekitar centang
       const interval = setInterval(() => {
         confetti({
           particleCount: 5,
@@ -60,10 +54,8 @@
         });
       }, 800);
 
-      // Hentikan partikel setelah 5 detik
       setTimeout(() => clearInterval(interval), 5000);
 
-      // ✨ Jalankan shimmer centang setelah animasi pop selesai
       setTimeout(() => {
         document.getElementById("checkIcon").classList.add("shimmer-once");
       }, 1000);
