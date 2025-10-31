@@ -45,6 +45,11 @@ button {
   font-size: 1.3rem;
 }
 
+main {
+  transition: padding-bottom 0.4s ease;
+  padding-bottom: 1rem; 
+}
+
 /* SHOP CARD */
 .shop-card {
   background: #fffffb;
