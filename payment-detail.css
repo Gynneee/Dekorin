@@ -180,6 +180,7 @@ body {
   box-shadow: var(--shadow);
   background: #fff;
   padding: 18px 16px 16px;
+  overflow: hidden; 
 }
 
 .pill-group {
@@ -187,9 +188,10 @@ body {
   align-items: center;
   background: #e9ecef;
   border-radius: 999px;
-  padding: 6px 6px 6px 8px;
+  overflow: hidden;
   margin-bottom: 14px;
-  justify-content: flex-start;
+  width: 100%;             
+  box-sizing: border-box;  
 }
 
 .pill-group input {
@@ -198,20 +200,26 @@ body {
   background: transparent;
   outline: none;
   font-size: 14px;
-  padding: 8px 10px;
+  padding: 10px 14px;
+  min-width: 0;             
 }
 
 .pill-cta {
-  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  background: var(--green);
   color: #fff;
   border: none;
-  border-radius: 999px;
-  padding: 8px 18px;
   font-weight: 600;
+  padding: 10px 20px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(58, 107, 53, 0.3);
-  flex-shrink: 0;
+  transition: background 0.3s ease;
+  white-space: nowrap;     
+  height: 100%;
 }
+
+.pill-cta:hover {
+  background: var(--green-dark);
+}
+
 
 .summary p {
   display: flex;
