@@ -20,7 +20,7 @@ body {
 .checkout-container {
   width: 100%;
   max-width: 420px;
-  background: #fff;
+  background: #faf7ef;
   min-height: 100vh;
   box-shadow: var(--shadow);
   display: flex;
@@ -50,7 +50,7 @@ body {
 
 /* Back Button */
 .back-btn {
-  background: #fff;
+  background: white;
   border: none;
   border-radius: 50%;
   width: 36px;

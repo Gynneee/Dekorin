@@ -28,7 +28,7 @@ body {
   width: 100%;
   max-width: 420px;
   min-height: 100vh;
-  background: var(--bg-card);
+  background: #faf7ef;
   display: flex;
   flex-direction: column;
   padding-bottom: 120px; 

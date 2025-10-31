@@ -17,7 +17,7 @@ body {
 }
 
 .cart-container {
-  background: #fff;
+  background: #faf7ef;
   width: 100%;
   max-width: 420px;
   min-height: 100vh;
@@ -47,7 +47,7 @@ button {
 
 /* SHOP CARD */
 .shop-card {
-  background: white;
+  background: #fffffb;
   border-radius: 16px;
   box-shadow: var(--shadow);
   margin: 1rem;
