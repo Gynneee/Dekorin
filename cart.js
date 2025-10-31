@@ -5,14 +5,12 @@ const popup = document.getElementById("removePopup");
 const cancelBtn = document.getElementById("cancelRemove");
 const confirmBtn = document.getElementById("confirmRemove");
 
-// Toggle centang
 function toggleSelect(btn) {
   btn.classList.toggle("active");
   const selected = document.querySelectorAll(".select-box.active");
   checkout.classList.toggle("show", selected.length > 0);
 }
 
-// Tambah & kurang qty
 function increaseQty(btn) {
   const qtySpan = btn.previousElementSibling;
   qtySpan.textContent = parseInt(qtySpan.textContent) + 1;
@@ -28,7 +26,6 @@ function decreaseQty(btn) {
   }
 }
 
-// Popup remove
 cancelBtn.addEventListener("click", () => {
   popup.classList.add("hidden");
 });

@@ -192,7 +192,7 @@ a {
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.75rem;
 }
 
@@ -711,4 +711,66 @@ body.no-scroll {
 .popup-btn-no:hover {
   background-color: #2a5225;
   border-color: #2a5225;
+}
+
+
+@media (max-width: 480px) {
+  .features-section {
+    position: relative;
+  }
+
+  .features-grid {
+    display: flex;       
+    overflow-x: auto;  
+    gap: 0.75rem;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .features-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .feature-item {
+    width: 90px;         
+    flex-shrink: 0;      
+    scroll-snap-align: start; 
+  }
+
+  .features-section::after {
+    content: '';
+    position: absolute;
+    bottom: 2.5rem;  
+    height: 120px;  
+    right: 0;        
+    width: 45px;     
+    background: linear-gradient(to left, #faf7ef 30%, transparent);
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0; 
+    transition: opacity 0.2s ease; 
+  }
+
+  .features-section::before {
+    content: '';
+    position: absolute;
+    bottom: 2.5rem;  
+    height: 120px;  
+    left: 0;         
+    width: 45px;     
+    background: linear-gradient(to right, #faf7ef 30%, transparent);
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0; 
+    transition: opacity 0.2s ease; 
+  }
+
+  .features-section.show-right-shadow::after {
+    opacity: 0.65;
+  }
+  .features-section.show-left-shadow::before {
+    opacity: 0.65;
+  }
 }

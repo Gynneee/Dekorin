@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutOverlay = document.getElementById("logoutOverlay");
   const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
   const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
-  const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
+  const logoutLink = document.querySelector(
+    ".profile-menu-list a i.fa-sign-out-alt"
+  );
   const signOutAnchor = logoutLink?.closest("a");
 
   const openMenu = (menu) => {
@@ -31,17 +33,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const showLogoutPopup = () => {
     if (logoutPopup && menuOverlay) {
-        menuOverlay.classList.add("show");
-        logoutPopup.classList.add("show");
-        body.classList.add("no-scroll");
+      menuOverlay.classList.add("show");
+      logoutPopup.classList.add("show");
+      body.classList.add("no-scroll");
     }
   };
 
   const hideLogoutPopup = () => {
-     if (logoutPopup && menuOverlay) {
+    if (logoutPopup && menuOverlay) {
       menuOverlay.classList.remove("show");
       logoutPopup.classList.remove("show");
-      if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
+      if (
+        !sideMenu?.classList.contains("open") &&
+        !profileMenu?.classList.contains("open")
+      ) {
         body.classList.remove("no-scroll");
       }
     }
@@ -63,11 +68,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   menuOverlay?.addEventListener("click", (e) => {
     if (e.target === menuOverlay) {
-        if (logoutPopup?.classList.contains("show")) {
-            hideLogoutPopup();
-        } else {
-            closeAllMenus();
-        }
+      if (logoutPopup?.classList.contains("show")) {
+        hideLogoutPopup();
+      } else {
+        closeAllMenus();
+      }
     }
   });
 
@@ -85,25 +90,22 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("User confirmed logout!");
   });
 
-  cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
+  cancelLogoutBtn?.addEventListener("click", hideLogoutPopup); 
 
-
-  // --- MENU ACTIVE STATE LOGIC (Corrected Comparison) ---
-  const menuItems = document.querySelectorAll(".menu-list > li"); // Keep for click handler
+  const menuItems = document.querySelectorAll(".menu-list > li"); 
   const allLinks = document.querySelectorAll(".menu-list a");
 
   let currentPathFile = window.location.pathname.split("/").pop();
   if (currentPathFile === "" || currentPathFile === "/") {
-      currentPathFile = "loggedin"; // Base name WITHOUT .html
+    currentPathFile = "loggedin"; 
   } else {
-      currentPathFile = currentPathFile.replace(".html", "");
+    currentPathFile = currentPathFile.replace(".html", "");
   }
-
 
   allLinks.forEach((link) => {
     const linkHref = link.getAttribute("href");
     const parentLi = link.closest("li");
-    if (!linkHref || linkHref === '#') return;
+    if (!linkHref || linkHref === "#") return;
 
     let linkFileName = linkHref.split("/").pop().replace(".html", "");
 
@@ -114,29 +116,27 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       parentLi?.classList.remove("active");
       const subMenuParent = parentLi?.closest(".has-sub");
-      if(subMenuParent && !subMenuParent.querySelector('.sub-menu li.active')){
-          subMenuParent.classList.remove("active-sub");
+      if (
+        subMenuParent &&
+        !subMenuParent.querySelector(".sub-menu li.active")
+      ) {
+        subMenuParent.classList.remove("active-sub");
       }
     }
-  });
-  // --- END OF CORRECTED LOGIC ---
-
-
+  }); 
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
-        // Re-check current page base name on click for accurate comparison
-        let currentPathFileOnClick = window.location.pathname.split("/").pop();
-        if (currentPathFileOnClick === "" || currentPathFileOnClick === "/") {
-            currentPathFileOnClick = "loggedin";
-        } else {
-            currentPathFileOnClick = currentPathFileOnClick.replace(".html", "");
-        }
-
+      let currentPathFileOnClick = window.location.pathname.split("/").pop();
+      if (currentPathFileOnClick === "" || currentPathFileOnClick === "/") {
+        currentPathFileOnClick = "loggedin";
+      } else {
+        currentPathFileOnClick = currentPathFileOnClick.replace(".html", "");
+      }
 
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu a")) {
-             closeAllMenus();
-             return; // Let browser handle link navigation
+          closeAllMenus();
+          return; 
         }
         item.classList.toggle("active-sub");
         menuItems.forEach((i) => {
@@ -148,29 +148,58 @@ document.addEventListener("DOMContentLoaded", () => {
         const link = item.querySelector("a");
         if (!link) return;
         const linkHref = link.getAttribute("href");
-        const linkFileNameOnClick = linkHref?.split("/").pop().replace(".html", ""); // Get base name
+        const linkFileNameOnClick = linkHref
+          ?.split("/")
+          .pop()
+          .replace(".html", ""); 
 
-
-        // If it's a link to a DIFFERENT page, allow navigation
-        if (linkHref && linkHref !== "#" && linkFileNameOnClick !== currentPathFileOnClick) {
+        if (
+          linkHref &&
+          linkHref !== "#" &&
+          linkFileNameOnClick !== currentPathFileOnClick
+        ) {
           closeAllMenus();
           return; // Let browser handle navigation
-        }
+        } // If it's the CURRENT page or '#', prevent reload
 
-        // If it's the CURRENT page or '#', prevent reload
         e.preventDefault();
         menuItems.forEach((i) => {
-            i.classList.remove("active");
-            i.classList.remove("active-sub");
+          i.classList.remove("active");
+          Read: i.classList.remove("active-sub");
         });
         item.classList.add("active");
-         const subMenu = item.closest(".sub-menu");
-         if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
+        const subMenu = item.closest(".sub-menu");
+        if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
 
         closeAllMenus();
       }
     });
   });
+
+  const featuresGrid = document.querySelector(".features-grid");
+  const featuresSection = document.querySelector(".features-section");
+
+  function updateShadows() {
+    if (!featuresGrid || !featuresSection) {
+      return;
+    }
+
+    const scrollLeft = featuresGrid.scrollLeft;
+    const scrollWidth = featuresGrid.scrollWidth;
+    const clientWidth = featuresGrid.clientWidth;
+
+    const isAtStart = scrollLeft < 1;
+    const isAtEnd = scrollLeft > scrollWidth - clientWidth - 1;
+
+    featuresSection.classList.toggle("show-left-shadow", !isAtStart);
+    featuresSection.classList.toggle("show-right-shadow", !isAtEnd);
+  }
+
+  if (featuresGrid) {
+    featuresGrid.addEventListener("scroll", updateShadows);
+  }
+
+  updateShadows();
 
   const sliderWrapper = document.querySelector(".slider-wrapper");
   if (sliderWrapper) {
@@ -178,33 +207,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const dots = document.querySelectorAll(".dot");
 
     if (dots.length > 0 && slides.length > 0) {
-        dots.forEach((dot, idx) => {
-          dot.addEventListener("click", () => {
-            if(slides[idx]) {
-              sliderWrapper.scrollTo({
-                left: slides[idx].offsetLeft,
-                behavior: "smooth",
-              });
+      dots.forEach((dot, idx) => {
+        dot.addEventListener("click", () => {
+          if (slides[idx]) {
+            sliderWrapper.scrollTo({
+              left: slides[idx].offsetLeft,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const index = Array.from(slides).indexOf(entry.target);
+              dots.forEach((d) => d.classList.remove("active"));
+              slides.forEach((s) => s.classList.remove("active"));
+              if (dots[index]) dots[index].classList.add("active");
+              entry.target.classList.add("active");
             }
           });
-        });
+        },
+        { root: sliderWrapper, threshold: 0.5 }
+      );
 
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const index = Array.from(slides).indexOf(entry.target);
-                dots.forEach((d) => d.classList.remove("active"));
-                slides.forEach((s) => s.classList.remove("active"));
-                if (dots[index]) dots[index].classList.add("active");
-                entry.target.classList.add("active");
-              }
-            });
-          },
-          { root: sliderWrapper, threshold: 0.5 }
-        );
-
-        slides.forEach((slide) => observer.observe(slide));
+      slides.forEach((slide) => observer.observe(slide));
     }
   }
 });
