@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Payment Method</title>
-  <link rel="stylesheet" href="payment.css" />
+  <link rel="stylesheet" href="payment.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body>
   <div class="payment-container">
     <header class="payment-header">
-      <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
+      <button class="back-btn"><i class="fas fa-arrow-left" onclick="window.location.href = 'checkout.html'"></i></button>
       <h2>Payment Method</h2>
       <div></div>
     </header>
@@ -32,7 +32,7 @@
 
       <label class="payment-option">
         <div class="payment-info">
-          <img src="BCA.png" alt="BCA" />
+          <img src="src/payment/BCA.png" alt="BCA" />
           <span>BCA Virtual Account</span>
         </div>
         <input type="radio" name="payment" />
@@ -41,7 +41,7 @@
 
       <label class="payment-option">
         <div class="payment-info">
-          <img src="BNI.png" alt="BNI" />
+          <img src="src/payment/BNI.png" alt="BNI" />
           <span>BNI Virtual Account</span>
         </div>
         <input type="radio" name="payment" />
@@ -50,7 +50,7 @@
 
       <label class="payment-option">
         <div class="payment-info">
-          <img src="SEA.png" alt="ShopeePay" />
+          <img src="src/payment/SEA.png" alt="ShopeePay" />
           <span>ShopeePay Virtual Account</span>
         </div>
         <input type="radio" name="payment" />
@@ -59,19 +59,10 @@
     </section>
 
     <footer class="apply-footer">
-      <button class="apply-btn">Apply</button>
+      <button class="apply-btn" onclick="window.location.href = 'payment-detail.html'">Apply</button>
     </footer>
   </div>
 
-  <script>
-    // Animasi seleksi radio button
-    const options = document.querySelectorAll(".payment-option input");
-    options.forEach(opt => {
-      opt.addEventListener("change", () => {
-        options.forEach(o => o.parentElement.classList.remove("selected"));
-        opt.parentElement.classList.add("selected");
-      });
-    });
-  </script>
+<script href="payment.js"></script>
 </body>
 </html>
