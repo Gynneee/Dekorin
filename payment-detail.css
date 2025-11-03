@@ -190,8 +190,8 @@ body {
   border-radius: 999px;
   overflow: hidden;
   margin-bottom: 14px;
-  width: 100%;             
-  box-sizing: border-box;  
+  width: 100%;  
+  box-sizing: border-box;
 }
 
 .pill-group input {
