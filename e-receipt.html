@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Receipt</title>
+  <link rel="stylesheet" href="e-receipt.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="receipt-container">
+    <!-- Header -->
+    <header class="receipt-header">
+      <button class="nav-btn back" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h2>Payment</h2>
+      <button class="nav-btn cart">
+        <i class="fas fa-shopping-cart"></i>
+      </button>
+    </header>
+
+    <!-- Order List -->
+    <section class="order-section">
+      <h4>Order List</h4>
+      <div class="shop-card">
+        <h5>Toko Wallpaper</h5>
+        <div class="product">
+          <img src="imagemyorder.png" alt="Wallpaper 1">
+          <div class="details">
+            <p class="code">102–3A</p>
+            <p class="desc">Wallpaper roll 53 cm</p>
+            <p class="price">Rp60.000</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="product">
+          <img src="imagemyorder.png" alt="Wallpaper 2">
+          <div class="details">
+            <p class="code">PL10–4</p>
+            <p class="desc">Wallpaper roll 106 cm</p>
+            <p class="price">Rp110.000</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-section">
+      <div class="summary-row">
+        <span>Sub-Total</span>
+        <span>Rp117.000</span>
+      </div>
+      <div class="summary-row">
+        <span>Delivery Fee</span>
+        <span>Rp15.000</span>
+      </div>
+      <div class="summary-row faded">
+        <span>Discount</span>
+        <span>Rp10.000</span>
+      </div>
+      <hr class="dashed">
+      <div class="summary-row total">
+        <span>Total Cost</span>
+        <span>Rp122.000</span>
+      </div>
+    </section>
+
+    <!-- Fixed Download Button -->
+    <footer class="fixed-footer">
+      <button class="download-btn" onclick="downloadReceipt()">
+        Download
+      </button>
+    </footer>
+  </div>
+
+  <script>
+    function downloadReceipt() {
+      alert("📄 Fitur download e-receipt akan segera tersedia!");
+    }
+  </script>
+</body>
+</html>

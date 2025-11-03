@@ -1,0 +1,260 @@
+:root {
+  --green: #3a6b35;
+  --gray: #888;
+  --bg: #f8f8f8;
+  --white: #fff;
+  --shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* === Container Utama === */
+.measure-container {
+  background: var(--white);
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+  border-radius: 0 0 25px 25px;
+  overflow: hidden;
+  animation: fadeSlide 0.8s ease-out forwards;
+}
+
+/* === Header === */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.4rem 0.8rem;
+  border-bottom: 1px solid #eee;
+  background: var(--white);
+  color: var(--green);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.menu-btn, .profile-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--green);
+  cursor: pointer;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
+}
+
+.menu-btn:hover, .profile-btn:hover {
+  background: rgba(58, 107, 53, 0.08);
+  transform: scale(1.05);
+}
+
+/* === Form Section === */
+.form-section {
+  padding: 1rem 1.2rem 3rem;
+  animation: fadeUp 1s ease;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+/* Input + Select */
+input[type="number"], input[type="text"], select {
+  flex: 1;
+  padding: 0.7rem 0.8rem;
+  border-radius: var(--radius);
+  border: 1.5px solid #ddd;
+  font-size: 0.9rem;
+  outline: none;
+  transition: 0.3s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+input:focus, select:focus {
+  border-color: var(--green);
+  box-shadow: 0 4px 10px rgba(58, 107, 53, 0.15);
+  transform: translateY(-1px);
+}
+
+.unit-btn {
+  background: var(--green);
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  box-shadow: 0 3px 8px rgba(58, 107, 53, 0.25);
+  transition: 0.3s ease;
+}
+
+.unit-btn:hover {
+  background: #2f562b;
+  transform: scale(1.05);
+  box-shadow: 0 5px 12px rgba(58,107,53,0.3);
+}
+
+/* Dropdown */
+select {
+  width: 100%;
+  margin-top: 0.3rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* === Total Section === */
+.total-section {
+  background: var(--white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  transition: 0.3s ease;
+}
+
+.total-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.total-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.8rem 0;
+}
+
+.total-row input {
+  flex: 1;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  border: 1.5px solid #ddd;
+  outline: none;
+  background: #fafafa;
+  font-size: 0.95rem;
+  height: 44px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.total-row .unit-btn {
+  height: 44px;
+  padding: 0 1rem;
+  font-weight: 600;
+}
+
+/* === Calculate Button === */
+.calculate-btn {
+  width: 90%;
+  background: var(--green);
+  color: #fff;
+  padding: 1rem;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 2rem auto;
+  display: block;
+  box-shadow: 0 4px 12px rgba(58, 107, 53, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.calculate-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: skewX(-45deg);
+  transition: 0.5s;
+}
+
+.calculate-btn:hover::after {
+  left: 120%;
+}
+
+.calculate-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(58, 107, 53, 0.4);
+}
+
+/* === Animations === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

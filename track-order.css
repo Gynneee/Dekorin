@@ -1,0 +1,287 @@
+:root {
+  --green: #3a6b35;
+  --gray: #888;
+  --border: #e0e0e0;
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+}
+
+.track-container {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+}
+
+.navbar h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #000;
+}
+
+.nav-btn.back {
+  background: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Product */
+.product-summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.product-summary img {
+  width: 75px;
+  height: 75px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.info h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.info p {
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+.price {
+  font-weight: 500;
+  color: #000;
+}
+
+/* Order Detail */
+.order-detail {
+  padding: 1rem 1.2rem;
+}
+
+.order-detail h4 {
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #444;
+  margin: 4px 0;
+}
+
+/* Order Status */
+.order-status {
+  padding: 1rem 1.2rem;
+}
+
+.order-status h4 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Step */
+.status-step {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 1.6rem;
+}
+
+.left {
+  position: relative;
+  width: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Lingkaran */
+.circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  animation: popIn 0.6s ease-out;
+}
+
+.circle.gray {
+  background: #cfcfcf;
+}
+
+/* Garis vertikal + shimmer */
+.line {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: calc(100% + 28px); /* panjang lebih */
+  background: var(--green);
+  border-radius: 3px;
+  z-index: 1;
+  overflow: hidden;
+  transform-origin: top;
+  animation: drawLine 1s ease-out forwards;
+}
+
+/* Efek shimmer (hijau muda bergerak ke atas) */
+.line::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 3s linear infinite;
+  opacity: 0.8;
+}
+
+/* Garis abu untuk status belum aktif */
+.status-step:not(.completed) .line {
+  background: #ccc;
+}
+
+.status-step:not(.completed) .line::after {
+  display: none; /* shimmer cuma untuk aktif */
+}
+
+.status-step:last-child .line {
+  display: none;
+}
+
+/* Tengah */
+.center {
+  flex: 1;
+  padding-left: 0.5rem;
+}
+
+.center h5 {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.center p {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* Kanan */
+.right {
+  width: 30px;
+  text-align: right;
+  font-size: 1.1rem;
+  color: #444;
+  margin-left: 0.5rem;
+}
+
+/* Animasi */
+@keyframes popIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes drawLine {
+  from {
+    height: 0;
+  }
+  to {
+    height: calc(100% + 28px);
+  }
+}
+
+/* shimmer effect bergerak ke atas */
+@keyframes shimmer {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -100%;
+  }
+}
+
+/* Efek glow di lingkaran aktif */
+.completed .circle {
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0px rgba(58,107,53,0.3);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(58,107,53,0.4);
+  }
+}
+
+/* Fade lembut */
+.fade-in {
+  animation: fadeIn 0.7s ease-out both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Order</title>
+  <link rel="stylesheet" href="track-order.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="track-container">
+    <!-- Navbar -->
+    <header class="navbar">
+      <button class="nav-btn back"><i class="fas fa-arrow-left"></i></button>
+      <h2>Track Order</h2>
+      <button class="nav-btn cart"><i class="fas fa-shopping-cart"></i></button>
+    </header>
+
+    <!-- Product -->
+    <section class="product-summary fade-in">
+      <img src="imagemyorder.png" alt="Wallpaper">
+      <div class="info">
+        <h3>Wallpaper Polos</h3>
+        <p>Dekorin Store | 2 Roll</p>
+        <p class="price">Rp. 100.000</p>
+      </div>
+    </section>
+
+    <!-- Order Detail -->
+    <section class="order-detail fade-in">
+      <h4>Order Detail</h4>
+      <div class="detail-row">
+        <p>Expected Delivery Date</p>
+        <span>3 Sept 2025</span>
+      </div>
+      <div class="detail-row">
+        <p>Tracking ID</p>
+        <span>TRCK123456</span>
+      </div>
+    </section>
+
+    <!-- Order Status -->
+    <section class="order-status fade-in">
+      <h4>Order Status</h4>
+
+      <div class="status-step completed">
+        <div class="left">
+          <span class="circle"><i class="fa-solid fa-check"></i></span>
+          <span class="line"></span>
+        </div>
+        <div class="center">
+          <h5>Order Placed</h5>
+          <p>23 Sept 2025, 04.25 AM</p>
+        </div>
+        <div class="right"><i class="fa-solid fa-clipboard-list"></i></div>
+      </div>
+
+      <div class="status-step completed">
+        <div class="left">
+          <span class="circle"><i class="fa-solid fa-check"></i></span>
+          <span class="line"></span>
+        </div>
+        <div class="center">
+          <h5>In Progress</h5>
+          <p>23 Sept 2025, 04.25 AM</p>
+        </div>
+        <div class="right"><i class="fa-solid fa-box"></i></div>
+      </div>
+
+      <div class="status-step">
+        <div class="left">
+          <span class="circle gray"><i class="fa-solid fa-check"></i></span>
+          <span class="line"></span>
+        </div>
+        <div class="center">
+          <h5>Shipped</h5>
+          <p>23 Sept 2025, 04.25 AM</p>
+        </div>
+        <div class="right"><i class="fa-solid fa-truck"></i></div>
+      </div>
+
+      <div class="status-step">
+        <div class="left">
+          <span class="circle gray"><i class="fa-solid fa-check"></i></span>
+        </div>
+        <div class="center">
+          <h5>Delivered</h5>
+          <p>23 Sept 2025, 04.25 AM</p>
+        </div>
+        <div class="right"><i class="fa-solid fa-box-open"></i></div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InMeasure</title>
+
+  <!-- Font & Icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="inmeasure.css" />
+</head>
+<body>
+  <div class="measure-container fade-in">
+    <!-- Header -->
+    <header>
+      <button class="menu-btn"><i class="fas fa-bars"></i></button>
+      <h2>InMeasure</h2>
+      <button class="profile-btn"><i class="fas fa-user"></i></button>
+    </header>
+
+    <div class="form-section">
+      <label>Ukuran Wallpaper</label>
+      <select>
+        <option>Pilih ukuran</option>
+        <option>0.53 m x 10 m</option>
+        <option>1.06 m x 15 m</option>
+      </select>
+
+      <!-- Dinding -->
+      <label>Area Dinding 1</label>
+      <div class="row">
+        <input type="number" placeholder="Panjang" id="p1" />
+        <button class="unit-btn">Meter</button>
+      </div>
+      <div class="row">
+        <input type="number" placeholder="Lebar" id="l1" />
+        <button class="unit-btn">Meter</button>
+      </div>
+
+      <label>Area Dinding 2</label>
+      <div class="row">
+        <input type="number" placeholder="Panjang" id="p2" />
+        <button class="unit-btn">Meter</button>
+      </div>
+      <div class="row">
+        <input type="number" placeholder="Lebar" id="l2" />
+        <button class="unit-btn">Meter</button>
+      </div>
+
+      <!-- Pintu -->
+      <label>Area Pintu</label>
+      <div class="row">
+        <input type="number" placeholder="Panjang" id="ppintu" />
+        <button class="unit-btn">Meter</button>
+      </div>
+      <div class="row">
+        <input type="number" placeholder="Lebar" id="lpintu" />
+        <button class="unit-btn">Meter</button>
+      </div>
+
+      <!-- Jendela -->
+      <label>Area Jendela</label>
+      <div class="row">
+        <input type="number" placeholder="Panjang" id="pjendela" />
+        <button class="unit-btn">Meter</button>
+      </div>
+      <div class="row">
+        <input type="number" placeholder="Lebar" id="ljendela" />
+        <button class="unit-btn">Meter</button>
+      </div>
+
+      <!-- Total -->
+      <div class="total-section">
+        <div class="total-row">
+          <input type="text" id="totalArea" placeholder="0.00" readonly>
+          <button class="unit-btn">Meter²</button>
+        </div>
+        <div class="total-row">
+          <input type="text" id="totalPrice" placeholder="Rp0" readonly>
+          <button class="unit-btn">IDR</button>
+        </div>
+      </div>
+
+      <button class="calculate-btn" onclick="calculate()">Calculate</button>
+    </div>
+  </div>
+
+  <script>
+    function calculate() {
+      const p1 = +document.getElementById('p1').value || 0;
+      const l1 = +document.getElementById('l1').value || 0;
+      const p2 = +document.getElementById('p2').value || 0;
+      const l2 = +document.getElementById('l2').value || 0;
+
+      const ppintu = +document.getElementById('ppintu').value || 0;
+      const lpintu = +document.getElementById('lpintu').value || 0;
+      const pjendela = +document.getElementById('pjendela').value || 0;
+      const ljendela = +document.getElementById('ljendela').value || 0;
+
+      const areaDinding = (p1*l1 + p2*l2);
+      const areaTidakDipakai = (ppintu*lpintu + pjendela*ljendela);
+      const totalArea = areaDinding - areaTidakDipakai;
+
+      const pricePerMeter = 60000; // harga per m²
+      const totalPrice = totalArea * pricePerMeter;
+
+      document.getElementById('totalArea').value = totalArea.toFixed(2);
+      document.getElementById('totalPrice').value = `Rp${totalPrice.toLocaleString("id-ID")}`;
+    }
+  </script>
+</body>
+</html>
