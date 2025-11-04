@@ -5,7 +5,6 @@
   --white: #fff;
   --shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
   --radius: 12px;
-  /* Variabel dari loggedin.css untuk menu */
   --primary-brown: #81724f; 
 }
 
@@ -53,7 +52,6 @@ a {
   border-radius: 0 0 25px 25px;
   overflow: hidden;
   animation: fadeSlide 0.8s ease-out forwards;
-  /* Tambahkan ini agar menu bisa 'keluar' */
   position: relative; 
 }
 
@@ -66,6 +64,10 @@ header {
   background: var(--white);
   color: var(--green);
   box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+header i{
+  color: black;
 }
 
 header h2 {
@@ -113,11 +115,12 @@ label {
   align-items: center;
   gap: 0.6rem;
   margin-top: 0.6rem;
+  min-width: 0;
 }
 
 input[type="number"], input[type="text"], select {
   flex: 1;
-  padding: 0.7rem 0.8rem;
+  padding: 0.7rem 0.1rem;
   border-radius: var(--radius);
   border: 1.5px solid #ddd;
   font-size: 0.9rem;
