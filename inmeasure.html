@@ -5,20 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>InMeasure</title>
 
-  <!-- Font & Icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="inmeasure.css" />
 </head>
 <body>
+
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <nav class="side-menu" id="sideMenu">
+    <button class="close-btn" id="closeMenu">&times;</button>
+    <ul class="menu-list">
+      <li><a href="loggedin.html">Home</a></li>
+      <li class="has-sub">
+        <span>Size <i class="fas fa-chevron-right"></i></span>
+        <ul class="sub-menu">
+          <li><a href="#">Wallpaper roll 53 cm</a></li>
+          <li><a href="#">Wallpaper roll 106 cm</a></li>
+        </ul>
+      </li>
+      <li><a href="inmeasure.html">InMeasure</a></li>
+      <li><a href="#">Augmented Reality</a></li>
+      <li><a href="#">Destiny AI</a></li>
+      <li><a href="invision.html">inVision</a></li>
+      <li><a href="aboutus.html">About us</a></li>
+    </ul>
+    <div class="menu-footer">
+      <p>Support</p>
+      <a href="#"><i class="fas fa-headset"></i> Contact Support</a>
+      <a href="#"><i class="fas fa-cog"></i> Setting</a>
+    </div>
+  </nav>
+
+  <nav class="profile-menu" id="profileMenu">
+    <div class="profile-menu-header">
+      <div class="profile-icon-wrapper">
+        <i class="fas fa-user"></i>
+      </div>
+      <h3>User1</h3>
+    </div>
+    <ul class="profile-menu-list">
+      <li>
+        <a href="#"><i class="fas fa-user-circle"></i> Your profile</a>
+      </li>
+      <li>
+        <a href="#"><i class="fas fa-map-marker-alt"></i> Manage Address</a>
+      </li>
+      <li>
+        <a href="#"><i class="fas fa-receipt"></i> My Orders</a>
+      </li>
+      <li>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="popup-overlay" id="logoutOverlay"></div>
+  <div class="popup-container" id="logoutPopup">
+    <div class="popup-content">
+      <h2>Logout</h2>
+      <p>Are you sure you want to logout?</p>
+      <div class="popup-buttons">
+        <button class="popup-btn popup-btn-yes" id="confirmLogoutBtn">
+          Yes
+        </button>
+        <button class="popup-btn popup-btn-no" id="cancelLogoutBtn">
+          No
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="measure-container fade-in">
-    <!-- Header -->
     <header>
-      <button class="menu-btn"><i class="fas fa-bars"></i></button>
+      <button class="nav-button"><i class="fas fa-bars"></i></button>
       <h2>InMeasure</h2>
-      <button class="profile-btn"><i class="fas fa-user"></i></button>
+      <button id="profileBtn" class="profile-btn"><i class="fas fa-user"></i></button>
     </header>
 
     <div class="form-section">
@@ -29,7 +92,6 @@
         <option>1.06 m x 15 m</option>
       </select>
 
-      <!-- Dinding -->
       <label>Area Dinding 1</label>
       <div class="row">
         <input type="number" placeholder="Panjang" id="p1" />
@@ -50,7 +112,6 @@
         <button class="unit-btn">Meter</button>
       </div>
 
-      <!-- Pintu -->
       <label>Area Pintu</label>
       <div class="row">
         <input type="number" placeholder="Panjang" id="ppintu" />
@@ -61,7 +122,6 @@
         <button class="unit-btn">Meter</button>
       </div>
 
-      <!-- Jendela -->
       <label>Area Jendela</label>
       <div class="row">
         <input type="number" placeholder="Panjang" id="pjendela" />
@@ -72,7 +132,6 @@
         <button class="unit-btn">Meter</button>
       </div>
 
-      <!-- Total -->
       <div class="total-section">
         <div class="total-row">
           <input type="text" id="totalArea" placeholder="0.00" readonly>
@@ -88,28 +147,6 @@
     </div>
   </div>
 
-  <script>
-    function calculate() {
-      const p1 = +document.getElementById('p1').value || 0;
-      const l1 = +document.getElementById('l1').value || 0;
-      const p2 = +document.getElementById('p2').value || 0;
-      const l2 = +document.getElementById('l2').value || 0;
-
-      const ppintu = +document.getElementById('ppintu').value || 0;
-      const lpintu = +document.getElementById('lpintu').value || 0;
-      const pjendela = +document.getElementById('pjendela').value || 0;
-      const ljendela = +document.getElementById('ljendela').value || 0;
-
-      const areaDinding = (p1*l1 + p2*l2);
-      const areaTidakDipakai = (ppintu*lpintu + pjendela*ljendela);
-      const totalArea = areaDinding - areaTidakDipakai;
-
-      const pricePerMeter = 60000; // harga per m²
-      const totalPrice = totalArea * pricePerMeter;
-
-      document.getElementById('totalArea').value = totalArea.toFixed(2);
-      document.getElementById('totalPrice').value = `Rp${totalPrice.toLocaleString("id-ID")}`;
-    }
-  </script>
+  <script src="inmeasure.js"></script>
 </body>
 </html>

@@ -10,73 +10,21 @@
 </head>
 <body>
   <div class="orders-container">
-    <!-- ✅ Navbar -->
     <header class="navbar">
       <button class="nav-btn back" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
       <h2>My Orders</h2>
       <button class="nav-btn cart"><i class="fas fa-shopping-cart"></i></button>
     </header>
 
-    <!-- ✅ Tabs -->
     <nav class="tabs">
       <button class="tab active" onclick="setActiveTab('active', this)">Active</button>
       <button class="tab" onclick="setActiveTab('completed', this)">Completed</button>
       <button class="tab" onclick="setActiveTab('cancelled', this)">Cancelled</button>
     </nav>
 
-    <!-- ✅ Orders List -->
     <main class="orders-list smooth-fade" id="ordersList"></main>
   </div>
 
-  <script>
-    const ordersList = document.getElementById('ordersList');
-
-    document.addEventListener("DOMContentLoaded", () => setActiveTab("active", document.querySelector(".tab.active")));
-
-    function setActiveTab(tabName, btn) {
-      // ubah tab aktif
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
-
-      // reset animasi fade
-      ordersList.classList.remove('smooth-fade');
-      void ordersList.offsetWidth;
-      ordersList.classList.add('smooth-fade');
-
-      // teks tombol sesuai tab
-      let buttonText = "";
-      if (tabName === "active") buttonText = "Track";
-      else if (tabName === "completed") buttonText = "Review";
-      else buttonText = "Re-Order";
-
-      // isi list order
-      ordersList.innerHTML = Array(4).fill(`
-        <div class="order-item">
-          <img src="imagemyorder.png" alt="Wallpaper">
-          <div class="order-info">
-            <h4>Wallpaper Polos</h4>
-            <p>Dekorin Store | 2 Roll</p>
-            <div class="bottom">
-              <span class="price">Rp. 100.000</span>
-              <button class="track-btn">${buttonText}</button>
-            </div>
-          </div>
-        </div>
-      `).join("");
-
-      // tambahkan efek animasi muncul
-      document.querySelectorAll('.track-btn').forEach(btn => {
-        btn.classList.add('button-appear');
-        setTimeout(() => btn.classList.remove('button-appear'), 600);
-
-        // ✅ kalau tombol "Track" diklik → pindah ke halaman track-order.html
-        if (btn.textContent.trim() === "Track") {
-          btn.addEventListener("click", () => {
-            window.location.href = "track-order.html";
-          });
-        }
-      });
-    }
-  </script>
+  <script src="my-orders.js" defer></script>
 </body>
 </html>
