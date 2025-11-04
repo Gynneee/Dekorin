@@ -1,4 +1,3 @@
-// server.js (Menggunakan 'hf.chatCompletion' yang BENAR)
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
@@ -13,7 +12,7 @@ console.log("Mencoba memuat HF_TOKEN:", process.env.HF_TOKEN ? "BERHASIL DIMUAT"
 app.use(cors());
 app.use(express.json());
 
-// Inisialisasi Hugging Face
+// Inisialisasi
 const hf = new HfInference(process.env.HF_TOKEN);
 const modelName = 'mistralai/Mistral-7B-Instruct-v0.2';
 
@@ -23,26 +22,41 @@ app.post('/chat', async (req, res) => {
     const userInput = req.body.message;
     console.log(`Mengirim prompt ke Hugging Face (ChatCompletion): ${userInput}`);
 
-    // Siapkan "kepribadian" AI sebagai System Prompt
-    const systemPrompt = "Kamu adalah Destiny AI, asisten virtual yang ramah dan membantu untuk DekorIn, sebuah perusahaan yang menjual wallpaper dan dekorasi dinding. Selalu sapa pengguna sebagai 'DekorMate' dan jawab pertanyaan mereka dengan antusias.";
 
-    // Kirim pesan menggunakan fungsi "chatCompletion" yang benar
+    // Ai Training
+    const systemPrompt = `
+Peran kamu adalah 'Destiny AI'. Nama kamu HANYA 'Destiny AI'.
+Kamu adalah asisten virtual ahli untuk DekorIn.
+
+KONTEKS PERUSAHAAN (WAJIB DIPATUHI):
+1.  **Produk:** Kami HANYA menjual **wallpaper dinding fisik** (untuk tembok). Kami TIDAK menjual wallpaper digital (untuk HP/desktop).
+2.  **Fitur Unggulan:** Keunggulan utama kami adalah fitur **"Virtual Visualizer"** (Augmented Reality/AR). Fitur ini memungkinkan pelanggan mengunggah foto ruangan mereka untuk 'mencoba' wallpaper di dinding mereka secara virtual sebelum membeli.
+3.  **Pasar:** Target kami adalah pasar **Indonesia**.
+4.  **Misi:** Membantu 'DekorMate' (sapaan wajib untuk pengguna) menemukan dekorasi dinding yang sempurna dengan teknologi AR.
+
+Kamu harus selalu antusias, ramah, dan sangat membantu.
+`.trim(); 
+
+    const exampleUser = "Apa bedanya DekorIn dengan toko wallpaper lain di marketplace?";
+    const exampleBot = "Halo, DekorMate! Saya **Destiny AI**. Perbedaan utama kami adalah teknologi **Virtual Visualizer (AR)**! Di DekorIn, Anda tidak perlu menebak-nebak. Anda bisa langsung 'mencoba' wallpaper dinding fisik kami di foto ruangan Anda secara virtual sebelum membeli. Ini jauh lebih pasti daripada hanya melihat gambar di marketplace!";
+
     const result = await hf.chatCompletion({
       model: modelName,
       messages: [
-        // Pesan pertama mendefinisikan kepribadian AI
         { role: "system", content: systemPrompt },
-        // Pesan kedua adalah input dari pengguna
+        
+        { role: "user", content: exampleUser },
+        { role: "assistant", content: exampleBot }, 
+
         { role: "user", content: userInput }
       ],
       parameters: {
-        max_new_tokens: 250,
+        max_new_tokens: 500,
         temperature: 0.7
       },
-      stream: false, // Kita ingin balasan penuh, bukan streaming
+      stream: false,
     });
 
-    // Balasan dari 'chatCompletion' ada di 'choices[0].message.content'
     const aiResponse = result.choices[0].message.content.trim();
     
     console.log(`Menerima balasan: ${aiResponse}`);
