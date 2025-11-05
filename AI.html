@@ -3,73 +3,146 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Destiny AI - Asisten cerdas DekorIn untuk konsultasi wallpaper" />
+    <meta name="theme-color" content="#64bc67" />
     <title>Destiny AI - DekorIn</title>
-
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="ai.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Favicon (optional - add your favicon) -->
+    <!-- <link rel="icon" type="image/png" href="src/Home/favicon.png" /> -->
   </head>
   <body>
     <div class="mobile-container">
       <div class="destiny-page">
+        <!-- Header -->
         <header class="destiny-header">
           <a
             href="loggedin.html"
             class="header-btn back-btn"
-            aria-label="Back"
+            aria-label="Back to home"
           >
             <i class="fas fa-arrow-left"></i>
           </a>
           <h1 class="destiny-title">
-            <img src="src/Home/Destinyaicolored.png" alt="Destiny Logo" /> DESTINY
+            <img src="src/Home/Destinyaicolored.png" alt="Destiny AI Logo" /> 
+            DESTINY
           </h1>
           <a
             href="myprofile.html"
             class="header-btn profile-btn"
-            aria-label="Profile"
+            aria-label="View profile"
           >
             <i class="fas fa-user"></i>
           </a>
         </header>
 
-        <main class="destiny-main" id="chat-container">
+        <!-- Chat Container -->
+        <main class="destiny-main" id="chat-container" role="main" aria-live="polite">
+          <!-- Messages will be dynamically added here by AI.js -->
+          <!-- Initial welcome message will be replaced by JavaScript -->
           <div class="bot-message">
-            <img src="src/Home/Destinyaicolored.png" alt="bot logo" />
-            <p>Welcome, DekorMate! How can I help you today?</p>
+            <img src="src/Home/Destinyaicolored.png" alt="Destiny AI" />
+            <p>Loading Destiny AI... ⏳</p>
           </div>
-          </main>
+        </main>
 
+        <!-- Footer with Input -->
         <footer class="chat-footer">
           <div class="chat-input-box">
+            <!-- Left Action Buttons -->
             <div class="chat-actions-left">
-              <button class="chat-icon-btn" aria-label="Add attachment">
+              <button 
+                class="chat-icon-btn" 
+                aria-label="Attachment"
+                title="Coming soon: Upload room photos"
+                disabled
+              >
                 <i class="fas fa-plus"></i>
               </button>
-              <button class="chat-icon-btn" aria-label="Options">
-                <i class="fas fa-equals"></i>
+              <button 
+                class="chat-icon-btn" 
+                aria-label="Clear chat"
+                title="Clear conversation"
+                id="clear-btn"
+              >
+                <i class="fas fa-trash"></i>
               </button>
-              <button class="chat-icon-btn" aria-label="History">
+              <button 
+                class="chat-icon-btn" 
+                aria-label="View history"
+                title="View conversation history"
+                id="history-btn"
+              >
                 <i class="fas fa-history"></i>
               </button>
             </div>
-            <input type="text" id="chat-input" placeholder="How can I help you today?" />
-            <button type="submit" class="send-btn" id="send-btn" aria-label="Send">
+
+            <!-- Input Field -->
+            <input 
+              type="text" 
+              id="chat-input" 
+              placeholder="Ask Destiny. . ." 
+              aria-label="Chat input"
+              autocomplete="off"
+            />
+
+            <!-- Send Button -->
+            <button 
+              type="submit" 
+              class="send-btn" 
+              id="send-btn" 
+              aria-label="Send message"
+            >
               <i class="fas fa-paper-plane"></i>
             </button>
+
+            <!-- Version Info -->
             <span class="version-text">Destiny 1.0</span>
           </div>
         </footer>
       </div>
     </div>
 
+    <!-- Loading Indicator (optional enhancement) -->
+    <div id="loading-overlay" style="display: none;">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <!-- JavaScript -->
     <script src="AI.js"></script>
+    
+    <!-- Optional: Add error boundary for debugging -->
+    <script>
+      // Global error handler for debugging
+      window.addEventListener('error', (e) => {
+        console.error('Global error:', e.error);
+      });
+      
+      // Prevent form submission on enter
+      document.addEventListener('DOMContentLoaded', () => {
+        const input = document.getElementById('chat-input');
+        if (input) {
+          input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>

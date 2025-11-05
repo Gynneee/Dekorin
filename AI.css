@@ -255,3 +255,309 @@ input:focus {
   font-weight: 600;
   color: #333;
 }
+
+/* Add these styles to your existing ai.css file */
+
+/* Smooth scrolling for chat container */
+.destiny-main {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--destiny-green-text) var(--light-gray);
+}
+
+.destiny-main::-webkit-scrollbar {
+  width: 6px;
+}
+
+.destiny-main::-webkit-scrollbar-track {
+  background: var(--light-gray);
+}
+
+.destiny-main::-webkit-scrollbar-thumb {
+  background: var(--destiny-green-text);
+  border-radius: 10px;
+}
+
+/* Enhanced message styling */
+.user-message,
+.bot-message {
+  animation: messageSlideIn 0.3s ease-out;
+  max-width: 85%;
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-message {
+  box-shadow: 0 2px 8px rgba(76, 154, 79, 0.2);
+}
+
+.bot-message {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Typing indicator */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: #f8f9fa;
+  border-radius: 15px 15px 15px 0;
+  max-width: 200px;
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.typing-dots .dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--destiny-green-text);
+  border-radius: 50%;
+  animation: typingBounce 1.4s infinite ease-in-out;
+}
+
+.typing-dots .dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dots .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dots .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+/* Enhanced input focus */
+.chat-input-box input:focus {
+  outline: none;
+}
+
+.chat-input-box:focus-within {
+  border-color: var(--destiny-green-text);
+  box-shadow: 0 4px 16px rgba(76, 154, 79, 0.15);
+}
+
+/* Send button animation */
+.send-btn {
+  transition: all 0.2s ease;
+}
+
+.send-btn:hover {
+  color: var(--destiny-green-logo);
+  transform: scale(1.1);
+}
+
+.send-btn:active {
+  transform: scale(0.95);
+}
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: scale(1);
+}
+
+/* Icon button hover effects */
+.chat-icon-btn:hover {
+  background-color: #dee2e6;
+  transform: scale(1.05);
+}
+
+.chat-icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* Message content formatting */
+.bot-message p,
+.user-message p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.bot-message p strong {
+  color: var(--destiny-green-text);
+  font-weight: 600;
+}
+
+.bot-message p br + br {
+  display: block;
+  content: "";
+  margin-top: 0.5rem;
+}
+
+/* Quick replies styling */
+.quick-replies {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  overflow-x: auto;
+  flex-wrap: wrap;
+  animation: messageSlideIn 0.5s ease-out;
+}
+
+.quick-replies::-webkit-scrollbar {
+  height: 4px;
+}
+
+.quick-replies::-webkit-scrollbar-thumb {
+  background: var(--destiny-green-text);
+  border-radius: 10px;
+}
+
+.quick-replies button {
+  background: linear-gradient(90deg, #2a4c27, #47ab4a);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(76, 154, 79, 0.2);
+}
+
+.quick-replies button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 154, 79, 0.3);
+}
+
+.quick-replies button:active {
+  transform: translateY(0);
+}
+
+/* Error message styling */
+.bot-message.error {
+  background-color: #fff5f5;
+  border-left: 3px solid #e53e3e;
+  color: #c53030;
+}
+
+/* Loading state for send button */
+.send-btn.loading {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 480px) {
+  .destiny-title {
+    font-size: 1.4rem;
+  }
+  
+  .destiny-title img {
+    height: 32px;
+  }
+  
+  .welcome-text {
+    font-size: 1.8rem;
+  }
+  
+  .user-message,
+  .bot-message {
+    max-width: 90%;
+    font-size: 0.95rem;
+  }
+  
+  .chat-input-box {
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .chat-icon-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Landscape mode optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .destiny-header {
+    padding: 0.5rem 1.5rem;
+  }
+  
+  .destiny-main {
+    padding: 0.5rem 1rem;
+  }
+  
+  .chat-footer {
+    padding: 0.5rem 0;
+  }
+  
+  .welcome-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .welcome-text {
+    font-size: 1.5rem;
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+input,
+.chat-input-box {
+  transition: all 0.2s ease;
+}
+
+/* Focus visible for accessibility */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--destiny-green-text);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .destiny-header,
+  .chat-footer {
+    display: none;
+  }
+  
+  .destiny-main {
+    overflow: visible;
+    height: auto;
+  }
+  
+  .user-message,
+  .bot-message {
+    page-break-inside: avoid;
+  }
+}
