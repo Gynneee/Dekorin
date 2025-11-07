@@ -1,5 +1,5 @@
 :root {
-  --primary-green: #3a6b35;
+  --primary-green: #3D5919;
   --light-gray: #f0f0f0;
   --dark-gray: #4a4a4a;
   --background-color: #ffffff;
@@ -67,7 +67,7 @@ a {
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--dark-gray);
+  color: var(--primary-green);
   cursor: pointer;
 }
 
@@ -102,7 +102,7 @@ a {
 
 .user-actions a {
   font-size: 1.5rem;
-  color: var(--dark-gray);
+  color: var(--primary-green);
   text-decoration: none;
 }
 
@@ -496,7 +496,7 @@ body.no-scroll {
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--dark-gray);
+  color: var(--primary-green);
   text-decoration: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -530,7 +530,7 @@ body.no-scroll {
   width: 70%;
   max-width: 300px;
   height: 100%;
-  background-color: #faf7ef;
+  background-color: #ffffff;
   z-index: 9999;
   transition: right 0.3s ease;
   display: flex;
@@ -591,7 +591,7 @@ body.no-scroll {
 
 .profile-menu-list li a i {
   font-size: 1.1rem;
-  color: var(--dark-gray);
+  color: var(--primary-green);
   width: 24px;
   text-align: center;
 }
@@ -614,7 +614,6 @@ body.no-scroll {
   color: #d9534f;
 }
 
-/* ADDED Logout Popup Styles */
 .popup-overlay {
   position: fixed;
   top: 0;

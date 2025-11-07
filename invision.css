@@ -1,5 +1,5 @@
 :root {
-  --primary-green: #3a6b35;
+  --primary-green: #3D5919;
   --light-gray: #f0f0f0;
   --dark-gray: #4a4a4a;
   --background-color: #ffffff;
@@ -56,7 +56,7 @@ button:focus,
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--dark-gray);
+  color: var(--primary-green);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
@@ -91,12 +91,12 @@ button:focus,
 .user-actions {
   display: flex;
   gap: 1rem;
-  align-items: center; /* Align items vertically */
+  align-items: center;
 }
 
 .user-actions a {
   font-size: 1.5rem;
-  color: var(--dark-gray);
+  color: var(--primary-green);
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -399,12 +399,11 @@ button:focus,
   }
 }
 
-/* --- ADDED Profile Button Style --- */
 .profile-btn {
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--dark-gray);
+  color: var(--primary-green);
   text-decoration: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;

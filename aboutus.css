@@ -1,5 +1,5 @@
 :root {
-  --primary-green: #3a6b35;
+  --primary-green: #3D5919;
   --light-gray: #f0f0f0;
   --dark-gray: #4a4a4a;
   --background-color: #faf7ef;
@@ -74,7 +74,7 @@ img {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: var(--dark-gray);
+  color: var(--primary-green);
 }
 
 .search-bar {

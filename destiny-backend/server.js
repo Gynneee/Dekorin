@@ -8,26 +8,21 @@ const port = process.env.PORT || 3000;
 
 console.log("🔐 HF_TOKEN Status:", process.env.HF_TOKEN ? "✅ LOADED" : "❌ MISSING!");
 
-// Middleware
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
-app.use(express.static('public')); // Serve static files
+app.use(express.static('public'));
 
-// Initialize Hugging Face
 const hf = new HfInference(process.env.HF_TOKEN);
 
-// Model configuration
 const MODELS = {
   primary: 'mistralai/Mistral-7B-Instruct-v0.2',
   advanced: 'mistralai/Mixtral-8x7B-Instruct-v0.1',
   math: 'mistralai/Mixtral-8x7B-Instruct-v0.1'
 };
 
-// In-memory storage
 const conversationHistory = new Map();
 const knowledgeBase = new Map();
 
-// Initialize DekorIn knowledge base
 const initializeKnowledgeBase = () => {
   knowledgeBase.set('products', [
     { 
@@ -128,7 +123,6 @@ const initializeKnowledgeBase = () => {
 
 initializeKnowledgeBase();
 
-// NLP utilities
 const analyzeIntent = (message) => {
   const intents = {
     greeting: /^(hi|hello|hey|halo|hai|good morning|good afternoon|selamat|hola|bonjour)/i,
@@ -196,19 +190,16 @@ const retrieveRelevantKnowledge = (message, intent, language) => {
     
     let filtered = products;
     
-    // Filter by room
     filtered = filtered.filter(p => 
       p.room.some(r => messageLower.includes(r.toLowerCase()))
     );
     
-    // If no room match, filter by style
     if (filtered.length === 0) {
       filtered = products.filter(p => 
         messageLower.includes(p.style.toLowerCase())
       );
     }
     
-    // If still no match, return all
     if (filtered.length === 0) {
       filtered = products;
     }
@@ -342,7 +333,6 @@ Pair it with warm lighting and you'll have a cozy yet spacious bedroom! Want to 
 Sekarang jawab pengguna dengan style Destiny AI yang ramah dan helpful!
 `.trim();
 
-// Main chat endpoint
 app.post('/chat', async (req, res) => {
   try {
     const { message: userInput, sessionId = 'default' } = req.body;
@@ -353,7 +343,6 @@ app.post('/chat', async (req, res) => {
 
     console.log(`\n🗣️ User [${sessionId}]: ${userInput}`);
 
-    // Analysis
     const intent = analyzeIntent(userInput);
     const language = detectLanguage(userInput);
     const mathProblem = extractMathProblem(userInput);
@@ -361,16 +350,13 @@ app.post('/chat', async (req, res) => {
 
     console.log(`🔍 Intent: ${intent} | Language: ${language}`);
 
-    // Retrieve knowledge
     const knowledgeContext = retrieveRelevantKnowledge(userInput, intent, language);
 
-    // Get conversation history
     if (!conversationHistory.has(sessionId)) {
       conversationHistory.set(sessionId, []);
     }
     const history = conversationHistory.get(sessionId);
 
-    // Select model
     let selectedModel = MODELS.primary;
     if (hasMath || intent === 'technical') {
       selectedModel = MODELS.math;
@@ -378,7 +364,6 @@ app.post('/chat', async (req, res) => {
       selectedModel = MODELS.advanced;
     }
 
-    // Build messages
     const systemPrompt = getSystemPrompt(intent, language, knowledgeContext, hasMath);
     const recentHistory = history.slice(-6);
 
@@ -388,7 +373,6 @@ app.post('/chat', async (req, res) => {
       { role: "user", content: userInput }
     ];
 
-    // Call Hugging Face
     const result = await hf.chatCompletion({
       model: selectedModel,
       messages: messages,
@@ -409,7 +393,6 @@ app.post('/chat', async (req, res) => {
         : "Sorry DekorMate, I encountered an issue. Could you repeat your question? 🙏";
     }
 
-    // Add calculation if math problem detected
     if (mathProblem && mathProblem.type === 'wallpaper_area') {
       const { length, width, height } = mathProblem.dimensions;
       const perimeter = 2 * (length + width);
@@ -425,7 +408,6 @@ app.post('/chat', async (req, res) => {
       }
     }
 
-    // Update history
     history.push(
       { role: "user", content: userInput },
       { role: "assistant", content: aiResponse }
@@ -456,7 +438,6 @@ app.post('/chat', async (req, res) => {
   }
 });
 
-// Calculate endpoint
 app.post('/calculate', (req, res) => {
   try {
     const { length, width, height, doors = 1, windows = 2 } = req.body;
@@ -496,20 +477,17 @@ app.post('/calculate', (req, res) => {
   }
 });
 
-// Clear conversation
 app.post('/clear', (req, res) => {
   const { sessionId = 'default' } = req.body;
   conversationHistory.delete(sessionId);
   res.json({ message: 'Conversation cleared', sessionId });
 });
 
-// Get products
 app.get('/products', (req, res) => {
   const products = knowledgeBase.get('products');
   res.json({ products, total: products.length });
 });
 
-// Health check
 app.get('/health', (req, res) => {
   res.json({
     status: 'online',
@@ -520,7 +498,6 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Start server
 app.listen(port, () => {
   console.log(`\n${'🌟'.repeat(30)}`);
   console.log(`🚀 Destiny AI Server - DekorIn`);

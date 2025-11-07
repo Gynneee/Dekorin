@@ -21,7 +21,7 @@ body {
 .profile-container {
   width: 100%;
   max-width: 480px;
-  background: #faf7ef;
+  background: #fffdf9;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

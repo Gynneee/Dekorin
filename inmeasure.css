@@ -1,5 +1,5 @@
 :root {
-  --green: #3a6b35;
+  --green: #3D5919;
   --gray: #888;
   --bg: #f8f8f8;
   --white: #fff;
@@ -67,7 +67,7 @@ header {
 }
 
 header i{
-  color: black;
+  color: var(--green);
 }
 
 header h2 {
@@ -89,12 +89,7 @@ header h2 {
   align-items: center;
   justify-content: center;
   transition: 0.3s ease;
-  padding: 0; /* Pastikan tidak ada padding tambahan */
-}
-
-.nav-button:hover, .profile-btn:hover {
-  background: rgba(58, 107, 53, 0.08);
-  transform: scale(1.05);
+  padding: 0; 
 }
 
 .form-section {
@@ -271,7 +266,7 @@ select {
   width: 70%;
   max-width: 300px;
   height: 100%;
-  background-color: #354c18;
+  background-color: var(--green);
   color: white;
   display: flex;
   flex-direction: column;

@@ -1,8 +1,8 @@
 :root {
-  --primary-green: #3a6b35;
+  --primary-green: #3D5919;
   --light-gray: #f0f0f0;
   --dark-gray: #4a4a4a;
-  --background-color: #ffffff;
+  --background-color: #fffdf9;
   --border-color: #e0e0e0;
   --primary-brown: #81724f;
   --destiny-green-text: #4c9a4f;
@@ -54,7 +54,7 @@ input:focus {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: #fffdf9;
   min-height: 100dvh;
 }
 
