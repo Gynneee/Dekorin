@@ -42,7 +42,7 @@ a {
 }
 
 .measure-container {
-  background: var(--white);
+  background: #fffdf9;
   width: 100%;
   max-width: 420px;
   min-height: 100vh;
@@ -61,7 +61,7 @@ header {
   justify-content: space-between;
   padding: 1.2rem 1.4rem 0.8rem;
   border-bottom: 1px solid #eee;
-  background: var(--white);
+  background: #fffdf9;
   color: var(--green);
   box-shadow: 0 3px 10px rgba(0,0,0,0.04);
 }

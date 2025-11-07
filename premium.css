@@ -24,7 +24,7 @@ body {
 .container {
   width: 100%;
   max-width: 480px;
-  background: #fff;
+  background: #faf7ef;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
