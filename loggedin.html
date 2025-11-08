@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="src/Home/DekorIn(6)(1).png" type="image/png">
+    <link rel="icon" href="src/Home/DekorIn(6)(1).png" type="image/png" />
   </head>
 
   <body>
@@ -32,7 +32,6 @@
           <button class="close-btn" id="closeMenu">&times;</button>
           <ul class="menu-list">
             <li><a href="loggedin.html">Home</a></li>
-
             <li class="has-sub">
               <span>Size <i class="fas fa-chevron-right"></i></span>
               <ul class="sub-menu">
@@ -40,14 +39,12 @@
                 <li><a href="#">Wallpaper roll 106 cm</a></li>
               </ul>
             </li>
-
             <li><a href="inmeasure.html">InMeasure</a></li>
             <li><a href="#">Augmented Reality</a></li>
             <li><a href="AI.html">Destiny AI</a></li>
             <li><a href="invision.html">inVision</a></li>
             <li><a href="aboutus.html">About us</a></li>
           </ul>
-
           <div class="menu-footer">
             <p>Support</p>
             <a href="#"><i class="fas fa-headset"></i> Contact Support</a>
@@ -74,7 +71,9 @@
               >
             </li>
             <li>
-              <a href="my-orders.html"><i class="fas fa-receipt"></i> My Orders</a>
+              <a href="my-orders.html"
+                ><i class="fas fa-receipt"></i> My Orders</a
+              >
             </li>
             <li>
               <a href="premium.html"><i class="fas fa-gem"></i> Premium</a>
@@ -91,9 +90,10 @@
           <input type="text" placeholder="Search" />
         </div>
         <div class="user-actions">
-          <a href="cart.html" aria-label="Shopping Cart"
-            ><i class="fas fa-shopping-cart"></i
-          ></a>
+          <a href="signup.html" class="signin-btn">Sign In</a>
+          <a href="cart.html" class="cart-icon" aria-label="Shopping Cart">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
           <button id="profileBtn" class="profile-btn" aria-label="User Profile">
             <i class="fas fa-user"></i>
           </button>
@@ -125,11 +125,7 @@
               />
             </div>
           </div>
-          <div class="slider-dots">
-            <span class="dot active" data-slide="0"></span>
-            <span class="dot" data-slide="1"></span>
-            <span class="dot" data-slide="2"></span>
-          </div>
+          <div class="slider-dots"></div>
         </section>
 
         <section class="features-section">
@@ -144,7 +140,7 @@
               <p>InMeasure</p>
             </a>
             <a href="AI.html" class="feature-item">
-              <img src="src/Home/Destinyai.png"></img>
+              <img src="src/Home/Destinyai.png" alt="Destiny AI" />
               <p>Destiny AI</p>
             </a>
             <a href="invision.html" class="feature-item">
@@ -154,69 +150,286 @@
           </div>
         </section>
 
-        <section class="product-section">
-          <h2>Popular Products</h2>
-          <div class="product-grid">
+        <section class="content-section">
+          <div class="section-header">
+            <h2>Roll Besar</h2>
+            <a href="#" class="see-all">See all</a>
+          </div>
+          <div class="horizontal-scroll-wrapper">
             <div class="product-card">
               <img
-                src="src/ikea-1.jpg"
-                alt="Product 1"
-                class="product-image"
-              />
-              <h3 class="product-title">Modern Sofa</h3>
-              <p class="product-price">$499</p>
-              <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
-            <div class="product-card">
-              <img
-                src="src/ikea-2.jpg"
-                alt="Product 2"
-                class="product-image"
-              />
-              <h3 class="product-title">Wooden Dining Table</h3>
-              <p class="product-price">$799</p>
-              <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
-            <div class="product-card">
-              <img
-                src="src/ikea-3.jpg"
-                alt="Product 3"
-                class="product-image"
-              />
-              <h3 class="product-title">Ergonomic Chair</h3>
-              <p class="product-price">$199</p>
-              <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
-            <div class="product-card">
-              <img
-                src="src/ikea-4.jpg"
+                src="src/Home/alberto-castillo-q-mx4mSkK9zeo-unsplash.jpg"
                 alt="Product 4"
                 class="product-image"
               />
-              <h3 class="product-title">Stylish Lamp</h3>
-              <p class="product-price">$99</p>
-              <button class="add-to-cart-btn">Add to Cart</button>
+              <h3 class="product-title">Stylish Wallpaper</h3>
+              <p class="product-price">Rp.250.000/Roll</p>
             </div>
+            <div class="product-card">
+              <img
+                src="src/Home/jason-wang-NxAwryAbtIw-unsplash.jpg"
+                alt="Product 3"
+                class="product-image"
+              />
+              <h3 class="product-title">Ergo Wallpaper</h3>
+              <p class="product-price">Rp.200.000/Roll</p>
+            </div>
+            <div class="product-card">
+              <img
+                src="src/Home/spacejoy-9M66C_w_ToM-unsplash.jpg"
+                alt="Product 1"
+                class="product-image"
+              />
+              <h3 class="product-title">Modern Wallpaper</h3>
+              <p class="product-price">Rp.175.000/Roll</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <div class="section-header">
+            <h2>Roll Kecil</h2>
+            <a href="#" class="see-all">See all</a>
+          </div>
+          <div class="horizontal-scroll-wrapper">
+            <div class="product-card">
+              <img
+                src="src/Home/alberto-castillo-q-mx4mSkK9zeo-unsplash.jpg"
+                alt="Product 1"
+                class="product-image"
+              />
+              <h3 class="product-title">Leaf Wallpaper</h3>
+              <p class="product-price">Rp.155.000/Roll</p>
+            </div>
+            <div class="product-card">
+              <img
+                src="src/Home/jason-wang-NxAwryAbtIw-unsplash.jpg"
+                alt="Product 2"
+                class="product-image"
+              />
+              <h3 class="product-title">Kuy Wallpaper</h3>
+              <p class="product-price">Rp.100.000/Roll</p>
+            </div>
+            <div class="product-card">
+              <img
+                src="src/Home/spacejoy-9M66C_w_ToM-unsplash.jpg"
+                alt="Product 3"
+                class="product-image"
+              />
+              <h3 class="product-title">Leaf Wallpaper</h3>
+              <p class="product-price">Rp.155.000/Roll</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section slider-section">
+          <div class="section-header">
+            <h2>Review Customers</h2>
+            <a href="#" class="see-all">See all</a>
+          </div>
+          <div class="content-slider-wrapper">
+            <div class="review-card">
+              <div class="review-card-header">
+                <img
+                  src="src/Home/alberto-castillo-q-mx4mSkK9zeo-unsplash.jpg"
+                  alt="Product"
+                  class="review-product-image"
+                />
+                <div class="review-product-info">
+                  <h3>Leaf Wallpaper</h3>
+                  <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="review-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Consectetur...
+              </p>
+            </div>
+            <div class="review-card">
+              <div class="review-card-header">
+                <img
+                  src="src/Home/jason-wang-NxAwryAbtIw-unsplash.jpg"
+                  alt="Product"
+                  class="review-product-image"
+                />
+                <div class="review-product-info">
+                  <h3>Kuy Wallpaper</h3>
+                  <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                    ><i class="fas fa-star-half-alt"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="review-text">
+                Adipiscing elit. Consectetur adipisicing elit. Architecto vel...
+              </p>
+            </div>
+            <div class="review-card">
+              <div class="review-card-header">
+                <img
+                  src="src/Home/spacejoy-9M66C_w_ToM-unsplash.jpg"
+                  alt="Product"
+                  class="review-product-image"
+                />
+                <div class="review-product-info">
+                  <h3>Leaf Wallpaper</h3>
+                  <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="review-text">
+                Sit amet, consectetur adipiscing elit. Architecto vel maiores...
+              </p>
+            </div>
+          </div>
+          <div class="slider-dots"></div>
+        </section>
+
+        <section class="content-section slider-section">
+          <div class="section-header">
+            <h2>InVision</h2>
+            <a href="invision.html" class="see-all">See all</a>
+          </div>
+          <div class="content-slider-wrapper">
+            <div class="article-card-invision" onclick="window.location.href='artikel.html'">
+              <img src="src/Invision/image17.png" alt="Article 1" />
+              <div class="article-info">
+                <h3>Tren Wallpaper Dinding Terbaru 2025...</h3>
+                <div class="article-meta">
+                  <span>Michelle Berlian</span>
+                  <span>07 Des, 2025</span>
+                </div>
+              </div>
+            </div>
+            <div class="article-card-invision" onclick="window.location.href='artikel.html'">
+              <img src="src/Invision/image18.png" alt="Article 2" />
+              <div class="article-info">
+                <h3>Tips dan Trik Merawat Wallpaper...</h3>
+                 <div class="article-meta">
+                  <span>Eirene Christi</span>
+                  <span>13 Okt, 2025</span>
+                </div>
+              </div>
+            </div>
+            <div class="article-card-invision" onclick="window.location.href='artikel.html'">
+              <img src="src/Invision/image19.png" alt="Article 3" />
+              <div class="article-info">
+                <h3>Panduan Memilih Wallpaper Sesuai...</h3>
+                 <div class="article-meta">
+                  <span>Azalia Grace</span>
+                  <span>13 Jul, 2025</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slider-dots"></div>
+        </section>
+
+        <section class="ai-chat-section">
+          <h2>Chat with <span>DESTINY</span></h2>
+          <p class="section-subheading">Wujudkan ruang impianmu lewat obrolan interaktif dengan DESTINY</p>
+          <div class="chat-card">
+            <div class="chat-card-header">
+              <img src="src/Home/Destinyaicolored.png" alt="Destiny AI Logo" class="ai-logo" /> 
+              <span style="color:#3D5919;">DESTINY</span>
+            </div>
+            <div class="chat-bubble">
+              <p>Hi there! 👋 I can help you choose the perfect wallpaper style for your room. Do you prefer a modern, minimalist, or classic vibe?</p>
+            </div>
+            <a href="AI.html" class="chat-button">Start chat with DESTINY</a>
+          </div>
+          <p class="discover-text">✨ Discover the best color, texture, and lighting combinations. All in one conversation!</p>
+        </section>
+        
+        <section class="estimate-section">
+          <div class="estimate-text">
+            <h2>Estimate your space in seconds</h2>
+            <p>Easily calculate how many wallpaper rolls you need — just enter your wall dimensions. Let InMeasure do the math for you so you can focus on designing your dream space.</p>
+            <a href="inmeasure.html" class="estimate-button">
+              <i class="fas fa-calculator"></i> Open InMeasure
+            </a>
+          </div>
+          <div class="estimate-image">
+            <img src="src/Home/Ruler.png" alt="Ruler" />
+          </div>
+        </section>
+
+        <section class="ar-preview-section">
+          <div class="ar-image">
+            <img src="src/Home/Phone.png" alt="Phone with AR Preview" />
+          </div>
+          <div class="ar-text">
+            <h2>Visualize before you buy</h2>
+            <p>See how our wallpapers look on your walls with AR Preview Mode. Try different colors, patterns, and lighting instantly — right from your phone.</p>
+            <a href="#" class="ar-button">Try AR Preview</a>
+            <p class="ar-subtext">Experience your dream room in real time.</p>
           </div>
         </section>
       </main>
 
-      </div> <script src="loggedin.js"></script>
+       <footer class="main-footer-section">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="loggedin.html">Home</a></li>
+              <li><a href="aboutus.html">About Us</a></li>
+              <li><a href="invision.html">InVision</a></li>
+              <li><a href="#">Contact Support</a></li>
+              <li><a href="#">Settings</a></li>
+            </ul>
+          </div>
 
-    <div class="popup-overlay" id="logoutOverlay"></div>
-    <div class="popup-container" id="logoutPopup">
-      <div class="popup-content">
-        <h2>Logout</h2>
-        <p>Are you sure you want to logout?</p>
-        <div class="popup-buttons">
-          <button class="popup-btn popup-btn-yes" id="confirmLogoutBtn" onclick="window.location.href='index.html'">
-            Yes
-          </button>
-          <button class="popup-btn popup-btn-no" id="cancelLogoutBtn">
-            No
-          </button>
+          <div class="footer-column">
+            <h3>Contact Us</h3>
+            <a href="#" class="contact-link">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>BCA Learning Institute, Jl. Pakuan No.3, Sumur Batu, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</span>
+            </a>
+            <a href="mailto:admin@dekorin.com" class="contact-link">
+              <i class="fas fa-envelope"></i>
+              <span>admin@dekorin.com</span>
+            </a>
+            <a href="tel:0211234567" class="contact-link">
+              <i class="fas fa-phone-alt"></i>
+              <span>021-1234567 / 0812-3456-7890</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-social">
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/dekorinwall/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <div class="footer-copyright">
+          <p>Copyright © 2025 DekorIn. All rights reserved</p>
+        </div>
+      </footer>
+      <div class="popup-overlay" id="logoutOverlay"></div>
+      <div class="popup-container" id="logoutPopup">
+        <div class="popup-content">
+          <h2>Logout</h2>
+          <p>Are you sure you want to logout?</p>
+          <div class="popup-buttons">
+            <button class="popup-btn popup-btn-yes" id="confirmLogoutBtn">
+              Yes
+            </button>
+            <button class="popup-btn popup-btn-no" id="cancelLogoutBtn">
+              No
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    <script src="loggedin.js"></script>
   </body>
 </html>
