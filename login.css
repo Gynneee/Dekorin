@@ -21,6 +21,11 @@
   box-sizing: border-box;
 }
 
+a,
+button{
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--soft-white);
@@ -34,6 +39,8 @@ body {
   display: flex;
   flex-direction: column;
   animation: fadeInPage 1s ease forwards;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* === HEADER SECTION === */
@@ -58,7 +65,7 @@ body {
 
 /* === LOGIN SECTION === */
 .login-section {
-  background-color: var(--primary-green);
+  background-color: #647a46;
   padding: 1rem 1.5rem 4rem;
   position: relative;
   border-top-left-radius: 30px;
@@ -72,7 +79,7 @@ body {
   left: -25%;
   width: 150%;
   height: 300px;
-  background-color: var(--primary-green);
+  background-color: #647a46;
   border-radius: 100%;
 }
 

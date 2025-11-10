@@ -130,12 +130,12 @@
           );
 
           if (validUser) {
-            showMessage("✅ Login Successful!", "success");
+            showMessage("Login Successful!", "success");
             setTimeout(() => {
               window.location.href = "loggedin.html";
             }, 1000);
           } else {
-            showMessage("❌ Invalid Credentials", "error");
+            showMessage("Invalid Credentials", "error");
           }
         }, 1500);
       });
