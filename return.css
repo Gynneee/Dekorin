@@ -1,6 +1,6 @@
 :root {
   --green: #405d37;
-  --light-green: #8fc081;
+  --light-green: #9acb8a;
   --bg: #f9faf9;
 }
 
@@ -12,16 +12,18 @@
 }
 
 body {
-  background: #fff;
+  background: linear-gradient(180deg, #ffffff, #f7faf6);
   color: #333;
   min-height: 100vh;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* HEADER */
-.address-header {
+.header {
   display: flex;
   align-items: center;
+  gap: 15px;
   padding: 1rem;
   background: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -29,15 +31,11 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  gap: 15px;
 }
 
-.address-header h2 {
+.header h2 {
   font-size: 18px;
   font-weight: 600;
-  flex: 1;
-  text-align: center;
-  margin-right: 40px;
 }
 
 .back-btn {
@@ -58,67 +56,53 @@ body {
   transform: scale(1.1);
 }
 
-/* MAP */
-.map-container iframe {
-  width: 100%;
-  height: 230px;
-  border: none;
-  border-radius: 0 0 20px 20px;
-}
-
-/* ADDRESS FORM */
-.address-form {
-  padding: 1.5rem 1.3rem 6rem;
-}
-
-.address-form h3 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.address-tags {
+/* UPLOAD BOX */
+.upload-section {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: center;
+  padding: 1.5rem 1rem;
 }
 
-.tag {
-  border: 1.5px solid var(--green);
-  border-radius: 20px;
+.upload-box {
+  border: 2px dashed var(--green);
+  border-radius: 14px;
+  width: 90%;
+  height: 130px;
   background: #fff;
   color: var(--green);
-  padding: 6px 16px;
-  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.tag.active {
-  background: var(--green);
-  color: #fff;
+.upload-box i {
+  font-size: 28px;
+  margin-bottom: 6px;
 }
 
-.tag:hover {
-  background: #f2f8f2;
+.upload-box:hover {
+  background: #f1f9f1;
+  transform: scale(1.02);
 }
 
-/* FORM INPUTS */
-.form-group {
+/* FORM */
+.return-form {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 14px;
+  gap: 14px;
+  padding: 0 1.3rem 6rem; /* biar bagian bawah gak ketutupan tombol */
 }
 
-.form-group label {
+.return-form label {
   font-size: 14px;
   font-weight: 500;
 }
 
-.form-group input,
-.form-group textarea {
+.return-form input,
+.return-form textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1.5px solid var(--light-green);
@@ -128,26 +112,26 @@ body {
   transition: all 0.2s ease;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.return-form input:focus,
+.return-form textarea:focus {
   border-color: var(--green);
   box-shadow: 0 0 6px rgba(64, 93, 55, 0.2);
 }
 
-/* FOOTER */
-.address-footer {
+/* FOOTER BUTTON */
+.footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   background: #fff;
-  padding: 1rem 1.3rem;
+  padding: 1rem 1.2rem;
   box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.05);
   border-radius: 20px 20px 0 0;
   z-index: 20;
 }
 
-.save-btn {
+.submit-btn {
   background: var(--green);
   color: white;
   font-weight: 500;
@@ -161,17 +145,74 @@ body {
   transition: all 0.25s ease;
 }
 
-.save-btn:hover {
+.submit-btn:hover {
   background: #35512f;
   transform: scale(1.03);
 }
 
+/* POPUP */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: popIn 0.4s ease;
+}
+
+.popup-content i {
+  color: var(--green);
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.popup-content h3 {
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.popup-content p {
+  color: #666;
+  font-size: 14px;
+}
+
 /* ANIMASI */
+@keyframes popIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .fade-in {
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.4s ease;
 }
+
 .fade-in.show {
   opacity: 1;
   transform: translateY(0);
@@ -182,6 +223,7 @@ body {
   transform: translateY(-10px);
   transition: all 0.4s ease;
 }
+
 .fade-down.show {
   opacity: 1;
   transform: translateY(0);
