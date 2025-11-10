@@ -11,6 +11,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const dotsContainer = sliderContainer.querySelector(".slider-dots");
     if (!wrapper || slides.length === 0 || !dotsContainer) return;
 
+    const isContentSlider = wrapper.classList.contains("content-slider-wrapper");
+
+    if (isContentSlider) {
+      wrapper.style.scrollSnapType = "x mandatory";
+      wrapper.style.scrollPaddingLeft = "0";
+      wrapper.style.scrollPaddingRight = "0";
+      wrapper.style.justifyContent = "flex-start";
+      
+      slides.forEach((slide, idx) => {
+        slide.style.scrollSnapAlign = "center";
+        slide.style.scrollSnapStop = "always";
+        slide.style.transition = "transform 0.12s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.1s cubic-bezier(0.4, 0, 0.2, 1)";
+        slide.style.flex = "0 0 330px";
+        slide.style.marginLeft = idx === 0 ? "calc(50% - 165px)" : "0";
+        slide.style.marginRight = idx === slides.length - 1 ? "calc(50% - 165px)" : "0";
+      });
+    }
+
     dotsContainer.innerHTML = "";
     slides.forEach((_, idx) => {
       const dot = document.createElement("span");
@@ -19,16 +37,43 @@ document.addEventListener("DOMContentLoaded", () => {
       dot.setAttribute("data-slide", idx);
       dot.addEventListener("click", () => {
         if (slides[idx]) {
-          wrapper.scrollTo({
-            left: slides[idx].offsetLeft,
-            behavior: "smooth",
-          });
+          if (isContentSlider) {
+            slides[idx].scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "center"
+            });
+          } else {
+            wrapper.scrollTo({
+              left: slides[idx].offsetLeft,
+              behavior: "smooth",
+            });
+          }
         }
       });
       dotsContainer.appendChild(dot);
     });
 
     const dots = dotsContainer.querySelectorAll(".dot");
+
+    const updateSlideScales = () => {
+      if (!isContentSlider) return;
+
+      const wrapperRect = wrapper.getBoundingClientRect();
+      const wrapperCenter = wrapperRect.left + wrapperRect.width / 2;
+
+      slides.forEach((slide) => {
+        const slideRect = slide.getBoundingClientRect();
+        const slideCenter = slideRect.left + slideRect.width / 2;
+        const distance = Math.abs(wrapperCenter - slideCenter);
+        const maxDistance = wrapperRect.width / 2;
+        const scale = Math.max(0.75, 1 - (distance / maxDistance) * 0.25);
+        const opacity = Math.max(0.5, 1 - (distance / maxDistance) * 0.5);
+
+        slide.style.transform = `scale(${scale})`;
+        slide.style.opacity = opacity;
+      });
+    };
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -41,11 +86,30 @@ document.addEventListener("DOMContentLoaded", () => {
             entry.target.classList.add("active");
           }
         });
+        if (isContentSlider) {
+          updateSlideScales();
+        }
       },
       { root: wrapper, threshold: 0.5 }
     );
 
     slides.forEach((slide) => observer.observe(slide));
+
+    if (isContentSlider) {
+      wrapper.addEventListener("scroll", updateSlideScales);
+      updateSlideScales();
+      
+      setTimeout(() => {
+        if (slides[0]) {
+          slides[0].scrollIntoView({
+            behavior: "auto",
+            block: "nearest",
+            inline: "center"
+          });
+          updateSlideScales();
+        }
+      }, 100);
+    }
   }
 
   const navButton = document.querySelector(".nav-button");
