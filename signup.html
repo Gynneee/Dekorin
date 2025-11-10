@@ -4,69 +4,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DekorIn - Sign Up</title>
-    <link rel="stylesheet" href="signup.css" />
+
+    <!-- Font & Icon -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="src/Home/DekorIn(6)(1).png" type="image/png">
+    <link rel="icon" href="src/Home/DekorIn(6)(1).png" type="image/png" />
+
+    <!-- CSS eksternal -->
+    <link rel="stylesheet" href="signup.css" />
   </head>
+
   <body>
-    <div class="signup-container">
-      <header class="signup-header">
-        <p style="font-size: 35px; font-weight: 200">
-          <span style="font-size: 50px; font-weight: bold">Create Your </span
-          ><br /><img
-            src="src/signup/erasebg-transformed.png"
-            alt="dekorinlogo"
-          />
-          Account
+    <div class="container">
+      <!-- Header Section -->
+      <div class="header-section">
+        <h1 class="logo">
+          <img src="src/signup/erasebg-transformed.png" alt="DekorIn Logo" />
+        </h1>
+        <p style="color: #4a4a4a; font-size: 45px; font-weight: bold">
+          Welcome!
         </p>
-        <p class="tagline">Kami percaya setiap ruang punya cerita</p>
-      </header>
+        <p style="color: #4a4a4a; font-size: 20px">
+          Let’s Create Your Account
+        </p>
+      </div>
 
-      <div class="form-section">
-        <form class="signup-form" action="loggedin.html" method="get">
+      <!-- Signup Section -->
+      <div class="login-section">
+        <form id="signupForm" novalidate>
+          <!-- Email -->
           <div class="input-group">
-            <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Enter your email" required />
+            <input type="email" id="email" placeholder="Enter your email" />
           </div>
+
+          <!-- Password -->
           <div class="input-group">
-            <i class="fas fa-key"></i>
             <input
               type="password"
+              id="password"
               placeholder="Enter your password"
-              required
             />
-          </div>
-          <div class="input-group">
-            <i class="fas fa-key"></i>
-            <input
-              type="password"
-              placeholder="Confirm password"
-              required
-            />
+            <i class="fa-solid fa-eye toggle-eye"></i>
           </div>
 
-          <button type="submit" class="continue-btn">Continue</button>
+          <!-- Confirm Password -->
+          <div class="input-group">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm your password"
+            />
+            <i class="fa-solid fa-eye toggle-eye"></i>
+          </div>
+
+          <!-- Sign Up Button -->
+          <button type="submit" class="btn" id="signupBtn">Continue</button>
         </form>
 
+        <!-- Divider -->
         <div class="or-divider">
           <span class="line"></span>
           <span>OR</span>
           <span class="line"></span>
         </div>
 
-        <div class="social-signup">
-          <button class="social-btn google-btn">
+        <!-- Social Signup -->
+        <div class="social-login">
+          <button class="social-btn google">
             <img
-              src="https://img.icons8.com/color/16/000000/google-logo.png"
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
               alt="Google"
             />
             Google
@@ -77,10 +85,81 @@
           </button>
         </div>
 
-        <p class="login-link">
-          Already have an account? <a href="login.html">Sign in</a>
+        <!-- Login Link -->
+        <p class="signup-text">
+          Already have an account? <a href="login.html">Sign In</a>
         </p>
       </div>
     </div>
+
+    <script>
+      // === Toggle Password Visibility ===
+      const toggleIcons = document.querySelectorAll(".toggle-eye");
+      toggleIcons.forEach((icon) => {
+        icon.addEventListener("click", () => {
+          const input = icon.previousElementSibling;
+          const isHidden = input.type === "password";
+          input.type = isHidden ? "text" : "password";
+          icon.classList.toggle("fa-eye");
+          icon.classList.toggle("fa-eye-slash");
+        });
+      });
+
+      // === Dummy Sign-Up Logic ===
+      const btn = document.getElementById("signupBtn");
+      const form = document.getElementById("signupForm");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const confirm = document
+          .getElementById("confirmPassword")
+          .value.trim();
+
+        if (!email || !password || !confirm) {
+          showMessage("⚠️ Please fill in all fields", "error");
+          return;
+        }
+
+        if (password !== confirm) {
+          showMessage("❌ Passwords do not match", "error");
+          return;
+        }
+
+        showLoading();
+
+        setTimeout(() => {
+          showMessage("✅ Account Created!", "success");
+          setTimeout(() => {
+            window.location.href = "loggedin.html";
+          }, 1000);
+        }, 1500);
+      });
+
+      // === Loading Animation ===
+      function showLoading() {
+        btn.disabled = true;
+        btn.classList.add("loading");
+        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Creating account...`;
+      }
+
+      // === Feedback Message ===
+      function showMessage(message, type) {
+        btn.disabled = false;
+        btn.classList.remove("loading");
+        btn.innerHTML = message;
+        btn.style.transition = "all 0.4s ease";
+        btn.style.backgroundColor = type === "error" ? "#b3261e" : "#2f5130";
+        btn.classList.add("pulse");
+
+        setTimeout(() => {
+          btn.classList.remove("pulse");
+          btn.innerHTML = "Continue";
+          btn.style.backgroundColor = "#8c7f55";
+        }, 2000);
+      }
+    </script>
   </body>
 </html>
