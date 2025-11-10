@@ -13,7 +13,7 @@ body {
   width: 100%;
   max-width: 400px;
   height: 100vh;
-  background-color: #fff;
+  background-color: #faf7ef;
   display: flex;
   flex-direction: column;
   animation: fadeIn 0.8s ease-out forwards;
@@ -24,7 +24,7 @@ body {
   display: flex;
   align-items: center;
   padding: 1rem 1.2rem;
-  background: #fff;
+  background: #fcfaf4;
   box-shadow: 0 1px 6px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;

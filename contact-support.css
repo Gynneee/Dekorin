@@ -10,7 +10,7 @@ body {
   width: 100%;
   max-width: 420px;
   height: 100vh;
-  background: #fff;
+  background: #faf7ef;
   animation: fadeIn 0.8s ease;
 }
 
@@ -19,7 +19,7 @@ body {
   display: flex;
   align-items: center;
   padding: 1rem 1.2rem;
-  background: #fff;
+  background: #fffefc;
   box-shadow: 0 1px 5px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
@@ -76,6 +76,7 @@ body {
   display: flex;
   justify-content: space-around;
   border-bottom: 2px solid #ddd;
+  border-radius: 20px;
 }
 .tab {
   flex: 1;
@@ -106,6 +107,7 @@ body {
 }
 .accordion-header {
   background: #fff;
+  border-radius: 40%;
   border: none;
   width: 100%;
   text-align: left;
