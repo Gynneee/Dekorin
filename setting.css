@@ -9,6 +9,13 @@ body {
   height: 100vh;
 }
 
+a,
+button,
+.nav-button,
+.menu-list li {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .app {
   width: 100%;
   max-width: 400px;
@@ -24,7 +31,7 @@ body {
   display: flex;
   align-items: center;
   padding: 1rem 1.2rem;
-  background: #fcfaf4;
+  background: #faf7ef;
   box-shadow: 0 1px 6px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;

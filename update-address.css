@@ -2,6 +2,13 @@
   box-sizing: border-box;
 }
 
+a,
+button,
+.nav-button,
+.menu-list li {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
