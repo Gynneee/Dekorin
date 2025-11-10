@@ -21,6 +21,11 @@
   box-sizing: border-box;
 }
 
+a,
+button{
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--soft-white);
