@@ -16,14 +16,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   body.classList.add("logged-in");
 
+  /**
+   * ------------------------------------------------------------------
+   * OPTIMIZED FUNCTION
+   * This function now uses single observers for each type of item
+   * to avoid performance lag from creating thousands of observers.
+   * It relies on CSS classes (.is-visible) to trigger animations.
+   * ------------------------------------------------------------------
+   */
   const observeElements = () => {
+    // 1. Observer for main sections
     const elementsToAnimate = document.querySelectorAll('.content-section, .features-section, .ai-chat-section, .estimate-section, .ar-preview-section, .main-footer-section');
     
-    const observer = new IntersectionObserver((entries) => {
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
         }
       });
     }, {
@@ -35,51 +45,53 @@ document.addEventListener("DOMContentLoaded", () => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
       el.style.transition = 'opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)';
-      observer.observe(el);
+      sectionObserver.observe(el);
     });
 
+    // 2. Handle slider container
     const sliderContainer = document.querySelector('.slider-container');
     if (sliderContainer) {
       sliderContainer.style.opacity = '1';
       sliderContainer.style.transform = 'translateY(0)';
     }
 
+    // 3. OPTIMIZED: Observer for feature items
     const featureItems = document.querySelectorAll('.feature-item');
+    
+    const itemObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
     featureItems.forEach((item, index) => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(20px) scale(0.95)';
-      item.style.transition = `opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) ${index * 0.1}s, transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) ${index * 0.1}s`;
-      
-      const itemObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0) scale(1)';
-          }
-        });
-      }, { threshold: 0.1 });
-      
+      item.classList.add('feature-item-animate-init');
+      item.style.transitionDelay = `${index * 0.2}s`;
       itemObserver.observe(item);
     });
 
+    // 4. OPTIMIZED: Observer for all cards (product, review, invision)
     const productCards = document.querySelectorAll('.product-card, .review-card, .article-card-invision');
+
+    const cardObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+
     productCards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px) scale(0.98)';
-      card.style.transition = `opacity 0.12s cubic-bezier(0.22, 0.61, 0.36, 1) ${(index % 3) * 0.08}s, transform 0.12s cubic-bezier(0.22, 0.61, 0.36, 1) ${(index % 3) * 0.08}s`;
-      
-      const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0) scale(1)';
-          }
-        });
-      }, { threshold: 0.05 });
-      
+      card.classList.add('card-animate-init');
       cardObserver.observe(card);
     });
   };
+  // --- End of optimized observeElements ---
+
 
   function initializeSlider(containerSelector) {
     const sliderContainer = document.querySelector(containerSelector);
@@ -294,13 +306,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPageBase = currentPageFile.replace('.html', '');
   
   if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
-     if (window.location.pathname === '/' || window.location.pathname === '') {
-       currentPageFile = "loggedin.html";
-       currentPageBase = "loggedin";
-     } else {
-       currentPageFile = "loggedin.html";
-       currentPageBase = "loggedin";
-     }
+      if (window.location.pathname === '/' || window.location.pathname === '') {
+        currentPageFile = "loggedin.html";
+        currentPageBase = "loggedin";
+      } else {
+        currentPageFile = "loggedin.html";
+        currentPageBase = "loggedin";
+      }
   }
 
   allLinks.forEach((link) => {
@@ -335,8 +347,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu a")) {
-             closeAllMenus();
-             return;
+            closeAllMenus();
+            return;
         }
         item.classList.toggle("active-sub");
         menuItems.forEach((i) => {
@@ -361,8 +373,8 @@ document.addEventListener("DOMContentLoaded", () => {
             i.classList.remove("active-sub");
         });
         item.classList.add("active");
-         const subMenu = item.closest(".sub-menu");
-         if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
+          const subMenu = item.closest(".sub-menu");
+          if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
 
         closeAllMenus();
       }
@@ -392,5 +404,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeSlider(`.${uniqueSelector}`);
   });
 
+  // Call the main function to observe all elements
   observeElements();
 });
