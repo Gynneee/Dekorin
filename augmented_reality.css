@@ -8,13 +8,21 @@
   --border-color: #e0e0e0;
 }
 
+a,
+button,
+.nav-button,
+.menu-list li,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* --- ADDED: Back Button Styles --- */
 .back-button {
   position: absolute;
   top: 2rem;
@@ -25,39 +33,35 @@
   color: var(--dark-gray);
   cursor: pointer;
   padding: 0.5rem;
-  width: 50px; /* Set fixed width/height for circle */
+  width: 50px;
   height: 50px;
-  line-height: 1; /* Center icon */
+  line-height: 1;
   border-radius: 50%;
   transition: all 0.2s ease-out;
   z-index: 10;
-  opacity: 0.7; /* Slightly transparent to blend in */
+  opacity: 0.7;
 }
 
 .back-button:hover {
   opacity: 1;
   color: var(--primary-green);
-  /* Use the same glass effect as the card */
   background-color: rgba(255, 255, 255, 0.6);
   transform: scale(1.05);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-/* --- End of Back Button Styles --- */
 
 body {
   font-family: "Poppins", sans-serif;
   color: var(--dark-gray);
   background-color: var(--background-color);
-  overflow: hidden;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Add position relative for the button */
   position: relative;
 }
 
-/* --- Background Motion Gradient --- */
 .background {
   position: absolute;
   inset: 0;
@@ -75,7 +79,6 @@ body {
   filter: blur(50px);
 }
 
-/* --- Main Content --- */
 .page {
   display: flex;
   align-items: center;
@@ -104,6 +107,7 @@ body {
   letter-spacing: 0.5px;
   opacity: 0;
   animation: fadeUp 0.8s ease-out 0.3s forwards;
+  margin: 0 auto; 
 }
 
 h2 {
@@ -206,7 +210,6 @@ p {
   animation: fadeUp 0.8s ease-out 1.3s forwards;
 }
 
-/* --- Animations --- */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -238,13 +241,11 @@ p {
   }
 }
 
-/* --- Responsiveness --- */
 @media (max-width: 500px) {
-  /* ADD THIS */
   .back-button {
     top: 1rem;
     left: 1rem;
-    width: 40px; /* Make button smaller on mobile */
+    width: 40px;
     height: 40px;
     font-size: 1.2rem;
   }
