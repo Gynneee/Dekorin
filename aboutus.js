@@ -1,55 +1,162 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
+  body.classList.add("logged-in");
+
+  // --- Universal Slider Initializer ---
+  function initializeSlider(containerSelector) {
+    const sliderContainer = document.querySelector(containerSelector);
+    if (!sliderContainer) return;
+
+    const wrapper = sliderContainer.querySelector(".slider-wrapper, .content-slider-wrapper");
+    const slides = wrapper ? Array.from(wrapper.children) : [];
+    const dotsContainer = sliderContainer.querySelector(".slider-dots");
+    if (!wrapper || slides.length === 0 || !dotsContainer) return;
+
+    dotsContainer.innerHTML = "";
+    slides.forEach((_, idx) => {
+      const dot = document.createElement("span");
+      dot.classList.add("dot");
+      if (idx === 0) dot.classList.add("active");
+      dot.setAttribute("data-slide", idx);
+      dot.addEventListener("click", () => {
+        if (slides[idx]) {
+          wrapper.scrollTo({
+            left: slides[idx].offsetLeft,
+            behavior: "smooth",
+          });
+        }
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll(".dot");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Array.from(slides).indexOf(entry.target);
+            dots.forEach((d) => d.classList.remove("active"));
+            slides.forEach((s) => s.classList.remove("active"));
+            dots[index]?.classList.add("active");
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      { root: wrapper, threshold: 0.5 }
+    );
+
+    slides.forEach((slide) => observer.observe(slide));
+  }
+
+  // --- Menu Logic ---
   const navButton = document.querySelector(".nav-button");
   const sideMenu = document.getElementById("sideMenu");
   const closeMenuBtn = document.getElementById("closeMenu");
+  const profileBtn = document.getElementById("profileBtn");
+  const profileMenu = document.getElementById("profileMenu");
   const menuOverlay = document.getElementById("menuOverlay");
 
-  const menuItems = document.querySelectorAll(".menu-list > li");
+  const logoutPopup = document.getElementById("logoutPopup");
+  const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+  const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
+  const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
+  const signOutAnchor = logoutLink?.closest("a");
 
-  function openMenu() {
-    if (sideMenu && menuOverlay) {
-      sideMenu.classList.add("open");
-      menuOverlay.classList.add("active");
+  const openMenu = (menu) => {
+    menu?.classList.add("open");
+    menuOverlay?.classList.add("open");
+    body.classList.add("no-scroll");
+  };
+
+  const closeAllMenus = () => {
+    [sideMenu, profileMenu].forEach((m) => m?.classList.remove("open"));
+    menuOverlay?.classList.remove("open");
+    if (!logoutPopup?.classList.contains("show")) {
+      body.classList.remove("no-scroll");
+    }
+  };
+
+  const showLogoutPopup = () => {
+    if (logoutPopup && menuOverlay) {
+      menuOverlay.classList.add("show");
+      logoutPopup.classList.add("show");
       body.classList.add("no-scroll");
     }
-  }
+  };
 
-  function closeMenu() {
-    if (sideMenu && menuOverlay) {
-      sideMenu.classList.remove("open");
-      menuOverlay.classList.remove("active");
-      body.classList.remove("no-scroll");
-      menuItems.forEach((item) => item.classList.remove("active-sub"));
+  const hideLogoutPopup = () => {
+    if (logoutPopup && menuOverlay) {
+      menuOverlay.classList.remove("show");
+      logoutPopup.classList.remove("show");
+      if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
+        body.classList.remove("no-scroll");
+      }
     }
-  }
+  };
 
-  if (navButton) navButton.addEventListener("click", (e) => { e.stopPropagation(); openMenu(); });
-  if (closeMenuBtn) closeMenuBtn.addEventListener("click", closeMenu);
+  navButton?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (profileMenu?.classList.contains("open")) closeAllMenus();
+    openMenu(sideMenu);
+  });
 
+  profileBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (sideMenu?.classList.contains("open")) closeAllMenus();
+    openMenu(profileMenu);
+  });
 
+  closeMenuBtn?.addEventListener("click", closeAllMenus);
+
+  menuOverlay?.addEventListener("click", (e) => {
+    if (e.target === menuOverlay) {
+      if (logoutPopup?.classList.contains("show")) {
+        hideLogoutPopup();
+      } else {
+        closeAllMenus();
+      }
+    }
+  });
+  
+  sideMenu?.addEventListener("click", (e) => e.stopPropagation());
+  profileMenu?.addEventListener("click", (e) => e.stopPropagation());
+
+  signOutAnchor?.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeAllMenus();
+    showLogoutPopup();
+  });
+
+  confirmLogoutBtn?.addEventListener("click", () => {
+    hideLogoutPopup();
+    console.log("User confirmed logout!");
+    localStorage.setItem("isLoggedIn", "false");
+    body.classList.remove("logged-in");
+    window.location.href = "index.html";
+  });
+
+  cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
+
+  // --- Highlight active menu item ---
   const allLinks = document.querySelectorAll(".menu-list a");
-  let currentPageFile = window.location.pathname.split("/").pop();
+  const menuItems = document.querySelectorAll(".menu-list > li");
 
+  let currentPageFile = window.location.pathname.split("/").pop();
   if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
      if (window.location.pathname === '/' || window.location.pathname === '') {
-       currentPageFile = "loggedin";
+       currentPageFile = "loggedin.html";
      } else {
-       currentPageFile = "loggedin";
+       currentPageFile = "loggedin.html";
      }
-  } else {
-      currentPageFile = currentPageFile.replace(".html", "");
   }
-
 
   allLinks.forEach((link) => {
     const linkHref = link.getAttribute("href");
     const parentLi = link.closest("li");
     if (!linkHref || linkHref === '#') return;
 
-    let linkFileName = linkHref.split("/").pop().replace(".html", "");
-
-    if (linkFileName === currentPageFile) {
+    if (linkHref === currentPageFile) {
       parentLi?.classList.add("active");
       const subMenu = parentLi?.closest(".sub-menu");
       if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
@@ -62,23 +169,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-
+  // --- THIS IS THE CORRECTED CLICK LOGIC ---
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
         let currentPageFileOnClick = window.location.pathname.split("/").pop();
-         if (currentPageFileOnClick === "" || currentPageFileOnClick === "/" || !currentPageFileOnClick) {
-             if (window.location.pathname === '/' || window.location.pathname === '') {
-                 currentPageFileOnClick = "loggedin";
-             } else {
-                 currentPageFileOnClick = "loggedin";
-             }
-         } else {
-             currentPageFileOnClick = currentPageFileOnClick.replace(".html", "");
-         }
+        if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
+            currentPageFileOnClick = "loggedin.html";
+        }
 
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu a")) {
-             closeMenu();
+             closeAllMenus();
              return;
         }
         item.classList.toggle("active-sub");
@@ -91,10 +192,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const link = item.querySelector("a");
         if (!link) return;
         const linkHref = link.getAttribute("href");
-        const linkFileNameOnClick = linkHref?.split("/").pop().replace(".html", "");
 
-        if (linkHref && linkHref !== "#" && linkFileNameOnClick !== currentPageFileOnClick) {
-          closeMenu();
+        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick) {
+          closeAllMenus();
           return;
         }
 
@@ -107,57 +207,34 @@ document.addEventListener("DOMContentLoaded", function () {
          const subMenu = item.closest(".sub-menu");
          if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
 
-        closeMenu();
+        closeAllMenus();
       }
     });
   });
+  // --- END OF CORRECTED CLICK LOGIC ---
 
-  const logoutLink = document.querySelector('.profile-menu-list a i.fa-sign-out-alt');
-  const logoutPopup = document.getElementById('logoutPopup');
-  const confirmLogoutBtn = document.getElementById('confirmLogoutBtn');
-  const cancelLogoutBtn = document.getElementById('cancelLogoutBtn');
+  // --- Feature Shadow ---
+  const featuresGrid = document.querySelector(".features-grid");
+  const featuresSection = document.querySelector(".features-section");
 
-  if (logoutLink) {
-    const signOutAnchor = logoutLink.closest('a');
-    if (signOutAnchor) {
-      signOutAnchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeMenu();
-        const profileMenu = document.getElementById('profileMenu');
-        profileMenu?.classList.remove('open');
+  if (featuresGrid && featuresSection) {
+    const handleScroll = () => {
+      const maxScrollLeft = featuresGrid.scrollWidth - featuresGrid.clientWidth;
 
-        if (logoutPopup && menuOverlay) {
-          logoutPopup.classList.add('show');
-          menuOverlay.classList.add('active');
-          body.classList.add('no-scroll');
-        }
-      });
-    }
+      featuresSection.classList.toggle("show-left-shadow", featuresGrid.scrollLeft > 10);
+      featuresSection.classList.toggle("show-right-shadow", featuresGrid.scrollLeft < maxScrollLeft - 10);
+    };
+
+    featuresGrid.addEventListener("scroll", handleScroll);
+    handleScroll();
   }
 
-  function hideLogoutPopup() {
-    if (logoutPopup && menuOverlay) {
-      logoutPopup.classList.remove('show');
-      menuOverlay.classList.remove('active');
-      if (!sideMenu?.classList.contains('open')) {
-          body.classList.remove('no-scroll');
-      }
-    }
-  }
+  // --- Sliders ---
+  initializeSlider(".slider-container");
 
-  if (confirmLogoutBtn) confirmLogoutBtn.addEventListener('click', () => { hideLogoutPopup(); console.log("User confirmed logout!"); });
-  if (cancelLogoutBtn) cancelLogoutBtn.addEventListener('click', hideLogoutPopup);
-  if (menuOverlay) {
-      menuOverlay.addEventListener('click', (e) => {
-          if (e.target === menuOverlay) {
-              if (logoutPopup?.classList.contains('show')) {
-                  hideLogoutPopup();
-              } else {
-                  closeMenu();
-              }
-          }
-      });
-  }
-   if (sideMenu) sideMenu.addEventListener("click", (e) => e.stopPropagation());
-
+  document.querySelectorAll(".slider-section").forEach((section, index) => {
+    const uniqueSelector = `content-slider-section-${index}`;
+    section.classList.add(uniqueSelector);
+    initializeSlider(`.${uniqueSelector}`);
+  });
 });
