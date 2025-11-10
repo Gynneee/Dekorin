@@ -5,6 +5,15 @@
   --shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
+a,
+button,
+.nav-button,
+.menu-list li,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

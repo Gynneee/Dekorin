@@ -7,6 +7,15 @@
   --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
+a,
+button,
+.nav-button,
+.menu-list li,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
 * {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;

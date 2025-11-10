@@ -7,6 +7,15 @@
   --primary-bg: #fffdf9;
 }
 
+a,
+button,
+.nav-button,
+.menu-list li,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -91,8 +100,8 @@ body {
   flex-wrap: nowrap;
   gap: 0.6rem;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch; 
-  padding-bottom: 5px;  
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 5px;
 }
 
 .tag {

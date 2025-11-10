@@ -8,6 +8,15 @@
   --primary-brown: #81724f; 
 }
 
+a,
+button,
+.nav-button,
+.menu-list li,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
 * {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;

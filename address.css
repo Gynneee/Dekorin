@@ -6,6 +6,13 @@
   --primary-bg: #fffdf9;
 }
 
+a,
+button,
+.nav-button,
+.menu-list li {
+  -webkit-tap-highlight-color: transparent;
+}
+
 * {
   margin: 0;
   padding: 0;

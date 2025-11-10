@@ -12,6 +12,15 @@
   --destiny-input-bg: #f8f9fa;
 }
 
+a,
+button,
+.nav-button,
+.menu-list li,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
 * {
   margin: 0;
   padding: 0;
