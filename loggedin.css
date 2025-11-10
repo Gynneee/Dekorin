@@ -1186,16 +1186,20 @@ body.logged-in .user-actions {
 /* 1. Initial (hidden) state */
 .feature-item-animate-init {
   opacity: 0;
-  transform: translateY(20px) scale(0.95);
-  transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), 
-              transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
-  /* transition-delay is set inline by JS */
+  transform: translateY(20px) scale(0.95) translateZ(0); /* Added translateZ(0) */
+  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), 
+              transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  
+  /* --- iOS Fixes --- */
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 /* 2. Final (visible) state when .is-visible is added */
 .feature-item-animate-init.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0) scale(1) translateZ(0); /* Added translateZ(0) */
+  will-change: auto; /* Reset the hint */
 }
 
 /* --- CSS for Review/Invision Card Animation --- */
@@ -1203,16 +1207,20 @@ body.logged-in .user-actions {
 /* 1. Initial (hidden) state */
 .card-animate-init {
   opacity: 0;
-  transform: translateY(20px) scale(0.98);
+  transform: translateY(20px) scale(0.98) translateZ(0); /* Added translateZ(0) */
   transition: opacity 0.12s cubic-bezier(0.22, 0.61, 0.36, 1), 
               transform 0.12s cubic-bezier(0.22, 0.61, 0.36, 1);
-  /* transition-delay is set inline by JS */
+
+  /* --- iOS Fixes --- */
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 /* 2. Final (visible) state when .is-visible is added */
 .card-animate-init.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0) scale(1) translateZ(0); /* Added translateZ(0) */
+  will-change: auto; /* Reset the hint */
 }
 
 @media (max-width: 500px) {
