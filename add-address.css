@@ -23,7 +23,7 @@ body {
   display: flex;
   align-items: center;
   padding: 1rem;
-  background: #fff;
+  background: #faf7ef;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   border-radius: 0 0 20px 20px;
   position: sticky;
@@ -69,6 +69,7 @@ body {
 /* ADDRESS FORM */
 .address-form {
   padding: 1.5rem 1.3rem 6rem;
+  background-color: #faf7ef;
 }
 
 .address-form h3 {
@@ -140,9 +141,8 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #fff;
+  background: #faf7ef;
   padding: 1rem 1.3rem;
-  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.05);
   border-radius: 20px 20px 0 0;
   z-index: 20;
 }
