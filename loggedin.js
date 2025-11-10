@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   body.classList.add("logged-in");
 
-  // --- Universal Slider Initializer ---
   function initializeSlider(containerSelector) {
     const sliderContainer = document.querySelector(containerSelector);
     if (!sliderContainer) return;
@@ -49,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     slides.forEach((slide) => observer.observe(slide));
   }
 
-  // --- Menu Logic ---
   const navButton = document.querySelector(".nav-button");
   const sideMenu = document.getElementById("sideMenu");
   const closeMenuBtn = document.getElementById("closeMenu");
@@ -138,16 +136,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
 
-  // --- Highlight active menu item ---
   const allLinks = document.querySelectorAll(".menu-list a");
   const menuItems = document.querySelectorAll(".menu-list > li");
 
   let currentPageFile = window.location.pathname.split("/").pop();
+  let currentPageBase = currentPageFile.replace('.html', '');
+  
   if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
      if (window.location.pathname === '/' || window.location.pathname === '') {
        currentPageFile = "loggedin.html";
+       currentPageBase = "loggedin";
      } else {
        currentPageFile = "loggedin.html";
+       currentPageBase = "loggedin";
      }
   }
 
@@ -156,7 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const parentLi = link.closest("li");
     if (!linkHref || linkHref === '#') return;
 
-    if (linkHref === currentPageFile) {
+    const linkBase = linkHref.replace('.html', '');
+
+    if (linkHref === currentPageFile || linkBase === currentPageBase || linkHref === `/${currentPageBase}`) {
       parentLi?.classList.add("active");
       const subMenu = parentLi?.closest(".sub-menu");
       if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
@@ -169,12 +172,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- THIS IS THE CORRECTED CLICK LOGIC ---
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
         let currentPageFileOnClick = window.location.pathname.split("/").pop();
+        let currentPageBaseOnClick = currentPageFileOnClick.replace('.html', '');
+        
         if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
             currentPageFileOnClick = "loggedin.html";
+            currentPageBaseOnClick = "loggedin";
         }
 
       if (item.classList.contains("has-sub")) {
@@ -192,8 +197,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const link = item.querySelector("a");
         if (!link) return;
         const linkHref = link.getAttribute("href");
+        const linkBase = linkHref ? linkHref.replace('.html', '') : '';
 
-        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick) {
+        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick && linkBase !== currentPageBaseOnClick) {
           closeAllMenus();
           return;
         }
@@ -211,9 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-  // --- END OF CORRECTED CLICK LOGIC ---
 
-  // --- Feature Shadow ---
   const featuresGrid = document.querySelector(".features-grid");
   const featuresSection = document.querySelector(".features-section");
 
@@ -229,7 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
     handleScroll();
   }
 
-  // --- Sliders ---
   initializeSlider(".slider-container");
 
   document.querySelectorAll(".slider-section").forEach((section, index) => {
