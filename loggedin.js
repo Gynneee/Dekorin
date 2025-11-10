@@ -118,6 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+  
+  sideMenu?.addEventListener("click", (e) => e.stopPropagation());
+  profileMenu?.addEventListener("click", (e) => e.stopPropagation());
 
   signOutAnchor?.addEventListener("click", (e) => {
     e.preventDefault();
@@ -135,49 +138,80 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
 
-  // --- Fix: Highlight active menu item ---
+  // --- Highlight active menu item ---
   const allLinks = document.querySelectorAll(".menu-list a");
   const menuItems = document.querySelectorAll(".menu-list > li");
 
-  let currentPage = window.location.pathname.split("/").pop() || "loggedin";
-  currentPage = currentPage.replace(".html", "").toLowerCase();
+  let currentPageFile = window.location.pathname.split("/").pop();
+  if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
+     if (window.location.pathname === '/' || window.location.pathname === '') {
+       currentPageFile = "loggedin.html";
+     } else {
+       currentPageFile = "loggedin.html";
+     }
+  }
 
   allLinks.forEach((link) => {
-    const href = link.getAttribute("href");
+    const linkHref = link.getAttribute("href");
     const parentLi = link.closest("li");
-    if (!href || href === "#") return;
+    if (!linkHref || linkHref === '#') return;
 
-    const cleanHref = href.replace(".html", "").toLowerCase();
-
-    if (currentPage === cleanHref) {
+    if (linkHref === currentPageFile) {
       parentLi?.classList.add("active");
       const subMenu = parentLi?.closest(".sub-menu");
       if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
     } else {
       parentLi?.classList.remove("active");
+      const subMenuParent = parentLi?.closest(".has-sub");
+      if(subMenuParent && !subMenuParent.querySelector('.sub-menu li.active')){
+          subMenuParent.classList.remove("active-sub");
+      }
     }
   });
 
+  // --- THIS IS THE CORRECTED CLICK LOGIC ---
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
+        let currentPageFileOnClick = window.location.pathname.split("/").pop();
+        if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
+            currentPageFileOnClick = "loggedin.html";
+        }
+
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu a")) {
-          closeAllMenus();
-          return;
+             closeAllMenus();
+             return;
         }
         item.classList.toggle("active-sub");
         menuItems.forEach((i) => {
-          if (i !== item && i.classList.contains("has-sub")) i.classList.remove("active-sub");
+          if (i !== item && i.classList.contains("has-sub")) {
+            i.classList.remove("active-sub");
+          }
         });
       } else {
         const link = item.querySelector("a");
-        const href = link?.getAttribute("href");
-        if (href && href !== "#") {
+        if (!link) return;
+        const linkHref = link.getAttribute("href");
+
+        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick) {
           closeAllMenus();
+          return;
         }
+
+        e.preventDefault();
+        menuItems.forEach((i) => {
+            i.classList.remove("active");
+            i.classList.remove("active-sub");
+        });
+        item.classList.add("active");
+         const subMenu = item.closest(".sub-menu");
+         if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
+
+        closeAllMenus();
       }
     });
   });
+  // --- END OF CORRECTED CLICK LOGIC ---
 
   // --- Feature Shadow ---
   const featuresGrid = document.querySelector(".features-grid");
