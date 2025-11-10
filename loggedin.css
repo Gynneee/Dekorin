@@ -7,6 +7,13 @@
   --primary-brown: #81724f;
 }
 
+.slider-wrapper,
+.features-grid,
+.horizontal-scroll-wrapper,
+.content-slider-wrapper {
+  overflow-y: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1186,7 +1193,7 @@ body.logged-in .user-actions {
 /* 1. Initial (hidden) state */
 .feature-item-animate-init {
   opacity: 0;
-  transform: translateY(20px) scale(0.95) translateZ(0); /* Added translateZ(0) */
+  transform: translateY(50px) scale(0.9) translateZ(0); /* Added translateZ(0) */
   transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), 
               transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
   
@@ -1207,9 +1214,9 @@ body.logged-in .user-actions {
 /* 1. Initial (hidden) state */
 .card-animate-init {
   opacity: 0;
-  transform: translateY(20px) scale(0.98) translateZ(0); /* Added translateZ(0) */
-  transition: opacity 0.12s cubic-bezier(0.22, 0.61, 0.36, 1), 
-              transform 0.12s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transform: translateY(50px) scale(0.9) translateZ(0); /* Added translateZ(0) */
+  transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1), 
+              transform 1s cubic-bezier(0.22, 0.61, 0.36, 1);
 
   /* --- iOS Fixes --- */
   backface-visibility: hidden;
