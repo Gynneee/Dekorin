@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Support</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="contact-support.css" />
+</head>
+
+<body>
+  <div class="app fade-in">
+    <!-- Header -->
+    <header class="toolbar slide-down">
+      <button class="back-btn" id="backButton">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <h1>Contact Support</h1>
+    </header>
+
+    <!-- Search -->
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Search" />
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" id="faqTab">FAQ</button>
+      <button class="tab" id="contactTab">Contact Us</button>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faqSection">
+      <div class="accordion-item">
+        <button class="accordion-header">
+          Can I track my order’s delivery status?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="accordion-body">
+          Yes! You can track your order in real-time from your profile page under “My Orders”. 
+          Once your order ships, you’ll receive an email and WhatsApp notification with tracking details. 
+          Most deliveries take 2–5 working days depending on your location.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          Is there a return or refund policy?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="accordion-body">
+          Absolutely. We offer a 7-day return policy after the product arrives. 
+          Items must be unused, in their original packaging, and include all accessories. 
+          Refunds are processed within 3–5 business days after we receive your returned item.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          Can I save my favorite products for later?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="accordion-body">
+          Yes! You can click the heart icon on any product page to add it to your Wishlist. 
+          Your Wishlist is saved in your account and can be accessed anytime for easy shopping later.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          What payment methods are supported?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="accordion-body">
+          We accept major payment methods including Visa, MasterCard, BCA, Mandiri, GoPay, OVO, and ShopeePay. 
+          All transactions are encrypted with secure SSL technology to ensure your data is protected.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          How do I contact customer support?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="accordion-body">
+          You can reach us via our Contact Us tab, WhatsApp support, or send us an email at 
+          <strong>support@dekorin.com</strong>. Our support team is available 24/7 to assist you with order tracking, 
+          returns, or general inquiries.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          How can I cancel my order after placing it?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="accordion-body">
+          Orders can be canceled within 12 hours of placing them by going to “My Orders” and selecting “Cancel Order”. 
+          After that, if the order has been processed or shipped, you’ll need to follow the return process instead.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">
+          Do you provide international shipping?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="accordion-body">
+          Currently, we only ship within Indonesia. However, we’re working on expanding our logistics network 
+          to support international orders soon — stay tuned via our newsletter for updates!
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact-section" id="contactSection">
+      <div class="contact-card"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></div>
+      <div class="contact-card"><i class="fa-brands fa-facebook-f"></i><span>Facebook</span></div>
+      <div class="contact-card"><i class="fa-brands fa-instagram"></i><span>Instagram</span></div>
+      <div class="contact-card"><i class="fa-solid fa-headset"></i><span>Customer Service</span></div>
+    </section>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Back Button
+    const backBtn = document.getElementById("backButton");
+    backBtn.addEventListener("click", () => {
+      backBtn.classList.add("clicked");
+      setTimeout(() => backBtn.classList.remove("clicked"), 200);
+    });
+
+    // Accordion Toggle
+    document.querySelectorAll(".accordion-header").forEach(header => {
+      header.addEventListener("click", () => {
+        const body = header.nextElementSibling;
+        header.classList.toggle("active");
+        if (body.style.maxHeight) body.style.maxHeight = null;
+        else {
+          document.querySelectorAll(".accordion-body").forEach(b => b.style.maxHeight = null);
+          body.style.maxHeight = body.scrollHeight + "px";
+        }
+      });
+    });
+
+    // Tab Switch
+    const faqTab = document.getElementById("faqTab");
+    const contactTab = document.getElementById("contactTab");
+    const faqSection = document.getElementById("faqSection");
+    const contactSection = document.getElementById("contactSection");
+
+    faqTab.addEventListener("click", () => {
+      faqTab.classList.add("active");
+      contactTab.classList.remove("active");
+      faqSection.style.display = "block";
+      contactSection.style.display = "none";
+    });
+
+    contactTab.addEventListener("click", () => {
+      contactTab.classList.add("active");
+      faqTab.classList.remove("active");
+      faqSection.style.display = "none";
+      contactSection.style.display = "flex";
+    });
+  </script>
+</body>
+</html>

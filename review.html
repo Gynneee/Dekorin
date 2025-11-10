@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Review - DekorIn</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="review.css" />
+</head>
+
+<body>
+  <div class="review-page fade-in">
+    <!-- Header -->
+    <header class="review-header">
+      <button class="back-btn" id="backButton"><i class="fa-solid fa-arrow-left"></i></button>
+      <h1>Review</h1>
+      <button class="cart-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+    </header>
+
+    <!-- Product Info -->
+    <section class="product-info">
+      <img src="src/cart/cart1.png" alt="Wallpaper Polos" class="product-img">
+      <div class="product-details">
+        <h2>Wallpaper Polos</h2>
+        <p>Dekorin Store | 2 Roll</p>
+        <div class="price-row">
+          <span class="price">Rp. 100.000</span>
+          <button class="reorder-btn">Re-Order</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Review Section -->
+    <section class="review-section">
+      <h3>How your order?</h3>
+      <p class="subtitle">Your overall rating</p>
+
+      <!-- Rating Stars -->
+      <div class="rating" id="ratingStars">
+        <i class="fa-regular fa-star" data-value="1"></i>
+        <i class="fa-regular fa-star" data-value="2"></i>
+        <i class="fa-regular fa-star" data-value="3"></i>
+        <i class="fa-regular fa-star" data-value="4"></i>
+        <i class="fa-regular fa-star" data-value="5"></i>
+      </div>
+
+      <!-- Textarea -->
+      <div class="review-input">
+        <label for="reviewText">Add detailed review</label>
+        <textarea id="reviewText" placeholder="Enter here"></textarea>
+      </div>
+
+      <!-- Upload Photo -->
+      <div class="photo-upload" id="photoUpload">
+        <i class="fa-solid fa-camera"></i>
+        <span>Add Photo</span>
+        <input type="file" accept="image/*" id="uploadFile" hidden>
+      </div>
+
+      <!-- Buttons -->
+      <div class="buttons">
+        <button class="cancel-btn">Cancel</button>
+        <button class="submit-btn" id="submitBtn">Submit</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Back button animation
+    const backBtn = document.getElementById("backButton");
+    backBtn.addEventListener("click", () => {
+      backBtn.style.transform = "scale(0.85)";
+      setTimeout(() => (backBtn.style.transform = "scale(1)"), 200);
+    });
+
+    // Star rating logic
+    const stars = document.querySelectorAll("#ratingStars i");
+    stars.forEach(star => {
+      star.addEventListener("click", () => {
+        const value = star.dataset.value;
+        stars.forEach(s => {
+          s.classList.remove("fa-solid");
+          s.classList.add("fa-regular");
+        });
+        for (let i = 0; i < value; i++) {
+          stars[i].classList.remove("fa-regular");
+          stars[i].classList.add("fa-solid");
+        }
+      });
+    });
+
+    // Photo upload preview
+    const photoUpload = document.getElementById("photoUpload");
+    const uploadFile = document.getElementById("uploadFile");
+    photoUpload.addEventListener("click", () => uploadFile.click());
+    uploadFile.addEventListener("change", (e) => {
+      if (e.target.files.length > 0) {
+        photoUpload.innerHTML = `<img src="${URL.createObjectURL(e.target.files[0])}" alt="Preview">`;
+      }
+    });
+
+    // Submit button animation
+    const submitBtn = document.getElementById("submitBtn");
+    submitBtn.addEventListener("click", () => {
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+      submitBtn.disabled = true;
+      setTimeout(() => {
+        submitBtn.innerHTML = '✅ Submitted';
+        submitBtn.style.backgroundColor = "#3a6b35";
+      }, 1500);
+      setTimeout(() => {
+        submitBtn.innerHTML = 'Submit';
+        submitBtn.disabled = false;
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

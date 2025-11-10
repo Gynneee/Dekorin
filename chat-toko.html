@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DekorIn - Chat Toko</title>
+
+    <!-- Font & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="chat-toko.css" />
+  </head>
+
+  <body>
+    <div class="chat-container fade-in">
+      <!-- HEADER -->
+      <header class="chat-header fade-down">
+        <button class="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <div class="store-info">
+          <div class="store-avatar"></div>
+          <div>
+            <h2 class="store-name">Dunia Wallpaper</h2>
+            <p class="status">Online</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- CHAT AREA -->
+      <main class="chat-body" id="chatBody">
+        <div class="date-divider">Today</div>
+
+        <div class="product-preview fade-down">
+          <p class="ask-title">Ask about this product</p>
+          <div class="product-box">
+            <img
+              src="src/cart/cart1.png"
+              alt="Wallpaper N2-2"
+              class="product-img"
+            />
+            <div class="product-info">
+              <p class="product-name">Dunia Wallpaper – N2-2</p>
+              <p class="product-price">Rp60.000 - Rp300.000</p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- INPUT BAR -->
+      <footer class="chat-input">
+        <input
+          type="file"
+          id="imageInput"
+          accept="image/*"
+          style="display: none"
+        />
+        <button class="add-btn" id="addImageBtn">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <input type="text" placeholder="Ketik pesan..." id="messageInput" />
+        <button class="send-btn" id="sendBtn">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </footer>
+    </div>
+
+    <script>
+      const chatBody = document.getElementById("chatBody");
+      const input = document.getElementById("messageInput");
+      const sendBtn = document.getElementById("sendBtn");
+      const addImageBtn = document.getElementById("addImageBtn");
+      const imageInput = document.getElementById("imageInput");
+
+      // Fade in animation
+      window.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".fade-in, .fade-down").forEach((el, i) => {
+          setTimeout(() => el.classList.add("show"), i * 150);
+        });
+      });
+
+      // Animasi klik tombol
+      [sendBtn, addImageBtn].forEach((btn) => {
+        btn.addEventListener("click", () => {
+          btn.classList.add("clicked");
+          setTimeout(() => btn.classList.remove("clicked"), 200);
+        });
+      });
+
+      // Kirim pesan teks
+      sendBtn.addEventListener("click", sendMessage);
+      input.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") sendMessage();
+      });
+
+      function sendMessage() {
+        const text = input.value.trim();
+        if (!text) return;
+
+        const time = new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        const message = document.createElement("div");
+        message.classList.add("chat", "chat-right", "message-anim");
+        message.innerHTML = `
+          <div class="chat-bubble">${text}</div>
+          <p class="chat-meta">You • ${time}</p>
+        `;
+        chatBody.appendChild(message);
+        input.value = "";
+
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+
+        // Auto reply dari toko
+        setTimeout(showAutoReply, 1200);
+      }
+
+      function showAutoReply() {
+        const time = new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        const reply = document.createElement("div");
+        reply.classList.add("chat", "chat-left", "message-anim");
+        reply.innerHTML = `
+          <div class="chat-bubble">
+            Terima kasih sudah menghubungi Dunia Wallpaper! 🌿<br>
+            Kami akan membalas pesan Anda secepatnya 😊
+          </div>
+          <p class="chat-meta">Dunia Wallpaper • ${time}</p>
+        `;
+        chatBody.appendChild(reply);
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+      }
+
+      // Upload gambar
+      addImageBtn.addEventListener("click", () => {
+        imageInput.click();
+      });
+
+      imageInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const imgURL = e.target.result;
+          const time = new Date().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+
+          const imageMessage = document.createElement("div");
+          imageMessage.classList.add("chat", "chat-right", "message-anim");
+          imageMessage.innerHTML = `
+            <div class="chat-bubble image-bubble">
+              <img src="${imgURL}" alt="uploaded image" />
+            </div>
+            <p class="chat-meta">You • ${time}</p>
+          `;
+          chatBody.appendChild(imageMessage);
+          chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+
+          // Auto reply juga setelah kirim gambar
+          setTimeout(showAutoReply, 1500);
+        };
+        reader.readAsDataURL(file);
+      });
+    </script>
+  </body>
+</html>

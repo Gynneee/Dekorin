@@ -1,0 +1,247 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.review-page {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background-color: #fff;
+  animation: fadeIn 0.8s ease;
+  padding-bottom: 2rem;
+}
+
+/* Header */
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.review-header h1 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.back-btn, .cart-btn {
+  background: #fff;
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.back-btn:hover, .cart-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Product Info */
+.product-info {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.product-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.product-details {
+  flex: 1;
+}
+.product-details h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+.product-details p {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0.2rem 0;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+}
+
+.price {
+  font-weight: 600;
+  color: #111;
+}
+
+.reorder-btn {
+  background-color: #3a6b35;
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.reorder-btn:hover {
+  background-color: #2d552a;
+}
+
+/* Review Section */
+.review-section {
+  text-align: center;
+  padding: 1rem;
+}
+
+.review-section h3 {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Rating Stars */
+.rating {
+  margin: 1rem 0;
+}
+.rating i {
+  font-size: 1.8rem;
+  color: #f9c330;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: transform 0.2s ease;
+}
+.rating i:hover {
+  transform: scale(1.2);
+}
+
+/* Textarea */
+.review-input {
+  text-align: left;
+  margin-top: 1rem;
+  width: 100%;
+}
+.review-input label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+textarea {
+  width: 100%;
+  min-height: 90px;
+  border: 1.5px solid #3a6b35;
+  border-radius: 10px;
+  margin-top: 0.4rem;
+  padding: 0.8rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  resize: none;
+  transition: all 0.3s ease;
+}
+textarea:focus {
+  box-shadow: 0 0 6px rgba(58,107,53,0.3);
+}
+
+/* Photo Upload */
+.photo-upload {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #3a6b35;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1.8px dashed #bbb;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 70px;
+  background-color: #fff;
+}
+.photo-upload:hover {
+  background-color: #f8f8f8;
+  border-color: #3a6b35;
+}
+.photo-upload i {
+  font-size: 1.2rem;
+}
+.photo-upload img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 1rem;
+  width: 100%;
+}
+
+.cancel-btn, .submit-btn {
+  flex: 1;
+  border-radius: 25px;
+  padding: 0.8rem 0;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: 1.8px solid #3a6b35;
+}
+
+.cancel-btn {
+  background: #fff;
+  color: #3a6b35;
+}
+.cancel-btn:hover {
+  background: #f2f2f2;
+}
+
+.submit-btn {
+  background: #3a6b35;
+  color: #fff;
+  border: none;
+}
+.submit-btn:hover {
+  background: #2d552a;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}

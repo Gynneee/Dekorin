@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DekorIn - Payment</title>
+
+    <!-- Font & Icon -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="payment-premium.css" />
+  </head>
+  <body>
+    <div class="payment-page fade-in">
+      <!-- Header -->
+      <header class="header">
+        <button class="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <h1>Payment</h1>
+        <i class="fa-solid fa-cart-shopping cart-icon"></i>
+      </header>
+
+      <!-- Order List -->
+      <section class="order-section">
+        <h3>Order List</h3>
+        <div class="plan-card">
+          <p class="plan-title">Monthly Plan</p>
+          <p class="plan-price">
+            <span class="currency">Rp</span><span class="amount">49.000</span>
+            <span class="period">/ Month</span>
+          </p>
+        </div>
+
+        <!-- Benefits -->
+        <div class="benefits">
+          <div class="benefit-item">
+            <img src="Group 174.png" alt="Unlock" />
+            <div>
+              <h4>Disable Ads</h4>
+              <p>Hide ads everywhere</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <img src="Group 174.png" alt="Unlock" />
+            <div>
+              <h4>Unlimited Prompt for AI</h4>
+              <p>Access limitless AI interactions</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <img src="Group 174.png" alt="Unlock" />
+            <div>
+              <h4>Unlimited AR Attempts</h4>
+              <p>Experiment freely without any restrictions</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Virtual Account -->
+        <div class="virtual-account">
+          <h4>Virtual Account</h4>
+          <div class="va-info">
+            <img src="src/payment/BCA.png" alt="BCA" />
+            <p>BCA Virtual Account</p>
+          </div>
+          <div class="va-number">
+            <span id="vaNumber">1234567890</span>
+            <button id="copyBtn">Copy</button>
+          </div>
+        </div>
+
+        <!-- Payment Summary -->
+        <div class="payment-summary">
+          <div class="promo">
+            <input type="text" placeholder="Promo Code" />
+            <button id="applyBtn">Apply</button>
+          </div>
+
+          <div class="summary-line">
+            <p>Sub-Total</p>
+            <span>Rp49.000</span>
+          </div>
+          <div class="summary-line">
+            <p>Delivery Fee</p>
+            <span>Rp0</span>
+          </div>
+          <div class="summary-line">
+            <p>Discount</p>
+            <span>Rp0</span>
+          </div>
+          <hr />
+          <div class="summary-line total">
+            <p>Total Cost</p>
+            <span>Rp49.000</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <button class="pay-btn" id="payBtn">Continue to Payment</button>
+      </footer>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="success-popup" id="successPopup">
+      <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+      <p>Payment Successful!</p>
+    </div>
+
+    <script>
+      // Animasi fade-in halaman
+      window.addEventListener("DOMContentLoaded", () => {
+        document.querySelector(".payment-page").classList.add("show");
+      });
+
+      // Tombol Copy animasi
+      const copyBtn = document.getElementById("copyBtn");
+      const vaNumber = document.getElementById("vaNumber");
+
+      copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(vaNumber.textContent);
+        copyBtn.textContent = "Copied!";
+        copyBtn.classList.add("copied");
+
+        setTimeout(() => {
+          copyBtn.textContent = "Copy";
+          copyBtn.classList.remove("copied");
+        }, 1500);
+      });
+
+      // Tombol Apply animasi klik
+      const applyBtn = document.getElementById("applyBtn");
+      applyBtn.addEventListener("click", () => {
+        applyBtn.classList.add("pressed");
+        setTimeout(() => applyBtn.classList.remove("pressed"), 200);
+      });
+
+      // Tombol Payment animasi + popup success
+      const payBtn = document.getElementById("payBtn");
+      const successPopup = document.getElementById("successPopup");
+
+      payBtn.addEventListener("click", () => {
+        payBtn.classList.add("pressed");
+        setTimeout(() => payBtn.classList.remove("pressed"), 200);
+        showSuccess();
+      });
+
+      function showSuccess() {
+        successPopup.classList.add("show");
+        setTimeout(() => {
+          successPopup.classList.remove("show");
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>

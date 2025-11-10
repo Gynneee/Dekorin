@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DekorIn - Detail Produk</title>
+
+    <!-- Font & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="detail-produk.css" />
+  </head>
+
+  <body>
+    <div class="page-container">
+      <!-- Header -->
+      <header class="header">
+        <button class="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+        <h1>Detail Produk</h1>
+        <i class="fa-solid fa-cart-shopping cart-icon"></i>
+      </header>
+
+      <!-- Scrollable Content -->
+      <main class="scroll-content">
+        <!-- Product Image -->
+        <section class="product-image">
+          <img src="detail.png" alt="Wallpaper N2-2" />
+        </section>
+
+        <!-- Product Info -->
+        <section class="product-info animate-section">
+          <div class="top-row">
+            <span class="size">Wallpaper roll 53 cm</span>
+            <span class="sold">5k+ Sold</span>
+          </div>
+
+          <h2 class="product-title">N2-2</h2>
+          <p class="price">Rp60.000–Rp300.000</p>
+
+          <div class="rating">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <span class="reviews">4.5 (5k+ reviews)</span>
+          </div>
+
+          <div class="store-info">
+            <div class="store-left">
+              <div class="store-dot"></div>
+              <span class="store-name">Dunia Wallpaper</span>
+            </div>
+            <div class="store-right">
+              <i class="fa-solid fa-location-dot"></i>
+              <span class="city">Surabaya</span>
+            </div>
+          </div>
+
+          <button class="btn-room">
+            <i class="fa-solid fa-vr-cardboard"></i> SEE IT IN YOUR ROOM
+          </button>
+
+          <div class="divider"></div>
+
+          <h3>Product Descriptions</h3>
+          <p class="desc">
+            Bring a touch of nature and calmness into your space with the N2–2
+            Wallpaper from Dunia Wallpaper. Featuring delicate leaf patterns
+            over soft vertical stripes in pastel green and beige tones, this
+            wallpaper adds elegance and freshness to any room. Perfect for
+            living rooms, bedrooms, or workspaces seeking a natural and soothing
+            atmosphere.
+          </p>
+
+          <button class="btn-need">
+            <i class="fa-solid fa-ruler-combined"></i> HOW MUCH DO I NEED
+          </button>
+        </section>
+
+        <!-- Reviews -->
+        <section class="reviews-section animate-section">
+          <div class="review-header">
+            <div class="left">
+              <span class="rating-num">4.7</span>
+              <i class="fa-solid fa-star star-gold"></i>
+              <span class="title">Reviews</span>
+              <span class="count">(5k+)</span>
+            </div>
+            <a href="#" class="see-all">See All</a>
+          </div>
+
+          <div class="review-card">
+            <div class="avatar"></div>
+            <div class="review-content">
+              <p class="username">fadhil.gg_gaming</p>
+              <div class="stars-row">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text">
+                Wallpaper sangat bagus, ketiga anak saya menyukainya. Mantap!
+              </p>
+              <div class="review-photos">
+                <div class="photo"></div>
+                <div class="photo"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="avatar"></div>
+            <div class="review-content">
+              <p class="username">eka.dil</p>
+              <div class="stars-row">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text">KEREN</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Bottom Bar -->
+      <footer class="bottom-bar">
+        <div class="price-section">
+          <div class="price-info">
+            <div>
+              <p class="label">Total Price</p>
+              <p class="price">Rp60.000</p>
+            </div>
+            <div class="quantity">
+              <button class="minus">−</button>
+              <span id="qty">1</span>
+              <button class="plus">+</button>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="chat-btn">
+              <i class="fa-regular fa-comment-dots"></i>
+            </button>
+            <button class="cart-btn" id="addCartBtn">
+              <i class="fa-solid fa-cart-plus"></i> Add to cart
+            </button>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Popup -->
+      <div class="popup" id="popup">✅ Added to cart</div>
+    </div>
+
+    <!-- JS -->
+    <script>
+      // Fade-in animasi
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document
+        .querySelectorAll(".animate-section")
+        .forEach((el) => observer.observe(el));
+
+      // Quantity
+      const qty = document.getElementById("qty");
+      document.querySelector(".plus").addEventListener("click", () => {
+        qty.textContent = +qty.textContent + 1;
+      });
+      document.querySelector(".minus").addEventListener("click", () => {
+        if (+qty.textContent > 1) qty.textContent = +qty.textContent - 1;
+      });
+
+      // Add to cart popup
+      const cartBtn = document.getElementById("addCartBtn");
+      const popup = document.getElementById("popup");
+      cartBtn.addEventListener("click", () => {
+        cartBtn.classList.add("pressed");
+        popup.classList.add("show");
+        setTimeout(() => {
+          popup.classList.remove("show");
+          cartBtn.classList.remove("pressed");
+        }, 1500);
+      });
+    </script>
+  </body>
+</html>

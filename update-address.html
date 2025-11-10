@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Address | DekorIn</title>
+
+    <!-- Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="update-address.css" />
+  </head>
+  <body>
+    <div class="update-address-page fade-in">
+      <!-- Header -->
+      <header class="header">
+        <button class="back-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <h1>Update Address</h1>
+      </header>
+
+      <!-- Map -->
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.738569969134!2d106.8166663153629!3d-6.173110295533284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e4c26c2df5%3A0xf09f4b57cfd4aaf5!2sJakarta!5e0!3m2!1sid!2sid!4v1700000000000"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <!-- Form -->
+      <main class="form-section">
+        <h3>Save address as</h3>
+        <div class="address-tags">
+          <button class="tag active">Home</button>
+          <button class="tag">Parent’s House</button>
+          <button class="tag">Farm House</button>
+          <button class="tag">Other</button>
+        </div>
+
+        <label for="address">Complete address</label>
+        <textarea id="address">Jl. Mawar No. 24, Jakarta Selatan</textarea>
+
+        <label for="floor">Floor</label>
+        <input type="text" id="floor" value="2nd Floor" />
+
+        <label for="landmark">Landmark</label>
+        <input type="text" id="landmark" value="Near Sudirman Station" />
+      </main>
+
+      <!-- Buttons -->
+      <footer class="bottom-buttons">
+        <button class="delete-btn" id="deleteBtn">Hapus</button>
+        <button class="update-btn" id="updateBtn">Update</button>
+      </footer>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+      <div class="modal">
+        <p>Are you sure you want to delete this address?</p>
+        <div class="modal-buttons">
+          <button class="no-btn click-anim">No</button>
+          <button class="yes-btn click-anim">Yes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="success-popup" id="successPopup">
+      <div class="success-icon">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <p id="successText">Address Deleted Successfully!</p>
+    </div>
+
+    <script>
+      // Fade in
+      window.addEventListener("DOMContentLoaded", () => {
+        document.querySelector(".update-address-page").classList.add("show");
+      });
+
+      // Tombol back
+      document.querySelector(".back-btn").addEventListener("click", () => {
+        window.history.back();
+      });
+
+      // Aktifkan tag
+      document.querySelectorAll(".tag").forEach((tag) => {
+        tag.addEventListener("click", () => {
+          document.querySelectorAll(".tag").forEach((t) => t.classList.remove("active"));
+          tag.classList.add("active");
+        });
+      });
+
+      // Elemen penting
+      const deleteBtn = document.getElementById("deleteBtn");
+      const updateBtn = document.getElementById("updateBtn");
+      const modal = document.getElementById("deleteModal");
+      const noBtn = document.querySelector(".no-btn");
+      const yesBtn = document.querySelector(".yes-btn");
+      const successPopup = document.getElementById("successPopup");
+      const successText = document.getElementById("successText");
+      const iframe = document.querySelector(".map-container iframe");
+
+      // Buka modal delete
+      deleteBtn.addEventListener("click", () => {
+        modal.classList.add("show");
+        document.body.classList.add("modal-open");
+        iframe.style.pointerEvents = "none"; // Matikan klik di map
+      });
+
+      // Tutup modal (No)
+      noBtn.addEventListener("click", () => {
+        modal.classList.remove("show");
+        document.body.classList.remove("modal-open");
+        iframe.style.pointerEvents = "auto";
+      });
+
+      // Konfirmasi delete (Yes)
+      yesBtn.addEventListener("click", () => {
+        modal.classList.remove("show");
+        document.body.classList.remove("modal-open");
+        iframe.style.pointerEvents = "auto";
+        showSuccess("Address Deleted Successfully!");
+      });
+
+      // Tombol update → popup success
+      updateBtn.addEventListener("click", () => {
+        showSuccess("Address Updated Successfully!");
+      });
+
+      // Fungsi tampilkan popup sukses
+      function showSuccess(message) {
+        successText.textContent = message;
+        successPopup.classList.add("show");
+
+        setTimeout(() => {
+          successPopup.classList.remove("show");
+        }, 2000);
+      }
+
+      // Animasi klik tombol
+      document.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("mousedown", () => btn.classList.add("pressed"));
+        btn.addEventListener("mouseup", () => btn.classList.remove("pressed"));
+      });
+    </script>
+  </body>
+</html>

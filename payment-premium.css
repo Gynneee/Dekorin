@@ -1,0 +1,278 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.payment-page {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.6s ease;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+}
+.header h1 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.back-btn {
+  background: #fff;
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.cart-icon {
+  font-size: 1.2rem;
+  color: #000;
+}
+
+/* ORDER SECTION */
+.order-section {
+  padding: 0 1.2rem 1.2rem;
+}
+.order-section h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 0.7rem;
+}
+
+/* PLAN CARD */
+.plan-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1rem 1.4rem;
+  margin-bottom: 1.5rem;
+}
+.plan-title {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+}
+.plan-price {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0.25rem 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+.plan-price .currency {
+  font-weight: 600;
+}
+.plan-price .period {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #333;
+}
+
+/* BENEFITS */
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+.benefit-item img {
+  width: 38px;
+  height: 38px;
+}
+.benefit-item h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+}
+.benefit-item p {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0.1rem 0 0;
+}
+
+/* VIRTUAL ACCOUNT */
+.virtual-account {
+  margin-bottom: 1rem;
+}
+.virtual-account h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.va-info {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.va-info img {
+  width: 28px;
+}
+.va-info p {
+  font-size: 0.85rem;
+  margin: 0;
+}
+.va-number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1.5px solid #2f5130;
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.5rem;
+}
+.va-number button {
+  border: none;
+  background: #f2f2f2;
+  border-radius: 20px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.va-number button:hover {
+  background: #d9ead9;
+}
+.va-number button.copied {
+  background: #2f5130;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* PAYMENT SUMMARY */
+.payment-summary {
+  background: #f9f9f9;
+  border-radius: 20px;
+  padding: 1.2rem;
+  box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.05);
+}
+.promo {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.promo input {
+  flex: 1;
+  border: none;
+  border-radius: 25px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  background: #eaeaea;
+}
+.promo button {
+  background: #2f5130;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.promo button:hover {
+  background: #244226;
+}
+.promo button.pressed {
+  transform: scale(0.95);
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+.summary-line span {
+  font-weight: 500;
+}
+hr {
+  border: none;
+  border-top: 1px dashed #ccc;
+  margin: 0.8rem 0;
+}
+.total {
+  font-weight: 600;
+}
+
+/* FOOTER */
+.footer {
+  padding: 1.2rem;
+  background: transparent;
+}
+.pay-btn {
+  width: 100%;
+  background: #2f5130;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 40px;
+  padding: 0.9rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+.pay-btn:hover {
+  background: #244226;
+}
+.pay-btn.pressed {
+  transform: scale(0.95);
+}
+
+/* SUCCESS POPUP */
+.success-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+.success-popup.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.success-icon {
+  background: #2f5130;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  font-size: 28px;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -4,16 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DekorIn - Login</title>
-    <link rel="stylesheet" href="login.css" />
+
+    <!-- Font & Icon -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link rel="icon" href="src/Home/DekorIn(6)(1).png" type="image/png">
+    <link rel="icon" href="src/Home/DekorIn(6)(1).png" type="image/png" />
+
+    <!-- CSS eksternal -->
+    <link rel="stylesheet" href="login.css" />
   </head>
 
   <body>
     <div class="container">
+      <!-- Header -->
       <div class="header-section">
         <h1 class="logo">
           <img src="src/signup/erasebg-transformed.png" alt="DekorIn Logo" />
@@ -24,24 +29,36 @@
         <p style="color: #4a4a4a; font-size: 20px">Let’s Get You Signed In</p>
       </div>
 
+      <!-- Login Section -->
       <div class="login-section">
-        <form id="loginForm" action="loggedin.html" method="get">
+        <form id="loginForm" novalidate>
+          <!-- Email -->
           <div class="input-group">
-            <input type="email" placeholder="Enter your email" required />
-          </div>
-          <div class="input-group">
-            <input type="password" placeholder="Enter your password" required />
+            <input type="email" id="email" placeholder="Enter your email" />
           </div>
 
-          <button type="submit" class="btn">Continue</button>
+          <!-- Password -->
+          <div class="input-group">
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+            />
+            <i class="fa-solid fa-eye toggle-eye"></i>
+          </div>
+
+          <!-- Login Button -->
+          <button type="submit" class="btn" id="loginBtn">Continue</button>
         </form>
 
+        <!-- Divider -->
         <div class="or-divider">
           <span class="line"></span>
-          <span style="z-index: 9999">OR</span>
+          <span>OR</span>
           <span class="line"></span>
         </div>
 
+        <!-- Social Login -->
         <div class="social-login">
           <button class="social-btn google">
             <img
@@ -56,12 +73,95 @@
           </button>
         </div>
 
+        <!-- Signup Text -->
         <p class="signup-text">
           Don’t have an account yet? <a href="signup.html">Sign Up</a>
         </p>
       </div>
     </div>
 
-    <script src="login.js"></script>
+    <!-- JavaScript -->
+    <script>
+      // === Toggle Password Visibility ===
+      const toggleIcon = document.querySelector(".toggle-eye");
+      const passwordInput = document.getElementById("password");
+
+      toggleIcon.addEventListener("click", () => {
+        const isHidden = passwordInput.type === "password";
+        passwordInput.type = isHidden ? "text" : "password";
+
+        if (isHidden) {
+          toggleIcon.classList.remove("fa-eye");
+          toggleIcon.classList.add("fa-eye-slash");
+        } else {
+          toggleIcon.classList.remove("fa-eye-slash");
+          toggleIcon.classList.add("fa-eye");
+        }
+      });
+
+      // === Dummy Test Accounts ===
+      const testAccounts = [
+        { email: "user@dekorin.com", password: "test123" },
+        { email: "admin@dekorin.com", password: "adminpass" },
+      ];
+
+      const btn = document.getElementById("loginBtn");
+      const form = document.getElementById("loginForm");
+
+      // === Form Validation & Animation ===
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        // Validasi kosong
+        if (!email || !password) {
+          showMessage("⚠️ Please fill in all fields", "error");
+          return;
+        }
+
+        // Loading animasi
+        showLoading();
+
+        setTimeout(() => {
+          const validUser = testAccounts.find(
+            (user) => user.email === email && user.password === password
+          );
+
+          if (validUser) {
+            showMessage("✅ Login Successful!", "success");
+            setTimeout(() => {
+              window.location.href = "loggedin.html";
+            }, 1000);
+          } else {
+            showMessage("❌ Invalid Credentials", "error");
+          }
+        }, 1500);
+      });
+
+      // === Loading Spinner ===
+      function showLoading() {
+        btn.disabled = true;
+        btn.classList.add("loading");
+        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Logging in...`;
+      }
+
+      // === Success / Error Message ===
+      function showMessage(message, type) {
+        btn.disabled = false;
+        btn.classList.remove("loading");
+        btn.innerHTML = message;
+        btn.style.transition = "all 0.4s ease";
+        btn.style.backgroundColor = type === "error" ? "#b3261e" : "#2f5130";
+        btn.classList.add("pulse");
+
+        setTimeout(() => {
+          btn.classList.remove("pulse");
+          btn.innerHTML = "Continue";
+          btn.style.backgroundColor = "#8c7f55";
+        }, 2000);
+      }
+    </script>
   </body>
 </html>
