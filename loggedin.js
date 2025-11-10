@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     productCards.forEach((card, index) => {
       card.style.opacity = '0';
       card.style.transform = 'translateY(20px) scale(0.98)';
-      card.style.transition = `opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1) ${(index % 3) * 0.08}s, transform 1s cubic-bezier(0.22, 0.61, 0.36, 1) ${(index % 3) * 0.08}s`;
+      card.style.transition = `opacity 0.12s cubic-bezier(0.22, 0.61, 0.36, 1) ${(index % 3) * 0.08}s, transform 0.12s cubic-bezier(0.22, 0.61, 0.36, 1) ${(index % 3) * 0.08}s`;
       
       const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
