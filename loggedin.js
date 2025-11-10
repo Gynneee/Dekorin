@@ -16,14 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   body.classList.add("logged-in");
 
-  /**
-   * ------------------------------------------------------------------
-   * OPTIMIZED FUNCTION
-   * This function now uses single observers for each type of item
-   * to avoid performance lag from creating thousands of observers.
-   * It relies on CSS classes (.is-visible) to trigger animations.
-   * ------------------------------------------------------------------
-   */
   const observeElements = () => {
     // 1. Observer for main sections
     const elementsToAnimate = document.querySelectorAll('.content-section, .features-section, .ai-chat-section, .estimate-section, .ar-preview-section, .main-footer-section');
@@ -44,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     elementsToAnimate.forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)';
+      el.style.transition = 'opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1), transform 1s cubic-bezier(0.22, 0.61, 0.36, 1)';
       sectionObserver.observe(el);
     });
 
