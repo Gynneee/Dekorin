@@ -91,7 +91,7 @@ body.modal-open .map-container iframe {
 .address-tags {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .tag {
   border: 1.5px solid #3a6b35;
