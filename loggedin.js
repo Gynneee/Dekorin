@@ -16,6 +16,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   body.classList.add("logged-in");
 
+  /**
+   * ------------------------------------------------------------------
+   * NEW: Typing Animation Function
+   * ------------------------------------------------------------------
+   */
+  /**
+   * Creates a typing effect for a given element.
+   * @param {HTMLElement} element - The <p> tag to type into.
+   * @param {string} text - The text to type.
+   * @param {number} [speed=40] - The delay between characters in ms.
+   */
+  function typeAnimation(element, text, speed = 40) {
+    let i = 0;
+    element.innerHTML = ""; // Clear existing text
+
+    function type() {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, speed);
+      } else {
+        // Typing is done, add class to remove cursor
+        element.classList.add("typing-done");
+      }
+    }
+    type();
+  }
+
+
+  /**
+   * ------------------------------------------------------------------
+   * UPDATED: Observe Elements Function
+   * ------------------------------------------------------------------
+   */
   const observeElements = () => {
     // 1. Observer for main sections
     const elementsToAnimate = document.querySelectorAll('.content-section, .features-section, .ai-chat-section, .estimate-section, .ar-preview-section, .main-footer-section');
@@ -23,8 +57,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const sectionObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          // Standard fade-in for all observed sections
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
+
+          // --- NEW TYPING LOGIC ---
+          // Check if this is the AI chat section
+          if (entry.target.classList.contains('ai-chat-section')) {
+            const chatBubbleP = document.getElementById('ai-chat-bubble-text');
+            // Check if it exists and hasn't already been animated
+            if (chatBubbleP && !chatBubbleP.classList.contains('typing-done')) { 
+              const textToType = chatBubbleP.getAttribute('data-text');
+              if (textToType) {
+                typeAnimation(chatBubbleP, textToType, 40); // 40ms speed
+              }
+            }
+          }
+          // --- END NEW LOGIC ---
+
           observer.unobserve(entry.target);
         }
       });
@@ -66,8 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 4. OPTIMIZED: Observer for all cards (product, review, invision)
-    const productCards = document.querySelectorAll('.product-card, .review-card, .article-card-invision');
-
+    // NOTE: This logic was from an earlier optimization. I am keeping it.
     const cardObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -77,12 +126,22 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }, { threshold: 0.05 });
 
-    productCards.forEach((card, index) => {
-      card.classList.add('card-animate-init');
-      cardObserver.observe(card);
+    // 5. Apply animation to HORIZONTAL SCROLL items (review, invision, etc.)
+    const horizontalSections = document.querySelectorAll('.content-slider-wrapper, .horizontal-scroll-wrapper');
+    
+    horizontalSections.forEach(section => {
+      // Find cards *within* this specific section
+      const cardsInSection = section.querySelectorAll('.review-card, .article-card-invision, .product-card');
+      
+      cardsInSection.forEach((card, index) => {
+        card.classList.add('card-animate-init');
+        // Progressive delay for each card in the horizontal list
+        card.style.transitionDelay = `${index * 0.05}s`; // 50ms stagger
+        cardObserver.observe(card);
+      });
     });
   };
-  // --- End of optimized observeElements ---
+  // --- End of observeElements ---
 
 
   function initializeSlider(containerSelector) {

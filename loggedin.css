@@ -1230,6 +1230,27 @@ body.logged-in .user-actions {
   will-change: auto; /* Reset the hint */
 }
 
+/* --- CSS for Typing Animation --- */
+
+#ai-chat-bubble-text::after {
+  content: '█'; /* You can use '|' or '█' */
+  font-weight: 600;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+/* This class gets added by JS when typing is finished */
+#ai-chat-bubble-text.typing-done::after {
+  content: '';
+  animation: none;
+  display: none;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 @media (max-width: 500px) {
   .footer-content {
     flex-direction: column;
