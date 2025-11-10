@@ -70,10 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Profile button click
-  profileBtn.addEventListener('click', () => {
-    if (sideMenu.classList.contains('open')) closeAllMenus();
-    openMenu(profileMenu);
-  });
+  if (profileBtn) { // <-- ADD THIS CHECK
+    profileBtn.addEventListener('click', () => {
+      if (sideMenu.classList.contains('open')) closeAllMenus();
+      openMenu(profileMenu);
+    });
+  }
 
   // Close menu button
   closeMenuBtn.addEventListener('click', closeAllMenus);
