@@ -1,6 +1,85 @@
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+
 document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, 0);
+  
   const body = document.body;
   body.classList.add("logged-in");
+
+  const observeElements = () => {
+    const elementsToAnimate = document.querySelectorAll('.content-section, .features-section, .ai-chat-section, .estimate-section, .ar-preview-section, .main-footer-section');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    elementsToAnimate.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)';
+      observer.observe(el);
+    });
+
+    const sliderContainer = document.querySelector('.slider-container');
+    if (sliderContainer) {
+      sliderContainer.style.opacity = '1';
+      sliderContainer.style.transform = 'translateY(0)';
+    }
+
+    const featureItems = document.querySelectorAll('.feature-item');
+    featureItems.forEach((item, index) => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px) scale(0.95)';
+      item.style.transition = `opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) ${index * 0.1}s, transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) ${index * 0.1}s`;
+      
+      const itemObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      itemObserver.observe(item);
+    });
+
+    const productCards = document.querySelectorAll('.product-card, .review-card, .article-card-invision');
+    productCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px) scale(0.98)';
+      card.style.transition = `opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) ${(index % 3) * 0.08}s, transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) ${(index % 3) * 0.08}s`;
+      
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+          }
+        });
+      }, { threshold: 0.05 });
+      
+      cardObserver.observe(card);
+    });
+  };
 
   function initializeSlider(containerSelector) {
     const sliderContainer = document.querySelector(containerSelector);
@@ -22,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       slides.forEach((slide, idx) => {
         slide.style.scrollSnapAlign = "center";
         slide.style.scrollSnapStop = "always";
-        slide.style.transition = "transform 0.12s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.1s cubic-bezier(0.4, 0, 0.2, 1)";
+        slide.style.transition = "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 0.61, 0.36, 1)";
         slide.style.flex = "0 0 330px";
         slide.style.marginLeft = idx === 0 ? "calc(50% - 165px)" : "0";
         slide.style.marginRight = idx === slides.length - 1 ? "calc(50% - 165px)" : "0";
@@ -67,11 +146,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const slideCenter = slideRect.left + slideRect.width / 2;
         const distance = Math.abs(wrapperCenter - slideCenter);
         const maxDistance = wrapperRect.width / 2;
-        const scale = Math.max(0.75, 1 - (distance / maxDistance) * 0.25);
-        const opacity = Math.max(0.5, 1 - (distance / maxDistance) * 0.5);
+        const normalizedDistance = distance / maxDistance;
+        
+        const scale = Math.max(0.75, 1 - (normalizedDistance * 0.25));
+        const opacity = Math.max(0.5, 1 - (normalizedDistance * 0.5));
 
         slide.style.transform = `scale(${scale})`;
         slide.style.opacity = opacity;
+        slide.style.filter = 'none';
+        slide.style.boxShadow = 'none';
       });
     };
 
@@ -96,11 +179,15 @@ document.addEventListener("DOMContentLoaded", () => {
     slides.forEach((slide) => observer.observe(slide));
 
     if (isContentSlider) {
-      wrapper.addEventListener("scroll", updateSlideScales);
+      let scrollTimeout;
+      wrapper.addEventListener("scroll", () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateSlideScales, 10);
+      });
       updateSlideScales();
       
       setTimeout(() => {
-        if (slides[0]) {
+        if (slides[0] && wrapper.getBoundingClientRect().top >= 0 && wrapper.getBoundingClientRect().bottom <= window.innerHeight) {
           slides[0].scrollIntoView({
             behavior: "auto",
             block: "nearest",
@@ -304,4 +391,6 @@ document.addEventListener("DOMContentLoaded", () => {
     section.classList.add(uniqueSelector);
     initializeSlider(`.${uniqueSelector}`);
   });
+
+  observeElements();
 });
