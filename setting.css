@@ -11,8 +11,7 @@ body {
 
 a,
 button,
-.nav-button,
-.menu-list li {
+.settings-content .setting-item {
   -webkit-tap-highlight-color: transparent;
 }
 
