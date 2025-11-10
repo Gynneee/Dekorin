@@ -1,256 +1,281 @@
 :root {
-  --green: #3D5919;
-  --gray: #888;
-  --bg: #f8f8f8;
-  --white: #fff;
-  --shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
-  --radius: 12px;
-  --primary-brown: #81724f; 
-}
-
-a,
-button,
-.nav-button,
-.menu-list li,
-input,
-textarea {
-  -webkit-tap-highlight-color: transparent;
+  --primary-green: #3d5919;
+  --light-gray: #f0f0f0;
+  --dark-gray: #4a4a4a;
+  --background-color: #faf7ef;
+  --border-color: #e0e0e0;
+  --primary-brown: #81724f;
 }
 
 * {
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
-}
-
-a,
-button,
-.nav-button,
-.menu-list li {
   -webkit-tap-highlight-color: transparent;
 }
 
-a:focus,
-button:focus,
-.nav-button:focus,
-.menu-list li:focus {
-  outline: none;
-}
-
 body {
-  background: var(--bg);
+  font-family: "Poppins", sans-serif;
+  background: #f5f5f7;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
   min-height: 100vh;
+  color: #1d1d1f;
 }
 
-a {
-  text-decoration: none;
-}
-
-.measure-container {
-  background: #fffdf9;
+.app-container {
   width: 100%;
-  max-width: 420px;
+  max-width: 430px;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow);
-  border-radius: 0 0 25px 25px;
-  overflow: hidden;
-  animation: fadeSlide 0.8s ease-out forwards;
-  position: relative; 
+  background: var(--background-color);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.08);
 }
 
+.app-container h1{
+  width: 60%;
+}
+
+/* Header */
 header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--background-color);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0.5px solid rgba(0,0,0,0.08);
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.2rem 1.4rem 0.8rem;
-  border-bottom: 1px solid #eee;
-  background: #fffdf9;
-  color: var(--green);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
 }
 
-header i{
-  color: var(--green);
-}
-
-header h2 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--green);
-}
-
-.nav-button, .profile-btn {
+.header-btn {
   background: none;
   border: none;
-  font-size: 1.3rem;
-  color: var(--green);
+  font-size: 1.5rem;
   cursor: pointer;
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s ease;
-  padding: 0; 
+  color: var(--primary-green);
 }
 
-.form-section {
-  padding: 1rem 1.2rem 3rem;
-  animation: fadeUp 1s ease;
+.header-btn:hover {
+  background: rgba(0,0,0,0.06);
 }
 
-label {
-  display: block;
+.header-btn:active {
+  transform: scale(0.96);
+  background: rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 17px;
   font-weight: 600;
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  color: #222;
+  letter-spacing: -0.4px;
 }
 
-.row {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 0.6rem;
-  min-width: 0;
+/* Main Content */
+main {
+  padding: 24px 20px 40px;
 }
 
-input[type="number"], input[type="text"], select {
-  flex: 1;
-  padding: 0.7rem 0.1rem;
-  border-radius: var(--radius);
-  border: 1.5px solid #ddd;
-  font-size: 0.9rem;
-  outline: none;
-  transition: 0.3s;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-input:focus, select:focus {
-  border-color: var(--green);
-  box-shadow: 0 4px 10px rgba(58, 107, 53, 0.15);
-  transform: translateY(-1px);
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
 }
 
-.unit-btn {
-  background: var(--green);
-  color: #fff;
-  padding: 0.7rem 1rem;
-  border: none;
-  border-radius: var(--radius);
-  font-weight: 500;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 44px;
-  box-shadow: 0 3px 8px rgba(58, 107, 53, 0.25);
-  transition: 0.3s ease;
+.card-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #86868b;
+  margin-bottom: 12px;
 }
 
-.unit-btn:hover {
-  background: #2f562b;
-  transform: scale(1.05);
-  box-shadow: 0 5px 12px rgba(58,107,53,0.3);
+/* Select Input */
+.select-wrapper {
+  position: relative;
+  margin-bottom: 24px;
 }
 
 select {
   width: 100%;
-  margin-top: 0.3rem;
+  padding: 14px 16px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 12px;
+  font-size: 15px;
+  color: #1d1d1f;
+  background: #f5f5f7;
   appearance: none;
   cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
 }
 
-.total-section {
-  background: var(--white);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin-top: 1.5rem;
-  padding: 1rem;
-  border-radius: var(--radius);
-  transition: 0.3s ease;
+select:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  background: #ffffff;
+  box-shadow: 0 0 0 1px var(--primary-green);
 }
 
-.total-section:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+.select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #86868b;
+  pointer-events: none;
 }
 
-.total-row {
+/* Input Groups */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.input-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin: 0.8rem 0;
+  background: #f5f5f7;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.12);
+  transition: all 0.2s ease;
 }
 
-.total-row input {
+.input-wrapper:focus-within {
+  background: #ffffff;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 1px var(--primary-green);
+}
+
+input[type="number"] {
   flex: 1;
-  padding: 0.75rem 0.9rem;
-  border-radius: 10px;
-  border: 1.5px solid #ddd;
-  outline: none;
-  background: #fafafa;
-  font-size: 0.95rem;
-  height: 44px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-  min-width: 0;
-}
-
-.total-row .unit-btn {
-  height: 44px;
-  padding: 0 1rem;
-  font-weight: 600;
-}
-
-.calculate-btn {
-  width: 90%;
-  background: var(--green);
-  color: #fff;
-  padding: 1rem;
+  padding: 14px 12px;
   border: none;
-  border-radius: 40px;
-  font-weight: 600;
-  font-size: 1rem;
-  margin: 2rem auto;
-  display: block;
-  box-shadow: 0 4px 12px rgba(58, 107, 53, 0.3);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.calculate-btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
+  background: transparent;
+  font-size: 15px;
+  color: #1d1d1f;
+  font-family: inherit;
   width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: skewX(-45deg);
-  transition: 0.5s;
 }
 
-.calculate-btn:hover::after {
-  left: 120%;
+input[type="number"]:focus {
+  outline: none;
+}
+
+input[type="number"]::placeholder {
+  color: #86868b;
+}
+
+.unit-label {
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #86868b;
+  white-space: nowrap;
+}
+
+/* Result Card */
+.result-card {
+  background: linear-gradient(135deg, var(--primary-green) 0%, #5c8625 100%);
+  border: none;
+  color: white;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.result-card .card-title {
+  color: rgba(255,255,255,0.8);
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.result-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.result-row:first-child {
+  padding-top: 0;
+}
+
+.result-label {
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.result-value {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+/* Calculate Button */
+.calculate-btn {
+  width: 100%;
+  padding: 16px;
+  margin-top: 24px;
+  background: var(--primary-brown);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  letter-spacing: -0.3px;
 }
 
 .calculate-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 18px rgba(58, 107, 53, 0.4);
+  background: var(--primary-green);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
 
-.no-scroll {
-  overflow: hidden;
+.calculate-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* --- Menu Overlay (from loggedin.css) --- */
 .menu-overlay {
   position: fixed;
   top: 0;
@@ -267,7 +292,15 @@ select {
   display: block;
   opacity: 1;
 }
+/* This .show class is for the popup */
+.menu-overlay.show {
+  display: block;
+  opacity: 1;
+  z-index: 10000;
+}
 
+
+/* --- Side Menu (from loggedin.css) --- */
 .side-menu {
   position: fixed;
   top: 0;
@@ -275,7 +308,7 @@ select {
   width: 70%;
   max-width: 300px;
   height: 100%;
-  background-color: var(--green);
+  background-color: #354c18;
   color: white;
   display: flex;
   flex-direction: column;
@@ -289,6 +322,20 @@ select {
   left: 0;
 }
 
+/* This targets the .menu-header from inmeasure.css */
+.menu-header {
+  padding: 0;
+  border-bottom: none;
+  display: flex;
+  justify-content: flex-end; /* Pushes close button right */
+  margin-bottom: 0.5rem;
+}
+
+/* Hides the "Menu" H2 from inmeasure.css */
+.menu-header h2 {
+  display: none;
+}
+
 .close-btn {
   background: none;
   border: none;
@@ -296,8 +343,18 @@ select {
   font-size: 2rem;
   align-self: flex-end;
   cursor: pointer;
-  margin-bottom: 0.5rem;
+  /* Reset inmeasure.css styles */
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  transition: none;
+  padding: 0; /* Align-self handles position */
 }
+.close-btn:hover {
+  background: none;
+  opacity: 0.8;
+}
+
 
 .menu-list {
   list-style: none;
@@ -313,9 +370,7 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s ease,
-    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: background-color 0.3s ease, color 0.3s ease;
   transform: translateX(0) translateY(0);
   box-shadow: none;
   border: 1px solid transparent;
@@ -362,33 +417,65 @@ select {
   transition: opacity 0.2s;
 }
 
+.menu-footer a i {
+  margin-right: 0;
+  width: auto;
+  text-align: left;
+}
+
 .menu-footer a:hover {
   opacity: 0.8;
 }
 
 .menu-list li.active {
-  transform: translateX(5px) translateY(-5px);
+  animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3),
     inset 0 1px 1px rgba(255, 255, 255, 0.5),
     inset 0 -1px 1px rgba(0, 0, 0, 0.2);
   background-color: var(--primary-brown);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .menu-list li.has-sub.active-sub {
-  transform: translateX(5px) translateY(-5px);
+  animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   position: relative;
   z-index: 10;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3),
     inset 0 1px 1px rgba(255, 255, 255, 0.5),
     inset 0 -1px 1px rgba(0, 0, 0, 0.2);
   background-color: var(--primary-brown);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .menu-list li:active {
   transform: translateY(0);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateX(0) translateY(0);
+    backdrop-filter: blur(0px);
+    -webkit-filter: blur(0px);
+  }
+  60% {
+    transform: translateX(7px) translateY(-7px);
+    backdrop-filter: blur(0.3px);
+    -webkit-filter: blur(0.3px);
+  }
+  100% {
+    transform: translateX(5px) translateY(-5px);
+    backdrop-filter: blur(0px);
+    -webkit-filter: blur(0px);
+  }
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 .sub-menu {
@@ -424,6 +511,13 @@ select {
 
 .sub-menu li:first-child {
   margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+  border-radius: 5px;
+}
+
+.sub-menu li:last-child {
+  border-radius: 5px;
+  margin-bottom: 15px;
 }
 
 .menu-list li.has-sub.active-sub > span > i {
@@ -439,6 +533,7 @@ select {
   transition: transform 0.3s ease;
 }
 
+/* --- Profile Menu (from loggedin.css) --- */
 .profile-menu {
   position: fixed;
   top: 0;
@@ -446,7 +541,7 @@ select {
   width: 70%;
   max-width: 300px;
   height: 100%;
-  background-color: #faf7ef;
+  background-color: #ffffff;
   z-index: 9999;
   transition: right 0.3s ease;
   display: flex;
@@ -458,16 +553,20 @@ select {
   right: 0;
 }
 
-.profile-menu-header {
+/* This targets the .profile-header from inmeasure.css */
+.profile-header {
   display: flex;
   align-items: center;
   gap: 15px;
   padding: 20px 24px;
+  background: none; /* Remove blue gradient */
+  color: #000; /* Reset color */
 }
 
-.profile-icon-wrapper {
+/* This targets the .profile-icon from inmeasure.css */
+.profile-icon {
   font-size: 1.5rem;
-  color: var(--green);
+  color: var(--primary-green);
   background-color: #f0f0f0;
   border-radius: 50%;
   width: 50px;
@@ -475,22 +574,28 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0; /* Reset inmeasure.css */
 }
 
-.profile-menu-header h3 {
+.profile-header h3 {
   font-size: 1.1rem;
   font-weight: 600;
   color: #000;
   margin: 0;
+  letter-spacing: normal; /* Reset inmeasure.css */
 }
 
 .profile-menu-list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0; /* Reset inmeasure.css */
 }
 
-.profile-menu-list li a {
+.profile-menu-list li {
+  margin-bottom: 0; /* Reset inmeasure.css */
+}
+
+.profile-menu-list a {
   display: flex;
   align-items: center;
   gap: 18px;
@@ -499,11 +604,17 @@ select {
   color: #333;
   font-size: 1rem;
   font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 0; /* Reset inmeasure.css */
+  transition: none; /* Reset inmeasure.css */
+}
+.profile-menu-list a:hover {
+  background-color: #f5f5f7;
 }
 
-.profile-menu-list li a i {
+.profile-menu-list a i {
   font-size: 1.1rem;
-  color: #4a4a4a; /* --dark-gray */
+  color: var(--primary-green);
   width: 24px;
   text-align: center;
 }
@@ -526,29 +637,15 @@ select {
   color: #d9534f;
 }
 
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 10000;
-  display: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.popup-overlay.show {
-  display: block;
-  opacity: 1;
-}
+/* --- Logout Popup (from loggedin.css) --- */
+/* NOTE: The overlay for this is .menu-overlay.show */
 
 .popup-container {
   position: fixed;
   bottom: -100%;
   left: 0;
   width: 100%;
-  max-width: 420px;
+  max-width: 700px; /* This is from loggedin.css, inmeasure's was 430px */
   margin: 0 auto;
   right: 0;
   background-color: #ffffff;
@@ -557,29 +654,39 @@ select {
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);
   z-index: 10001;
   transition: bottom 0.3s ease-out;
-  display: none;
+  display: none; /* changed from inmeasure.css */
+  /* Reset inmeasure.css */
+  padding: 0;
+  max-width: 700px; /* Use max-width from loggedin.css */
+  text-align: center;
+  transform: none;
 }
 .popup-container.show {
   display: block;
   bottom: 0;
+  /* Reset inmeasure.css */
+  transform: none;
 }
 
+/* This class is new, you may need to add it to your HTML */
 .popup-content {
   padding: 25px 30px;
   text-align: center;
 }
 
-.popup-content h2 {
+.popup-container h2 {
   font-size: 1.4rem;
   font-weight: 600;
   color: #000;
   margin-bottom: 15px;
+  letter-spacing: normal; /* Reset inmeasure.css */
 }
 
-.popup-content p {
+.popup-container p {
   font-size: 1rem;
   color: #555;
   margin-bottom: 25px;
+  line-height: 1.6; /* Use loggedin.css line-height */
 }
 
 .popup-buttons {
@@ -598,7 +705,11 @@ select {
   border: none;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif; /* This is from loggedin.css */
+  -webkit-tap-highlight-color: transparent;
+}
+.popup-btn:focus {
+  outline: none;
 }
 
 .popup-btn-yes {
@@ -611,29 +722,21 @@ select {
 }
 
 .popup-btn-no {
-  background-color: var(--green);
+  background-color: var(--primary-green);
   color: #fff;
-  border: 1px solid var(--green);
+  border: 1px solid var(--primary-green);
 }
 .popup-btn-no:hover {
-  background-color: #2f562b;
-  border-color: #2f562b;
+  background-color: #2a5225;
+  border-color: #2a5225;
 }
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeIn 0.6s ease forwards;
+.no-scroll {
+  overflow: hidden;
 }
 
+/* Animations */
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeSlide {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -644,13 +747,25 @@ select {
   }
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.card {
+  animation: fadeIn 0.5s ease backwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Remove number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
