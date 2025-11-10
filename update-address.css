@@ -20,7 +20,7 @@ body {
 .update-address-page {
   width: 100%;
   max-width: 420px;
-  background-color: #fff;
+  background-color: #faf7ef;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -139,12 +139,11 @@ textarea {
 .bottom-buttons {
   position: sticky;
   bottom: 0;
-  background: #fff;
+  background: #faf7ef;
   display: flex;
   justify-content: space-around;
   gap: 1rem;
   padding: 1rem 1rem 1.5rem;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
 }
 .delete-btn,
 .update-btn {
