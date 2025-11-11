@@ -1,49 +1,160 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Review Detail - DekorIn</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="review-detail.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review Detail - DekorIn</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="review-detail.css" />
+  </head>
 
-<body>
-  <div class="review-page">
-    <!-- Header -->
-    <header class="header">
-      <button class="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
-      <h2>Review</h2>
-      <i class="fa-solid fa-cart-shopping cart-icon"></i>
-    </header>
+  <body>
+    <div class="mobile-container">
+      <div class="review-page">
+        <header class="header">
+          <button
+            class="back-btn"
+            onclick="window.location.href='detail-produk.html'"
+          >
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <h2>Review</h2>
+          <i class="fa-solid fa-cart-shopping cart-icon"></i>
+        </header>
 
-    <!-- Rating Summary -->
-    <section class="rating-summary fade-in">
-      <div class="rating-left">
-        <h1>4.9</h1>
-        <div class="stars">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
+        <section class="rating-summary fade-in">
+          <div class="rating-left">
+            <h1>4.9</h1>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p>(5.0k+ Reviews)</p>
+          </div>
+          <div class="rating-bars">
+            <div class="bar">
+              <span>5</span>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="bar">
+              <span>4</span>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="bar">
+              <span>3</span>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 40%"></div>
+              </div>
+            </div>
+            <div class="bar">
+              <span>2</span>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 15%"></div>
+              </div>
+            </div>
+            <div class="bar">
+              <span>1</span>
+              <div class="bar-bg">
+                <div class="bar-fill" style="width: 5%"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-box fade-in">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search in Reviews" />
         </div>
-        <p>(5.0k+ Reviews)</p>
-      </div>
-      <div class="rating-bars">
-        <div class="bar"><span>5</span><div class="bar-bg"><div class="bar-fill" style="width:90%"></div></div></div>
-        <div class="bar"><span>4</span><div class="bar-bg"><div class="bar-fill" style="width:70%"></div></div></div>
-        <div class="bar"><span>3</span><div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div></div>
-        <div class="bar"><span>2</span><div class="bar-bg"><div class="bar-fill" style="width:15%"></div></div></div>
-        <div class="bar"><span>1</span><div class="bar-bg"><div class="bar-fill" style="width:5%"></div></div></div>
-      </div>
-    </section>
 
-    <!-- Search -->
-    <div class="search-box fade-in">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" placeholder="Search in Reviews" />
+        <div class="rating-filters fade-in">
+          <button><i class="fa-solid fa-star"></i> 1.0</button>
+          <button><i class="fa-solid fa-star"></i> 2.0</button>
+          <button><i class="fa-solid fa-star"></i> 3.0</button>
+          <button><i class="fa-solid fa-star"></i> 4.0</button>
+          <button class="active">
+            <i class="fa-solid fa-star"></i> 5.0
+          </button>
+        </div>
+
+        <section class="reviews fade-in">
+          <div class="review-card">
+            <div class="profile">
+              <div class="circle"></div>
+              <div class="info">
+                <h4>fadhil.gg_gaming</h4>
+                <div class="stars small">
+                  <i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+              <span class="time">3 months ago</span>
+            </div>
+            <p>Wallpaper sangat bagus, ketiga anak saya menyukainya. Mantap!</p>
+            <div class="review-images">
+              <div class="img-placeholder"></div>
+              <div class="img-placeholder"></div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="profile">
+              <div class="circle"></div>
+              <div class="info">
+                <h4>eka.dil</h4>
+                <div class="stars small">
+                  <i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+              <span class="time">3 months ago</span>
+            </div>
+            <p>KEREN</p>
+          </div>
+
+          <div class="review-card">
+            <div class="profile">
+              <div class="circle"></div>
+              <div class="info">
+                <h4>putra.sat</h4>
+                <div class="stars small">
+                  <i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i
+                  ><i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+              <span class="time">3 months ago</span>
+            </div>
+            <p>Elegan & kualitasnya sangat baik</p>
+            <div class="review-images">
+              <div class="img-placeholder"></div>
+              <div class="img-placeholder"></div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
 
+<<<<<<< HEAD
     <!-- Rating Filters -->
     <div class="rating-filters fade-in">
       <button><i class="fa-solid fa-star"></i> 1.0</button>
@@ -119,8 +230,16 @@
       btn.addEventListener('click', () => {
         filters.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+=======
+    <script>
+      const filters = document.querySelectorAll(".rating-filters button");
+      filters.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filters.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        });
+>>>>>>> b39d60ce5a7d6d600416b2331a6d6019a07c5db7
       });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>

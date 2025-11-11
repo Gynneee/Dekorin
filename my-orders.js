@@ -38,5 +38,17 @@ function setActiveTab(tabName, btn) {
         window.location.href = "track-order.html";
       });
     }
+
+    if (btn.textContent.trim() === "Review") {
+      btn.addEventListener("click", () => {
+        window.location.href = "review-detail.html";
+      });
+    }
+
+    if (btn.textContent.trim() === "Re-Order") {
+      btn.addEventListener("click", () => {
+        window.location.href = "detail-produk.html";
+      });
+    }
   });
 }

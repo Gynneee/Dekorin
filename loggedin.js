@@ -1,8 +1,8 @@
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
 }
 
-window.addEventListener('beforeunload', () => {
+window.addEventListener("beforeunload", () => {
   window.scrollTo(0, 0);
 });
 
@@ -12,24 +12,42 @@ document.addEventListener("DOMContentLoaded", () => {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }, 0);
-  
+
   const body = document.body;
   body.classList.add("logged-in");
 
-  /**
-   * ------------------------------------------------------------------
-   * NEW: Typing Animation Function
-   * ------------------------------------------------------------------
-   */
-  /**
-   * Creates a typing effect for a given element.
-   * @param {HTMLElement} element - The <p> tag to type into.
-   * @param {string} text - The text to type.
-   * @param {number} [speed=40] - The delay between characters in ms.
-   */
+  const mainSearchInput = document.querySelector(
+    ".main-header .search-bar input"
+  );
+  const searchPage = document.getElementById("searchPage");
+  const searchBackBtn = document.getElementById("searchBackBtn");
+  const searchPageInput = document.getElementById("searchPageInput");
+
+  if (mainSearchInput) {
+    mainSearchInput.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      body.classList.add("search-active");
+
+      if (searchPageInput) {
+        searchPageInput.focus();
+      }
+    });
+  }
+
+  if (searchBackBtn) {
+    searchBackBtn.addEventListener("click", () => {
+      body.classList.remove("search-active");
+
+      mainSearchInput.value = "";
+      if (searchPageInput) {
+        searchPageInput.value = "";
+      }
+    });
+  }
+
   function typeAnimation(element, text, speed = 40) {
     let i = 0;
-    element.innerHTML = ""; // Clear existing text
+    element.innerHTML = "";
 
     function type() {
       if (i < text.length) {
@@ -37,137 +55,140 @@ document.addEventListener("DOMContentLoaded", () => {
         i++;
         setTimeout(type, speed);
       } else {
-        // Typing is done, add class to remove cursor
         element.classList.add("typing-done");
       }
     }
     type();
   }
 
-
-  /**
-   * ------------------------------------------------------------------
-   * UPDATED: Observe Elements Function
-   * ------------------------------------------------------------------
-   */
   const observeElements = () => {
-    // 1. Observer for main sections
-    const elementsToAnimate = document.querySelectorAll('.content-section, .features-section, .ai-chat-section, .estimate-section, .ar-preview-section, .main-footer-section');
-    
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Standard fade-in for all observed sections
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+    const elementsToAnimate = document.querySelectorAll(
+      ".content-section, .features-section, .ai-chat-section, .estimate-section, .ar-preview-section, .main-footer-section"
+    );
 
-          // --- NEW TYPING LOGIC ---
-          // Check if this is the AI chat section
-          if (entry.target.classList.contains('ai-chat-section')) {
-            const chatBubbleP = document.getElementById('ai-chat-bubble-text');
-            // Check if it exists and hasn't already been animated
-            if (chatBubbleP && !chatBubbleP.classList.contains('typing-done')) { 
-              const textToType = chatBubbleP.getAttribute('data-text');
-              if (textToType) {
-                typeAnimation(chatBubbleP, textToType, 40); // 40ms speed
+    const sectionObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+
+            if (entry.target.classList.contains("ai-chat-section")) {
+              const chatBubbleP =
+                document.getElementById("ai-chat-bubble-text");
+              if (
+                chatBubbleP &&
+                !chatBubbleP.classList.contains("typing-done")
+              ) {
+                const textToType = chatBubbleP.getAttribute("data-text");
+                if (textToType) {
+                  typeAnimation(chatBubbleP, textToType, 40);
+                }
               }
             }
+
+            observer.unobserve(entry.target);
           }
-          // --- END NEW LOGIC ---
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
 
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
-
-    elementsToAnimate.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)';
+    elementsToAnimate.forEach((el) => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(30px)";
+      el.style.transition =
+        "opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)";
       sectionObserver.observe(el);
     });
 
-    // 2. Handle slider container
-    const sliderContainer = document.querySelector('.slider-container');
+    const sliderContainer = document.querySelector(".slider-container");
     if (sliderContainer) {
-      sliderContainer.style.opacity = '1';
-      sliderContainer.style.transform = 'translateY(0)';
+      sliderContainer.style.opacity = "1";
+      sliderContainer.style.transform = "translateY(0)";
     }
 
-    // 3. OPTIMIZED: Observer for feature items
-    const featureItems = document.querySelectorAll('.feature-item');
-    
-    const itemObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
+    const featureItems = document.querySelectorAll(".feature-item");
+
+    const itemObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
     featureItems.forEach((item, index) => {
-      item.classList.add('feature-item-animate-init');
+      item.classList.add("feature-item-animate-init");
       item.style.transitionDelay = `${index * 0.2}s`;
       itemObserver.observe(item);
     });
 
-    // 4. OPTIMIZED: Observer for all cards (product, review, invision)
-    // NOTE: This logic was from an earlier optimization. I am keeping it.
-    const cardObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05 });
+    const cardObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
 
-    // 5. Apply animation to HORIZONTAL SCROLL items (review, invision, etc.)
-    const horizontalSections = document.querySelectorAll('.content-slider-wrapper, .horizontal-scroll-wrapper');
-    
-    horizontalSections.forEach(section => {
-      // Find cards *within* this specific section
-      const cardsInSection = section.querySelectorAll('.review-card, .article-card-invision, .product-card');
-      
+    const horizontalSections = document.querySelectorAll(
+      ".content-slider-wrapper, .horizontal-scroll-wrapper"
+    );
+
+    horizontalSections.forEach((section) => {
+      const cardsInSection = section.querySelectorAll(
+        ".review-card, .article-card-invision, .product-card"
+      );
+
       cardsInSection.forEach((card, index) => {
-        card.classList.add('card-animate-init');
-        // Progressive delay for each card in the horizontal list
-        card.style.transitionDelay = `${index * 0.05}s`; // 50ms stagger
+        card.classList.add("card-animate-init");
+        card.style.transitionDelay = `${index * 0.05}s`;
         cardObserver.observe(card);
       });
     });
   };
-  // --- End of observeElements ---
-
 
   function initializeSlider(containerSelector) {
     const sliderContainer = document.querySelector(containerSelector);
     if (!sliderContainer) return;
 
-    const wrapper = sliderContainer.querySelector(".slider-wrapper, .content-slider-wrapper");
+    const wrapper = sliderContainer.querySelector(
+      ".slider-wrapper, .content-slider-wrapper"
+    );
     const slides = wrapper ? Array.from(wrapper.children) : [];
     const dotsContainer = sliderContainer.querySelector(".slider-dots");
     if (!wrapper || slides.length === 0 || !dotsContainer) return;
 
-    const isContentSlider = wrapper.classList.contains("content-slider-wrapper");
+    const isContentSlider =
+      wrapper.classList.contains("content-slider-wrapper");
 
     if (isContentSlider) {
       wrapper.style.scrollSnapType = "x mandatory";
       wrapper.style.scrollPaddingLeft = "0";
       wrapper.style.scrollPaddingRight = "0";
       wrapper.style.justifyContent = "flex-start";
-      
+
       slides.forEach((slide, idx) => {
         slide.style.scrollSnapAlign = "center";
         slide.style.scrollSnapStop = "always";
-        slide.style.transition = "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 0.61, 0.36, 1)";
+        slide.style.transition =
+          "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 0.61, 0.36, 1)";
         slide.style.flex = "0 0 330px";
         slide.style.marginLeft = idx === 0 ? "calc(50% - 165px)" : "0";
-        slide.style.marginRight = idx === slides.length - 1 ? "calc(50% - 165px)" : "0";
+        slide.style.marginRight =
+          idx === slides.length - 1 ? "calc(50% - 165px)" : "0";
       });
     }
 
@@ -183,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
             slides[idx].scrollIntoView({
               behavior: "smooth",
               block: "nearest",
-              inline: "center"
+              inline: "center",
             });
           } else {
             wrapper.scrollTo({
@@ -210,14 +231,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const distance = Math.abs(wrapperCenter - slideCenter);
         const maxDistance = wrapperRect.width / 2;
         const normalizedDistance = distance / maxDistance;
-        
-        const scale = Math.max(0.75, 1 - (normalizedDistance * 0.25));
-        const opacity = Math.max(0.5, 1 - (normalizedDistance * 0.5));
+
+        const scale = Math.max(0.75, 1 - normalizedDistance * 0.25);
+        const opacity = Math.max(0.5, 1 - normalizedDistance * 0.5);
 
         slide.style.transform = `scale(${scale})`;
         slide.style.opacity = opacity;
-        slide.style.filter = 'none';
-        slide.style.boxShadow = 'none';
+        slide.style.filter = "none";
+        slide.style.boxShadow = "none";
       });
     };
 
@@ -248,13 +269,17 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollTimeout = setTimeout(updateSlideScales, 10);
       });
       updateSlideScales();
-      
+
       setTimeout(() => {
-        if (slides[0] && wrapper.getBoundingClientRect().top >= 0 && wrapper.getBoundingClientRect().bottom <= window.innerHeight) {
+        if (
+          slides[0] &&
+          wrapper.getBoundingClientRect().top >= 0 &&
+          wrapper.getBoundingClientRect().bottom <= window.innerHeight
+        ) {
           slides[0].scrollIntoView({
             behavior: "auto",
             block: "nearest",
-            inline: "center"
+            inline: "center",
           });
           updateSlideScales();
         }
@@ -272,7 +297,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutPopup = document.getElementById("logoutPopup");
   const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
   const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
-  const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
+  const logoutLink = document.querySelector(
+    ".profile-menu-list a i.fa-sign-out-alt"
+  );
   const signOutAnchor = logoutLink?.closest("a");
 
   const openMenu = (menu) => {
@@ -301,7 +328,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (logoutPopup && menuOverlay) {
       menuOverlay.classList.remove("show");
       logoutPopup.classList.remove("show");
-      if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
+      if (
+        !sideMenu?.classList.contains("open") &&
+        !profileMenu?.classList.contains("open")
+      ) {
         body.classList.remove("no-scroll");
       }
     }
@@ -330,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-  
+
   sideMenu?.addEventListener("click", (e) => e.stopPropagation());
   profileMenu?.addEventListener("click", (e) => e.stopPropagation());
 
@@ -354,52 +384,59 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuItems = document.querySelectorAll(".menu-list > li");
 
   let currentPageFile = window.location.pathname.split("/").pop();
-  let currentPageBase = currentPageFile.replace('.html', '');
-  
+  let currentPageBase = currentPageFile.replace(".html", "");
+
   if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
-      if (window.location.pathname === '/' || window.location.pathname === '') {
-        currentPageFile = "loggedin.html";
-        currentPageBase = "loggedin";
-      } else {
-        currentPageFile = "loggedin.html";
-        currentPageBase = "loggedin";
-      }
+    if (window.location.pathname === "/" || window.location.pathname === "") {
+      currentPageFile = "loggedin.html";
+      currentPageBase = "loggedin";
+    } else {
+      currentPageFile = "loggedin.html";
+      currentPageBase = "loggedin";
+    }
   }
 
   allLinks.forEach((link) => {
     const linkHref = link.getAttribute("href");
     const parentLi = link.closest("li");
-    if (!linkHref || linkHref === '#') return;
+    if (!linkHref || linkHref === "#") return;
 
-    const linkBase = linkHref.replace('.html', '');
+    const linkBase = linkHref.replace(".html", "");
 
-    if (linkHref === currentPageFile || linkBase === currentPageBase || linkHref === `/${currentPageBase}`) {
+    if (
+      linkHref === currentPageFile ||
+      linkBase === currentPageBase ||
+      linkHref === `/${currentPageBase}`
+    ) {
       parentLi?.classList.add("active");
       const subMenu = parentLi?.closest(".sub-menu");
       if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
     } else {
       parentLi?.classList.remove("active");
       const subMenuParent = parentLi?.closest(".has-sub");
-      if(subMenuParent && !subMenuParent.querySelector('.sub-menu li.active')){
-          subMenuParent.classList.remove("active-sub");
+      if (
+        subMenuParent &&
+        !subMenuParent.querySelector(".sub-menu li.active")
+      ) {
+        subMenuParent.classList.remove("active-sub");
       }
     }
   });
 
   menuItems.forEach((item) => {
     item.addEventListener("click", (e) => {
-        let currentPageFileOnClick = window.location.pathname.split("/").pop();
-        let currentPageBaseOnClick = currentPageFileOnClick.replace('.html', '');
-        
-        if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
-            currentPageFileOnClick = "loggedin.html";
-            currentPageBaseOnClick = "loggedin";
-        }
+      let currentPageFileOnClick = window.location.pathname.split("/").pop();
+      let currentPageBaseOnClick = currentPageFileOnClick.replace(".html", "");
+
+      if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
+        currentPageFileOnClick = "loggedin.html";
+        currentPageBaseOnClick = "loggedin";
+      }
 
       if (item.classList.contains("has-sub")) {
         if (e.target.closest(".sub-menu a")) {
-            closeAllMenus();
-            return;
+          closeAllMenus();
+          return;
         }
         item.classList.toggle("active-sub");
         menuItems.forEach((i) => {
@@ -411,21 +448,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const link = item.querySelector("a");
         if (!link) return;
         const linkHref = link.getAttribute("href");
-        const linkBase = linkHref ? linkHref.replace('.html', '') : '';
+        const linkBase = linkHref ? linkHref.replace(".html", "") : "";
 
-        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick && linkBase !== currentPageBaseOnClick) {
+        if (
+          linkHref &&
+          linkHref !== "#" &&
+          linkHref !== currentPageFileOnClick &&
+          linkBase !== currentPageBaseOnClick
+        ) {
           closeAllMenus();
           return;
         }
 
         e.preventDefault();
         menuItems.forEach((i) => {
-            i.classList.remove("active");
-            i.classList.remove("active-sub");
+          i.classList.remove("active");
+          i.classList.remove("active-sub");
         });
         item.classList.add("active");
-          const subMenu = item.closest(".sub-menu");
-          if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
+        const subMenu = item.closest(".sub-menu");
+        if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
 
         closeAllMenus();
       }
@@ -439,8 +481,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const handleScroll = () => {
       const maxScrollLeft = featuresGrid.scrollWidth - featuresGrid.clientWidth;
 
-      featuresSection.classList.toggle("show-left-shadow", featuresGrid.scrollLeft > 10);
-      featuresSection.classList.toggle("show-right-shadow", featuresGrid.scrollLeft < maxScrollLeft - 10);
+      featuresSection.classList.toggle(
+        "show-left-shadow",
+        featuresGrid.scrollLeft > 10
+      );
+      featuresSection.classList.toggle(
+        "show-right-shadow",
+        featuresGrid.scrollLeft < maxScrollLeft - 10
+      );
     };
 
     featuresGrid.addEventListener("scroll", handleScroll);
@@ -455,6 +503,5 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeSlider(`.${uniqueSelector}`);
   });
 
-  // Call the main function to observe all elements
   observeElements();
 });
