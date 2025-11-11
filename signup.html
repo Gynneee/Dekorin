@@ -119,19 +119,19 @@
           .value.trim();
 
         if (!email || !password || !confirm) {
-          showMessage("⚠️ Please fill in all fields", "error");
+          showMessage("Please fill in all fields", "error");
           return;
         }
 
         if (password !== confirm) {
-          showMessage("❌ Passwords do not match", "error");
+          showMessage("Passwords do not match", "error");
           return;
         }
 
         showLoading();
 
         setTimeout(() => {
-          showMessage("✅ Account Created!", "success");
+          showMessage("Account Created!", "success");
           setTimeout(() => {
             window.location.href = "loggedin.html";
           }, 1000);
