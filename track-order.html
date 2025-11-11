@@ -8,18 +8,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <div class="track-container">
     <!-- Navbar -->
     <header class="navbar">
-      <button class="nav-btn back" onclick="window.location.href='my-orders.html'"><i class="fas fa-arrow-left"></i></button>
+      <button class="nav-btn back"><i class="fas fa-arrow-left"></i></button>
       <h2>Track Order</h2>
       <button class="nav-btn cart"><i class="fas fa-shopping-cart"></i></button>
     </header>
 
     <!-- Product -->
     <section class="product-summary fade-in">
-      <img src="src/receipt/imagemyorder.png" alt="Wallpaper">
+      <img src="src/cart/cart3.png" alt="Wallpaper">
       <div class="info">
         <h3>Wallpaper Polos</h3>
         <p>Dekorin Store | 2 Roll</p>
@@ -68,9 +69,9 @@
         <div class="right"><i class="fa-solid fa-box"></i></div>
       </div>
 
-      <div class="status-step">
+      <div class="status-step completed">
         <div class="left">
-          <span class="circle gray"><i class="fa-solid fa-check"></i></span>
+          <span class="circle"><i class="fa-solid fa-check"></i></span>
           <span class="line"></span>
         </div>
         <div class="center">
@@ -80,9 +81,9 @@
         <div class="right"><i class="fa-solid fa-truck"></i></div>
       </div>
 
-      <div class="status-step">
+      <div class="status-step completed">
         <div class="left">
-          <span class="circle gray"><i class="fa-solid fa-check"></i></span>
+          <span class="circle"><i class="fa-solid fa-check"></i></span>
         </div>
         <div class="center">
           <h5>Delivered</h5>
@@ -91,6 +92,12 @@
         <div class="right"><i class="fa-solid fa-box-open"></i></div>
       </div>
     </section>
+
+    <!-- Action Buttons -->
+    <div class="bottom-buttons">
+      <button class="btn return">Refund</button>
+      <button class="btn confirm">Confirm</button>
+    </div>
   </div>
 </body>
 </html>

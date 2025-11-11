@@ -161,11 +161,11 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.circle {
-  width: 38px;
-  height: 38px;
-  background: #d9d9d9;
+.profile-pic {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  object-fit: cover;
   margin-right: 10px;
 }
 .info {
@@ -192,11 +192,12 @@ body {
 .review-images {
   display: flex;
   gap: 10px;
+  margin-top: 10px;
 }
-.img-placeholder {
+.review-images img {
   width: 90px;
   height: 90px;
-  background: #ddd;
+  object-fit: cover;
   border-radius: 10px;
 }
 
