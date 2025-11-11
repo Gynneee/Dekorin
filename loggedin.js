@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const observeElements = () => {
     const elementsToAnimate = document.querySelectorAll(
-      ".content-section, .features-section, .ai-chat-section, .estimate-section, .ar-preview-section, .main-footer-section"
+      ".filter-section, .content-section, .features-section, .ai-chat-section, .estimate-section, .ar-preview-section, .main-footer-section"
     );
 
     const sectionObserver = new IntersectionObserver(
@@ -501,6 +501,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const uniqueSelector = `content-slider-section-${index}`;
     section.classList.add(uniqueSelector);
     initializeSlider(`.${uniqueSelector}`);
+  });
+
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const filterDropdowns = document.querySelectorAll(".filter-dropdown");
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const targetId = button.getAttribute("data-target");
+      const targetDropdown = document.getElementById(targetId);
+
+      const isAlreadyOpen = targetDropdown.classList.contains("show");
+
+      filterDropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("show");
+      });
+      filterButtons.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+
+      if (!isAlreadyOpen) {
+        targetDropdown.classList.add("show");
+        button.classList.add("active");
+      }
+    });
+  });
+
+  window.addEventListener("click", (e) => {
+    if (
+      !e.target.closest(".filter-btn") &&
+      !e.target.closest(".filter-dropdown")
+    ) {
+      filterDropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("show");
+      });
+      filterButtons.forEach((btn) => {
+        btn.classList.remove("active");
+      });
+    }
   });
 
   observeElements();
