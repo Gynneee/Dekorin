@@ -1,4 +1,4 @@
-// Destiny AI Frontend - DekorIn
+// Destiny AI Frontend - DekorIn (Premium Version)
 // Configuration
 const API_BASE = 'http://localhost:3000';
 const SESSION_ID = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -7,6 +7,8 @@ const SESSION_ID = `session_${Date.now()}_${Math.random().toString(36).substr(2,
 const chatContainer = document.getElementById('chat-container');
 const chatInput = document.getElementById('chat-input');
 const sendBtn = document.getElementById('send-btn');
+const clearBtn = document.getElementById('clear-btn');
+const historyBtn = document.getElementById('history-btn');
 
 // State
 let isLoading = false;
@@ -14,11 +16,27 @@ let messageHistory = [];
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🤖 Destiny AI Initialized');
+  console.log('🤖 Destiny AI Premium Initialized');
+  createParticles();
   checkServerStatus();
   setupEventListeners();
   loadWelcomeMessage();
 });
+
+// Create floating particles
+function createParticles() {
+  const particlesContainer = document.getElementById('particles');
+  if (!particlesContainer) return;
+  
+  for (let i = 0; i < 15; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 12 + 's';
+    particle.style.animationDuration = (Math.random() * 6 + 10) + 's';
+    particlesContainer.appendChild(particle);
+  }
+}
 
 // Check if server is online
 async function checkServerStatus() {
@@ -27,10 +45,10 @@ async function checkServerStatus() {
     if (response.ok) {
       console.log('✅ Server online');
     } else {
-      showError('Server offline. Please start the backend server.');
+      console.warn('⚠️ Server offline');
     }
   } catch (error) {
-    showError('Cannot connect to server. Make sure backend is running on port 3000.');
+    console.warn('⚠️ Cannot connect to server. Backend might not be running.');
   }
 }
 
@@ -40,12 +58,12 @@ function setupEventListeners() {
   sendBtn.addEventListener('click', sendMessage);
   
   // Enter key to send
-chatInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    sendMessage();
-  }
-});
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
   
   // Auto-resize textarea
   chatInput.addEventListener('input', () => {
@@ -54,7 +72,6 @@ chatInput.addEventListener('keydown', (e) => {
   });
   
   // History button
-  const historyBtn = document.querySelector('[aria-label="History"]');
   if (historyBtn) {
     historyBtn.addEventListener('click', () => {
       if (messageHistory.length > 0) {
@@ -65,10 +82,9 @@ chatInput.addEventListener('keydown', (e) => {
     });
   }
   
-  // Clear button (using Options button)
-  const optionsBtn = document.querySelector('[aria-label="Options"]');
-  if (optionsBtn) {
-    optionsBtn.addEventListener('click', () => {
+  // Clear button
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
       if (confirm('Clear conversation history?')) {
         clearConversation();
       }
@@ -91,6 +107,11 @@ function loadWelcomeMessage() {
   }
   
   addMessageToUI(welcomeMsg);
+  
+  // Add quick replies after a short delay
+  setTimeout(() => {
+    addQuickReplies();
+  }, 600);
 }
 
 // Send message
@@ -109,13 +130,16 @@ async function sendMessage() {
   addMessageToUI(userMsg);
   messageHistory.push({ role: 'user', content: message });
   
-  // Clear input
+  // Clear input and remove quick replies
   chatInput.value = '';
   chatInput.style.height = 'auto';
+  removeQuickReplies();
   
-  // Show loading
+  // Show loading with typing indicator
   isLoading = true;
   sendBtn.disabled = true;
+  
+  // IMPORTANT: Show typing indicator immediately
   showTypingIndicator();
   
   try {
@@ -137,7 +161,7 @@ async function sendMessage() {
     
     const data = await response.json();
     
-    // Remove typing indicator
+    // Remove typing indicator before showing response
     removeTypingIndicator();
     
     // Add bot response to UI
@@ -153,6 +177,8 @@ async function sendMessage() {
     
   } catch (error) {
     console.error('Error:', error);
+    
+    // Remove typing indicator on error
     removeTypingIndicator();
     
     const errorMsg = {
@@ -213,32 +239,44 @@ function addMessageToUI(message) {
   }, 100);
 }
 
-// Show typing indicator
+// Show typing indicator with bouncing dots
 function showTypingIndicator() {
+  // Remove existing indicator first (safety check)
+  removeTypingIndicator();
+  
   const typingDiv = document.createElement('div');
-  typingDiv.className = 'bot-message typing-indicator';
+  typingDiv.className = 'typing-indicator';
   typingDiv.id = 'typing-indicator';
   
+  // Add logo
   const logo = document.createElement('img');
   logo.src = 'src/Home/Destinyaicolored.png';
   logo.alt = 'Destiny AI';
   typingDiv.appendChild(logo);
   
+  // Add animated dots container
   const dotsContainer = document.createElement('div');
   dotsContainer.className = 'typing-dots';
-  dotsContainer.innerHTML = `
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  `;
+  
+  // Create 3 bouncing dots
+  for (let i = 0; i < 3; i++) {
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    dotsContainer.appendChild(dot);
+  }
   
   typingDiv.appendChild(dotsContainer);
   chatContainer.appendChild(typingDiv);
   
-  chatContainer.scrollTo({
-    top: chatContainer.scrollHeight,
-    behavior: 'smooth'
-  });
+  // Scroll to show the typing indicator
+  setTimeout(() => {
+    chatContainer.scrollTo({
+      top: chatContainer.scrollHeight,
+      behavior: 'smooth'
+    });
+  }, 50);
+  
+  console.log('✨ Typing indicator shown');
 }
 
 // Remove typing indicator
@@ -246,6 +284,7 @@ function removeTypingIndicator() {
   const indicator = document.getElementById('typing-indicator');
   if (indicator) {
     indicator.remove();
+    console.log('✨ Typing indicator removed');
   }
 }
 
@@ -286,8 +325,11 @@ function showError(message) {
   addMessageToUI(errorMsg);
 }
 
-// Quick reply buttons (optional enhancement)
+// Quick reply buttons
 function addQuickReplies() {
+  // Check if quick replies already exist
+  if (document.querySelector('.quick-replies')) return;
+  
   const quickReplies = [
     { text: '🏠 Lihat Katalog', message: 'Tampilkan katalog wallpaper' },
     { text: '📐 Hitung Kebutuhan', message: 'Hitung wallpaper untuk ruangan 5x4 meter tinggi 3 meter' },
@@ -297,41 +339,15 @@ function addQuickReplies() {
   
   const quickReplyDiv = document.createElement('div');
   quickReplyDiv.className = 'quick-replies';
-  quickReplyDiv.style.cssText = `
-    display: flex;
-    gap: 0.5rem;
-    padding: 1rem;
-    overflow-x: auto;
-    flex-wrap: wrap;
-  `;
   
   quickReplies.forEach(reply => {
     const button = document.createElement('button');
     button.textContent = reply.text;
-    button.style.cssText = `
-      background: linear-gradient(90deg, #2a4c27, #47ab4a);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: transform 0.2s;
-    `;
     
     button.addEventListener('click', () => {
       chatInput.value = reply.message;
       sendMessage();
       quickReplyDiv.remove();
-    });
-    
-    button.addEventListener('mousedown', () => {
-      button.style.transform = 'scale(0.95)';
-    });
-    
-    button.addEventListener('mouseup', () => {
-      button.style.transform = 'scale(1)';
     });
     
     quickReplyDiv.appendChild(button);
@@ -343,10 +359,13 @@ function addQuickReplies() {
   }
 }
 
-// Call quick replies on load
-setTimeout(() => {
-  addQuickReplies();
-}, 1000);
+// Remove quick replies
+function removeQuickReplies() {
+  const quickReplyDiv = document.querySelector('.quick-replies');
+  if (quickReplyDiv) {
+    quickReplyDiv.remove();
+  }
+}
 
 // Utility: Format currency
 function formatCurrency(amount) {
@@ -362,8 +381,10 @@ window.destinyAI = {
   sendMessage,
   clearConversation,
   checkServerStatus,
-  messageHistory
+  messageHistory,
+  showTypingIndicator,
+  removeTypingIndicator
 };
 
-console.log('💬 Destiny AI ready! Type a message to start chatting.');
-console.log('🔧 Debug commands: window.destinyAI.checkServerStatus(), window.destinyAI.clearConversation()');
+console.log('💬 Destiny AI Premium ready! Type a message to start chatting.');
+console.log('🔧 Debug: window.destinyAI.showTypingIndicator() to test animation');
