@@ -29,7 +29,6 @@ button{
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--soft-white);
-  overflow-y: hidden;
 }
 
 /* === CONTAINER === */
