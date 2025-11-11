@@ -1,230 +1,375 @@
-:root {
-  --green: #405d37;
-  --light-green: #9acb8a;
-  --bg: #f9faf9;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
+/* ===== Global ===== */
 body {
-  background: linear-gradient(180deg, #ffffff, #f7faf6);
-  color: #333;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #ffffff;
+  color: #222;
+  overflow-x: hidden;
+  animation: fadeInPage 0.6s ease-in-out;
 }
 
-/* HEADER */
+/* ===== Header ===== */
 .header {
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 1rem;
+  padding: 15px 18px;
+  border-bottom: 1px solid #eee;
   background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  border-radius: 0 0 20px 20px;
   position: sticky;
   top: 0;
   z-index: 10;
+  animation: slideDown 0.6s ease;
+}
+.header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+.back-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.back-btn:hover {
+  transform: scale(1.05) rotate(-5deg);
+  background: #f5f8f4;
 }
 
-.header h2 {
-  font-size: 18px;
+/* ===== Product Card ===== */
+.product-card {
+  display: flex;
+  align-items: center;
+  background: #fafafa;
+  border-radius: 10px;
+  margin: 15px 20px;
+  padding: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeUp 0.8s ease;
+}
+.product-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+.product-details h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+.product-details p {
+  margin: 2px 0;
+  font-size: 13px;
+  color: #777;
+}
+.product-details .price {
+  color: #3d602a;
   font-weight: 600;
 }
 
-.back-btn {
-  border: none;
-  background: #fff;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+/* ===== Form Section ===== */
+.form-section {
+  padding: 0 20px 90px;
+  animation: fadeUp 0.8s ease forwards;
+}
+.form-row {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease;
-}
-
-.back-btn:hover {
-  transform: scale(1.1);
-}
-
-/* UPLOAD BOX */
-.upload-section {
-  display: flex;
-  justify-content: center;
-  padding: 1.5rem 1rem;
-}
-
-.upload-box {
-  border: 2px dashed var(--green);
-  border-radius: 14px;
-  width: 90%;
-  height: 130px;
-  background: #fff;
-  color: var(--green);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
   transition: all 0.3s ease;
 }
-
-.upload-box i {
-  font-size: 28px;
-  margin-bottom: 6px;
+.form-row:hover {
+  background: #f9faf8;
+  border-radius: 10px;
+}
+.form-row label {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
 }
 
-.upload-box:hover {
-  background: #f1f9f1;
+/* ===== Fancy Dropdown Style ===== */
+.form-row select {
+  width: 60%;
+  border: 1.8px solid #b9c8a8;
+  background: linear-gradient(145deg, #fdfdfd, #f5f8f4);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #3d3d3d;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: linear-gradient(145deg, #fdfdfd, #f5f8f4),
+    url("data:image/svg+xml;utf8,<svg fill='%233d602a' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+  box-shadow: 0 2px 6px rgba(61, 96, 42, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.form-row select:hover {
+  border-color: #3d602a;
+  background: linear-gradient(145deg, #f7faf5, #e8f0e4);
+  box-shadow: 0 3px 8px rgba(61, 96, 42, 0.15);
+  transform: translateY(-2px);
+}
+
+.form-row select:focus {
+  border-color: #3d602a;
+  background: linear-gradient(145deg, #eef6ec, #ffffff);
+  box-shadow: 0 0 10px rgba(61, 96, 42, 0.3);
   transform: scale(1.02);
 }
 
-/* FORM */
-.return-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 0 1.3rem 6rem; /* biar bagian bawah gak ketutupan tombol */
+/* Dropdown item style */
+.form-row select option {
+  background-color: #ffffff;
+  color: #333;
+  padding: 10px;
+}
+.form-row select option:hover,
+.form-row select option:checked {
+  background-color: #3d602a;
+  color: #fff;
+}
+select:focus option {
+  animation: dropdownOpen 0.2s ease;
 }
 
-.return-form label {
+/* ===== Total Refund ===== */
+.total-refund {
+  background: #fafafa;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 12px;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  animation: fadeUp 0.9s ease;
+}
+.total-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.total-line h3 {
+  color: #3d602a;
+  font-size: 16px;
+}
+.refund-details p {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  font-size: 13px;
+  color: #888;
+}
+
+/* ===== Description ===== */
+.form-group {
+  margin-top: 15px;
+}
+.form-group label {
   font-size: 14px;
   font-weight: 500;
 }
-
-.return-form input,
-.return-form textarea {
+textarea {
   width: 100%;
-  padding: 10px 12px;
-  border: 1.5px solid var(--light-green);
-  border-radius: 10px;
-  outline: none;
+  height: 70px;
+  border: 1.5px solid #9ca986;
+  border-radius: 8px;
+  padding: 8px;
+  font-family: inherit;
   font-size: 14px;
-  transition: all 0.2s ease;
+  outline: none;
+  resize: none;
+  transition: all 0.3s ease;
+}
+textarea:focus {
+  border-color: #3d602a;
+  box-shadow: 0 0 8px rgba(61, 96, 42, 0.3);
+  transform: scale(1.01);
 }
 
-.return-form input:focus,
-.return-form textarea:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 6px rgba(64, 93, 55, 0.2);
+/* ===== Upload Section ===== */
+.upload-instruction {
+  font-size: 13px;
+  margin-top: 15px;
+  color: #3d602a;
+  font-weight: 600;
+  text-align: left;
+  margin-left: 5px;
+}
+.upload-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  color: #555;
+  font-size: 13px;
+  text-align: left;
+}
+.upload-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed #9ca986;
+  border-radius: 10px;
+  padding: 25px 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  background: #fff;
+}
+.upload-box:hover {
+  background: #f5f8f4;
+  border-color: #3d602a;
+  transform: translateY(-3px);
+}
+.upload-box i {
+  font-size: 22px;
+  color: #3d602a;
+  margin-bottom: 6px;
+  transition: all 0.3s ease;
+}
+.upload-box p {
+  font-size: 13px;
+  color: #3d602a;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.upload-box:hover p {
+  color: #2b4d20;
+}
+.upload-box:active i {
+  transform: scale(1.2);
 }
 
-/* FOOTER BUTTON */
+/* ===== Email ===== */
+.email-row {
+  margin-top: 10px;
+}
+.user-email {
+  font-weight: 600;
+}
+
+/* ===== Submit Button ===== */
 .footer {
   position: fixed;
   bottom: 0;
-  left: 0;
   width: 100%;
   background: #fff;
-  padding: 1rem 1.2rem;
-  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.05);
-  border-radius: 20px 20px 0 0;
-  z-index: 20;
+  padding: 15px 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
 }
-
 .submit-btn {
-  background: var(--green);
-  color: white;
-  font-weight: 500;
-  font-size: 15px;
-  padding: 12px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
   width: 100%;
-  box-shadow: 0 3px 8px rgba(64, 93, 55, 0.25);
-  transition: all 0.25s ease;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: not-allowed;
+  background: #c9c9c9;
+  color: #fff;
+  transition: all 0.4s ease;
+}
+.submit-btn.active {
+  cursor: pointer;
+  background: #3d602a;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+.submit-btn.active:hover {
+  background: #324c23;
+  transform: translateY(-2px);
 }
 
-.submit-btn:hover {
-  background: #35512f;
-  transform: scale(1.03);
-}
-
-/* POPUP */
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: grid;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.3);
+/* ===== Animations ===== */
+.hidden {
+  display: none;
   opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
 }
-
-.popup.show {
-  opacity: 1;
-  pointer-events: auto;
+.visible {
+  display: block;
+  animation: fadeUp 0.6s ease forwards;
 }
-
-.popup-content {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  animation: popIn 0.4s ease;
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-
-.popup-content i {
-  color: var(--green);
-  font-size: 40px;
-  margin-bottom: 8px;
-}
-
-.popup-content h3 {
-  margin-bottom: 4px;
-  color: #333;
-}
-
-.popup-content p {
-  color: #666;
-  font-size: 14px;
-}
-
-/* ANIMASI */
-@keyframes popIn {
-  0% {
-    transform: scale(0.9);
+@keyframes slideDown {
+  from {
+    transform: translateY(-15px);
     opacity: 0;
   }
-  100% {
-    transform: scale(1);
+  to {
+    transform: translateY(0);
     opacity: 1;
   }
 }
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes dropdownOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(61, 96, 42, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(61, 96, 42, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(61, 96, 42, 0);
+  }
 }
 
-.fade-in.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-down {
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.4s ease;
-}
-
-.fade-down.show {
-  opacity: 1;
-  transform: translateY(0);
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  .form-section {
+    padding-bottom: 100px;
+  }
+  .product-card img {
+    width: 55px;
+    height: 55px;
+  }
 }

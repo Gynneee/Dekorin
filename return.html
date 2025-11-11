@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Return Product</title>
+  <title>Return - DekorIn</title>
   <link rel="stylesheet" href="return.css" />
   <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   />
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
@@ -16,68 +16,142 @@
 </head>
 
 <body>
-  <div class="return-container fade-in">
-    <!-- HEADER -->
-    <header class="header fade-down">
+  <div class="return-container">
+    <!-- Header -->
+    <header class="header">
       <button class="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
       <h2>Return</h2>
     </header>
 
-    <!-- UPLOAD AREA -->
-    <section class="upload-section">
-      <label for="videoUpload" class="upload-box">
-        <i class="fa-solid fa-video"></i>
-        <p>Add Video</p>
-        <input type="file" id="videoUpload" accept="video/*" hidden />
-      </label>
+    <!-- Product Info -->
+    <section class="product-info">
+      <div class="product-card">
+        <img src="src/cart/cart1.png" alt="Wallpaper" />
+        <div class="product-details">
+          <h4>Wallpaper Polos</h4>
+          <p>Dekorin Store | 2 Roll</p>
+          <span class="price">Rp300.000</span>
+        </div>
+      </div>
     </section>
 
-    <!-- FORM -->
-    <form class="return-form">
-      <label>Order Id</label>
-      <input type="text" placeholder="Masukkan ID pesanan" required />
+    <!-- Form Section -->
+    <section class="form-section">
+      <!-- Reason -->
+      <div class="form-row">
+        <label>Reason</label>
+        <select id="reason">
+          <option value="" disabled selected>Select Reason</option>
+          <option value="not-working">Product not working / usable</option>
+          <option value="wrong-item">Wrong item received</option>
+          <option value="changed-mind">Changed mind</option>
+          <option value="damaged">Damaged during delivery</option>
+          <option value="others">Others (please specify)</option>
+        </select>
+      </div>
 
-      <label>Name</label>
-      <input type="text" placeholder="Masukkan nama kamu" required />
+      <!-- Solution -->
+      <div class="form-row">
+        <label>Solution</label>
+        <select id="solution">
+          <option value="" disabled selected>Select Solution</option>
+          <option value="refund">Return product & refund</option>
+          <option value="exchange">Exchange product</option>
+        </select>
+      </div>
 
-      <label>Email</label>
-      <input type="email" placeholder="Masukkan email kamu" required />
+      <!-- Refund -->
+      <div class="form-row">
+        <label>Refund to</label>
+        <select id="refund">
+          <option value="" disabled selected>Select Method</option>
+          <option>BCA Virtual Account</option>
+          <option>OVO</option>
+          <option>DANA</option>
+        </select>
+      </div>
 
-      <label>Alasan</label>
-      <textarea rows="3" placeholder="Tuliskan alasan pengembalian..." required></textarea>
-    </form>
-  </div>
+      <!-- Total Refund -->
+      <div class="total-refund">
+        <div class="total-line">
+          <p>Total Refund</p>
+          <h3>Rp307.500</h3>
+        </div>
+        <div class="refund-details">
+          <p>Refundable Product Price <span>Rp300.000</span></p>
+          <p>Shipping Fee <span>Rp7.000</span></p>
+          <p>Service Fee <span>Rp500</span></p>
+        </div>
+      </div>
 
-  <!-- STICKY FOOTER BUTTON -->
-  <footer class="footer">
-    <button type="submit" class="submit-btn">Submit</button>
-  </footer>
+      <!-- Description -->
+      <div class="form-group">
+        <label>Description (Optional)</label>
+        <textarea placeholder="Masukkan deskripsi tambahan..."></textarea>
+      </div>
 
-  <!-- SUCCESS POPUP -->
-  <div class="popup" id="popup">
-    <div class="popup-content">
-      <i class="fa-solid fa-check-circle"></i>
-      <h3>Return Submitted!</h3>
-      <p>Kami akan meninjau pengembalianmu sesegera mungkin.</p>
-    </div>
+      <!-- Upload Section -->
+      <div id="upload-section" class="hidden">
+        <p class="upload-instruction"><strong>Attach images or videos showing:</strong></p>
+        <ul class="upload-list">
+          <li>1. Packaging condition upon receipt</li>
+          <li>2. The part of the wallpaper that is damaged or unusable</li>
+          <li>3. The receipt or invoice included in the package</li>
+        </ul>
+
+        <label class="upload-box">
+          <input type="file" accept="image/*" multiple hidden id="photoUpload" />
+          <i class="fa-regular fa-image"></i>
+          <p>Add Photo <span id="photoCount">0/5</span></p>
+        </label>
+
+        <label class="upload-box">
+          <input type="file" accept="video/*" hidden id="videoUpload" />
+          <i class="fa-solid fa-camera"></i>
+          <p>Add Video <span id="videoCount">0/1</span></p>
+        </label>
+      </div>
+
+      <!-- Email -->
+      <div class="form-row email-row">
+        <label>Email</label>
+        <p class="user-email">dil.putra@gmail.com</p>
+      </div>
+    </section>
+
+    <!-- Submit Button -->
+    <footer class="footer">
+      <button class="submit-btn" id="submitBtn" disabled>Submit</button>
+    </footer>
   </div>
 
   <script>
-    // Animasi muncul
-    window.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll(".fade-in, .fade-down").forEach((el, i) => {
-        setTimeout(() => el.classList.add("show"), i * 100);
-      });
+    const reasonSelect = document.getElementById("reason");
+    const uploadSection = document.getElementById("upload-section");
+    const submitBtn = document.getElementById("submitBtn");
+    const photoInput = document.getElementById("photoUpload");
+    const videoInput = document.getElementById("videoUpload");
+    const photoCount = document.getElementById("photoCount");
+    const videoCount = document.getElementById("videoCount");
+
+    // Show upload section & enable submit when reason selected
+    reasonSelect.addEventListener("change", () => {
+      uploadSection.classList.remove("hidden");
+      uploadSection.classList.add("visible");
+      submitBtn.disabled = false;
+      submitBtn.classList.add("active");
     });
 
-    // Popup success
-    const submitBtn = document.querySelector(".submit-btn");
-    const popup = document.getElementById("popup");
+    // Photo counter
+    photoInput.addEventListener("change", () => {
+      const count = photoInput.files.length;
+      photoCount.textContent = `${count}/5`;
+    });
 
-    submitBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      popup.classList.add("show");
-      setTimeout(() => popup.classList.remove("show"), 2500);
+    // Video counter
+    videoInput.addEventListener("change", () => {
+      const count = videoInput.files.length;
+      videoCount.textContent = `${count}/1`;
     });
   </script>
 </body>

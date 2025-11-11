@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f9faf9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  animation: fadeIn 0.8s ease;
+}
+
+/* === Container & Card === */
+.success-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+.success-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 35px 25px;
+  text-align: center;
+  animation: slideUp 0.8s ease forwards;
+}
+.success-icon {
+  font-size: 70px;
+  color: #3d602a;
+  animation: popIn 0.7s ease;
+}
+.success-card h2 {
+  color: #2f2f2f;
+  margin: 15px 0 5px;
+  font-weight: 600;
+}
+.success-card p {
+  font-size: 14px;
+  color: #555;
+  margin: 10px 0 20px;
+  line-height: 1.5;
+}
+
+/* === Refund Box === */
+.refund-box {
+  background: #f5f8f4;
+  border: 1px solid #d8e0d1;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: left;
+  margin-bottom: 25px;
+  box-shadow: inset 0 1px 3px rgba(61, 96, 42, 0.1);
+  animation: fadeIn 1s ease;
+}
+.refund-box p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+.refund-box .pending span {
+  color: #b68a1b;
+  font-weight: 600;
+}
+
+/* === Button === */
+.back-home {
+  width: 100%;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 0;
+  background: #3d602a;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(61, 96, 42, 0.25);
+  transition: all 0.3s ease;
+}
+.back-home:hover {
+  background: #2f4b20;
+  transform: translateY(-2px);
+}
+.back-home:active {
+  transform: scale(0.97);
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* === Responsive === */
+@media (max-width: 480px) {
+  .success-card {
+    padding: 25px 20px;
+  }
+  .success-icon {
+    font-size: 60px;
+  }
+}
