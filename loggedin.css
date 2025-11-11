@@ -721,7 +721,6 @@ body.no-scroll {
   background-color: #2a5225;
 }
 
-/* This block is now redundant, but harmless */
 .user-actions .signin-btn {
   display: inline-block;
 }
@@ -1188,67 +1187,58 @@ body.logged-in .user-actions {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* --- CSS for Feature Item Animation --- */
-
-/* 1. Initial (hidden) state */
 .feature-item-animate-init {
   opacity: 0;
-  transform: translateY(50px) scale(0.9) translateZ(0); /* Added translateZ(0) */
-  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), 
-              transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-  
-  /* --- iOS Fixes --- */
+  transform: translateY(50px) scale(0.9) translateZ(0);
+  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
   backface-visibility: hidden;
   will-change: transform, opacity;
 }
 
-/* 2. Final (visible) state when .is-visible is added */
 .feature-item-animate-init.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1) translateZ(0); /* Added translateZ(0) */
-  will-change: auto; /* Reset the hint */
+  transform: translateY(0) scale(1) translateZ(0);
+  will-change: auto;
 }
 
-/* --- CSS for Review/Invision Card Animation --- */
-
-/* 1. Initial (hidden) state */
 .card-animate-init {
   opacity: 0;
-  transform: translateY(50px) scale(0.9) translateZ(0); /* Added translateZ(0) */
-  transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1), 
-              transform 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transform: translateY(50px) scale(0.9) translateZ(0);
+  transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 0.61, 0.36, 1);
 
-  /* --- iOS Fixes --- */
   backface-visibility: hidden;
   will-change: transform, opacity;
 }
 
-/* 2. Final (visible) state when .is-visible is added */
 .card-animate-init.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1) translateZ(0); /* Added translateZ(0) */
-  will-change: auto; /* Reset the hint */
+  transform: translateY(0) scale(1) translateZ(0);
+  will-change: auto;
 }
 
-/* --- CSS for Typing Animation --- */
-
 #ai-chat-bubble-text::after {
-  content: '█'; /* You can use '|' or '█' */
+  content: "█";
   font-weight: 600;
   margin-left: 2px;
   animation: blink 1s infinite;
 }
 
-/* This class gets added by JS when typing is finished */
 #ai-chat-bubble-text.typing-done::after {
-  content: '';
+  content: "";
   animation: none;
   display: none;
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 500px) {
@@ -1316,4 +1306,140 @@ body.logged-in .user-actions {
   .features-section.show-left-shadow::before {
     opacity: 0.65;
   }
+}
+
+.main-header,
+main,
+.main-footer-section,
+.header-img {
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.search-page {
+  display: block;
+  padding: 0 1rem 1rem 1rem;
+  background-color: #faf7ef;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px); /* Start 20px UP */
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.search-page-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.search-page-header .back-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--dark-gray);
+  cursor: pointer;
+}
+
+.search-page-header .search-bar {
+  margin: 0;
+}
+
+.search-page-content {
+  padding-top: 1.5rem;
+}
+
+.recent-search h2,
+.recent-view h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.recent-search ul {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.recent-search li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--dark-gray);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.remove-search {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.product-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.product-info h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-info p {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.product-info span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-green);
+}
+
+body.search-active main,
+body.search-active .main-footer-section {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(50px);
+}
+
+body.search-active .main-header,
+body.search-active .header-img {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50px);
+}
+
+body.search-active .search-page {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }

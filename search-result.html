@@ -31,7 +31,7 @@
 
       <!-- Search Bar -->
       <div class="search-bar">
-        <button class="back-btn">
+        <button class="back-btn" onclick="window.location.href='loggedin.html'">
           <i class="fa-solid fa-arrow-left"></i>
         </button>
         <div class="search-box">
@@ -54,7 +54,7 @@
 
       <!-- Product Grid -->
       <section class="product-grid">
-        <div class="product-card">
+        <div class="product-card" onclick="window.location.href='detail-produk.html'">
           <div class="img-box">
             <img src="Group 172.png" alt="Geo Stone Wallpaper" />
           </div>
@@ -68,7 +68,7 @@
           </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" onclick="window.location.href='detail-produk.html'">
           <div class="img-box">
             <img src="Group 173.png" alt="Aqua Stone Wallpaper" />
           </div>
@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" onclick="window.location.href='detail-produk.html'">
           <div class="img-box">
             <img src="Group 172.png" alt="Marble Texture Wallpaper" />
           </div>
@@ -96,7 +96,7 @@
           </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" onclick="window.location.href='detail-produk.html'">
           <div class="img-box">
             <img src="Group 173.png" alt="Nature Leaf Wallpaper" />
           </div>
@@ -110,7 +110,7 @@
           </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" onclick="window.location.href='detail-produk.html'">
           <div class="img-box">
             <img src="Group 172.png" alt="Minimalist Line Wallpaper" />
           </div>
@@ -124,7 +124,7 @@
           </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" onclick="window.location.href='detail-produk.html'">
           <div class="img-box">
             <img src="Group 173.png" alt="Floral Bloom Wallpaper" />
           </div>
@@ -138,7 +138,7 @@
           </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" onclick="window.location.href='detail-produk.html'">
           <div class="img-box">
             <img src="Group 172.png" alt="Wood Grain Wallpaper" />
           </div>
@@ -152,7 +152,7 @@
           </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" onclick="window.location.href='detail-produk.html'">
           <div class="img-box">
             <img src="Group 173.png" alt="Classic Grey Wallpaper" />
           </div>
@@ -172,11 +172,6 @@
       // animasi muncul
       window.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".search-result-page").classList.add("show");
-      });
-
-      // tombol kembali
-      document.querySelector(".back-btn").addEventListener("click", () => {
-        window.history.back();
       });
     </script>
   </body>

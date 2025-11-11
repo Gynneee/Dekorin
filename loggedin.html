@@ -27,6 +27,98 @@
         width="200px"
         height="auto"
       />
+
+      <div class="search-page" id="searchPage">
+        <header class="search-page-header">
+          <button class="back-btn" id="searchBackBtn">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search" id="searchPageInput" />
+          </div>
+        </header>
+        <div class="search-page-content">
+          <section class="recent-search">
+            <h2>Recent search</h2>
+            <ul>
+              <li onclick="window.location.href='search-result.html'">
+                <span>Wallpaper Polos</span>
+                <button class="remove-search">&times;</button>
+              </li>
+              <li>
+                <span>Wallpaper Motif</span>
+                <button class="remove-search">&times;</button>
+              </li>
+              <li>
+                <span>Wallpaper anak anak</span>
+                <button class="remove-search">&times;</button>
+              </li>
+            </ul>
+          </section>
+          <section class="recent-view">
+            <h2>Recent View</h2>
+            <div class="product-list">
+              <div class="product-item" onclick="window.location.href='detail-produk.html'">
+                <img
+                  src="src/Home/alberto-castillo-q-mx4mSkK9zeo-unsplash.jpg"
+                  alt="Wallpaper Polos"
+                />
+                <div class="product-info">
+                  <h3>Wallpaper Polos</h3>
+                  <p>Dekorin Store</p>
+                  <span>Rp. 100.000</span>
+                </div>
+              </div>
+              <div class="product-item" onclick="window.location.href='detail-produk.html'">
+                <img
+                  src="src/Home/jason-wang-NxAwryAbtIw-unsplash.jpg"
+                  alt="Wallpaper Polos"
+                />
+                <div class="product-info">
+                  <h3>Wallpaper Polos</h3>
+                  <p>Dekorin Store</p>
+                  <span>Rp. 100.000</span>
+                </div>
+              </div>
+              <div class="product-item" onclick="window.location.href='detail-produk.html'">
+                <img
+                  src="src/Home/spacejoy-9M66C_w_ToM-unsplash.jpg"
+                  alt="Wallpaper Polos"
+                />
+                <div class="product-info">
+                  <h3>Wallpaper Polos</h3>
+                  <p>Dekorin Store</p>
+                  <span>Rp. 100.000</span>
+                </div>
+              </div>
+              <div class="product-item" onclick="window.location.href='detail-produk.html'">
+                <img
+                  src="src/Home/jason-wang-NxAwryAbtIw-unsplash.jpg"
+                  alt="Wallpaper Polos"
+                />
+                <div class="product-info">
+                  <h3>Wallpaper Polos</h3>
+                  <p>Dekorin Store</p>
+                  <span>Rp. 100.000</span>
+                </div>
+              </div>
+              <div class="product-item" onclick="window.location.href='detail-produk.html'">
+                <img
+                  src="src/Home/spacejoy-9M66C_w_ToM-unsplash.jpg"
+                  alt="Wallpaper Polos"
+                />
+                <div class="product-info">
+                  <h3>Wallpaper Polos</h3>
+                  <p>Dekorin Store</p>
+                  <span>Rp. 100.000</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
       <header class="main-header">
         <nav class="side-menu" id="sideMenu">
           <button class="close-btn" id="closeMenu">&times;</button>
@@ -47,7 +139,9 @@
           </ul>
           <div class="menu-footer">
             <p>Support</p>
-            <a href="contact-support.html"><i class="fas fa-headset"></i> Contact Support</a>
+            <a href="contact-support.html"
+              ><i class="fas fa-headset"></i> Contact Support</a
+            >
             <a href="setting.html"><i class="fas fa-cog"></i> Setting</a>
           </div>
         </nav>
@@ -153,7 +247,7 @@
         <section class="content-section">
           <div class="section-header">
             <h2>Roll Besar</h2>
-            <a href="#" class="see-all">See all</a>
+            <a href="search-result.html" class="see-all">See all</a>
           </div>
           <div class="horizontal-scroll-wrapper">
             <div class="product-card">
@@ -189,7 +283,7 @@
         <section class="content-section">
           <div class="section-header">
             <h2>Roll Kecil</h2>
-            <a href="#" class="see-all">See all</a>
+            <a href="search-result.html" class="see-all">See all</a>
           </div>
           <div class="horizontal-scroll-wrapper">
             <div class="product-card">
@@ -238,8 +332,10 @@
                 <div class="review-product-info">
                   <h3>Leaf Wallpaper</h3>
                   <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i
-                    ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                    <i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i
                     ><i class="fas fa-star"></i>
                   </div>
                 </div>
@@ -259,8 +355,10 @@
                 <div class="review-product-info">
                   <h3>Kuy Wallpaper</h3>
                   <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i
-                    ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                    <i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i
                     ><i class="fas fa-star-half-alt"></i>
                   </div>
                 </div>
@@ -279,8 +377,10 @@
                 <div class="review-product-info">
                   <h3>Leaf Wallpaper</h3>
                   <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i
-                    ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                    <i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i
                     ><i class="fas fa-star"></i>
                   </div>
                 </div>
@@ -299,7 +399,10 @@
             <a href="invision.html" class="see-all">See all</a>
           </div>
           <div class="content-slider-wrapper">
-            <div class="article-card-invision" onclick="window.location.href='artikel.html'">
+            <div
+              class="article-card-invision"
+              onclick="window.location.href='artikel.html'"
+            >
               <img src="src/Invision/image17.png" alt="Article 1" />
               <div class="article-info">
                 <h3>Tren Wallpaper Dinding Terbaru 2025...</h3>
@@ -309,21 +412,27 @@
                 </div>
               </div>
             </div>
-            <div class="article-card-invision" onclick="window.location.href='artikel.html'">
+            <div
+              class="article-card-invision"
+              onclick="window.location.href='artikel.html'"
+            >
               <img src="src/Invision/image18.png" alt="Article 2" />
               <div class="article-info">
                 <h3>Tips dan Trik Merawat Wallpaper...</h3>
-                 <div class="article-meta">
+                <div class="article-meta">
                   <span>Eirene Christi</span>
                   <span>13 Okt, 2025</span>
                 </div>
               </div>
             </div>
-            <div class="article-card-invision" onclick="window.location.href='artikel.html'">
+            <div
+              class="article-card-invision"
+              onclick="window.location.href='artikel.html'"
+            >
               <img src="src/Invision/image19.png" alt="Article 3" />
               <div class="article-info">
                 <h3>Panduan Memilih Wallpaper Sesuai...</h3>
-                 <div class="article-meta">
+                <div class="article-meta">
                   <span>Azalia Oracel</span>
                   <span>13 Jul, 2025</span>
                 </div>
@@ -335,25 +444,41 @@
 
         <section class="ai-chat-section">
           <h2>Chat with <span>DESTINY</span></h2>
-          <p class="section-subheading">Wujudkan ruang impianmu lewat obrolan interaktif dengan DESTINY</p>
+          <p class="section-subheading">
+            Wujudkan ruang impianmu lewat obrolan interaktif dengan DESTINY
+          </p>
           <div class="chat-card">
             <div class="chat-card-header">
-              <img src="src/Home/Destinyaicolored.png" alt="Destiny AI Logo" class="ai-logo" /> 
-              <span style="color:#3D5919;">DESTINY</span>
+              <img
+                src="src/Home/Destinyaicolored.png"
+                alt="Destiny AI Logo"
+                class="ai-logo"
+              />
+              <span style="color: #3d5919">DESTINY</span>
             </div>
-            
+
             <div class="chat-bubble">
-              <p id="ai-chat-bubble-text" data-text="Hi there! 👋 I can help you choose the perfect wallpaper style for your room. Do you prefer a modern, minimalist, or classic vibe?"></p>
+              <p
+                id="ai-chat-bubble-text"
+                data-text="Hi there! 👋 I can help you choose the perfect wallpaper style for your room. Do you prefer a modern, minimalist, or classic vibe?"
+              ></p>
             </div>
             <a href="AI.html" class="chat-button">Start chat with DESTINY</a>
           </div>
-          <p class="discover-text">✨ Discover the best color, texture, and lighting combinations. All in one conversation!</p>
+          <p class="discover-text">
+            ✨ Discover the best color, texture, and lighting combinations. All
+            in one conversation!
+          </p>
         </section>
-        
+
         <section class="estimate-section">
           <div class="estimate-text">
             <h2>Estimate your space in seconds</h2>
-            <p>Easily calculate how many wallpaper rolls you need — just enter your wall dimensions. Let InMeasure do the math for you so you can focus on designing your dream space.</p>
+            <p>
+              Easily calculate how many wallpaper rolls you need — just enter
+              your wall dimensions. Let InMeasure do the math for you so you can
+              focus on designing your dream space.
+            </p>
             <a href="inmeasure.html" class="estimate-button">
               <i class="fas fa-calculator"></i> Open InMeasure
             </a>
@@ -369,14 +494,20 @@
           </div>
           <div class="ar-text">
             <h2>Visualize before you buy</h2>
-            <p>See how our wallpapers look on your walls with AR Preview Mode. Try different colors, patterns, and lighting instantly — right from your phone.</p>
-            <a href="augmented_reality.html" class="ar-button">Try AR Preview</a>
+            <p>
+              See how our wallpapers look on your walls with AR Preview Mode. Try
+              different colors, patterns, and lighting instantly — right from
+              your phone.
+            </p>
+            <a href="augmented_reality.html" class="ar-button"
+              >Try AR Preview</a
+            >
             <p class="ar-subtext">Experience your dream room in real time.</p>
           </div>
         </section>
       </main>
 
-       <footer class="main-footer-section">
+      <footer class="main-footer-section">
         <div class="footer-content">
           <div class="footer-column">
             <h3>Quick Links</h3>
@@ -393,7 +524,10 @@
             <h3>Contact Us</h3>
             <a href="#" class="contact-link">
               <i class="fas fa-map-marker-alt"></i>
-              <span>BCA Learning Institute, Jl. Pakuan No.3, Sumur Batu, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</span>
+              <span
+                >BCA Learning Institute, Jl. Pakuan No.3, Sumur Batu, Kec.
+                Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</span
+              >
             </a>
             <a href="mailto:admin@dekorin.com" class="contact-link">
               <i class="fas fa-envelope"></i>
@@ -408,13 +542,16 @@
 
         <div class="footer-social">
           <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.instagram.com/dekorinwall/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a
+            href="https://www.instagram.com/dekorinwall/"
+            aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
           <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         </div>
         <div class="footer-copyright">
           <p>Copyright © 2025 DekorIn. All rights reserved</p>
         </div>
-        
       </footer>
       <div class="popup-overlay" id="logoutOverlay"></div>
       <div class="popup-container" id="logoutPopup">
