@@ -35,7 +35,6 @@ body {
   width: 60%;
 }
 
-/* Header */
 header {
   position: sticky;
   top: 0;
@@ -68,7 +67,6 @@ header h1 {
   letter-spacing: -0.4px;
 }
 
-/* Main Content */
 main {
   padding: 24px 20px 40px;
 }
@@ -97,7 +95,6 @@ main {
   margin-bottom: 12px;
 }
 
-/* Select Input */
 .select-wrapper {
   position: relative;
   margin-bottom: 24px;
@@ -138,7 +135,6 @@ select:focus {
   pointer-events: none;
 }
 
-/* Input Groups */
 .input-group {
   margin-bottom: 20px;
 }
@@ -200,7 +196,6 @@ input[type="number"]::placeholder {
   white-space: nowrap;
 }
 
-/* Result Card */
 .result-card {
   background: linear-gradient(135deg, var(--primary-green) 0%, #5c8625 100%);
   border: none;
@@ -242,7 +237,6 @@ input[type="number"]::placeholder {
   letter-spacing: -0.5px;
 }
 
-/* Calculate Button */
 .calculate-btn {
   width: 100%;
   padding: 16px;
@@ -270,7 +264,6 @@ input[type="number"]::placeholder {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* --- Menu Overlay (from loggedin.css) --- */
 .menu-overlay {
   position: fixed;
   top: 0;
@@ -287,7 +280,6 @@ input[type="number"]::placeholder {
   display: block;
   opacity: 1;
 }
-/* This .show class is for the popup */
 .menu-overlay.show {
   display: block;
   opacity: 1;
@@ -295,7 +287,6 @@ input[type="number"]::placeholder {
 }
 
 
-/* --- Side Menu (from loggedin.css) --- */
 .side-menu {
   position: fixed;
   top: 0;
@@ -317,16 +308,14 @@ input[type="number"]::placeholder {
   left: 0;
 }
 
-/* This targets the .menu-header from inmeasure.css */
 .menu-header {
   padding: 0;
   border-bottom: none;
   display: flex;
-  justify-content: flex-end; /* Pushes close button right */
+  justify-content: flex-end;
   margin-bottom: 0.5rem;
 }
 
-/* Hides the "Menu" H2 from inmeasure.css */
 .menu-header h2 {
   display: none;
 }
@@ -338,12 +327,11 @@ input[type="number"]::placeholder {
   font-size: 2rem;
   align-self: flex-end;
   cursor: pointer;
-  /* Reset inmeasure.css styles */
   width: auto;
   height: auto;
   border-radius: 0;
   transition: none;
-  padding: 0; /* Align-self handles position */
+  padding: 0;
 }
 .close-btn:hover {
   background: none;
@@ -528,7 +516,6 @@ body.no-scroll {
   transition: transform 0.3s ease;
 }
 
-/* --- Profile Menu (from loggedin.css) --- */
 .profile-menu {
   position: fixed;
   top: 0;
@@ -548,17 +535,15 @@ body.no-scroll {
   right: 0;
 }
 
-/* This targets the .profile-header from inmeasure.css */
 .profile-header {
   display: flex;
   align-items: center;
   gap: 15px;
   padding: 20px 24px;
-  background: none; /* Remove blue gradient */
-  color: #000; /* Reset color */
+  background: none;
+  color: #000;
 }
 
-/* This targets the .profile-icon from inmeasure.css */
 .profile-icon {
   font-size: 1.5rem;
   color: var(--primary-green);
@@ -569,7 +554,7 @@ body.no-scroll {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0; /* Reset inmeasure.css */
+  margin-bottom: 0;
 }
 
 .profile-header h3 {
@@ -577,17 +562,17 @@ body.no-scroll {
   font-weight: 600;
   color: #000;
   margin: 0;
-  letter-spacing: normal; /* Reset inmeasure.css */
+  letter-spacing: normal;
 }
 
 .profile-menu-list {
   list-style: none;
   margin: 0;
-  padding: 0; /* Reset inmeasure.css */
+  padding: 0;
 }
 
 .profile-menu-list li {
-  margin-bottom: 0; /* Reset inmeasure.css */
+  margin-bottom: 0;
 }
 
 .profile-menu-list a {
@@ -600,8 +585,8 @@ body.no-scroll {
   font-size: 1rem;
   font-weight: 500;
   -webkit-tap-highlight-color: transparent;
-  border-radius: 0; /* Reset inmeasure.css */
-  transition: none; /* Reset inmeasure.css */
+  border-radius: 0;
+  transition: none;
 }
 .profile-menu-list a:hover {
   background-color: #f5f5f7;
@@ -632,15 +617,12 @@ body.no-scroll {
   color: #d9534f;
 }
 
-/* --- Logout Popup (from loggedin.css) --- */
-/* NOTE: The overlay for this is .menu-overlay.show */
-
 .popup-container {
   position: fixed;
   bottom: -100%;
   left: 0;
   width: 100%;
-  max-width: 700px; /* This is from loggedin.css, inmeasure's was 430px */
+  max-width: 700px;
   margin: 0 auto;
   right: 0;
   background-color: #ffffff;
@@ -649,21 +631,18 @@ body.no-scroll {
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);
   z-index: 10001;
   transition: bottom 0.3s ease-out;
-  display: none; /* changed from inmeasure.css */
-  /* Reset inmeasure.css */
+  display: none;
   padding: 0;
-  max-width: 700px; /* Use max-width from loggedin.css */
+  max-width: 700px;
   text-align: center;
   transform: none;
 }
 .popup-container.show {
   display: block;
   bottom: 0;
-  /* Reset inmeasure.css */
   transform: none;
 }
 
-/* This class is new, you may need to add it to your HTML */
 .popup-content {
   padding: 25px 30px;
   text-align: center;
@@ -674,14 +653,14 @@ body.no-scroll {
   font-weight: 600;
   color: #000;
   margin-bottom: 15px;
-  letter-spacing: normal; /* Reset inmeasure.css */
+  letter-spacing: normal;
 }
 
 .popup-container p {
   font-size: 1rem;
   color: #555;
   margin-bottom: 25px;
-  line-height: 1.6; /* Use loggedin.css line-height */
+  line-height: 1.6;
 }
 
 .popup-buttons {
@@ -700,7 +679,7 @@ body.no-scroll {
   border: none;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-  font-family: "Poppins", sans-serif; /* This is from loggedin.css */
+  font-family: "Poppins", sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 .popup-btn:focus {
@@ -730,7 +709,6 @@ body.no-scroll {
   overflow: hidden;
 }
 
-/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -752,7 +730,6 @@ body.no-scroll {
 .card:nth-child(4) { animation-delay: 0.4s; }
 .card:nth-child(5) { animation-delay: 0.5s; }
 
-/* Remove number input spinners */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
