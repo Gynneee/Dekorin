@@ -60,7 +60,7 @@ img {
 .main-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start; /* Changed to flex-start */
   padding: 1rem;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--background-color);
@@ -113,212 +113,10 @@ img {
   text-decoration: none;
 }
 
-.side-menu {
-  position: fixed;
-  top: 0;
-  left: -80%;
-  width: 70%;
-  max-width: 300px;
-  height: 100%;
-  background-color: #354c18;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  transition: left 0.3s ease;
-  z-index: 9999;
-  padding: 1.5rem 1rem;
-  justify-content: flex-start;
-}
-
-.side-menu.open {
-  left: 0;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  align-self: flex-end;
-  cursor: pointer;
-  margin-bottom: 0.5rem;
-}
-
-.menu-list {
-  list-style: none;
-  margin-top: 0;
-  padding-top: 0;
-  flex: 0 0 auto;
-}
-
-.menu-list li {
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  transform: translateX(0) translateY(0);
-  box-shadow: none;
-  border: 1px solid transparent;
-}
-
-.menu-list > li > a,
-.menu-list > li > span {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0.8rem 0.5rem;
-  color: white;
-  text-decoration: none;
-}
-
-.menu-list li.has-sub {
-  flex-wrap: wrap;
-}
-
-.menu-list li i {
-  font-size: 0.9rem;
-}
-
-.menu-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  padding-top: 1rem;
-  margin-top: auto;
-}
-
-.menu-footer p {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.menu-footer a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: white;
-  text-decoration: none;
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  transition: opacity 0.2s;
-}
-
-.menu-footer a i {
-  margin-right: 0;
-  width: auto;
-  text-align: left;
-}
-
-.menu-footer a:hover {
-  opacity: 0.8;
-}
-
-.menu-list li.active {
-  animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.5),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
-  background-color: var(--primary-brown);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.menu-list li.has-sub.active-sub {
-  animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  position: relative;
-  z-index: 10;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.5),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
-  background-color: var(--primary-brown);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.menu-list li:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateX(0) translateY(0);
-    backdrop-filter: blur(0px);
-    -webkit-filter: blur(0px);
-  }
-  60% {
-    transform: translateX(7px) translateY(-7px);
-    backdrop-filter: blur(0.3px);
-    -webkit-filter: blur(0.3px);
-  }
-  100% {
-    transform: translateX(5px) translateY(-5px);
-    backdrop-filter: blur(0px);
-    -webkit-filter: blur(0px);
-  }
-}
+/* ALL SIDE MENU, OVERLAY, AND MENU LIST CSS HAS BEEN REMOVED */
 
 body.no-scroll {
   overflow: hidden;
-}
-
-.sub-menu {
-  list-style: none;
-  padding-left: 1.5rem;
-  width: 100%;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.4s ease, padding 0.3s ease;
-}
-
-.sub-menu li {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 0;
-  margin-bottom: 0.3rem;
-}
-
-.sub-menu li a {
-  display: block;
-  padding: 0.6rem 0.9rem;
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: white;
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  transition: background-color 0.2s;
-}
-
-.sub-menu li:first-child {
-  margin-top: 0.5rem;
-  margin-bottom: 0.3rem;
-  border-radius: 5px;
-}
-
-.sub-menu li:last-child {
-  border-radius: 5px;
-  margin-bottom: 15px;
-}
-
-.menu-list li.has-sub.active-sub > span > i {
-  transform: rotate(90deg);
-}
-
-.menu-list li.has-sub.active-sub > .sub-menu {
-  max-height: 300px;
-  transition: max-height 0.5s ease-in;
-}
-
-.menu-list li.has-sub > span > i {
-  transition: transform 0.3s ease;
 }
 
 .hero {
@@ -350,7 +148,7 @@ body.no-scroll {
 
 .hero-text h1 {
   font-family: "Poppins", sans-serif;
-  font-size: rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -544,24 +342,6 @@ body.no-scroll {
   font-size: 1rem;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
-  z-index: 998;
-}
-
-.overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
 .main-footer-section {
   padding: 2.5rem 1.5rem;
   background-color: #354c18;
@@ -635,14 +415,11 @@ body.no-scroll {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* --- CSS for Section Animation (Slower) --- */
 .section-animate-init {
   opacity: 0;
   transform: translateY(50px) scale(0.95) translateZ(0);
-  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), 
-              transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-  
-  /* --- iOS Fixes --- */
+  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
   backface-visibility: hidden;
   will-change: transform, opacity;
 }
@@ -653,15 +430,12 @@ body.no-scroll {
   will-change: auto;
 }
 
-/* --- CSS for Card Animation (Faster, for Stagger) --- */
 .card-animate-init {
   opacity: 0;
   transform: translateY(50px) scale(0.9) translateZ(0);
-  transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1), 
-              transform 1s cubic-bezier(0.22, 0.61, 0.36, 1),
-              transition-delay 0s;
+  transition: opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 0.61, 0.36, 1), transition-delay 0s;
 
-  /* --- iOS Fixes --- */
   backface-visibility: hidden;
   will-change: transform, opacity;
 }

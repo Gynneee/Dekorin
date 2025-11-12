@@ -14,22 +14,49 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 0);
   
   const body = document.body;
-  body.classList.add("logged-in");
 
-  /**
-   * ------------------------------------------------------------------
-   * NEW: Typing Animation Function
-   * ------------------------------------------------------------------
-   */
-  /**
-   * Creates a typing effect for a given element.
-   * @param {HTMLElement} element - The <p> tag to type into.
-   * @param {string} text - The text to type.
-   * @param {number} [speed=40] - The delay between characters in ms.
-   */
+  const signInPopup = document.getElementById("signInPopup");
+  const signInOverlay = document.getElementById("signInOverlay");
+  const cancelSignInBtn = document.getElementById("cancelSignInBtn");
+  const popupSignInBtn = document.getElementById("popupSignInBtn");
+
+  const protectedLinks = document.querySelectorAll(
+    ".feature-item, .chat-button, .estimate-button, .ar-button"
+  );
+
+  const showSignInPopup = () => {
+    if (signInPopup && signInOverlay) {
+      signInOverlay.classList.add("show");
+      signInPopup.classList.add("show");
+      body.classList.add("no-scroll");
+    }
+  };
+
+  const hideSignInPopup = () => {
+    if (signInPopup && signInOverlay) {
+      signInOverlay.classList.remove("show");
+      signInPopup.classList.remove("show");
+      body.classList.remove("no-scroll");
+    }
+  };
+
+  protectedLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      showSignInPopup();
+    });
+  });
+
+  cancelSignInBtn?.addEventListener("click", hideSignInPopup);
+  signInOverlay?.addEventListener("click", hideSignInPopup);
+  
+  popupSignInBtn?.addEventListener("click", () => {
+    window.location.href = "login.html";
+  });
+
   function typeAnimation(element, text, speed = 40) {
     let i = 0;
-    element.innerHTML = ""; // Clear existing text
+    element.innerHTML = "";
 
     function type() {
       if (i < text.length) {
@@ -37,43 +64,30 @@ document.addEventListener("DOMContentLoaded", () => {
         i++;
         setTimeout(type, speed);
       } else {
-        // Typing is done, add class to remove cursor
         element.classList.add("typing-done");
       }
     }
     type();
   }
 
-
-  /**
-   * ------------------------------------------------------------------
-   * UPDATED: Observe Elements Function
-   * ------------------------------------------------------------------
-   */
   const observeElements = () => {
-    // 1. Observer for main sections
     const elementsToAnimate = document.querySelectorAll('.content-section, .features-section, .ai-chat-section, .estimate-section, .ar-preview-section, .main-footer-section');
     
     const sectionObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Standard fade-in for all observed sections
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
 
-          // --- NEW TYPING LOGIC ---
-          // Check if this is the AI chat section
           if (entry.target.classList.contains('ai-chat-section')) {
             const chatBubbleP = document.getElementById('ai-chat-bubble-text');
-            // Check if it exists and hasn't already been animated
             if (chatBubbleP && !chatBubbleP.classList.contains('typing-done')) { 
               const textToType = chatBubbleP.getAttribute('data-text');
               if (textToType) {
-                typeAnimation(chatBubbleP, textToType, 40); // 40ms speed
+                typeAnimation(chatBubbleP, textToType, 40);
               }
             }
           }
-          // --- END NEW LOGIC ---
 
           observer.unobserve(entry.target);
         }
@@ -90,14 +104,12 @@ document.addEventListener("DOMContentLoaded", () => {
       sectionObserver.observe(el);
     });
 
-    // 2. Handle slider container
     const sliderContainer = document.querySelector('.slider-container');
     if (sliderContainer) {
       sliderContainer.style.opacity = '1';
       sliderContainer.style.transform = 'translateY(0)';
     }
 
-    // 3. OPTIMIZED: Observer for feature items
     const featureItems = document.querySelectorAll('.feature-item');
     
     const itemObserver = new IntersectionObserver((entries, observer) => {
@@ -115,8 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
       itemObserver.observe(item);
     });
 
-    // 4. OPTIMIZED: Observer for all cards (product, review, invision)
-    // NOTE: This logic was from an earlier optimization. I am keeping it.
     const cardObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -126,23 +136,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }, { threshold: 0.05 });
 
-    // 5. Apply animation to HORIZONTAL SCROLL items (review, invision, etc.)
     const horizontalSections = document.querySelectorAll('.content-slider-wrapper, .horizontal-scroll-wrapper');
     
     horizontalSections.forEach(section => {
-      // Find cards *within* this specific section
       const cardsInSection = section.querySelectorAll('.review-card, .article-card-invision, .product-card');
       
       cardsInSection.forEach((card, index) => {
         card.classList.add('card-animate-init');
-        // Progressive delay for each card in the horizontal list
-        card.style.transitionDelay = `${index * 0.05}s`; // 50ms stagger
+        card.style.transitionDelay = `${index * 0.05}s`;
         cardObserver.observe(card);
       });
     });
   };
-  // --- End of observeElements ---
-
 
   function initializeSlider(containerSelector) {
     const sliderContainer = document.querySelector(containerSelector);
@@ -262,174 +267,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const navButton = document.querySelector(".nav-button");
-  const sideMenu = document.getElementById("sideMenu");
-  const closeMenuBtn = document.getElementById("closeMenu");
-  const profileBtn = document.getElementById("profileBtn");
-  const profileMenu = document.getElementById("profileMenu");
-  const menuOverlay = document.getElementById("menuOverlay");
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const filterDropdowns = document.querySelectorAll(".filter-dropdown");
 
-  const logoutPopup = document.getElementById("logoutPopup");
-  const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
-  const cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
-  const logoutLink = document.querySelector(".profile-menu-list a i.fa-sign-out-alt");
-  const signOutAnchor = logoutLink?.closest("a");
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const targetId = button.getAttribute("data-target");
+      const targetDropdown = document.getElementById(targetId);
 
-  const openMenu = (menu) => {
-    menu?.classList.add("open");
-    menuOverlay?.classList.add("open");
-    body.classList.add("no-scroll");
-  };
-
-  const closeAllMenus = () => {
-    [sideMenu, profileMenu].forEach((m) => m?.classList.remove("open"));
-    menuOverlay?.classList.remove("open");
-    if (!logoutPopup?.classList.contains("show")) {
-      body.classList.remove("no-scroll");
-    }
-  };
-
-  const showLogoutPopup = () => {
-    if (logoutPopup && menuOverlay) {
-      menuOverlay.classList.add("show");
-      logoutPopup.classList.add("show");
-      body.classList.add("no-scroll");
-    }
-  };
-
-  const hideLogoutPopup = () => {
-    if (logoutPopup && menuOverlay) {
-      menuOverlay.classList.remove("show");
-      logoutPopup.classList.remove("show");
-      if (!sideMenu?.classList.contains("open") && !profileMenu?.classList.contains("open")) {
-        body.classList.remove("no-scroll");
+      if (button.classList.contains("active")) {
+        button.classList.remove("active");
+        targetDropdown.classList.remove("show");
+        return;
       }
-    }
-  };
 
-  navButton?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (profileMenu?.classList.contains("open")) closeAllMenus();
-    openMenu(sideMenu);
-  });
+      filterDropdowns.forEach(dropdown => {
+        dropdown.classList.remove("show");
+      });
+      filterButtons.forEach(btn => {
+        btn.classList.remove("active");
+      });
 
-  profileBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (sideMenu?.classList.contains("open")) closeAllMenus();
-    openMenu(profileMenu);
-  });
-
-  closeMenuBtn?.addEventListener("click", closeAllMenus);
-
-  menuOverlay?.addEventListener("click", (e) => {
-    if (e.target === menuOverlay) {
-      if (logoutPopup?.classList.contains("show")) {
-        hideLogoutPopup();
-      } else {
-        closeAllMenus();
-      }
-    }
-  });
-  
-  sideMenu?.addEventListener("click", (e) => e.stopPropagation());
-  profileMenu?.addEventListener("click", (e) => e.stopPropagation());
-
-  signOutAnchor?.addEventListener("click", (e) => {
-    e.preventDefault();
-    closeAllMenus();
-    showLogoutPopup();
-  });
-
-  confirmLogoutBtn?.addEventListener("click", () => {
-    hideLogoutPopup();
-    console.log("User confirmed logout!");
-    localStorage.setItem("isLoggedIn", "false");
-    body.classList.remove("logged-in");
-    window.location.href = "index.html";
-  });
-
-  cancelLogoutBtn?.addEventListener("click", hideLogoutPopup);
-
-  const allLinks = document.querySelectorAll(".menu-list a");
-  const menuItems = document.querySelectorAll(".menu-list > li");
-
-  let currentPageFile = window.location.pathname.split("/").pop();
-  let currentPageBase = currentPageFile.replace('.html', '');
-  
-  if (currentPageFile === "" || currentPageFile === "/" || !currentPageFile) {
-      if (window.location.pathname === '/' || window.location.pathname === '') {
-        currentPageFile = "loggedin.html";
-        currentPageBase = "loggedin";
-      } else {
-        currentPageFile = "loggedin.html";
-        currentPageBase = "loggedin";
-      }
-  }
-
-  allLinks.forEach((link) => {
-    const linkHref = link.getAttribute("href");
-    const parentLi = link.closest("li");
-    if (!linkHref || linkHref === '#') return;
-
-    const linkBase = linkHref.replace('.html', '');
-
-    if (linkHref === currentPageFile || linkBase === currentPageBase || linkHref === `/${currentPageBase}`) {
-      parentLi?.classList.add("active");
-      const subMenu = parentLi?.closest(".sub-menu");
-      if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
-    } else {
-      parentLi?.classList.remove("active");
-      const subMenuParent = parentLi?.closest(".has-sub");
-      if(subMenuParent && !subMenuParent.querySelector('.sub-menu li.active')){
-          subMenuParent.classList.remove("active-sub");
-      }
-    }
-  });
-
-  menuItems.forEach((item) => {
-    item.addEventListener("click", (e) => {
-        let currentPageFileOnClick = window.location.pathname.split("/").pop();
-        let currentPageBaseOnClick = currentPageFileOnClick.replace('.html', '');
-        
-        if (currentPageFileOnClick === "" || currentPageFileOnClick === "/") {
-            currentPageFileOnClick = "loggedin.html";
-            currentPageBaseOnClick = "loggedin";
-        }
-
-      if (item.classList.contains("has-sub")) {
-        if (e.target.closest(".sub-menu a")) {
-            closeAllMenus();
-            return;
-        }
-        item.classList.toggle("active-sub");
-        menuItems.forEach((i) => {
-          if (i !== item && i.classList.contains("has-sub")) {
-            i.classList.remove("active-sub");
-          }
-        });
-      } else {
-        const link = item.querySelector("a");
-        if (!link) return;
-        const linkHref = link.getAttribute("href");
-        const linkBase = linkHref ? linkHref.replace('.html', '') : '';
-
-        if (linkHref && linkHref !== "#" && linkHref !== currentPageFileOnClick && linkBase !== currentPageBaseOnClick) {
-          closeAllMenus();
-          return;
-        }
-
-        e.preventDefault();
-        menuItems.forEach((i) => {
-            i.classList.remove("active");
-            i.classList.remove("active-sub");
-        });
-        item.classList.add("active");
-          const subMenu = item.closest(".sub-menu");
-          if (subMenu) subMenu.closest(".has-sub")?.classList.add("active-sub");
-
-        closeAllMenus();
-      }
+      button.classList.add("active");
+      targetDropdown.classList.add("show");
     });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".filter-section")) {
+      filterDropdowns.forEach(dropdown => {
+        dropdown.classList.remove("show");
+      });
+      filterButtons.forEach(btn => {
+        btn.classList.remove("active");
+      });
+    }
   });
 
   const featuresGrid = document.querySelector(".features-grid");
@@ -455,6 +327,5 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeSlider(`.${uniqueSelector}`);
   });
 
-  // Call the main function to observe all elements
   observeElements();
 });
