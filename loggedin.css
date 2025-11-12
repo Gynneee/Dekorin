@@ -7,12 +7,11 @@
   --primary-brown: #81724f;
 }
 
-/* .slider-wrapper,
-.features-grid,
+.slider-wrapper,
 .horizontal-scroll-wrapper,
 .content-slider-wrapper {
-  overflow-y: visible;
-} */
+  overflow-y: hidden;
+}
 
 * {
   margin: 0;
@@ -1329,7 +1328,7 @@ body.logged-in .user-actions {
 
   .features-section h2{
     font-size: 2rem;
-  }
+  } 
 }
 
 .main-header,

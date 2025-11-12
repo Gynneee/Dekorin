@@ -699,7 +699,11 @@ body.no-scroll {
   text-decoration: none;
   transition: background-color 0.2s;
   display: none;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
+
 .signin-btn:hover {
   background-color: #2a5225;
 }
