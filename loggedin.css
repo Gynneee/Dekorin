@@ -202,54 +202,102 @@ a {
   gap: 0.75rem;
 }
 
+/* REPLACE this rule */
 .feature-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Aligns icon to the top */
   cursor: pointer;
-  background-color: #354c18;
-  border-radius: 12px;
-  padding: 1rem 0.5rem;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  min-height: 110px;
+  text-decoration: none;
+  transition: transform 0.2s ease-in-out;
+  min-height: 110px; /* Keep this to maintain layout */
 }
 
+/* REPLACE this rule */
 .feature-item i {
+  /* --- New Glass Styles --- */
+  background: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+  backdrop-filter: blur(10px);          /* The "frosted glass" blur */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Soft glass edge */
+  box-shadow: 0 4px 12px rgba(61, 89, 25, 0.1);
+  border-radius: 12px;
+  
+  /* --- Layout & Icon --- */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
   font-size: 2rem;
-  color: var(--light-gray);
-  margin-bottom: 0.75rem;
-  transition: color 0.2s ease-in-out;
+  margin-bottom: 0;
+  transition: all 0.2s ease-in-out; /* Updated transition */
 }
 
+.feature-item:nth-child(4) i {
+  color: #ffd93d;
+}
+
+/* REPLACE this rule */
 .feature-item p {
   font-size: 0.75rem;
-  color: var(--light-gray);
-  font-weight: 500;
+  color: #333;
+  font-weight: 1000;
   text-align: center;
   transition: color 0.2s ease-in-out;
+  margin-top: 0.75rem; /* NEW: Adds space below the icon box */
 }
 
+/* REPLACE all hover rules for .feature-item with these */
+
+/* REPLACE all hover rules for .feature-item with these */
+
+/* This lifts the ENTIRE item (box + text) */
 .feature-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
 }
 
+/* This makes the glass "pop" */
 .feature-item:hover i,
-.feature-item:hover p {
-  color: #eed292;
-}
-
-.feature-item img {
-  width: 2rem;
-  height: 2rem;
-  object-fit: contain;
-  margin-bottom: 0.75rem;
-  transition: filter 0.2s ease-in-out;
-}
-
 .feature-item:hover img {
-  filter: drop-shadow(0 0 4px #eed292);
+  background: rgba(255, 255, 255, 0.6);      /* Brighter background */
+  backdrop-filter: blur(15px);             /* More intense blur */
+  box-shadow: 0 8px 20px rgba(61, 89, 25, 0.2); /* Stronger shadow */
+  border-color: rgba(255, 255, 255, 0.4);  /* Brighter border */
+  transform: scale(1.1);
+}
+
+/* This keeps the text color change */
+.feature-item:hover p {
+  color: var(--primary-green);
+}
+
+/* This is for the Destiny AI logo specifically */
+.feature-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* REPLACE this rule */
+.feature-item img {
+  /* --- New Glass Styles --- */
+  background: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+  backdrop-filter: blur(10px);          /* The "frosted glass" blur */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Soft glass edge */
+  box-shadow: 0 4px 12px rgba(61, 89, 25, 0.1);
+  border-radius: 12px;
+  
+  /* --- Layout & Icon --- */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  padding: 1.25rem;
+  box-sizing: border-box;
+  object-fit: contain;
+  margin-bottom: 0;
+  transition: all 0.2s ease-in-out; /* Updated transition */
 }
 
 .side-menu {
