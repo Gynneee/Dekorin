@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     featureItems.forEach((item, index) => {
       item.classList.add('feature-item-animate-init');
-      item.style.transitionDelay = `${index * 0.2}s`;
+      item.style.transitionDelay = `${index * 0.05}s`;
       itemObserver.observe(item);
     });
 
