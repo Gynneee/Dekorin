@@ -7,12 +7,12 @@
   --primary-brown: #81724f;
 }
 
-.slider-wrapper,
+/* .slider-wrapper,
 .features-grid,
 .horizontal-scroll-wrapper,
 .content-slider-wrapper {
-  overflow-y: hidden;
-}
+  overflow-y: visible;
+} */
 
 * {
   margin: 0;
@@ -215,11 +215,12 @@ a {
   min-height: 140px;
 }
 
+/* REPLACE this rule with the following */
 .feature-item i {
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(61, 89, 25, 0.1);
+  background: rgba(255, 255, 255, 0.65); /* More opaque white for stronger glass */
+  backdrop-filter: blur(18px);          /* Increased blur for a smoother frosted look */
+  border: 1.5px solid rgba(255, 255, 255, 0.4); /* Stronger white border */
+  box-shadow: 0 8px 20px rgba(61, 89, 25, 0.18); /* More visible shadow */
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -232,7 +233,7 @@ a {
 }
 
 .feature-item:nth-child(4) i {
-  color: #ffd93d;
+  color: #ffd014;
 }
 
 .feature-item p {
@@ -248,12 +249,13 @@ a {
   transform: translateY(-5px);
 }
 
+/* REPLACE this rule with the following */
 .feature-item:hover i,
 .feature-item:hover img {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 20px rgba(61, 89, 25, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.8); /* Slightly more opaque on hover */
+  backdrop-filter: blur(25px);          /* Slightly more blur on hover */
+  box-shadow: 0 10px 25px rgba(61, 89, 25, 0.25); /* Stronger shadow on hover */
+  border-color: rgba(255, 255, 255, 0.6); /* More visible border on hover */
   transform: scale(1.1);
 }
 
@@ -266,11 +268,12 @@ a {
   filter: brightness(1.1);
 }
 
+/* REPLACE this rule with the following */
 .feature-item img {
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(61, 89, 25, 0.1);
+  background: rgba(255, 255, 255, 0.65); /* More opaque white for stronger glass */
+  backdrop-filter: blur(18px);          /* Increased blur for a smoother frosted look */
+  border: 1.5px solid rgba(255, 255, 255, 0.4); /* Stronger white border */
+  box-shadow: 0 8px 20px rgba(61, 89, 25, 0.18); /* More visible shadow */
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -1299,7 +1302,7 @@ body.logged-in .user-actions {
   }
 
   .feature-item {
-    width: 90px;
+    width: 100px;
     flex-shrink: 0;
     scroll-snap-align: start;
     min-height: 110px;
@@ -1320,39 +1323,12 @@ body.logged-in .user-actions {
     padding: 1.25rem;
   }
 
-  .features-section::after {
-    content: "";
-    position: absolute;
-    bottom: 2.5rem;
-    height: 130px;
-    right: 0;
-    width: 45px;
-    background: linear-gradient(to left, #e3e2e2 30%, transparent);
-    pointer-events: none;
-    z-index: 10;
-    opacity: 0;
-    transition: opacity 0.2s ease;
+  .section-header h2 {
+    font-size: 1.5rem;
   }
 
-  .features-section::before {
-    content: "";
-    position: absolute;
-    bottom: 2.5rem;
-    height: 130px;
-    left: 0;
-    width: 45px;
-    background: linear-gradient(to right, #e3e2e2 30%, transparent);
-    pointer-events: none;
-    z-index: 10;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
-  .features-section.show-right-shadow::after {
-    opacity: 0.4;
-  }
-  .features-section.show-left-shadow::before {
-    opacity: 0.4;
+  .features-section h2{
+    font-size: 2rem;
   }
 }
 
