@@ -30,7 +30,10 @@ body {
   position: relative;
 }
 
-/* Animated Background Pattern */
+body.no-scroll {
+  overflow: hidden;
+}
+
 body::before {
   content: '';
   position: fixed;
@@ -54,7 +57,6 @@ body::before {
   }
 }
 
-/* Floating Particles */
 .particles {
   position: absolute;
   top: 0;
@@ -106,16 +108,14 @@ body::before {
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
 }
 
-/* PERBAIKAN: Input menempel di bawah */
 .destiny-page {
   width: 100%;
-  flex: 1; /* <-- INI PENTING */
+  flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-/* Header */
 .destiny-header {
   display: flex;
   align-items: center;
@@ -243,11 +243,9 @@ body::before {
   }
 }
 
-/* Chat Container */
 .destiny-main {
   flex: 1;
   overflow-y: auto;
-  /* PERBAIKAN: Padding-bottom dikurangi agar scroll pas */
   padding: 2rem 1.25rem 0.5rem 1.25rem;
   display: flex;
   flex-direction: column;
@@ -272,7 +270,6 @@ body::before {
   box-shadow: 0 0 10px var(--glow);
 }
 
-/* Messages */
 .bot-message,
 .user-message {
   display: flex;
@@ -319,7 +316,8 @@ body::before {
   opacity: 1;
 }
 
-.bot-message img , .typing-indicator img{
+.bot-message img,
+.typing-indicator img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -361,6 +359,8 @@ body::before {
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .bot-message p::before {
@@ -418,6 +418,8 @@ body::before {
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .user-message p::after {
@@ -446,9 +448,6 @@ body::before {
   font-weight: 700;
 }
 
-/*
- * INI KODE ANIMASI "THINKING" YANG ANDA CARI
- */
 .typing-indicator {
   display: flex;
   align-items: center;
@@ -499,9 +498,7 @@ body::before {
     box-shadow: 0 8px 16px var(--glow);
   }
 }
-/* AKHIR DARI KODE ANIMASI "THINKING" */
 
-/* Quick Replies */
 .quick-replies {
   display: flex;
   flex-wrap: wrap;
@@ -566,7 +563,6 @@ body::before {
   transform: translateY(-3px) scale(0.98) rotate(2deg);
 }
 
-/* Chat Footer */
 .chat-footer {
   padding: 1.5rem 1.25rem;
   background: rgba(255, 255, 255, 0.9);
@@ -682,7 +678,7 @@ body::before {
 
 #chat-input {
   flex: 1;
-  min-width: 0; /* <-- PERBAIKAN: Tombol kirim tidak terdorong keluar */
+  min-width: 0;
   border: none;
   background: none;
   font-family: inherit;
@@ -756,7 +752,164 @@ body::before {
   font-weight: 500;
 }
 
-/* Mobile */
+/* --- Popups --- */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.popup-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+.popup-container {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  right: 0;
+  background-color: #ffffff;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);
+  z-index: 10001;
+  transition: bottom 0.3s ease-out;
+}
+
+.popup-container.show {
+  bottom: 0;
+}
+
+.popup-content {
+  padding: 25px 30px;
+  text-align: center;
+}
+
+.popup-container h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 15px;
+}
+
+.popup-container p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.popup-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.popup-btn {
+  padding: 12px 0;
+  flex: 1;
+  max-width: 150px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  font-family: "Poppins", sans-serif;
+}
+
+.popup-btn:focus {
+  outline: none;
+}
+
+.popup-btn-yes {
+  background-color: #d9534f;
+  color: #fff;
+  border: 1px solid #d9534f;
+}
+.popup-btn-yes:hover {
+  background-color: #c9302c;
+  border-color: #c12e2a;
+}
+
+.popup-btn-no {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+.popup-btn-no:hover {
+  background-color: #f0f0f0;
+}
+
+#historyPopup .popup-header-history {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+#historyPopup .popup-header-history h2 {
+  margin: 0;
+}
+
+#historyPopup .close-popup-btn {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.popup-content-history {
+  padding: 1.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.popup-content-history .history-message {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.popup-content-history .history-message.user {
+  background: var(--green-primary);
+  color: white;
+  margin-left: 20%;
+}
+
+.popup-content-history .history-message.bot {
+  background: var(--surface-gray);
+  color: var(--text-primary);
+  margin-right: 20%;
+}
+
+.popup-content-history .no-history {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 2rem 0;
+  font-style: italic;
+}
+
 @media (max-width: 480px) {
   .destiny-header {
     padding: 1rem 1.25rem;
@@ -772,14 +925,14 @@ body::before {
   }
 }
 
-@media (min-width: 600px) { 
+@media (min-width: 600px) {
   .mobile-container {
     max-width: none;
     box-shadow: none;
   }
 
   .destiny-page {
-    max-width: auto; 
+    max-width: auto;
     margin: 0 auto;
     border-left: 1px solid var(--border);
     border-right: 1px solid var(--border);
