@@ -107,10 +107,12 @@ a {
   align-items: center;
 }
 
-.user-actions a {
+.user-actions .cart-icon {
   font-size: 1.5rem;
   color: var(--primary-green);
   text-decoration: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .slider-container {
@@ -202,102 +204,84 @@ a {
   gap: 0.75rem;
 }
 
-/* REPLACE this rule */
 .feature-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Aligns icon to the top */
+  justify-content: flex-start;
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.2s ease-in-out;
-  min-height: 110px; /* Keep this to maintain layout */
+  min-height: 140px;
 }
 
-/* REPLACE this rule */
 .feature-item i {
-  /* --- New Glass Styles --- */
-  background: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
-  backdrop-filter: blur(10px);          /* The "frosted glass" blur */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Soft glass edge */
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 12px rgba(61, 89, 25, 0.1);
-  border-radius: 12px;
-  
-  /* --- Layout & Icon --- */
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
-  font-size: 2rem;
+  width: 100px;
+  height: 100px;
+  font-size: 2.5rem;
   margin-bottom: 0;
-  transition: all 0.2s ease-in-out; /* Updated transition */
+  transition: all 0.2s ease-in-out;
 }
 
 .feature-item:nth-child(4) i {
   color: #ffd93d;
 }
 
-/* REPLACE this rule */
 .feature-item p {
   font-size: 0.75rem;
   color: #333;
   font-weight: 1000;
   text-align: center;
   transition: color 0.2s ease-in-out;
-  margin-top: 0.75rem; /* NEW: Adds space below the icon box */
+  margin-top: 0.75rem;
 }
 
-/* REPLACE all hover rules for .feature-item with these */
-
-/* REPLACE all hover rules for .feature-item with these */
-
-/* This lifts the ENTIRE item (box + text) */
 .feature-item:hover {
   transform: translateY(-5px);
 }
 
-/* This makes the glass "pop" */
 .feature-item:hover i,
 .feature-item:hover img {
-  background: rgba(255, 255, 255, 0.6);      /* Brighter background */
-  backdrop-filter: blur(15px);             /* More intense blur */
-  box-shadow: 0 8px 20px rgba(61, 89, 25, 0.2); /* Stronger shadow */
-  border-color: rgba(255, 255, 255, 0.4);  /* Brighter border */
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 20px rgba(61, 89, 25, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
   transform: scale(1.1);
 }
 
-/* This keeps the text color change */
 .feature-item:hover p {
   color: var(--primary-green);
 }
 
-/* This is for the Destiny AI logo specifically */
 .feature-item:hover img {
-    transform: scale(1.1);
-    filter: brightness(1.1);
+  transform: scale(1.1);
+  filter: brightness(1.1);
 }
 
-/* REPLACE this rule */
 .feature-item img {
-  /* --- New Glass Styles --- */
-  background: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
-  backdrop-filter: blur(10px);          /* The "frosted glass" blur */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Soft glass edge */
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 12px rgba(61, 89, 25, 0.1);
-  border-radius: 12px;
-  
-  /* --- Layout & Icon --- */
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
-  padding: 1.25rem;
+  width: 100px;
+  height: 100px;
+  padding: 2rem;
   box-sizing: border-box;
   object-fit: contain;
   margin-bottom: 0;
-  transition: all 0.2s ease-in-out; /* Updated transition */
+  transition: all 0.2s ease-in-out;
 }
 
 .side-menu {
@@ -1318,16 +1302,32 @@ body.logged-in .user-actions {
     width: 90px;
     flex-shrink: 0;
     scroll-snap-align: start;
+    min-height: 110px;
+  }
+
+  .feature-item i,
+  .feature-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+  }
+
+  .feature-item i {
+    font-size: 2rem;
+  }
+
+  .feature-item img {
+    padding: 1.25rem;
   }
 
   .features-section::after {
     content: "";
     position: absolute;
     bottom: 2.5rem;
-    height: 120px;
+    height: 130px;
     right: 0;
     width: 45px;
-    background: linear-gradient(to left, #faf7ef 30%, transparent);
+    background: linear-gradient(to left, #e3e2e2 30%, transparent);
     pointer-events: none;
     z-index: 10;
     opacity: 0;
@@ -1338,10 +1338,10 @@ body.logged-in .user-actions {
     content: "";
     position: absolute;
     bottom: 2.5rem;
-    height: 120px;
+    height: 130px;
     left: 0;
     width: 45px;
-    background: linear-gradient(to right, #faf7ef 30%, transparent);
+    background: linear-gradient(to right, #e3e2e2 30%, transparent);
     pointer-events: none;
     z-index: 10;
     opacity: 0;
@@ -1349,10 +1349,10 @@ body.logged-in .user-actions {
   }
 
   .features-section.show-right-shadow::after {
-    opacity: 0.65;
+    opacity: 0.4;
   }
   .features-section.show-left-shadow::before {
-    opacity: 0.65;
+    opacity: 0.4;
   }
 }
 
