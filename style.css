@@ -8,6 +8,7 @@
 }
 
 .slider-wrapper,
+.features-grid,
 .horizontal-scroll-wrapper,
 .content-slider-wrapper {
   overflow-y: hidden;
