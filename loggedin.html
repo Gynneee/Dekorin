@@ -56,10 +56,50 @@
               </li>
             </ul>
           </section>
+
+          <section class="trending-section">
+            <h2>Trending</h2>
+            <div class="trending-tags">
+              <button
+                class="tag-btn"
+                onclick="window.location.href='search-result.html'"
+              >
+                Vintage
+              </button>
+              <button
+                class="tag-btn"
+                onclick="window.location.href='search-result.html'"
+              >
+                Pastel
+              </button>
+              <button
+                class="tag-btn"
+                onclick="window.location.href='search-result.html'"
+              >
+                Neutral
+              </button>
+              <button
+                class="tag-btn"
+                onclick="window.location.href='search-result.html'"
+              >
+                Minimalist Style
+              </button>
+              <button
+                class="tag-btn"
+                onclick="window.location.href='search-result.html'"
+              >
+                Luxury Look
+              </button>
+            </div>
+          </section>
+
           <section class="recent-view">
             <h2>Recent View</h2>
             <div class="product-list">
-              <div class="product-item" onclick="window.location.href='detail-produk.html'">
+              <div
+                class="product-item"
+                onclick="window.location.href='detail-produk.html'"
+              >
                 <img
                   src="src/Home/alberto-castillo-q-mx4mSkK9zeo-unsplash.jpg"
                   alt="Wallpaper Polos"
@@ -70,7 +110,10 @@
                   <span>Rp. 100.000</span>
                 </div>
               </div>
-              <div class="product-item" onclick="window.location.href='detail-produk.html'">
+              <div
+                class="product-item"
+                onclick="window.location.href='detail-produk.html'"
+              >
                 <img
                   src="src/Home/jason-wang-NxAwryAbtIw-unsplash.jpg"
                   alt="Wallpaper Polos"
@@ -81,7 +124,10 @@
                   <span>Rp. 100.000</span>
                 </div>
               </div>
-              <div class="product-item" onclick="window.location.href='detail-produk.html'">
+              <div
+                class="product-item"
+                onclick="window.location.href='detail-produk.html'"
+              >
                 <img
                   src="src/Home/spacejoy-9M66C_w_ToM-unsplash.jpg"
                   alt="Wallpaper Polos"
@@ -92,7 +138,10 @@
                   <span>Rp. 100.000</span>
                 </div>
               </div>
-              <div class="product-item" onclick="window.location.href='detail-produk.html'">
+              <div
+                class="product-item"
+                onclick="window.location.href='detail-produk.html'"
+              >
                 <img
                   src="src/Home/jason-wang-NxAwryAbtIw-unsplash.jpg"
                   alt="Wallpaper Polos"
@@ -103,7 +152,10 @@
                   <span>Rp. 100.000</span>
                 </div>
               </div>
-              <div class="product-item" onclick="window.location.href='detail-produk.html'">
+              <div
+                class="product-item"
+                onclick="window.location.href='detail-produk.html'"
+              >
                 <img
                   src="src/Home/spacejoy-9M66C_w_ToM-unsplash.jpg"
                   alt="Wallpaper Polos"
@@ -127,8 +179,8 @@
             <li class="has-sub">
               <span>Size <i class="fas fa-chevron-right"></i></span>
               <ul class="sub-menu">
-                <li><a href="#">Wallpaper roll 53 cm</a></li>
-                <li><a href="#">Wallpaper roll 106 cm</a></li>
+                <li><a href="search-result.html">Wallpaper roll 53 cm</a></li>
+                <li><a href="search-result.html">Wallpaper roll 106 cm</a></li>
               </ul>
             </li>
             <li><a href="inmeasure.html">InMeasure</a></li>
@@ -184,7 +236,6 @@
           <input type="text" placeholder="Search" />
         </div>
         <div class="user-actions">
-          <a href="signup.html" class="signin-btn">Sign In</a>
           <a href="cart.html" class="cart-icon" aria-label="Shopping Cart">
             <i class="fas fa-shopping-cart"></i>
           </a>
@@ -226,15 +277,15 @@
           <h2>Features</h2>
           <div class="features-grid">
             <a href="augmented_reality.html" class="feature-item">
-              <i class="fas fa-camera"></i>
+              <img src="src/Home/cube.png" alt="AR" />
               <p>Augmented Reality</p>
             </a>
             <a href="inmeasure.html" class="feature-item">
-              <i class="fas fa-calculator"></i>
+              <img src="src/Home/angle.png" alt="inmeasure" />
               <p>InMeasure</p>
             </a>
             <a href="AI.html" class="feature-item">
-              <img src="src/Home/Destinyai.png" alt="Destiny AI" />
+              <img src="src/Home/Destinyaicolored.png" alt="Destiny AI" />
               <p>Destiny AI</p>
             </a>
             <a href="invision.html" class="feature-item">
@@ -244,13 +295,76 @@
           </div>
         </section>
 
+        <section class="filter-section">
+          <div class="filter-buttons">
+            <button class="filter-btn" data-target="colourDropdown">
+              <span>Colour</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <button class="filter-btn" data-target="designDropdown">
+              <span>Design</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <button class="filter-btn" data-target="roomDropdown">
+              <span>Room</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+
+          <div id="colourDropdown" class="filter-dropdown">
+            <div class="filter-list">
+              <label><input type="checkbox" /> <span>Black</span></label>
+              <label><input type="checkbox" /> <span>White</span></label>
+              <label><input type="checkbox" /> <span>Blue</span></label>
+              <label><input type="checkbox" /> <span>Red</span></label>
+              <label><input type="checkbox" /> <span>Brown</span></label>
+              <label><input type="checkbox" /> <span>Pink</span></label>
+              <label><input type="checkbox" /> <span>Cream</span></label>
+              <label><input type="checkbox" /> <span>Rose Gold</span></label>
+              <label><input type="checkbox" /> <span>Gold</span></label>
+              <label><input type="checkbox" /> <span>Silver</span></label>
+              <label><input type="checkbox" /> <span>Green</span></label>
+              <label><input type="checkbox" /> <span>Sage</span></label>
+              <label><input type="checkbox" /> <span>Grey</span></label>
+              <label><input type="checkbox" /> <span>Teal</span></label>
+              <label><input type="checkbox" /> <span>Metallic</span></label>
+              <label><input type="checkbox" /> <span>Purple</span></label>
+              <label><input type="checkbox" /> <span>Yellow</span></label>
+              <label><input type="checkbox" /> <span>Pastel</span></label>
+              <label><input type="checkbox" /> <span>Mustard</span></label>
+              <label><input type="checkbox" /> <span>Multicolour</span></label>
+            </div>
+          </div>
+
+          <div id="designDropdown" class="filter-dropdown">
+            <div class="filter-list">
+              <label><input type="checkbox" /> <span>Motive</span></label>
+              <label><input type="checkbox" /> <span>Plain</span></label>
+              <label><input type="checkbox" /> <span>Geometric</span></label>
+              <label><input type="checkbox" /> <span>Flower</span></label>
+            </div>
+          </div>
+
+          <div id="roomDropdown" class="filter-dropdown">
+            <div class="filter-list">
+              <label><input type="checkbox" /> <span>Bedroom</span></label>
+              <label><input type="checkbox" /> <span>Living Room</span></label>
+              <label><input type="checkbox" /> <span>Kids Bedroom</span></label>
+              <label><input type="checkbox" /> <span>Kitchen</span></label>
+            </div>
+          </div>
+        </section>
+
         <section class="content-section">
           <div class="section-header">
-            <h2>Roll Besar</h2>
+            <h2>Popular Items</h2>
             <a href="search-result.html" class="see-all">See all</a>
           </div>
           <div class="horizontal-scroll-wrapper">
-            <div class="product-card">
+            <div
+              class="product-card"
+              onclick="window.location.href='detail-produk.html'"
+            >
               <img
                 src="src/Home/alberto-castillo-q-mx4mSkK9zeo-unsplash.jpg"
                 alt="Product 4"
@@ -259,7 +373,10 @@
               <h3 class="product-title">Stylish Wallpaper</h3>
               <p class="product-price">Rp.250.000/Roll</p>
             </div>
-            <div class="product-card">
+            <div
+              class="product-card"
+              onclick="window.location.href='detail-produk.html'"
+            >
               <img
                 src="src/Home/jason-wang-NxAwryAbtIw-unsplash.jpg"
                 alt="Product 3"
@@ -268,7 +385,10 @@
               <h3 class="product-title">Ergo Wallpaper</h3>
               <p class="product-price">Rp.200.000/Roll</p>
             </div>
-            <div class="product-card">
+            <div
+              class="product-card"
+              onclick="window.location.href='detail-produk.html'"
+            >
               <img
                 src="src/Home/spacejoy-9M66C_w_ToM-unsplash.jpg"
                 alt="Product 1"
@@ -282,36 +402,45 @@
 
         <section class="content-section">
           <div class="section-header">
-            <h2>Roll Kecil</h2>
+            <h2>Colour & Pattern</h2>
             <a href="search-result.html" class="see-all">See all</a>
           </div>
           <div class="horizontal-scroll-wrapper">
-            <div class="product-card">
+            <div
+              class="product-card"
+              onclick="window.location.href='detail-produk.html'"
+            >
               <img
                 src="src/Home/alberto-castillo-q-mx4mSkK9zeo-unsplash.jpg"
                 alt="Product 1"
                 class="product-image"
               />
               <h3 class="product-title">Leaf Wallpaper</h3>
-              <p class="product-price">Rp.155.000/Roll</p>
+              <p class="product-price">Green, Flower</p>
             </div>
-            <div class="product-card">
+            <div
+              class="product-card"
+              onclick="window.location.href='detail-produk.html'"
+            >
               <img
                 src="src/Home/jason-wang-NxAwryAbtIw-unsplash.jpg"
                 alt="Product 2"
                 class="product-image"
               />
               <h3 class="product-title">Kuy Wallpaper</h3>
-              <p class="product-price">Rp.100.000/Roll</p>
+              <p class="product-price">Blue, Geometric</p>
             </div>
-            <div class="product-card">
+            <div
+              class="product-card"
+              onclick="window.location.href='detail-produk.html'"
+            >
               <img
                 src="src/Home/spacejoy-9M66C_w_ToM-unsplash.jpg"
                 alt="Product 3"
                 class="product-image"
               />
               <h3 class="product-title">Leaf Wallpaper</h3>
-              <p class="product-price">Rp.155.000/Roll</p>
+              <p class="product-price">Green, Flower</p>
             </div>
           </div>
         </section>
@@ -496,7 +625,7 @@
             <h2>Visualize before you buy</h2>
             <p>
               See how our wallpapers look on your walls with AR Preview Mode. Try
-              different colors, patterns, and lighting instantly — right from
+              different colors, patterns, and lighting instantly right from
               your phone.
             </p>
             <a href="augmented_reality.html" class="ar-button"

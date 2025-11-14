@@ -1,158 +1,146 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Return - DekorIn</title>
-  <link rel="stylesheet" href="return.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
-</head>
+  <head>
+    <meta charset="UTF-R" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Return - DekorIn</title>
+    <link rel="stylesheet" href="return.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-  <div class="return-container">
-    <!-- Header -->
-    <header class="header">
-      <button class="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
-      <h2>Return</h2>
-    </header>
+  <body>
+    <div class="return-container">
+      <header class="header">
+        <button class="back-btn" onclick="window.location.href='track-order.html'"><i class="fa-solid fa-arrow-left"></i></button>
+        <h2>Return</h2>
+      </header>
 
-    <!-- Product Info -->
-    <section class="product-info">
-      <div class="product-card">
-        <img src="src/cart/cart1.png" alt="Wallpaper" />
-        <div class="product-details">
-          <h4>Wallpaper Polos</h4>
-          <p>Dekorin Store | 2 Roll</p>
-          <span class="price">Rp300.000</span>
+      <section class="product-info">
+        <div class="product-card">
+          <img src="src/cart/cart1.png" alt="Wallpaper" />
+          <div class="product-details">
+            <h4>Wallpaper Polos</h4>
+            <p>Dekorin Store | 2 Roll</p>
+            <span class="price">Rp300.000</span>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Form Section -->
-    <section class="form-section">
-      <!-- Reason -->
-      <div class="form-row">
-        <label>Reason</label>
-        <select id="reason">
-          <option value="" disabled selected>Select Reason</option>
-          <option value="not-working">Product not working / usable</option>
-          <option value="wrong-item">Wrong item received</option>
-          <option value="changed-mind">Changed mind</option>
-          <option value="damaged">Damaged during delivery</option>
-          <option value="others">Others (please specify)</option>
-        </select>
-      </div>
-
-      <!-- Solution -->
-      <div class="form-row">
-        <label>Solution</label>
-        <select id="solution">
-          <option value="" disabled selected>Select Solution</option>
-          <option value="refund">Return product & refund</option>
-          <option value="exchange">Exchange product</option>
-        </select>
-      </div>
-
-      <!-- Refund -->
-      <div class="form-row">
-        <label>Refund to</label>
-        <select id="refund">
-          <option value="" disabled selected>Select Method</option>
-          <option>BCA Virtual Account</option>
-          <option>OVO</option>
-          <option>DANA</option>
-        </select>
-      </div>
-
-      <!-- Total Refund -->
-      <div class="total-refund">
-        <div class="total-line">
-          <p>Total Refund</p>
-          <h3>Rp307.500</h3>
+      <section class="form-section">
+        <div class="form-row">
+          <label>Reason</label>
+          <select id="reason">
+            <option value="" disabled selected>Select Reason</option>
+            <option value="not-working">Product not working / usable</option>
+            <option value="wrong-item">Wrong item received</option>
+            <option value="changed-mind">Changed mind</option>
+            <option value="damaged">Damaged during delivery</option>
+            <option value="others">Others (please specify)</option>
+          </select>
         </div>
-        <div class="refund-details">
-          <p>Refundable Product Price <span>Rp300.000</span></p>
-          <p>Shipping Fee <span>Rp7.000</span></p>
-          <p>Service Fee <span>Rp500</span></p>
+
+        <div class="form-row">
+          <label>Solution</label>
+          <select id="solution">
+            <option value="" disabled selected>Select Solution</option>
+            <option value="refund">Return product & refund</option>
+            <option value="exchange">Exchange product</option>
+          </select>
         </div>
-      </div>
 
-      <!-- Description -->
-      <div class="form-group">
-        <label>Description (Optional)</label>
-        <textarea placeholder="Masukkan deskripsi tambahan..."></textarea>
-      </div>
+        <div class="form-row">
+          <label>Refund to</label>
+          <select id="refund">
+            <option value="" disabled selected>Select Method</option>
+            <option>BCA Virtual Account</option>
+            <option>OVO</option>
+            <option>DANA</option>
+          </select>
+        </div>
 
-      <!-- Upload Section -->
-      <div id="upload-section" class="hidden">
-        <p class="upload-instruction"><strong>Attach images or videos showing:</strong></p>
-        <ul class="upload-list">
-          <li>1. Packaging condition upon receipt</li>
-          <li>2. The part of the wallpaper that is damaged or unusable</li>
-          <li>3. The receipt or invoice included in the package</li>
-        </ul>
+        <div class="total-refund">
+          <div class="total-line">
+            <p>Total Refund</p>
+            <h3>Rp307.500</h3>
+          </div>
+          <div class="refund-details">
+            <p>Refundable Product Price <span>Rp300.000</span></p>
+            <p>Shipping Fee <span>Rp7.000</span></p>
+            <p>Service Fee <span>Rp500</span></p>
+          </div>
+        </div>
 
-        <label class="upload-box">
-          <input type="file" accept="image/*" multiple hidden id="photoUpload" />
-          <i class="fa-regular fa-image"></i>
-          <p>Add Photo <span id="photoCount">0/5</span></p>
-        </label>
+        <div class="form-group">
+          <label>Description (Optional)</label>
+          <textarea placeholder="Masukkan deskripsi tambahan..."></textarea>
+        </div>
 
-        <label class="upload-box">
-          <input type="file" accept="video/*" hidden id="videoUpload" />
-          <i class="fa-solid fa-camera"></i>
-          <p>Add Video <span id="videoCount">0/1</span></p>
-        </label>
-      </div>
+        <div id="upload-section" class="hidden">
+          <p class="upload-instruction">
+            <strong>Attach images or videos showing:</strong>
+          </p>
+          <ul class="upload-list">
+            <li>1. Packaging condition upon receipt</li>
+            <li>2. The part of the wallpaper that is damaged or unusable</li>
+            <li>3. The receipt or invoice included in the package</li>
+          </ul>
 
-      <!-- Email -->
-      <div class="form-row email-row">
-        <label>Email</label>
-        <p class="user-email">dil.putra@gmail.com</p>
-      </div>
-    </section>
+          <label class="upload-box">
+            <input type="file" accept="image/*" multiple hidden id="photoUpload" />
+            <i class="fa-regular fa-image"></i>
+            <p>Add Photo <span id="photoCount">0/5</span></p>
+          </label>
 
-    <!-- Submit Button -->
-    <footer class="footer">
-      <button class="submit-btn" id="submitBtn" disabled>Submit</button>
-    </footer>
-  </div>
+          <label class="upload-box">
+            <input type="file" accept="video/*" hidden id="videoUpload" />
+            <i class="fa-solid fa-camera"></i>
+            <p>Add Video <span id="videoCount">0/1</span></p>
+          </label>
+        </div>
 
-  <script>
-    const reasonSelect = document.getElementById("reason");
-    const uploadSection = document.getElementById("upload-section");
-    const submitBtn = document.getElementById("submitBtn");
-    const photoInput = document.getElementById("photoUpload");
-    const videoInput = document.getElementById("videoUpload");
-    const photoCount = document.getElementById("photoCount");
-    const videoCount = document.getElementById("videoCount");
+        <div class="form-row email-row">
+          <label>Email</label>
+          <p class="user-email">dil.putra@gmail.com</p>
+        </div>
+      </section>
 
-    // Show upload section & enable submit when reason selected
-    reasonSelect.addEventListener("change", () => {
-      uploadSection.classList.remove("hidden");
-      uploadSection.classList.add("visible");
-      submitBtn.disabled = false;
-      submitBtn.classList.add("active");
-    });
+      <footer class="footer">
+        <button class="submit-btn" id="submitBtn" onclick="window.location.href='return-success.html'">Submit</button>
+      </footer>
+    </div>
 
-    // Photo counter
-    photoInput.addEventListener("change", () => {
-      const count = photoInput.files.length;
-      photoCount.textContent = `${count}/5`;
-    });
+    <script>
+      const reasonSelect = document.getElementById("reason");
+      const uploadSection = document.getElementById("upload-section");
+      const submitBtn = document.getElementById("submitBtn");
+      const photoInput = document.getElementById("photoUpload");
+      const videoInput = document.getElementById("videoUpload");
+      const photoCount = document.getElementById("photoCount");
+      const videoCount = document.getElementById("videoCount");
 
-    // Video counter
-    videoInput.addEventListener("change", () => {
-      const count = videoInput.files.length;
-      videoCount.textContent = `${count}/1`;
-    });
-  </script>
-</body>
+      reasonSelect.addEventListener("change", () => {
+        uploadSection.classList.remove("hidden");
+        uploadSection.classList.add("visible");
+        submitBtn.disabled = false;
+        submitBtn.classList.add("active");
+      });
+
+      photoInput.addEventListener("change", () => {
+        const count = photoInput.files.length;
+        photoCount.textContent = `${count}/5`;
+      });
+
+      videoInput.addEventListener("change", () => {
+        const count = videoInput.files.length;
+        videoCount.textContent = `${count}/1`;
+      });
+    </script>
+  </body>
 </html>

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DekorIn - Search Result</title>
 
-    <!-- Font & Icons -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -15,12 +14,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
 
-    <!-- CSS -->
     <link rel="stylesheet" href="search-result.css" />
   </head>
   <body>
     <div class="search-result-page fade-in">
-      <!-- Header -->
       <header class="header">
         <img
           src="src/signup/erasebg-transformed.png"
@@ -29,7 +26,6 @@
         />
       </header>
 
-      <!-- Search Bar -->
       <div class="search-bar">
         <button class="back-btn" onclick="window.location.href='loggedin.html'">
           <i class="fa-solid fa-arrow-left"></i>
@@ -39,22 +35,71 @@
         </div>
       </div>
 
-      <!-- Filter Buttons -->
-      <div class="filters">
-        <button class="filter-btn">
-          Color <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <button class="filter-btn">
-          Design <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <button class="filter-btn">
-          Room <i class="fa-solid fa-chevron-down"></i>
-        </button>
-      </div>
+      <section class="filter-section">
+        <div class="filter-buttons">
+          <button class="filter-btn" data-target="colourDropdown">
+            <span>Colour</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <button class="filter-btn" data-target="designDropdown">
+            <span>Design</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <button class="filter-btn" data-target="roomDropdown">
+            <span>Room</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
 
-      <!-- Product Grid -->
+        <div id="colourDropdown" class="filter-dropdown">
+          <div class="filter-list">
+            <label><input type="checkbox" /> <span>Black</span></label>
+            <label><input type="checkbox" /> <span>White</span></label>
+            <label><input type="checkbox" /> <span>Blue</span></label>
+            <label><input type="checkbox" /> <span>Red</span></label>
+            <label><input type="checkbox" /> <span>Brown</span></label>
+            <label><input type="checkbox" /> <span>Pink</span></label>
+            <label><input type="checkbox" /> <span>Cream</span></label>
+            <label><input type="checkbox" /> <span>Rose Gold</span></label>
+            <label><input type="checkbox" /> <span>Gold</span></label>
+            <label><input type="checkbox" /> <span>Silver</span></label>
+            <label><input type="checkbox" /> <span>Green</span></label>
+            <label><input type="checkbox" /> <span>Sage</span></label>
+            <label><input type="checkbox" /> <span>Grey</span></label>
+            <label><input type="checkbox" /> <span>Teal</span></label>
+            <label><input type="checkbox" /> <span>Metallic</span></label>
+            <label><input type="checkbox" /> <span>Purple</span></label>
+            <label><input type="checkbox" /> <span>Yellow</span></label>
+            <label><input type="checkbox" /> <span>Pastel</span></label>
+            <label><input type="checkbox" /> <span>Mustard</span></label>
+            <label><input type="checkbox" /> <span>Multicolour</span></label>
+          </div>
+        </div>
+
+        <div id="designDropdown" class="filter-dropdown">
+          <div class="filter-list">
+            <label><input type="checkbox" /> <span>Motive</span></label>
+            <label><input type="checkbox" /> <span>Plain</span></label>
+            <label><input type="checkbox" /> <span>Geometric</span></label>
+            <label><input type="checkbox" /> <span>Flower</span></label>
+          </div>
+        </div>
+
+        <div id="roomDropdown" class="filter-dropdown">
+          <div class="filter-list">
+            <label><input type="checkbox" /> <span>Bedroom</span></label>
+            <label><input type="checkbox" /> <span>Living Room</span></label>
+            <label><input type="checkbox" /> <span>Kids Bedroom</span></label>
+            <label><input type="checkbox" /> <span>Kitchen</span></label>
+          </div>
+        </div>
+      </section>
+
       <section class="product-grid">
-        <div class="product-card" onclick="window.location.href='detail-produk.html'">
+        <div
+          class="product-card"
+          onclick="window.location.href='detail-produk.html'"
+        >
           <div class="img-box">
             <img src="Group 172.png" alt="Geo Stone Wallpaper" />
           </div>
@@ -68,7 +113,10 @@
           </div>
         </div>
 
-        <div class="product-card" onclick="window.location.href='detail-produk.html'">
+        <div
+          class="product-card"
+          onclick="window.location.href='detail-produk.html'"
+        >
           <div class="img-box">
             <img src="Group 173.png" alt="Aqua Stone Wallpaper" />
           </div>
@@ -82,7 +130,10 @@
           </div>
         </div>
 
-        <div class="product-card" onclick="window.location.href='detail-produk.html'">
+        <div
+          class="product-card"
+          onclick="window.location.href='detail-produk.html'"
+        >
           <div class="img-box">
             <img src="Group 172.png" alt="Marble Texture Wallpaper" />
           </div>
@@ -96,7 +147,10 @@
           </div>
         </div>
 
-        <div class="product-card" onclick="window.location.href='detail-produk.html'">
+        <div
+          class="product-card"
+          onclick="window.location.href='detail-produk.html'"
+        >
           <div class="img-box">
             <img src="Group 173.png" alt="Nature Leaf Wallpaper" />
           </div>
@@ -110,7 +164,10 @@
           </div>
         </div>
 
-        <div class="product-card" onclick="window.location.href='detail-produk.html'">
+        <div
+          class="product-card"
+          onclick="window.location.href='detail-produk.html'"
+        >
           <div class="img-box">
             <img src="Group 172.png" alt="Minimalist Line Wallpaper" />
           </div>
@@ -124,7 +181,10 @@
           </div>
         </div>
 
-        <div class="product-card" onclick="window.location.href='detail-produk.html'">
+        <div
+          class="product-card"
+          onclick="window.location.href='detail-produk.html'"
+        >
           <div class="img-box">
             <img src="Group 173.png" alt="Floral Bloom Wallpaper" />
           </div>
@@ -138,7 +198,10 @@
           </div>
         </div>
 
-        <div class="product-card" onclick="window.location.href='detail-produk.html'">
+        <div
+          class="product-card"
+          onclick="window.location.href='detail-produk.html'"
+        >
           <div class="img-box">
             <img src="Group 172.png" alt="Wood Grain Wallpaper" />
           </div>
@@ -152,7 +215,10 @@
           </div>
         </div>
 
-        <div class="product-card" onclick="window.location.href='detail-produk.html'">
+        <div
+          class="product-card"
+          onclick="window.location.href='detail-produk.html'"
+        >
           <div class="img-box">
             <img src="Group 173.png" alt="Classic Grey Wallpaper" />
           </div>
@@ -169,9 +235,46 @@
     </div>
 
     <script>
-      // animasi muncul
       window.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".search-result-page").classList.add("show");
+      });
+
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const filterDropdowns = document.querySelectorAll(".filter-dropdown");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetId = button.getAttribute("data-target");
+          const targetDropdown = document.getElementById(targetId);
+
+          const isAlreadyOpen = targetDropdown.classList.contains("show");
+
+          filterDropdowns.forEach((dropdown) => {
+            dropdown.classList.remove("show");
+          });
+          filterButtons.forEach((btn) => {
+            btn.classList.remove("active");
+          });
+
+          if (!isAlreadyOpen) {
+            targetDropdown.classList.add("show");
+            button.classList.add("active");
+          }
+        });
+      });
+
+      window.addEventListener("click", (e) => {
+        if (
+          !e.target.closest(".filter-btn") &&
+          !e.target.closest(".filter-dropdown")
+        ) {
+          filterDropdowns.forEach((dropdown) => {
+            dropdown.classList.remove("show");
+          });
+          filterButtons.forEach((btn) => {
+            btn.classList.remove("active");
+          });
+        }
       });
     </script>
   </body>

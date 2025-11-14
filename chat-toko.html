@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DekorIn - Chat Toko</title>
 
-    <!-- Font & Icons -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -15,13 +14,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
 
-    <!-- CSS -->
     <link rel="stylesheet" href="chat-toko.css" />
   </head>
 
   <body>
     <div class="chat-container fade-in">
-      <!-- HEADER -->
       <header class="chat-header fade-down">
         <button class="back-btn" onclick="window.location.href='detail-produk.html'"><i class="fa-solid fa-arrow-left"></i></button>
         <div class="store-info">
@@ -33,7 +30,6 @@
         </div>
       </header>
 
-      <!-- CHAT AREA -->
       <main class="chat-body" id="chatBody">
         <div class="date-divider">Today</div>
 
@@ -53,7 +49,6 @@
         </div>
       </main>
 
-      <!-- INPUT BAR -->
       <footer class="chat-input">
         <input
           type="file"
@@ -78,14 +73,12 @@
       const addImageBtn = document.getElementById("addImageBtn");
       const imageInput = document.getElementById("imageInput");
 
-      // Fade in animation
       window.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".fade-in, .fade-down").forEach((el, i) => {
           setTimeout(() => el.classList.add("show"), i * 150);
         });
       });
 
-      // Animasi klik tombol
       [sendBtn, addImageBtn].forEach((btn) => {
         btn.addEventListener("click", () => {
           btn.classList.add("clicked");
@@ -93,7 +86,6 @@
         });
       });
 
-      // Kirim pesan teks
       sendBtn.addEventListener("click", sendMessage);
       input.addEventListener("keypress", (e) => {
         if (e.key === "Enter") sendMessage();
@@ -119,7 +111,6 @@
 
         chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
 
-        // Auto reply dari toko
         setTimeout(showAutoReply, 1200);
       }
 
@@ -142,7 +133,6 @@
         chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
       }
 
-      // Upload gambar
       addImageBtn.addEventListener("click", () => {
         imageInput.click();
       });
@@ -170,7 +160,6 @@
           chatBody.appendChild(imageMessage);
           chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
 
-          // Auto reply juga setelah kirim gambar
           setTimeout(showAutoReply, 1500);
         };
         reader.readAsDataURL(file);

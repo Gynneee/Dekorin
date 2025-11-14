@@ -1,14 +1,29 @@
-/* ===== Global ===== */
+:root {
+  --primary-green: #3d602a;
+  --light-gray: #f0f0f0;
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background: #ffffff;
+  background: var(--light-gray);
   color: #222;
-  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
   animation: fadeInPage 0.6s ease-in-out;
 }
 
-/* ===== Header ===== */
+.return-container {
+  width: 100%;
+  max-width: 700px;
+  min-height: 100vh;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow-y: auto;
+  padding-bottom: 100px;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -44,7 +59,6 @@ body {
   background: #f5f8f4;
 }
 
-/* ===== Product Card ===== */
 .product-card {
   display: flex;
   align-items: center;
@@ -78,7 +92,6 @@ body {
   font-weight: 600;
 }
 
-/* ===== Form Section ===== */
 .form-section {
   padding: 0 20px 90px;
   animation: fadeUp 0.8s ease forwards;
@@ -101,7 +114,6 @@ body {
   font-weight: 500;
 }
 
-/* ===== Fancy Dropdown Style ===== */
 .form-row select {
   width: 60%;
   border: 1.8px solid #b9c8a8;
@@ -138,7 +150,6 @@ body {
   transform: scale(1.02);
 }
 
-/* Dropdown item style */
 .form-row select option {
   background-color: #ffffff;
   color: #333;
@@ -153,7 +164,6 @@ select:focus option {
   animation: dropdownOpen 0.2s ease;
 }
 
-/* ===== Total Refund ===== */
 .total-refund {
   background: #fafafa;
   border-radius: 10px;
@@ -180,7 +190,6 @@ select:focus option {
   color: #888;
 }
 
-/* ===== Description ===== */
 .form-group {
   margin-top: 15px;
 }
@@ -199,6 +208,7 @@ textarea {
   outline: none;
   resize: none;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 textarea:focus {
   border-color: #3d602a;
@@ -206,7 +216,6 @@ textarea:focus {
   transform: scale(1.01);
 }
 
-/* ===== Upload Section ===== */
 .upload-instruction {
   font-size: 13px;
   margin-top: 15px;
@@ -238,6 +247,7 @@ textarea:focus {
   transition: all 0.3s ease;
   text-align: center;
   background: #fff;
+  box-sizing: border-box;
 }
 .upload-box:hover {
   background: #f5f8f4;
@@ -263,7 +273,6 @@ textarea:focus {
   transform: scale(1.2);
 }
 
-/* ===== Email ===== */
 .email-row {
   margin-top: 10px;
 }
@@ -271,14 +280,16 @@ textarea:focus {
   font-weight: 600;
 }
 
-/* ===== Submit Button ===== */
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   background: #fff;
   padding: 15px 20px;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
 .submit-btn {
   width: 100%;
@@ -302,7 +313,6 @@ textarea:focus {
   transform: translateY(-2px);
 }
 
-/* ===== Animations ===== */
 .hidden {
   display: none;
   opacity: 0;
@@ -363,11 +373,7 @@ textarea:focus {
   }
 }
 
-/* ===== Responsive ===== */
 @media (max-width: 480px) {
-  .form-section {
-    padding-bottom: 100px;
-  }
   .product-card img {
     width: 55px;
     height: 55px;

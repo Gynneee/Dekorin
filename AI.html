@@ -3,14 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Destiny AI - Asisten cerdas DekorIn untuk konsultasi wallpaper" />
+    <meta
+      name="description"
+      content="Destiny AI - Asisten cerdas DekorIn untuk konsultasi wallpaper"
+    />
     <meta name="theme-color" content="#64bc67" />
     <title>Destiny AI - DekorIn</title>
 
     <link rel="stylesheet" href="AI.css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="particles" id="particles"></div>
@@ -21,11 +30,12 @@
           <a href="loggedin.html" class="header-btn back-btn" aria-label="Back">
             <i class="fas fa-arrow-left"></i>
           </a>
-          <h1 class="destiny-title">
-            <img src="src/Home/Destinyaicolored.png" alt="Destiny" />
-            DESTINY
-          </h1>
-          <a href="myprofile.html" class="header-btn profile-btn" aria-label="Profile">
+          <h1 class="destiny-title">DESTINY</h1>
+          <a
+            href="myprofile.html"
+            class="header-btn profile-btn"
+            aria-label="Profile"
+          >
             <i class="fas fa-user"></i>
           </a>
         </header>
@@ -51,15 +61,50 @@
               </button>
             </div>
 
-            <input type="text" id="chat-input" placeholder="Ask Destiny anything..." autocomplete="off" />
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Ask Destiny anything..."
+              autocomplete="off"
+            />
 
-            <button type="submit" class="send-btn" id="send-btn" aria-label="Send">
+            <button
+              type="submit"
+              class="send-btn"
+              id="send-btn"
+              aria-label="Send"
+            >
               <i class="fas fa-paper-plane"></i>
             </button>
 
             <span class="version-text">Destiny v1.0</span>
           </div>
         </footer>
+      </div>
+
+      <div class="popup-overlay" id="clearChatOverlay"></div>
+      <div class="popup-container" id="clearChatPopup">
+        <div class="popup-content">
+          <h2>Clear Chat</h2>
+          <p>Are you sure you want to clear this conversation?</p>
+          <div class="popup-buttons">
+            <button class="popup-btn popup-btn-no" id="cancelClearBtn">
+              Cancel
+            </button>
+            <button class="popup-btn popup-btn-yes" id="confirmClearBtn">
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="popup-overlay" id="historyOverlay"></div>
+      <div class="popup-container" id="historyPopup">
+        <div class="popup-header-history">
+          <h2>Chat History</h2>
+          <button class="close-popup-btn" id="closeHistoryBtn">&times;</button>
+        </div>
+        <div class="popup-content-history" id="historyContent"></div>
       </div>
     </div>
 
