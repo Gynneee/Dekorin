@@ -15,7 +15,7 @@
   <div class="payment-container">
     <!-- HEADER -->
     <header class="payment-header">
-      <button class="back-btn" onclick="window.location.href = 'payment.html'"><i class="fas fa-arrow-left"></i></button>
+      <button class="back-btn" onclick="window.location.href='payment.html'"><i class="fas fa-arrow-left"></i></button>
       <h2>Payment</h2>
       <button class="cart-icon"><i class="fas fa-shopping-cart"></i></button>
     </header>
@@ -52,13 +52,17 @@
         <h3>Virtual Account</h3>
 
         <div class="va-card">
-          <div class="va-info">
-            <img src="src/payment/BCA.png" alt="BCA" />
-            <span>BCA Virtual Account</span>
+          <div class="va-top">
+            <div class="va-bank">
+              <img src="src/payment/BCA.png" alt="BCA" />
+              <span class="bank-name"><strong>BCA Virtual Account</strong></span>
+            </div>
+            <span class="store-name">Toko Wallpaper</span>
           </div>
+
           <div class="va-number">
             <span id="vaNumber">1234567890</span>
-            <button class="btn-outline" onclick="copyVA()">Copy</button>
+            <button class="btn-copy" onclick="copyVA()">Copy</button>
           </div>
         </div>
 
@@ -81,7 +85,7 @@
 
     <!-- FIXED FOOTER -->
     <footer class="footer-fixed">
-      <button class="checkout-btn" onclick="window.location.href = 'payment-success.html'">Continue</button>
+      <button class="checkout-btn" onclick="window.location.href='payment-success.html'">Continue</button>
     </footer>
 
     <!-- Toast Notification -->

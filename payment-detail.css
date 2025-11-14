@@ -7,12 +7,7 @@
   --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-a,
-button,
-.nav-button,
-.menu-list li,
-input,
-textarea {
+a, button, input, textarea {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -38,6 +33,7 @@ body {
   flex-direction: column;
 }
 
+/* HEADER */
 .payment-header {
   display: flex;
   align-items: center;
@@ -57,12 +53,14 @@ body {
   cursor: pointer;
 }
 
+/* MAIN CONTENT */
 .content {
   flex: 1;
   overflow-y: auto;
   padding-bottom: 120px; 
 }
 
+/* ORDER LIST */
 .order-list {
   padding: 16px;
 }
@@ -124,6 +122,7 @@ body {
   font-weight: 600;
 }
 
+/* ===== VIRTUAL ACCOUNT ===== */
 .virtual-account {
   padding: 0 16px;
 }
@@ -137,59 +136,79 @@ body {
 .va-card {
   background: #fff;
   border-radius: 16px;
-  padding: 12px 14px;
+  padding: 14px 16px;
   box-shadow: var(--shadow-soft);
-  margin-bottom: 12px;
 }
 
-.va-info {
+/* Baris atas: logo bank, nama bank, toko */
+.va-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.va-bank {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 10px;
 }
 
-.va-info img {
-  width: 28px;
-  height: 28px;
+.va-bank img {
+  width: 26px;
+  height: 26px;
 }
 
+.bank-name {
+  font-size: 14px;
+  color: #111;
+}
+
+.store-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Nomor VA dan tombol Copy */
 .va-number {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background: #f1f2f4;
-  border-radius: 10px;
-  padding: 10px 12px;
+  align-items: center;
+  margin-top: 2px;
 }
 
 .va-number span {
   font-weight: 600;
-  letter-spacing: 0.3px;
+  font-size: 15px;
+  letter-spacing: 0.4px;
 }
 
-.btn-outline {
-  border: 1px solid #bbb;
+.btn-copy {
+  border: 1px solid #ccc;
   background: #fff;
-  border-radius: 999px;
-  padding: 6px 14px;
+  color: #333;
   font-weight: 600;
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 13px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
-.btn-outline:hover {
+.btn-copy:hover {
   background: var(--green);
-  color: #fff;
   border-color: var(--green);
+  color: #fff;
 }
 
+/* SHEET (Promo + Total) */
 .sheet {
   border-radius: 28px;
   box-shadow: var(--shadow);
   background: #fff;
   padding: 18px 16px 16px;
-  overflow: hidden; 
+  margin-top: 16px;
 }
 
 .pill-group {
@@ -199,8 +218,6 @@ body {
   border-radius: 999px;
   overflow: hidden;
   margin-bottom: 14px;
-  width: 100%;  
-  box-sizing: border-box;
 }
 
 .pill-group input {
@@ -210,7 +227,6 @@ body {
   outline: none;
   font-size: 14px;
   padding: 10px 14px;
-  min-width: 0;             
 }
 
 .pill-cta {
@@ -221,15 +237,13 @@ body {
   padding: 10px 20px;
   cursor: pointer;
   transition: background 0.3s ease;
-  white-space: nowrap;     
-  height: 100%;
 }
 
 .pill-cta:hover {
   background: var(--green-dark);
 }
 
-
+/* Summary */
 .summary p {
   display: flex;
   justify-content: space-between;
@@ -248,6 +262,7 @@ body {
   font-weight: 700;
 }
 
+/* FOOTER FIXED */
 .footer-fixed {
   position: fixed;
   bottom: 0;
@@ -273,6 +288,7 @@ body {
   box-shadow: 0 8px 20px rgba(58, 107, 53, 0.25);
 }
 
+/* TOAST */
 #toast {
   visibility: hidden;
   min-width: 200px;

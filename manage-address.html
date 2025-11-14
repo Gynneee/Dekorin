@@ -4,53 +4,77 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manage Address - DekorIn</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
   <link rel="stylesheet" href="manage-address.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
+  <script defer src="manage-address.js"></script>
   <link rel="icon" href="src/Home/DekorIn(6)(1).png" type="image/png">
 </head>
 
 <body>
   <div class="address-container">
     <header class="address-header">
-      <a href="loggedin.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+      <button class="back-btn" aria-label="Kembali"><i class="fas fa-arrow-left"></i></button>
       <h2>Manage Address</h2>
     </header>
 
     <section class="address-section">
-      <div class="address-card">
-        <div class="address-icon">
-          <i class="fas fa-map-marker-alt"></i>
+      <!-- Alamat terpilih -->
+      <div class="address-card active">
+        <div class="address-header-card">
+          <div class="address-title">
+            <i class="fas fa-map-marker-alt"></i>
+            <h4>Dorm</h4>
+          </div>
+          <button class="edit-btn" aria-label="Edit"><i class="fas fa-pen"></i></button>
         </div>
-        <div class="address-info" onclick="window.location.href='update-address.html'">
-          <h4>Dorm</h4>
+
+        <div class="address-body">
           <p>Jl. Pakuan No.3, Sumur Batu, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</p>
+          <button class="use-btn" type="button">Use</button>
+        </div>
+      </div>
+
+      <h3 class="choose-title">Choose Address</h3>
+
+      <!-- Daftar alamat -->
+      <div class="address-card">
+        <div class="address-header-card">
+          <div class="address-title">
+            <i class="fas fa-map-marker-alt"></i>
+            <h4>Dorm</h4>
+          </div>
+          <button class="edit-btn" aria-label="Edit"><i class="fas fa-pen"></i></button>
+        </div>
+
+        <div class="address-body">
+          <p>Jl. Pakuan No.3, Sumur Batu, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</p>
+          <button class="use-btn" type="button">Use</button>
         </div>
       </div>
 
       <div class="address-card">
-        <div class="address-icon">
-          <i class="fas fa-map-marker-alt"></i>
+        <div class="address-header-card">
+          <div class="address-title">
+            <i class="fas fa-map-marker-alt"></i>
+            <h4>Dorm</h4>
+          </div>
+          <button class="edit-btn" aria-label="Edit"><i class="fas fa-pen"></i></button>
         </div>
-        <div class="address-info" onclick="window.location.href='update-address.html'">
-          <h4>Office</h4>
+
+        <div class="address-body">
           <p>Jl. Pakuan No.3, Sumur Batu, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</p>
+          <button class="use-btn" type="button">Use</button>
         </div>
       </div>
 
-      <button class="add-address-btn" onclick="window.location.href='add-address.html'">
-        + Add new shipping address
-      </button>
+      <button class="add-btn" type="button">+ Add new shipping address</button>
     </section>
 
     <footer class="address-footer">
-      <button class="apply-btn">Apply</button>
+      <button class="apply-btn" type="button">Apply</button>
     </footer>
   </div>
 </body>
