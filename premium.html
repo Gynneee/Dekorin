@@ -14,6 +14,7 @@
 
 <body>
   <div class="container">
+
     <!-- Header -->
     <header class="topbar">
       <div class="top-icons">
@@ -31,9 +32,10 @@
       <p>Remove ads and unlock unlimited features</p>
     </section>
 
-    <!-- Plans -->
+    <!-- Plans → SEKARANG JADI BUTTON -->
     <section class="plans">
-      <div class="plan-card">
+
+      <button class="plan-card plan-btn" data-plan="monthly">
         <div class="plan-left">
           <h5>Monthly Plan</h5>
           <h2>Rp49.000,00 <span>/ Month</span></h2>
@@ -41,13 +43,13 @@
         <div class="plan-right">
           <span>Auto Pay</span>
           <label class="switch">
-            <input type="checkbox" checked />
+            <input type="checkbox" checked disabled />
             <span class="slider"></span>
           </label>
         </div>
-      </div>
+      </button>
 
-      <div class="plan-card">
+      <button class="plan-card plan-btn" data-plan="annual">
         <div class="plan-left">
           <h5>Annual Plan</h5>
           <h2>Rp499.000,00 <span>/ Year</span></h2>
@@ -55,11 +57,12 @@
         <div class="plan-right">
           <span>Auto Pay</span>
           <label class="switch">
-            <input type="checkbox" />
+            <input type="checkbox" disabled />
             <span class="slider"></span>
           </label>
         </div>
-      </div>
+      </button>
+
     </section>
 
     <!-- Features -->
@@ -95,11 +98,17 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <button class="cta" onclick="window.location.href='payment-ai.html'">Continue For Payment</button>
-      <button class="ghost">Skip For Now</button>
-    </footer>
   </div>
+
+  <!-- JS untuk klik card -->
+  <script>
+    document.querySelectorAll(".plan-btn").forEach(card => {
+      card.addEventListener("click", () => {
+        const plan = card.dataset.plan;
+        window.location.href = `payment-ai.html?plan=${plan}`;
+      });
+    });
+  </script>
+
 </body>
 </html>

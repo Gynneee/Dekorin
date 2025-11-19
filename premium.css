@@ -64,15 +64,13 @@ body {
   color: var(--ink);
   cursor: pointer;
   transition: opacity 0.2s ease;
-  /* Style ini akan berfungsi pada tag <a> dan <button> */
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 .icon-btn:hover {
   opacity: 0.6;
 }
 
-/* Logo Premium turun sedikit di bawah ikon */
 .premium-header {
   margin-top: 0.5rem;
   display: flex;
@@ -111,6 +109,20 @@ body {
   padding: 1rem 1.2rem;
 }
 
+/* CARD (sekarang jadi button wrapper) */
+.plan-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+
+.plan-btn:active {
+  transform: scale(0.98);
+}
+
 .plan-card {
   display: flex;
   justify-content: space-between;
@@ -119,6 +131,7 @@ body {
   border-radius: 16px;
   box-shadow: var(--shadow);
   padding: 1rem 1.2rem;
+  width: 100%;
 }
 
 .plan-left h5 {
@@ -236,34 +249,7 @@ body {
   font-size: 0.85rem;
 }
 
+/* Footer (hilang tapi biarkan CSS tetap ada jika sewaktu waktu dibutuhkan) */
 .footer {
-  margin-top: auto;
-  padding: 1.5rem 1.2rem;
-}
-
-.cta {
-  width: 100%;
-  background: linear-gradient(90deg, var(--green), var(--green-light));
-  color: #fff;
-  font-weight: 600;
-  border: none;
-  border-radius: 28px;
-  padding: 1rem;
-  font-size: 1rem;
-  box-shadow: var(--shadow);
-  transition: all 0.2s ease-in-out;
-}
-
-.cta:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.05);
-}
-
-.ghost {
-  margin-top: 0.8rem;
-  width: 100%;
-  background: transparent;
-  border: none;
-  color: var(--muted);
-  font-size: 0.9rem;
+  display: none !important;
 }

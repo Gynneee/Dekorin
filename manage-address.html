@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <link rel="stylesheet" href="manage-address.css" />
-  <script defer src="manage-address.js"></script>
   <link rel="icon" href="src/Home/DekorIn(6)(1).png" type="image/png">
 </head>
 
@@ -21,6 +20,7 @@
     </header>
 
     <section class="address-section">
+
       <!-- Alamat terpilih -->
       <div class="address-card active">
         <div class="address-header-card">
@@ -39,18 +39,18 @@
 
       <h3 class="choose-title">Choose Address</h3>
 
-      <!-- Daftar alamat -->
+      <!-- Daftar alamat lainnya -->
       <div class="address-card">
         <div class="address-header-card">
           <div class="address-title">
             <i class="fas fa-map-marker-alt"></i>
-            <h4>Dorm</h4>
+            <h4>Rumah</h4>
           </div>
           <button class="edit-btn" aria-label="Edit"><i class="fas fa-pen"></i></button>
         </div>
 
         <div class="address-body">
-          <p>Jl. Pakuan No.3, Sumur Batu, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</p>
+          <p>Jl. Raya Jakarta No.10, Bogor Timur, Kota Bogor</p>
           <button class="use-btn" type="button">Use</button>
         </div>
       </div>
@@ -59,23 +59,54 @@
         <div class="address-header-card">
           <div class="address-title">
             <i class="fas fa-map-marker-alt"></i>
-            <h4>Dorm</h4>
+            <h4>Kantor</h4>
           </div>
           <button class="edit-btn" aria-label="Edit"><i class="fas fa-pen"></i></button>
         </div>
 
         <div class="address-body">
-          <p>Jl. Pakuan No.3, Sumur Batu, Kec. Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</p>
+          <p>Jl. Sudirman No.25, Pusat Kota, Jakarta Pusat</p>
           <button class="use-btn" type="button">Use</button>
         </div>
       </div>
 
       <button class="add-btn" type="button">+ Add new shipping address</button>
     </section>
-
-    <footer class="address-footer">
-      <button class="apply-btn" type="button">Apply</button>
-    </footer>
   </div>
+
+  <!-- JS SIMULASI -->
+<script>
+  const topCard = document.querySelector('.address-card.active');
+  const topTitle = topCard.querySelector('.address-header-card h4');
+  const topAddress = topCard.querySelector('.address-body p');
+
+  document.querySelectorAll('.use-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const clickedCard = btn.closest('.address-card');
+
+      // Ambil title & alamat dari card yang diklik
+      const clickedTitle = clickedCard.querySelector('.address-header-card h4');
+      const clickedAddress = clickedCard.querySelector('.address-body p');
+
+      // Simpan data lama untuk ditukar
+      const tempTitle = topTitle.textContent;
+      const tempAddress = topAddress.textContent;
+
+      // Tukar isi
+      topTitle.textContent = clickedTitle.textContent;
+      topAddress.textContent = clickedAddress.textContent;
+
+      clickedTitle.textContent = tempTitle;
+      clickedAddress.textContent = tempAddress;
+
+      // Pastikan active hanya di atas
+      document.querySelectorAll('.address-card').forEach(c => c.classList.remove('active'));
+      topCard.classList.add('active');
+    });
+  });
+</script>
+
+
+
 </body>
 </html>
