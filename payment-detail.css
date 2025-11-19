@@ -140,7 +140,6 @@ body {
   box-shadow: var(--shadow-soft);
 }
 
-/* Baris atas: logo bank, nama bank, toko */
 .va-top {
   display: flex;
   justify-content: space-between;
@@ -170,7 +169,6 @@ body {
   color: #555;
 }
 
-/* Nomor VA dan tombol Copy */
 .va-number {
   display: flex;
   justify-content: space-between;
@@ -213,7 +211,7 @@ body {
 
 .pill-group {
   display: flex;
-  align-items: center;
+  align-items: stretch; /* Forces Input and Button to same height */
   background: #e9ecef;
   border-radius: 999px;
   overflow: hidden;
@@ -222,6 +220,7 @@ body {
 
 .pill-group input {
   flex: 1;
+  min-width: 0; /* Allows input to shrink if needed */
   border: none;
   background: transparent;
   outline: none;
@@ -234,9 +233,15 @@ body {
   color: #fff;
   border: none;
   font-weight: 600;
-  padding: 10px 20px;
+  padding: 0 20px;
   cursor: pointer;
   transition: background 0.3s ease;
+  
+  /* Flex properties to center text and prevent squashing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* THIS FIXES THE SQUASHING ISSUE */
 }
 
 .pill-cta:hover {
