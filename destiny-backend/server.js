@@ -16,8 +16,8 @@ const hf = new HfInference(process.env.HF_TOKEN);
 
 const MODELS = {
   primary: 'mistralai/Mistral-7B-Instruct-v0.2',
-  advanced: 'mistralai/Mixtral-8x7B-Instruct-v0.1',
-  math: 'mistralai/Mixtral-8x7B-Instruct-v0.1'
+  advanced: 'mistralai/Mistral-7B-Instruct-v0.2',
+  math: 'mistralai/Mistral-7B-Instruct-v0.2'
 };
 
 const conversationHistory = new Map();
@@ -499,14 +499,12 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`\n${'🌟'.repeat(30)}`);
   console.log(`🚀 Destiny AI Server - DekorIn`);
   console.log(`📍 Running at: http://localhost:${port}`);
-  console.log(`\n✅ Capabilities:`);
+  console.log(`\nCapabilities:`);
   console.log(`   - Multilingual Support (Indonesian, English, etc.)`);
   console.log(`   - Advanced Mathematics`);
   console.log(`   - Product Recommendations`);
   console.log(`   - Context-Aware Conversations`);
-  console.log(`\n📊 Knowledge Base: ${knowledgeBase.get('products').length} products loaded`);
-  console.log(`${'🌟'.repeat(30)}\n`);
+  console.log(`\nKnowledge Base: ${knowledgeBase.get('products').length} products loaded`);
 });

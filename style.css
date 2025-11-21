@@ -1619,7 +1619,6 @@ body.search-active .search-page {
   font-size: 0.9rem;
 }
 
-/* Adjust existing card to fit the new row properly */
 .horizontal-scroll-wrapper .product-card {
   height: auto;
   min-height: 280px;
