@@ -4,68 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Upgrade to Premium</title>
-
-  <!-- Font & Icon -->
   <link rel="stylesheet" href="premium.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="src/Home/DekorIn(6)(1).png" type="image/png">
 </head>
-
 <body>
   <div class="container">
-
-    <!-- Header -->
     <header class="topbar">
       <div class="top-icons">
         <a href="loggedin.html" class="icon-btn"><i class="fas fa-xmark"></i></a>
       </div>
-
       <div class="premium-header">
-        <img src="src/premium/prem.png" alt="Premium Badge" class="premium-badge" />
+        <div class="premium-badge">
+          <span>PREMIUM</span>
+        </div>
       </div>
     </header>
-
-    <!-- Headline -->
     <section class="headline">
       <h1>Upgrade to Premium</h1>
       <p>Remove ads and unlock unlimited features</p>
     </section>
-
-    <!-- Plans → SEKARANG JADI BUTTON -->
     <section class="plans">
-
-      <button class="plan-card plan-btn" data-plan="monthly">
-        <div class="plan-left">
-          <h5>Monthly Plan</h5>
-          <h2>Rp49.000,00 <span>/ Month</span></h2>
-        </div>
-        <div class="plan-right">
-          <span>Auto Pay</span>
-          <label class="switch">
-            <input type="checkbox" checked disabled />
-            <span class="slider"></span>
-          </label>
+      <button class="plan-btn" data-plan="monthly">
+        <div class="plan-card">
+          <div class="plan-left">
+            <h5>Monthly Plan</h5>
+            <h2>Rp49.000,00 <span>/ Month</span></h2>
+          </div>
+          <div class="plan-right">
+            <i class="fas fa-arrow-right"></i>
+          </div>
         </div>
       </button>
-
-      <button class="plan-card plan-btn" data-plan="annual">
-        <div class="plan-left">
-          <h5>Annual Plan</h5>
-          <h2>Rp499.000,00 <span>/ Year</span></h2>
-        </div>
-        <div class="plan-right">
-          <span>Auto Pay</span>
-          <label class="switch">
-            <input type="checkbox" disabled />
-            <span class="slider"></span>
-          </label>
+      <button class="plan-btn" data-plan="annual">
+        <div class="plan-card">
+          <div class="plan-left">
+            <h5>Annual Plan</h5>
+            <h2>Rp499.000,00 <span>/ Year</span></h2>
+          </div>
+          <div class="plan-right">
+            <i class="fas fa-arrow-right"></i>
+          </div>
         </div>
       </button>
-
     </section>
-
-    <!-- Features -->
     <section class="features">
       <div class="feature">
         <div class="tick">
@@ -76,7 +59,6 @@
           <p>Hide ads everywhere</p>
         </div>
       </div>
-
       <div class="feature">
         <div class="tick">
           <img src="Group 175.png" alt="Check Icon" />
@@ -86,7 +68,6 @@
           <p>Access limitless AI interactions</p>
         </div>
       </div>
-
       <div class="feature">
         <div class="tick">
           <img src="Group 175.png" alt="Check Icon" />
@@ -97,10 +78,7 @@
         </div>
       </div>
     </section>
-
   </div>
-
-  <!-- JS untuk klik card -->
   <script>
     document.querySelectorAll(".plan-btn").forEach(card => {
       card.addEventListener("click", () => {
@@ -109,6 +87,5 @@
       });
     });
   </script>
-
 </body>
 </html>

@@ -18,7 +18,6 @@
 
 <body>
   <div class="address-container fade-in">
-    <!-- HEADER -->
     <header class="address-header fade-down">
       <button class="back-btn">
         <i class="fas fa-arrow-left"></i>
@@ -26,7 +25,6 @@
       <h2>Add Address</h2>
     </header>
 
-    <!-- MAP -->
     <div class="map-container">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.768545479724!2d106.82269617575984!3d-6.425370162824174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c4a9b1a27b9b%3A0xf7bbf73b7a908d8a!2sBogor!5e0!3m2!1sid!2sid!4v1702302211213!5m2!1sid!2sid"
@@ -39,7 +37,6 @@
       ></iframe>
     </div>
 
-    <!-- ADDRESS FORM -->
     <section class="address-form">
       <h3>Save address as</h3>
       <div class="address-tags">
@@ -65,21 +62,18 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="address-footer">
       <button class="save-btn">Save Address</button>
     </footer>
   </div>
 
   <script>
-    // Animasi
     window.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".fade-in, .fade-down").forEach((el, i) => {
         setTimeout(() => el.classList.add("show"), i * 100);
       });
     });
 
-    // Tag aktif
     const tags = document.querySelectorAll(".tag");
     tags.forEach(tag => {
       tag.addEventListener("click", () => {
@@ -88,7 +82,6 @@
       });
     });
 
-    // Tombol kembali
     document.querySelector(".back-btn").addEventListener("click", () => {
       window.history.back();
     });

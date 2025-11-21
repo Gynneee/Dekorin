@@ -1,15 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   
-  // --- NEW: Back Button Logic ---
   const backButton = document.getElementById("backButton");
   if (backButton) {
     backButton.addEventListener("click", () => {
       history.back();
     });
   }
-  // --- All menu, overlay, and link-highlighting logic has been removed ---
-
-  // --- Animation Code ---
   const observeElements = () => {
     const sections = document.querySelectorAll(".section-animate-init");
     const sectionObserver = new IntersectionObserver(
