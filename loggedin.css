@@ -1650,3 +1650,134 @@ body.search-active .search-page {
     margin-bottom: 0;
     padding-bottom: 0.25rem;
 }
+
+@media (min-width: 1024px) {
+  .mobile-container {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .header-img {
+    height: 60px;
+    width: auto;
+  }
+
+  .search-bar {
+    max-width: 800px;
+  }
+  
+  .slider-wrapper .slide {
+    aspect-ratio: 21 / 7;
+  }
+  
+  .slide.active .slide-image {
+    transform: scale(1.05);
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 1rem 3rem;
+  }
+  
+  .feature-item {
+    min-height: 160px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+
+  .product-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .side-menu, 
+  .profile-menu {
+    width: 350px; 
+    max-width: 350px;
+    left: -360px;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+  }
+  
+  .side-menu.open {
+    left: 0;
+  }
+  
+  .profile-menu {
+    right: -360px;
+    left: auto;
+  }
+  
+  .profile-menu.open {
+    right: 0;
+  }
+
+  .estimate-section, 
+  .ar-preview-section {
+    padding: 4rem 3rem;
+    gap: 3rem;
+  }
+  
+  .estimate-image img, 
+  .ar-image img {
+    max-width: 200px;
+  }
+  
+  .estimate-text h2, 
+  .ar-text h2 {
+    font-size: 2rem;
+  }
+
+  .horizontal-scroll-wrapper .product-card,
+  .content-slider-wrapper > div {
+    width: 250px;
+  }
+  
+  .content-slider-wrapper > div {
+     width: 30%;
+  }
+
+  .chat-card {
+    max-width: 600px; 
+  }
+
+  .main-footer-section {
+    padding: 4rem 3rem;
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .search-page {
+     max-width: 1200px;
+     left: 50%;
+     transform: translateX(-50%) translateY(-20px);
+  }
+  
+  body.search-active .search-page {
+     transform: translateX(-50%) translateY(0);
+  }
+
+  .filter-buttons {
+    justify-content: flex-start;
+  }
+  
+  .filter-btn {
+    flex: 0 0 auto;
+    min-width: 150px;
+  }
+  
+  .filter-dropdown {
+    width: 400px;
+  }
+}
